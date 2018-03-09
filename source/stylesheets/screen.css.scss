@@ -74,8 +74,13 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
     margin-bottom: $logo-margin;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    max-width: 100%;
+    text-align: center;
+
   }
 
   &>.search {
@@ -312,6 +317,9 @@ html, body {
 // CONTENT STYLES
 ////////////////////////////////////////////////////////////////////////////////
 // This is all the stuff with the light background in the left half of the page
+.required {
+  color: $required;
+}
 
 .content {
   // fixes webkit rendering bug for some: see #538
@@ -461,6 +469,8 @@ html, body {
     padding: 0;
   }
 
+
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -475,6 +485,10 @@ html, body {
 
     &.success {
       background-color: $aside-success-bg;
+    }
+
+    &.error {
+      background-color: $aside-warning-bg;
     }
   }
 

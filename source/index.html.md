@@ -1,15 +1,10 @@
 ---
-title: API Reference
+title: tagango API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
-  - python
   - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,221 +14,2343 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the tatango API! You can use our API to access tatango API endpoints, which has POST, GET, PUT, DELETE, OPTIONS endpoints for handling information in our database.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell, Ruby, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'net/http'
+require 'uri'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+uri = URI.parse('https://app.tatango.com/api/v2/example-endpoint')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# With shell, you can just pass the correct email and api key with each request
+curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/example-endpoint
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `my_api_key` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>my_api_key</code> with your personal API key.
 </aside>
 
-# Kittens
+# Accounts
 
-## Get All Kittens
+## Get Current Account
 
 ```ruby
-require 'kittn'
+require 'net/http'
+require 'uri'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+uri = URI.parse('https://app.tatango.com/api/v2/accounts')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/accounts/me", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "status":"OK",
+    "account": {
+      "id":37,
+      "email":"myemail36@gmail.com",
+      "username":"boowebb36"
+    }
   }
-]
+
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves the current account.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET https://app.tatango.com/api/accounts/me`
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+You will receive a 200 status on success
+</aside>
+<aside class="error">
+<strong>Disabled API Key</strong>
+<p>
+{"status":"error","error":"This API key is disabled"}
+</p>
+</aside>
+<aside class="error">
+<strong>Invalid API Key</strong>
+<p>{"status":"error","error":"API key authorization failure"}</p>
 </aside>
 
-## Get a Specific Kitten
+# Campaigns
+
+## Listing Campaigns
 
 ```ruby
-require 'kittn'
+require 'net/http'
+require 'uri'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+uri = URI.parse('https://app.tatango.com/api/v2/lists')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://app.tatango.com/api/v2/lists" -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
 ```
 
 ```javascript
-const kittn = require('kittn');
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "per_page":10,
+   "count":3,
+   "page":1,
+   "pages_count":1,
+   "lists":[  
+      {  
+         "email_digest":"myemail12@gmail.com",
+         "email_subscribe":null,
+         "email_unsubscribe":null,
+         "first_optin_message":"",
+         "id":7,
+         "message_already_subscribed":null,
+         "message_help":null,
+         "message_reply":null,
+         "message_stop":null,
+         "message_yes":null,
+         "name":"Mobile Campaign",
+         "second_optin_message":"",
+         "keyword_names":[  
+
+         ],
+         "counts":{  
+            "subscribers":0,
+            "unsubscribed":0,
+            "cleaned":0
+         },
+         "opt_in_type":"single",
+         "opt_in_requests":[  
+
+         ]
+      },
+      {  
+         "email_digest":"myemail14@gmail.com",
+         "email_subscribe":null,
+         "email_unsubscribe":null,
+         "first_optin_message":"",
+         "id":8,
+         "message_already_subscribed":null,
+         "message_help":null,
+         "message_reply":null,
+         "message_stop":null,
+         "message_yes":null,
+         "name":"Pizza Campaign",
+         "second_optin_message":"",
+         "keyword_names":[  
+
+         ],
+         "counts":{  
+            "subscribers":0,
+            "unsubscribed":0,
+            "cleaned":0
+         },
+         "opt_in_type":"single",
+         "opt_in_requests":[  
+
+         ]
+      },
+      {  
+         "email_digest":"myemail15@gmail.com",
+         "email_subscribe":null,
+         "email_unsubscribe":null,
+         "first_optin_message":"",
+         "id":9,
+         "message_already_subscribed":null,
+         "message_help":null,
+         "message_reply":null,
+         "message_stop":null,
+         "message_yes":null,
+         "name":"Pizza Campaign",
+         "second_optin_message":"",
+         "keyword_names":[  
+            "NEWHOTELS"
+         ],
+         "counts":{  
+            "subscribers":0,
+            "unsubscribed":0,
+            "cleaned":0
+         },
+         "opt_in_type":"single",
+         "opt_in_requests":[  
+
+         ]
+      }
+   ]
+}
+```
+
+This endpoint retrieves a list of campaigns.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists`
+
+## Query Campaign by ID
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/<ID>", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "list":{  
+      "email_digest":"myemail2@gmail.com",
+      "email_subscribe":null,
+      "email_unsubscribe":null,
+      "first_optin_message":"",
+      "id":2,
+      "message_already_subscribed":null,
+      "message_help":null,
+      "message_reply":null,
+      "message_stop":null,
+      "message_yes":null,
+      "name":"Book Campaign",
+      "second_optin_message":"",
+      "keyword_names":[  
+
+      ],
+      "counts":{  
+         "subscribers":0,
+         "unsubscribed":0,
+         "cleaned":0
+      },
+      "opt_in_type":"single",
+      "opt_in_requests":[  
+
+      ]
+   }
+}
+
+```
+
+This endpoint retrieves a specific campaign.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list to retrieve
+
+## Configuring Opt-In Type to Double
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"Opt in settings updated",
+   "opt_in_type":"double",
+   "opt_in_requests":[  
+      {  
+         "bypass_opt_in_response":false,
+         "collected_data":"zip_code",
+         "created_at":"2016-09-07T14:10:41-07:00",
+         "follow_up":true,
+         "follow_up_hour":2,
+         "id":1,
+         "list_id":10,
+         "no_response_message":"Please let us know, what is your zip code?",
+         "opt_in_message":null,
+         "request_message":"Your zip code?",
+         "retry_message":"Wrong zip code, try again",
+         "second_opt_in_message":null,
+         "success_action":"nextrequest",
+         "updated_at":"2016-09-07T14:10:41-07:00"
+      },
+      {  
+         "bypass_opt_in_response":false,
+         "collected_data":"email_address",
+         "created_at":"2016-09-07T14:10:41-07:00",
+         "follow_up":true,
+         "follow_up_hour":24,
+         "id":2,
+         "list_id":10,
+         "no_response_message":"Please let us know, what is your email?",
+         "opt_in_message":null,
+         "request_message":"Your email?",
+         "retry_message":"Wrong email, try again",
+         "second_opt_in_message":null,
+         "success_action":"nextrequest",
+         "updated_at":"2016-09-07T14:10:41-07:00"
+      },
+      {  
+         "bypass_opt_in_response":false,
+         "collected_data":"first_name",
+         "created_at":"2016-09-07T14:10:41-07:00",
+         "follow_up":true,
+         "follow_up_hour":24,
+         "id":3,
+         "list_id":10,
+         "no_response_message":"Please let us know, what is your name?",
+         "opt_in_message":null,
+         "request_message":"Your name?",
+         "retry_message":"Wrong name, try again",
+         "second_opt_in_message":null,
+         "success_action":"nextrequest",
+         "updated_at":"2016-09-07T14:10:41-07:00"
+      },
+      {  
+         "bypass_opt_in_response":false,
+         "collected_data":"yes",
+         "created_at":"2016-09-07T14:10:41-07:00",
+         "follow_up":false,
+         "follow_up_hour":24,
+         "id":4,
+         "list_id":10,
+         "no_response_message":null,
+         "opt_in_message":"Welcome to our awesome mailing list.",
+         "request_message":"Reply YES to join our awesome mailing list",
+         "retry_message":"Reply YES to join our awesome mailing list",
+         "second_opt_in_message":"Welcome back to our awesome mailing list.",
+         "success_action":"optinsubscriber",
+         "updated_at":"2016-09-07T14:10:41-07:00"
+      }
+   ]
+}
+```
+
+This endpoint configures an opt-in type to double.
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list to change
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+opt_in_requests	| Array of opt in requests
+opt_in_requests[request_message]	| message that will be sent to subscriber
+opt_in_requests[retry_message]	| message that will be sent to subscriber if he will respond with invalid data
+opt_in_requests[follow_up]	| send follow up message if customer doesn't respond?
+opt_in_requests[follow_up_hour]	| follow up customer in how many hours/
+opt_in_requests[no_response_message]	| content of follow up message
+opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be "optinsubscriber" in last opt in request
+opt_in_requests[opt_in_message]	| First opt in message
+opt_in_requests[second_opt_in_message]	| Second opt in message
+
+## Configuring Opt-In Type to Single
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"opt_in_type":"single","first_optin_message":"Welcome","second_optin_message":"Welcome back"})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"single","first_optin_message":"Welcome","second_optin_message":"Welcome back"}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"opt_in_type":"single","first_optin_message":"Welcome","second_optin_message":"Welcome back"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "opt_in_type":"single",
+   "first_optin_message":"Welcome",
+   "second_optin_message":"Welcome back"
+}
+```
+
+This endpoint configures an opt-in type to single.
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list to change
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+opt_in_type | Opt in type, single or double
+first_optin_message | First opt in message
+second_optin_message | Second opt in message
+
+## Creating a New Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"list":{"name":"My awesome campaign"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome campaign"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"list":{"name":"My awesome campaign"}});
+request.send(data);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+   "status":"List created",
+   "list":{
+      "email_digest":"myemail18@gmail.com",
+      "email_subscribe":null,
+      "email_unsubscribe":null,
+      "first_optin_message":"",
+      "id":11,
+      "message_already_subscribed":null,
+      "message_help":null,
+      "message_reply":null,
+      "message_stop":null,
+      "message_yes":null,
+      "name":"My awesome campaign",
+      "second_optin_message":"",
+      "keyword_names":[
+
+      ],
+      "counts":{
+         "subscribers":0,
+         "unsubscribed":0,
+         "cleaned":0
+      },
+      "opt_in_type":"single",
+      "opt_in_requests":[
+
+      ]
+   }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint creates a new campaign.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://app.tatango.com/api/v2/lists/`
 
-### URL Parameters
+### JSON Parameters (JSON Object)
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+list[name] | List name
+list[message_yes] | API Opt-In Confirmation Request
+list[message_help] | HELP Response
+list[message_stop] | STOP Response
+list[message_reply] | REPLY Response
+list[message_already_subscribed] | Already Subscribed Response
+list[first_optin_message] | First Opt In Message
+list[second_optin_message] | Second Opt In Message
+list[email_digest] | Email to send email digest to. Leave blank if you dont want to receive
+list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
+list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
 
-## Delete a Specific Kitten
+## Destroying a Campaign
 
 ```ruby
-require 'kittn'
+require 'net/http'
+require 'uri'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+uri = URI.parse('https://app.tatango.com/api/v2/lists/')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"list":{"name":"My awesome campaign"}});
+request.send(data);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "status":"Campaign Destroyed"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint destroys a campaign.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE https://app.tatango.com/api/v2/lists/ID`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | ID of the list to delete
 
+## Setting(Updating) Keywords for a Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/keywords')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"keyword_names":["TEST","KEYWORD","NAMES"]}
+)
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/keywords" -d '{"keyword_names":["TEST","KEYWORD","NAMES"]}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"keyword_names":["TEST","KEYWORD","NAMES"]});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Keywords changed",
+   "keyword_names":[
+      "TEST",
+      "KEYWORD",
+      "NAMES"
+   ]
+}
+```
+
+This endpoint sets or updates keywords for a campaign.
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/<ID>/keywords`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list to change
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+keyword_names	| Array of keyword names
+
+## Updating a Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"list":{"name":"Name"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"list":{"name":"Name"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "list":{
+      "email_digest":"myemail0@gmail.com",
+      "email_subscribe":null,
+      "email_unsubscribe":null,
+      "first_optin_message":"",
+      "id":1,
+      "message_already_subscribed":null,
+      "message_help":null,
+      "message_reply":null,
+      "message_stop":null,
+      "message_yes":null,
+      "name":"Name",
+      "second_optin_message":"",
+      "keyword_names":[
+
+      ],
+      "counts":{
+         "subscribers":0,
+         "unsubscribed":0,
+         "cleaned":0
+      },
+      "opt_in_type":"single",
+      "opt_in_requests":[
+
+      ]
+   }
+}
+```
+
+This endpoint updates a campaign.
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list to change
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+list[name] | List name
+list[message_yes] | API Opt-In Confirmation Request
+list[message_help] | HELP Response
+list[message_stop] | STOP Response
+list[message_reply] | REPLY Response
+list[message_already_subscribed] | Already Subscribed Response
+list[first_optin_message] | First Opt In Message
+list[second_optin_message] | Second Opt In Message
+list[email_digest] | Email to send email digest to. Leave blank if you dont want to receive
+list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
+list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
+
+# MomtReports
+
+## Creating a New Momt Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "momt_report":{
+      "account_id":22,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "direction":null,
+      "id":3,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint creates a new Momt Report.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/momt_reports`
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+date_from | {:scope=>:momt_reports}
+date_to | {:scope=>:momt_reports}
+webhook_callback_url | {:scope=>:momt_reports}
+
+## Getting Status of a Processed Momt Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":20,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":true,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.597+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.597+01:00",
+      "direction":null,
+      "id":1,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":0,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of a processed Momt Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of Momt Report to get status of
+
+## Getting Status of a Unprocessed Momt Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":21,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.712+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.712+01:00",
+      "direction":null,
+      "id":2,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of an unprocessed Momt Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of Momt Report to get status of
+
+# Shortcodes
+
+## Listing Available Shortcodes
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "shortcodes":["33733"]
+}
+```
+
+This endpoint gets a list of available shortcodes.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/shortcodes`
+
+## Testing Keyword Availability for Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"keyword_name":"TEST"});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"keyword_name":"TEST"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "keyword_name":"available"
+}
+```
+
+This endpoint gets checks the availability of a keyword.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+<aside class="error">
+<strong>Name is in Use</strong>
+<p>
+{
+  "status":"OK",
+  "keyword_name":"unavailable",
+  "error":"Name is in use"
+}
+</p>
+</aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the shortcode
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+keyword_name | Keyword name to test
+
+# Subscribers
+
+## Adding Multiple Tags to Multiple Subscribers
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"Tags were applied"
+}
+```
+
+This endpoint applies multiple tags to multiple subscribers.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+phone_numbers	| Phone numbers of subscribers
+tags | Array of tags to add
+
+## Adding a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"subscriber":{"phone_number":"2141234567"}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"subscriber":{"phone_number":"2141234567"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Subscriber being added to campaign pending confirmation",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+
+This endpoint adds a subscriber to a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+subscriber[phone_number] | Phone number
+subscriber[first_name] | (optional) First name
+subscriber[last_name] | (optional) Last name
+subscriber[email] | (optional) Email
+subscriber[birthdate] | (optional) Birthdate
+subscriber[zip_code] | (optional) ZIP code
+subscriber[gender] | (optional) Gender
+tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
+
+## Getting a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ],
+      "total_messages_received":0
+   }
+}
+```
+
+This endpoint adds a subscriber to a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+## Querying an Existing Message
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "content":"Hello!",
+      "id":2,
+      "sent_at":null,
+      "status":"sending",
+      "is_broadcast":true,
+      "phone_number":null,
+      "recipient_count":0,
+      "success_count":0,
+      "bounces_count":0,
+      "pending_count":0,
+      "clean_count":0,
+      "unsubscribe_count":0
+   }
+}
+```
+
+This endpoint adds a subscriber to a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+MESSAGE_ID | ID of the message
+
+## Sending Out a Message
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, world!"}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, world!"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, world!"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":4
+   }
+}
+```
+
+This endpoint sends a message.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+
+## Sending Out a Message to Multiple Recipients
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":3
+   }
+}
+```
+
+This endpoint sends a message to multiple recipients.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+message[phone_numbers] | Array of phone numbers of target recipients
+
+## Sending Out a Message to a Single Recipient
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_number":"9258642505"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":3
+   }
+}
+```
+
+This endpoint sends a message to a single recipient.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+message[phone_number] | Phone number of target recipient
+
+## Unsubscribing a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"successfully unsubscribed",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-07T14:10:54-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+
+This endpoint unsubscribes a subscriber.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+## Updating a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"subscriber":{"first_name":"John","last_name":"Doe"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"subscriber":{"first_name":"John","last_name":"Doe"}}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify('{"subscriber":{"first_name":"John","last_name":"Doe"}}');
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Subscriber has been updated.",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:54-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+
+This endpoint updates a subscriber.
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+subscriber[phone_number] | Phone number
+subscriber[first_name] | (optional) First name
+subscriber[last_name] | (optional) Last name
+subscriber[email] | (optional) Email
+subscriber[birthdate] | (optional) Birthdate
+subscriber[zip_code] | (optional) ZIP code
+subscriber[gender] | (optional) Gender
+
+## Get a List of Phone Numbers
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "per_page":10,
+   "count":1,
+   "page":1,
+   "pages_count":1,
+   "phone_numbers":[
+      "2145550816"
+   ]
+}
+```
+
+This endpoint gets a list of phone numbers.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+## Get a List of Unsubscribed Phone Numbers
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "per_page":10,
+   "count":1,
+   "page":1,
+   "pages_count":1,
+   "phone_numbers":[
+      "2145550816"
+   ]
+}
+```
+
+This endpoint gets a list of unsubscribed phone numbers.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+# Transactional Messages
+
+## Send Transactional SMS Message
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"transactional_message":{"number":"2835550430","content":"Test me!"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","content":"Test me!"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify('{"transactional_message":{"number":"2835550430","content":"Test me!"}}');
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Message successfully sent.",
+   "transactional_message":{
+      "id":1,
+      "number":"2835550430",
+      "content":"Test me!",
+      "status":"pending"
+   }
+}
+```
+
+This endpoint sends a Transactional SMS Message.
+
+<aside class="success">
+For example of webhook payload for reply, see https://gist.github.com/CodingFu/3e0c8b81514ebd92aadf77bbf156c89a
+</aside>
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/transactional_messages`
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+transactional_message[number] | <span class="required">required</span> Phone number
+transactional_message[content] | <span class="required">required</span> Message content
+transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
+
+## Send Message with Disabled Transactional SMS
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"transactional_message":{"number":"2835550430","content":"Test me!"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","content":"Test me!"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify('{"transactional_message":{"number":"2835550430","content":"Test me!"}}');
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Message successfully sent.",
+   "transactional_message":{
+      "id":1,
+      "number":"2835550430",
+      "content":"Test me!",
+      "status":"pending"
+   }
+}
+```
+
+This endpoint sends a message with disabled Transactional SMS.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/transactional_messages`
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+transactional_message[number] | <span class="required">required</span> Phone number
+transactional_message[content] | <span class="required">required</span> Message content
+
+# Webhooks
+
+## Destroying a Webhook
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Webhook destroyed"
+}
+```
+
+This endpoint destroys a webhook.
+
+### HTTP Request
+
+`DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+WEBHOOK_ID | The ID of the webhook
+
+## Listing Webhooks
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "per_page":10,
+   "count":3,
+   "page":1,
+   "pages_count":1,
+   "webhooks":[
+      {
+         "callback_url":"http://localhost/dev/null",
+         "created_at":"2016-09-07T14:11:13-07:00",
+         "enabled":true,
+         "id":6,
+         "list_id":31,
+         "message_sent":false,
+         "subscribe":true,
+         "unsubscribe":false,
+         "updated_at":"2016-09-07T14:11:13-07:00"
+      },
+      {
+         "callback_url":"http://localhost/dev/null",
+         "created_at":"2016-09-07T14:11:13-07:00",
+         "enabled":true,
+         "id":7,
+         "list_id":31,
+         "message_sent":false,
+         "subscribe":true,
+         "unsubscribe":false,
+         "updated_at":"2016-09-07T14:11:13-07:00"
+      },
+      {
+         "callback_url":"http://localhost/dev/null",
+         "created_at":"2016-09-07T14:11:13-07:00",
+         "enabled":true,
+         "id":8,
+         "list_id":31,
+         "message_sent":false,
+         "subscribe":true,
+         "unsubscribe":false,
+         "updated_at":"2016-09-07T14:11:13-07:00"
+      }
+   ]
+}
+```
+
+This endpoint lists webhooks.
+
+<aside class="error">
+If the list does not exist you will get a 404 response with this body: 
+
+{"status":"error","error":"List not found"}
+</aside>
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/webhooks`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+
+## Showing a Webhook
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "webhook":{
+      "callback_url":"http://localhost/dev/null",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":5,
+      "list_id":30,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":false,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
+}
+```
+
+This endpoint shows a webhook.
+
+<aside class="error">
+If the webhook does not exist you will get a 404 response with this body: 
+
+{"status":"error","error":"Webhook not found"}
+</aside>
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+WEBHOOK_ID | The ID of the webhook
+
+## Updating a Webhook
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Webhook updated",
+   "webhook":{
+      "callback_url":"http://mynewapi.com/?ref=tatango",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":9,
+      "list_id":33,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":false,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
+}
+```
+
+This endpoint updates a webhook
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+WEBHOOK_ID | The ID of the webhook
+
+## Creating a New Webhook for a List
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Webhook created",
+   "webhook":{
+      "callback_url":"http://localhost.dev/null?api_key=foo_bar_baz",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":4,
+      "list_id":29,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":true,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
+}
+```
+
+This endpoint updates a creates a new webhook for  a list
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
