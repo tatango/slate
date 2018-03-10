@@ -79,7 +79,7 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/accounts/me", false);
+request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -144,7 +144,7 @@ curl "https://app.tatango.com/api/v2/lists" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists", false);
+request.open("GET", "https://app.tatango.com/api/v2/lists", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -271,7 +271,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/<ID>", false);
+request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -743,7 +743,7 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PU
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
+request.open("PUT", "https://app.tatango.com/api/v2/lists/", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"list":{"name":"Name"}});
 request.send(data);
@@ -1119,7 +1119,7 @@ curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_n
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
+request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"keyword_name":"TEST"});
 request.send(data);
@@ -1138,7 +1138,7 @@ This endpoint gets checks the availability of a keyword.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
+`POST https://app.tatango.com/api/v2/momt_reports/ID`
 
 <aside class="error">
 <strong>Name is in Use</strong>
@@ -1190,7 +1190,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]});
 request.send(data);
@@ -1208,7 +1208,7 @@ This endpoint applies multiple tags to multiple subscribers.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
+`POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
 
 ### URL Parameters
 
@@ -1248,7 +1248,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"p
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"subscriber":{"phone_number":"2141234567"}});
 request.send(data);
@@ -1286,7 +1286,7 @@ This endpoint adds a subscriber to a list.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+`POST https://app.tatango.com/api/v2/lists/ID/subscribers`
 
 ### URL Parameters
 
@@ -1365,11 +1365,11 @@ request.send(null);
 }
 ```
 
-This endpoint adds a subscriber to a list.
+This endpoint gets a subscriber.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
 
 ### URL Parameters
 
@@ -1688,7 +1688,7 @@ This endpoint unsubscribes a subscriber.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+`DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
 
 ### URL Parameters
 
@@ -1722,7 +1722,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
+request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify('{"subscriber":{"first_name":"John","last_name":"Doe"}}');
 request.send(data);
@@ -2147,12 +2147,6 @@ request.send(null);
 
 This endpoint lists webhooks.
 
-<aside class="error">
-If the list does not exist you will get a 404 response with this body: 
-
-{"status":"error","error":"List not found"}
-</aside>
-
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists/ID/webhooks`
@@ -2162,6 +2156,12 @@ If the list does not exist you will get a 404 response with this body:
 Parameter | Description
 --------- | -----------
 ID | The ID of the list
+
+<aside class="error">
+If the list does not exist you will get a 404 response with this body: 
+
+{"status":"error","error":"List not found"}
+</aside>
 
 ## Showing a Webhook
 
@@ -2213,12 +2213,6 @@ request.send(null);
 
 This endpoint shows a webhook.
 
-<aside class="error">
-If the webhook does not exist you will get a 404 response with this body: 
-
-{"status":"error","error":"Webhook not found"}
-</aside>
-
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
@@ -2229,6 +2223,12 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
+
+<aside class="error">
+If the webhook does not exist you will get a 404 response with this body: 
+
+{"status":"error","error":"Webhook not found"}
+</aside>
 
 ## Updating a Webhook
 
@@ -2245,7 +2245,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2255,7 +2255,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}});
 request.send(data);
@@ -2284,7 +2284,7 @@ This endpoint updates a webhook
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -2301,7 +2301,7 @@ require 'uri'
 
 uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
 http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Put.new(uri.request_url)
+request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
 request.body({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}})
 response = http.request(request)
