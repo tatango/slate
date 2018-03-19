@@ -1,5 +1,5 @@
 ---
-title: tagango API Reference
+title: Tagango API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -14,9 +14,11 @@ search: true
 
 # Introduction
 
-Welcome to the tatango API! You can use our API to access tatango API endpoints, which has POST, GET, PUT, DELETE, OPTIONS endpoints for handling information in our database.
+title: Before You Start
 
-We have language bindings in Shell, Ruby, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you think you may need some help integrating with the Tatango API, visit <a href="https://zapier.com/" target="_blank">Zapier</a>.   
+ 
+ You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
@@ -47,7 +49,7 @@ request.send(null);
 
 > Make sure to replace `my_api_key` with your API key.
 
-tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
+Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
 
 <aside class="notice">
 You must replace <code>my_api_key</code> with your personal API key.
@@ -583,6 +585,27 @@ request.send(data);
 ```
 
 This endpoint creates a new campaign.
+
+<aside class="success">
+  <ul>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>The response from the API will be a 422 error with the response body looking like this: {"status":"error","error":"invalid keyword names: EXISTINGKW"}</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-campaign">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
+    </li>
+    <li>
+      <em>Can I add multiple keywords to a campaign?</em>
+      <p>Yes.  The keyword_names parameter would need to be an array, like this: {"keyword_names":["TEST","KEYWORD","NAMES"]}, of valid, not-already used, keywords.</p>
+    </li>
+    <li>
+      <em>What is a REPLY Response?</em>
+      <p>REPLY Response is the response sent to the subscriber if they respond to the message with the word REPLY.</p>
+    </li>
+  </ul>
+</aside>
 
 ### HTTP Request
 
@@ -1284,6 +1307,52 @@ request.send(data);
 
 This endpoint adds a subscriber to a list.
 
+<aside class="success">
+<h3>FAQ About This Endpoint</h3>
+  <ul>
+    <li>
+      <em>What happens when we use the add subscriber API to add a home phone number?</em>
+      <p>A user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
+      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use add subscriber API to add phone number that isn’t in country of campaign?</em>
+      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use add subscriber API to add a phone number that is currently subscribed to campaign?</em>
+      <p>A 200 OK is returned and no changes are made the subscriber.</p>
+    </li>
+    <li>
+      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message? Also, can we bypass all alerts, and just add them.</em>
+      <p>Not with this endpoint. You will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
+      <p>No. The reply is currently configured to YES.</p>
+    </li>
+    <li>
+      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
+      <p>Yes. The optional paramaters are listed for this API endpoint.</p>
+    </li>
+    <li>
+      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
+      <p>Yes. All optional parameters' limitations are noted.</p>
+    </li>
+    <li>
+      <em>In what format can we send you phone numbers? Do we have to put +1 infront of number?</em>
+      <p>The phone number should look as the examples indicate:  a continuous string of numbers with no dashes and no country code.</p>
+    </li>
+    <li>
+      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
+      <p>Each campaign is a separate entity, yes.</p>
+    </li>
+  </ul>
+</aside>
+
 ### HTTP Request
 
 `POST https://app.tatango.com/api/v2/lists/ID/subscribers`
@@ -1299,12 +1368,12 @@ ID | ID of the list
 Parameter | Description
 --------- | -----------
 subscriber[phone_number] | Phone number
-subscriber[first_name] | (optional) First name
-subscriber[last_name] | (optional) Last name
-subscriber[email] | (optional) Email
-subscriber[birthdate] | (optional) Birthdate
-subscriber[zip_code] | (optional) ZIP code
-subscriber[gender] | (optional) Gender
+subscriber[first_name] | (optional) First name - char(50)
+subscriber[last_name] | (optional) Last name - char(50)
+subscriber[email] | (optional) Email - char(50)
+subscriber[birthdate] | (optional) Birthdate - int(6)
+subscriber[zip_code] | (optional) ZIP code - char(6)
+subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
 
 ## Getting a Subscriber
@@ -1365,7 +1434,7 @@ request.send(null);
 }
 ```
 
-This endpoint gets a subscriber.
+This endpoint returns information about a current subscriber.
 
 ### HTTP Request
 
@@ -1758,6 +1827,20 @@ request.send(data);
 
 This endpoint updates a subscriber.
 
+<aside class="success">
+  <h3>FAQS About This Endpoint</h3>
+    <ul>
+      <li>
+        <em>If I add tags to an existing subscriber, does that add the tags to existing, or replace existing?</em>
+        <p>If there are tags already, then they are updated, else, they are added.</p>
+      </li>
+      <li>
+        <em>Can I update custom subscriber data for a subscriber?</em>
+        <p>Yes, the paramaters are listed below.</p>
+      </li>
+    </ul>
+</aside>
+
 ### HTTP Request
 
 `PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
@@ -1775,12 +1858,13 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 subscriber[phone_number] | Phone number
-subscriber[first_name] | (optional) First name
-subscriber[last_name] | (optional) Last name
-subscriber[email] | (optional) Email
-subscriber[birthdate] | (optional) Birthdate
-subscriber[zip_code] | (optional) ZIP code
-subscriber[gender] | (optional) Gender
+subscriber[first_name] | (optional) First name - char(50)
+subscriber[last_name] | (optional) Last name - char(50)
+subscriber[email] | (optional) Email - char(50)
+subscriber[birthdate] | (optional) Birthdate - int(6)
+subscriber[zip_code] | (optional) ZIP code - char(6)
+subscriber[gender] | (optional) Gender - char('Male' or 'Female')
+tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
 
 ## Get a List of Phone Numbers
 
@@ -1945,6 +2029,29 @@ This endpoint sends a Transactional SMS Message.
 
 <aside class="success">
 For example of webhook payload for reply, see https://gist.github.com/CodingFu/3e0c8b81514ebd92aadf77bbf156c89a
+  <ul>
+    <li>
+      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
+      <p>Only SMS messages can be sent through this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I send transactional messages to people already in one of my campaigns?</em>
+      <p>Yes. You can only send messages to people in your campaigns.</p>
+    </li>
+    <li>
+      <em>Can I send transactional messages to people already in one of my campaigns?</em>
+      <p>Yes. You can only send messages to people in your campaigns.</p>
+    </li>
+    <li>
+     <em> Can I schedule an MMS (Image/Video) message from an API to my subscribers?</em>
+      <p>You would need to schedule the SMS on your end and send to the API when you are ready to send it.</p>
+    </li>
+    <li>
+      <em>Can I schedule a SMS or MMS message to a segmented group?</em>
+      <p>You can select what numbers to send the message to and use the API to send to those numbers.</p>
+    </li>
+    
+  </ul>
 </aside>
 
 ### HTTP Request
@@ -2354,3 +2461,17 @@ This endpoint updates a creates a new webhook for  a list
 Parameter | Description
 --------- | -----------
 ID | The ID of the list
+
+# General FAQs
+
+<ul>
+  <li>
+    <em>Where can I find the "ID of the list"?</em>
+    <p>You can find the ID of all of your lists by calling the <a href="#listing-campaigns">Listing Campaigns"</a> endpoint.</p>
+  </li>
+  <li>
+    <em>What are the differences between SMS and MMS?</em>
+    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
+  </li>
+  
+</ul>
