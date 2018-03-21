@@ -392,14 +392,10 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>my_api_key</code> with your API key.</p>
+<p>Make sure to replace <code>my_api_key</code> with your API key, which can be obtained by logging into https://app.tatango.com.</p>
 </blockquote>
 
 <p>Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.</p>
-
-<aside class="notice">
-You must replace <code>my_api_key</code> with your personal API key.
-</aside>
 <h1 id='accounts'>Accounts</h1><h2 id='get-current-account'>Get Current Account</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
