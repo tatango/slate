@@ -11,7 +11,6 @@ includes:
 
 search: true
 ---
-
 # Before You Start
 
 Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful API's. If you think you may need some help integrating with the Tatango API, we invite you to check out our integration with <a href="https://zapier.com/" target="_blank">Zapier</a>.   
@@ -45,13 +44,11 @@ request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain
 request.send(null);
 ```
 
-> Make sure to replace `my_api_key` with your API key.
+> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into https://app.tatango.com.
 
 Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
 
-<aside class="notice">
-You must replace <code>my_api_key</code> with your personal API key.
-</aside>
+
 
 # Accounts
 
