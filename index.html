@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>tagango API Reference</title>
+    <title>Tagango API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -358,6 +358,9 @@
               </ul>
           </li>
           <li>
+            <a href="#general-faqs" class="toc-h1 toc-link" data-title="general-faqs">General FAQs</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -366,9 +369,11 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the tatango API! You can use our API to access tatango API endpoints, which has POST, GET, PUT, DELETE, OPTIONS endpoints for handling information in our database.</p>
+<p>title: Before You Start</p>
 
-<p>We have language bindings in Shell, Ruby, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who&#39;s comfortable creating custom-coded solutions or integrating with RESTful API&#39;s. If you think you may need some help integrating with the Tatango API, we invite you to check out our integration with <a href="https://zapier.com/" target="_blank">Zapier</a>.   </p>
+
+<p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -392,7 +397,7 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 <p>Make sure to replace <code>my_api_key</code> with your API key.</p>
 </blockquote>
 
-<p>tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.</p>
+<p>Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.</p>
 
 <aside class="notice">
 You must replace <code>my_api_key</code> with your personal API key.
@@ -412,7 +417,7 @@ You must replace <code>my_api_key</code> with your personal API key.
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/accounts/me"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/accounts/me"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </code></pre>
@@ -463,7 +468,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </code></pre>
@@ -576,7 +581,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </code></pre>
@@ -903,6 +908,27 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new campaign.</p>
+
+<aside class="success">
+  <ul>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>The response from the API will be a 422 error with the response body looking like this: {"status":"error","error":"invalid keyword names: EXISTINGKW"}</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-campaign">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
+    </li>
+    <li>
+      <em>Can I add multiple keywords to a campaign?</em>
+      <p>Yes.  The keyword_names parameter would need to be an array, like this: {"keyword_names":["TEST","KEYWORD","NAMES"]}, of valid, not-already used, keywords.</p>
+    </li>
+    <li>
+      <em>What is a REPLY Response?</em>
+      <p>REPLY Response is the response sent to the subscriber if they respond to the message with the word REPLY.</p>
+    </li>
+  </ul>
+</aside>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/</code></p>
 <h3 id='json-parameters-json-object-3'>JSON Parameters (JSON Object)</h3>
@@ -1076,7 +1102,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"list"</span><span class="p">:{</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Name"</span><span class="p">}});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -1444,7 +1470,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -1459,7 +1485,7 @@ You will receive a 200 status on success
 </span></code></pre>
 <p>This endpoint gets checks the availability of a keyword.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
+<p><code>POST https://app.tatango.com/api/v2/momt_reports/ID</code></p>
 
 <aside class="error">
 <strong>Name is in Use</strong>
@@ -1511,7 +1537,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"2145550762"</span><span class="p">,</span><span class="s2">"7185550549"</span><span class="p">,</span><span class="s2">"2125550838"</span><span class="p">],</span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"some"</span><span class="p">,</span><span class="s2">"funky"</span><span class="p">,</span><span class="s2">"tagnames"</span><span class="p">]});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -1525,7 +1551,7 @@ You will receive a 200 status on success
 </span></code></pre>
 <p>This endpoint applies multiple tags to multiple subscribers.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags</code></p>
+<p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags</code></p>
 <h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1570,7 +1596,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"subscriber"</span><span class="p">:{</span><span class="s2">"phone_number"</span><span class="p">:</span><span class="s2">"2141234567"</span><span class="p">}});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -1603,8 +1629,54 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a subscriber to a list.</p>
+
+<aside class="success">
+<h3>FAQ About This Endpoint</h3>
+  <ul>
+    <li>
+      <em>What happens when we use the add subscriber API to add a home phone number?</em>
+      <p>A user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
+      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use add subscriber API to add phone number that isn’t in country of campaign?</em>
+      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+    </li>
+    <li>
+      <em>What happens when we use add subscriber API to add a phone number that is currently subscribed to campaign?</em>
+      <p>A 200 OK is returned and no changes are made the subscriber.</p>
+    </li>
+    <li>
+      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message? Also, can we bypass all alerts, and just add them.</em>
+      <p>Not with this endpoint. You will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
+      <p>No. The reply is currently configured to YES.</p>
+    </li>
+    <li>
+      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
+      <p>Yes. The optional paramaters are listed for this API endpoint.</p>
+    </li>
+    <li>
+      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
+      <p>Yes. All optional parameters' limitations are noted.</p>
+    </li>
+    <li>
+      <em>In what format can we send you phone numbers? Do we have to put +1 infront of number?</em>
+      <p>The phone number should look as the examples indicate:  a continuous string of numbers with no dashes and no country code.</p>
+    </li>
+    <li>
+      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
+      <p>Each campaign is a separate entity, yes.</p>
+    </li>
+  </ul>
+</aside>
 <h3 id='http-request-16'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
+<p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
 <h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1630,27 +1702,27 @@ You will receive a 200 status on success
 </tr>
 <tr>
 <td>subscriber[first_name]</td>
-<td>(optional) First name</td>
+<td>(optional) First name - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[last_name]</td>
-<td>(optional) Last name</td>
+<td>(optional) Last name - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[email]</td>
-<td>(optional) Email</td>
+<td>(optional) Email - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[birthdate]</td>
-<td>(optional) Birthdate</td>
+<td>(optional) Birthdate - int(6)</td>
 </tr>
 <tr>
 <td>subscriber[zip_code]</td>
-<td>(optional) ZIP code</td>
+<td>(optional) ZIP code - char(6)</td>
 </tr>
 <tr>
 <td>subscriber[gender]</td>
-<td>(optional) Gender</td>
+<td>(optional) Gender - char(&#39;Male&#39; or &#39;Female&#39;)</td>
 </tr>
 <tr>
 <td>tags</td>
@@ -1704,9 +1776,9 @@ You will receive a 200 status on success
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a subscriber to a list.</p>
+<p>This endpoint returns information about a current subscriber.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
+<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
 <h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -2012,7 +2084,7 @@ You will receive a 200 status on success
 </span></code></pre>
 <p>This endpoint unsubscribes a subscriber.</p>
 <h3 id='http-request-22'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
+<p><code>DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
 <h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -2045,7 +2117,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"DELETE"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">'{"subscriber":{"first_name":"John","last_name":"Doe"}}'</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -2078,6 +2150,20 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a subscriber.</p>
+
+<aside class="success">
+  <h3>FAQS About This Endpoint</h3>
+    <ul>
+      <li>
+        <em>If I add tags to an existing subscriber, does that add the tags to existing, or replace existing?</em>
+        <p>If there are tags already, then they are updated, else, they are added.</p>
+      </li>
+      <li>
+        <em>Can I update custom subscriber data for a subscriber?</em>
+        <p>Yes, the paramaters are listed below.</p>
+      </li>
+    </ul>
+</aside>
 <h3 id='http-request-23'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
 <h3 id='url-parameters-18'>URL Parameters</h3>
@@ -2113,27 +2199,31 @@ You will receive a 200 status on success
 </tr>
 <tr>
 <td>subscriber[first_name]</td>
-<td>(optional) First name</td>
+<td>(optional) First name - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[last_name]</td>
-<td>(optional) Last name</td>
+<td>(optional) Last name - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[email]</td>
-<td>(optional) Email</td>
+<td>(optional) Email - char(50)</td>
 </tr>
 <tr>
 <td>subscriber[birthdate]</td>
-<td>(optional) Birthdate</td>
+<td>(optional) Birthdate - int(6)</td>
 </tr>
 <tr>
 <td>subscriber[zip_code]</td>
-<td>(optional) ZIP code</td>
+<td>(optional) ZIP code - char(6)</td>
 </tr>
 <tr>
 <td>subscriber[gender]</td>
-<td>(optional) Gender</td>
+<td>(optional) Gender - char(&#39;Male&#39; or &#39;Female&#39;)</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>(optional) List of tags, comma separated, for example: &#39;foo,bar,baz&#39;</td>
 </tr>
 </tbody></table>
 <h2 id='get-a-list-of-phone-numbers'>Get a List of Phone Numbers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
@@ -2270,6 +2360,29 @@ You will receive a 200 status on success
 
 <aside class="success">
 For example of webhook payload for reply, see https://gist.github.com/CodingFu/3e0c8b81514ebd92aadf77bbf156c89a
+  <ul>
+    <li>
+      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
+      <p>Only SMS messages can be sent through this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I send transactional messages to people already in one of my campaigns?</em>
+      <p>Yes. You can only send messages to people in your campaigns.</p>
+    </li>
+    <li>
+      <em>Can I send transactional messages to people already in one of my campaigns?</em>
+      <p>Yes. You can only send messages to people in your campaigns.</p>
+    </li>
+    <li>
+     <em> Can I schedule an MMS (Image/Video) message from an API to my subscribers?</em>
+      <p>You would need to schedule the SMS on your end and send to the API when you are ready to send it.</p>
+    </li>
+    <li>
+      <em>Can I schedule a SMS or MMS message to a segmented group?</em>
+      <p>You can select what numbers to send the message to and use the API to send to those numbers.</p>
+    </li>
+
+  </ul>
 </aside>
 <h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
@@ -2457,12 +2570,6 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint lists webhooks.</p>
-
-<aside class="error">
-If the list does not exist you will get a 404 response with this body: 
-
-{"status":"error","error":"List not found"}
-</aside>
 <h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
 <h3 id='url-parameters-22'>URL Parameters</h3>
@@ -2477,6 +2584,12 @@ If the list does not exist you will get a 404 response with this body:
 <td>The ID of the list</td>
 </tr>
 </tbody></table>
+
+<aside class="error">
+If the list does not exist you will get a 404 response with this body:
+
+{"status":"error","error":"List not found"}
+</aside>
 <h2 id='showing-a-webhook'>Showing a Webhook</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -2515,12 +2628,6 @@ If the list does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint shows a webhook.</p>
-
-<aside class="error">
-If the webhook does not exist you will get a 404 response with this body: 
-
-{"status":"error","error":"Webhook not found"}
-</aside>
 <h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
 <h3 id='url-parameters-23'>URL Parameters</h3>
@@ -2539,6 +2646,12 @@ If the webhook does not exist you will get a 404 response with this body:
 <td>The ID of the webhook</td>
 </tr>
 </tbody></table>
+
+<aside class="error">
+If the webhook does not exist you will get a 404 response with this body:
+
+{"status":"error","error":"Webhook not found"}
+</aside>
 <h2 id='updating-a-webhook'>Updating a Webhook</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -2548,14 +2661,14 @@ If the webhook does not exist you will get a 404 response with this body:
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"webhook"</span><span class="p">:{</span><span class="s2">"callback_url"</span><span class="ss">:"http://mynewapi.com/?ref=tatango"</span><span class="p">,</span><span class="s2">"subscribe"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"unsubscribe"</span><span class="ss">:false</span><span class="p">,</span><span class="s2">"message_sent"</span><span class="ss">:false</span><span class="p">}})</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span> -d <span class="s1">'{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}'</span> -X POST <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span> -d <span class="s1">'{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}'</span> -X PUT <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"webhook"</span><span class="p">:{</span><span class="s2">"callback_url"</span><span class="p">:</span><span class="s2">"http://mynewapi.com/?ref=tatango"</span><span class="p">,</span><span class="s2">"subscribe"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">"unsubscribe"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">"message_sent"</span><span class="p">:</span><span class="kc">false</span><span class="p">}});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -2580,7 +2693,7 @@ If the webhook does not exist you will get a 404 response with this body:
 </span></code></pre>
 <p>This endpoint updates a webhook</p>
 <h3 id='http-request-31'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
+<p><code>PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
 <h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -2602,7 +2715,7 @@ If the webhook does not exist you will get a 404 response with this body:
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/webhooks'</span><span class="p">)</span>
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Put</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"webhook"</span><span class="p">:{</span><span class="s2">"callback_url"</span><span class="ss">:"http://localhost.dev/null?api_key=foo_bar_baz"</span><span class="p">,</span><span class="s2">"subscribe"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"unsubscribe"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"message_sent"</span><span class="ss">:false</span><span class="p">}})</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -2651,6 +2764,18 @@ If the webhook does not exist you will get a 404 response with this body:
 <td>The ID of the list</td>
 </tr>
 </tbody></table>
+<h1 id='general-faqs'>General FAQs</h1>
+<ul>
+  <li>
+    <em>Where can I find the "ID of the list"?</em>
+    <p>You can find the ID of all of your lists by calling the <a href="#listing-campaigns">Listing Campaigns"</a> endpoint.</p>
+  </li>
+  <li>
+    <em>What are the differences between SMS and MMS?</em>
+    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
+  </li>
+
+</ul>
 <h1 id='errors'>Errors</h1>
 <p>The tatango API uses the following error codes:</p>
 
