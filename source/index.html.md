@@ -427,6 +427,7 @@ request.send(data);
 }
 ```
 > Setting the opt-in type to "single":
+
 ```ruby
 require 'net/http'
 require 'uri'
