@@ -117,6 +117,8 @@ You will receive a 200 status on success
 
 # Campaigns
 
+Note:  The terms "campaign" and "list" are used interchangeably in this document.
+
 ## List Campaigns
 
 ```ruby
@@ -468,7 +470,7 @@ request.send(data);
 }
 ```
 
-This endpoint configures an opt-in type to double.
+This endpoint configures an opt-in type for a campaign.
 
 ### HTTP Request
 
@@ -1290,24 +1292,20 @@ This endpoint adds a subscriber to a list.
 <h3>FAQ About This Endpoint</h3>
   <ul>
     <li>
-      <em>What happens when we use the add subscriber API to add a home phone number?</em>
-      <p>A user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+      <em>What happens when we use the add subscriber API to add a home phone number (i.e. non-cellular)?</em>
+      <p>You will receive the message "Bad phone number: landline or unreachable carrier" with the status code 422.</p>
     </li>
     <li>
       <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
-      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
+      <p>We will initiate the process of resubscribing the phone number to the campaign.</p>
     </li>
     <li>
-      <em>What happens when we use add subscriber API to add phone number that isn’t in country of campaign?</em>
-      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
-    </li>
-    <li>
-      <em>What happens when we use add subscriber API to add a phone number that is currently subscribed to campaign?</em>
+      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the campaign?</em>
       <p>A 200 OK is returned and no changes are made the subscriber.</p>
     </li>
     <li>
-      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message? Also, can we bypass all alerts, and just add them.</em>
-      <p>Not with this endpoint. You will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
+      <p>Yes - you will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
     </li>
     <li>
       <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
@@ -1315,19 +1313,19 @@ This endpoint adds a subscriber to a list.
     </li>
     <li>
       <em>Can I add a subscriber via API with custom data for that subscriber?</em>
-      <p>Yes. The optional paramaters are listed for this API endpoint.</p>
+      <p>Yes. The optional parameters are listed for this API endpoint.</p>
     </li>
     <li>
       <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
-      <p>Yes. All optional parameters' limitations are noted.</p>
+      <p>Yes. All optional parameters' limitations are noted - see the JSON parameters above.</p>
     </li>
     <li>
-      <em>In what format can we send you phone numbers? Do we have to put +1 infront of number?</em>
-      <p>The phone number should look as the examples indicate:  a continuous string of numbers with no dashes and no country code.</p>
+      <em>In what format should phone numbers be sent?</em>
+      <p>The phone number should be a continuous string of ten digits - with no dashes and no country code (e.g. "2065551111").</p>
     </li>
     <li>
       <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
-      <p>Each campaign is a separate entity, yes.</p>
+      <p>Yes - each campaign is a separate entity.</p>
     </li>
   </ul>
 </aside>
@@ -1354,6 +1352,48 @@ subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
+
+<aside class="success">
+<h3>FAQ About This Endpoint</h3>
+  <ul>
+    <li>
+      <em>What happens when we use the add subscriber API to add a home phone number (i.e. non-cellular)?</em>
+      <p>You will receive the message "Bad phone number: landline or unreachable carrier" with the status code 422.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
+      <p>We will initiate the process of resubscribing the phone number to the campaign.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the campaign?</em>
+      <p>A 200 OK is returned and no changes are made the subscriber.</p>
+    </li>
+    <li>
+      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
+      <p>Yes - you will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
+      <p>No. The reply is currently configured to YES.</p>
+    </li>
+    <li>
+      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
+      <p>Yes. The optional parameters are listed for this API endpoint.</p>
+    </li>
+    <li>
+      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
+      <p>Yes. All optional parameters' limitations are noted - see the JSON parameters above.</p>
+    </li>
+    <li>
+      <em>In what format should phone numbers be sent?</em>
+      <p>The phone number should be a continuous string of ten digits - with no dashes and no country code (e.g. "2065551111").</p>
+    </li>
+    <li>
+      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
+      <p>Yes - each campaign is a separate entity.</p>
+    </li>
+  </ul>
+</aside>
 
 ## Getting a Subscriber
 
