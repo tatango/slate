@@ -44,7 +44,7 @@ request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain
 request.send(null);
 ```
 
-> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into https://app.tatango.com.
+> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into <a href="https://app.tatango.com/" target="_blank">https://app.tatango.com</a>.
 
 Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
 
