@@ -95,7 +95,7 @@ request.send(null);
 
 ```
 
-This endpoint retrieves the current account.
+This endpoint retrieves the current account, as specified by the API key used to authenticate.
 
 ### HTTP Request
 
@@ -117,7 +117,7 @@ You will receive a 200 status on success
 
 # Campaigns
 
-## Listing Campaigns
+## List Campaigns
 
 ```ruby
 require 'net/http'
@@ -238,13 +238,13 @@ request.send(null);
 }
 ```
 
-This endpoint retrieves a list of campaigns.
+This endpoint retrieves a list of all campaigns owned by the current account.
 
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists`
 
-## Query Campaign by ID
+## Retrieve Campaign
 
 ```ruby
 require 'net/http'
@@ -320,8 +320,9 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list to retrieve
 
-## Configuring Opt-In Type to Double
+## Configure Campaign Opt-In Type
 
+> Setting the opt-in type to "double":
 ```ruby
 require 'net/http'
 require 'uri'
@@ -425,36 +426,7 @@ request.send(data);
    ]
 }
 ```
-
-This endpoint configures an opt-in type to double.
-
-### HTTP Request
-
-`PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the list to change
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-opt_in_requests	| Array of opt in requests
-opt_in_requests[request_message]	| message that will be sent to subscriber
-opt_in_requests[retry_message]	| message that will be sent to subscriber if he will respond with invalid data
-opt_in_requests[follow_up]	| send follow up message if customer doesn't respond?
-opt_in_requests[follow_up_hour]	| follow up customer in how many hours/
-opt_in_requests[no_response_message]	| content of follow up message
-opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be "optinsubscriber" in last opt in request
-opt_in_requests[opt_in_message]	| First opt in message
-opt_in_requests[second_opt_in_message]	| Second opt in message
-
-## Configuring Opt-In Type to Single
-
+> Setting the opt-in type to "single":
 ```ruby
 require 'net/http'
 require 'uri'
@@ -494,7 +466,7 @@ request.send(data);
 }
 ```
 
-This endpoint configures an opt-in type to single.
+This endpoint configures an opt-in type to double.
 
 ### HTTP Request
 
@@ -506,13 +478,23 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list to change
 
+
 ### JSON Parameters (JSON Object)
 
 Parameter | Description
 --------- | -----------
-opt_in_type | Opt in type, single or double
-first_optin_message | First opt in message
-second_optin_message | Second opt in message
+opt_in_type | Opt in type (may be either "single" or "double")
+first_optin_message | First opt in message (only used with single opt-ins)
+second_optin_message | Second opt in message (only used with single opt-ins)
+opt_in_requests	| Array of opt in requests (only used with double opt-ins)
+opt_in_requests[request_message]	| message that will be sent to subscriber
+opt_in_requests[retry_message]	| message that will be sent to subscriber if he will respond with invalid data
+opt_in_requests[follow_up]	| send follow up message if customer doesn't respond?
+opt_in_requests[follow_up_hour]	| follow up customer in how many hours/
+opt_in_requests[no_response_message]	| content of follow up message
+opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be "optinsubscriber" in last opt in request
+opt_in_requests[opt_in_message]	| First opt in message
+opt_in_requests[second_opt_in_message]	| Second opt in message
 
 ## Creating a New Campaign
 
