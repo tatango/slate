@@ -238,16 +238,13 @@
             <a href="#campaigns" class="toc-h1 toc-link" data-title="campaigns">Campaigns</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#listing-campaigns" class="toc-h2 toc-link" data-title="listing-campaigns">Listing Campaigns</a>
+                    <a href="#list-campaigns" class="toc-h2 toc-link" data-title="list-campaigns">List Campaigns</a>
                   </li>
                   <li>
-                    <a href="#query-campaign-by-id" class="toc-h2 toc-link" data-title="query-campaign-by-id">Query Campaign by ID</a>
+                    <a href="#retrieve-campaign" class="toc-h2 toc-link" data-title="retrieve-campaign">Retrieve Campaign</a>
                   </li>
                   <li>
-                    <a href="#configuring-opt-in-type-to-double" class="toc-h2 toc-link" data-title="configuring-opt-in-type-to-double">Configuring Opt-In Type to Double</a>
-                  </li>
-                  <li>
-                    <a href="#configuring-opt-in-type-to-single" class="toc-h2 toc-link" data-title="configuring-opt-in-type-to-single">Configuring Opt-In Type to Single</a>
+                    <a href="#configure-campaign-opt-in-type" class="toc-h2 toc-link" data-title="configure-campaign-opt-in-type">Configure Campaign Opt-In Type</a>
                   </li>
                   <li>
                     <a href="#creating-a-new-campaign" class="toc-h2 toc-link" data-title="creating-a-new-campaign">Creating a New Campaign</a>
@@ -428,7 +425,7 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
   </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>This endpoint retrieves the current account.</p>
+<p>This endpoint retrieves the current account, as specified by the API key used to authenticate.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/accounts/me</code></p>
 
@@ -447,7 +444,7 @@ You will receive a 200 status on success
 <strong>Invalid API Key</strong>
 <p>{"status":"error","error":"API key authorization failure"}</p>
 </aside>
-<h1 id='campaigns'>Campaigns</h1><h2 id='listing-campaigns'>Listing Campaigns</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h1 id='campaigns'>Campaigns</h1><h2 id='list-campaigns'>List Campaigns</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists'</span><span class="p">)</span>
@@ -557,10 +554,10 @@ You will receive a 200 status on success
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a list of campaigns.</p>
+<p>This endpoint retrieves a list of all campaigns owned by the current account.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists</code></p>
-<h2 id='query-campaign-by-id'>Query Campaign by ID</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='retrieve-campaign'>Retrieve Campaign</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;'</span><span class="p">)</span>
@@ -628,16 +625,22 @@ You will receive a 200 status on success
 <td>The ID of the list to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='configuring-opt-in-type-to-double'>Configuring Opt-In Type to Double</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
+<h2 id='configure-campaign-opt-in-type'>Configure Campaign Opt-In Type</h2>
+<blockquote>
+<p>Setting the opt-in type to &quot;double&quot;:
+```ruby
+require &#39;net/http&#39;
+require &#39;uri&#39;</p>
+</blockquote>
 
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Put</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"opt_in_type"</span><span class="ss">:"double"</span><span class="p">,</span><span class="s2">"opt_in_requests"</span><span class="p">:[{</span><span class="s2">"collected_data"</span><span class="ss">:"zip_code"</span><span class="p">,</span><span class="s2">"request_message"</span><span class="ss">:"Your zip code?"</span><span class="p">,</span><span class="s2">"retry_message"</span><span class="ss">:"Wrong zip code, try again"</span><span class="p">,</span><span class="s2">"follow_up"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"follow_up_hour"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">"no_response_message"</span><span class="ss">:"Please let us know, what is your zip code?"</span><span class="p">,</span><span class="s2">"success_action"</span><span class="ss">:"nextrequest"</span><span class="p">},{</span><span class="s2">"collected_data"</span><span class="ss">:"email_address"</span><span class="p">,</span><span class="s2">"request_message"</span><span class="ss">:"Your email?"</span><span class="p">,</span><span class="s2">"retry_message"</span><span class="ss">:"Wrong email, try again"</span><span class="p">,</span><span class="s2">"follow_up"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"follow_up_hour"</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span><span class="s2">"no_response_message"</span><span class="ss">:"Please let us know, what is your email?"</span><span class="p">,</span><span class="s2">"success_action"</span><span class="ss">:"nextrequest"</span><span class="p">},{</span><span class="s2">"collected_data"</span><span class="ss">:"first_name"</span><span class="p">,</span><span class="s2">"request_message"</span><span class="ss">:"Your name?"</span><span class="p">,</span><span class="s2">"retry_message"</span><span class="ss">:"Wrong name, try again"</span><span class="p">,</span><span class="s2">"follow_up"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"follow_up_hour"</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span><span class="s2">"no_response_message"</span><span class="ss">:"Please let us know, what is your name?"</span><span class="p">,</span><span class="s2">"success_action"</span><span class="ss">:"nextrequest"</span><span class="p">},{</span><span class="s2">"collected_data"</span><span class="ss">:"yes"</span><span class="p">,</span><span class="s2">"request_message"</span><span class="ss">:"Reply YES to join our awesome mailing list"</span><span class="p">,</span><span class="s2">"retry_message"</span><span class="ss">:"Reply YES to join our awesome mailing list"</span><span class="p">,</span><span class="s2">"follow_up"</span><span class="ss">:false</span><span class="p">,</span><span class="s2">"follow_up_hour"</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span><span class="s2">"opt_in_message"</span><span class="ss">:"Welcome to our awesome mailing list."</span><span class="p">,</span><span class="s2">"second_opt_in_message"</span><span class="ss">:"Welcome back to our awesome mailing list."</span><span class="p">,</span><span class="s2">"success_action"</span><span class="ss">:"optinsubscriber"</span><span class="p">}]})</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span> -d <span class="s1">'{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]}'</span> -X PUT <span class="se">\</span>
+<p>uri = URI.parse(&#39;https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings&#39;)
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth(&quot;emailaddress@mydomain.com&quot;, &quot;my_api_key&quot;)
+request.body({&quot;opt_in_type&quot;:&quot;double&quot;,&quot;opt_in_requests&quot;:[{&quot;collected_data&quot;:&quot;zip_code&quot;,&quot;request_message&quot;:&quot;Your zip code?&quot;,&quot;retry_message&quot;:&quot;Wrong zip code, try again&quot;,&quot;follow_up&quot;:true,&quot;follow_up_hour&quot;:2,&quot;no_response_message&quot;:&quot;Please let us know, what is your zip code?&quot;,&quot;success_action&quot;:&quot;nextrequest&quot;},{&quot;collected_data&quot;:&quot;email_address&quot;,&quot;request_message&quot;:&quot;Your email?&quot;,&quot;retry_message&quot;:&quot;Wrong email, try again&quot;,&quot;follow_up&quot;:true,&quot;follow_up_hour&quot;:24,&quot;no_response_message&quot;:&quot;Please let us know, what is your email?&quot;,&quot;success_action&quot;:&quot;nextrequest&quot;},{&quot;collected_data&quot;:&quot;first_name&quot;,&quot;request_message&quot;:&quot;Your name?&quot;,&quot;retry_message&quot;:&quot;Wrong name, try again&quot;,&quot;follow_up&quot;:true,&quot;follow_up_hour&quot;:24,&quot;no_response_message&quot;:&quot;Please let us know, what is your name?&quot;,&quot;success_action&quot;:&quot;nextrequest&quot;},{&quot;collected_data&quot;:&quot;yes&quot;,&quot;request_message&quot;:&quot;Reply YES to join our awesome mailing list&quot;,&quot;retry_message&quot;:&quot;Reply YES to join our awesome mailing list&quot;,&quot;follow_up&quot;:false,&quot;follow_up_hour&quot;:24,&quot;opt_in_message&quot;:&quot;Welcome to our awesome mailing list.&quot;,&quot;second_opt_in_message&quot;:&quot;Welcome back to our awesome mailing list.&quot;,&quot;success_action&quot;:&quot;optinsubscriber&quot;}]})
+response = http.request(request)
+```</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span> -d <span class="s1">'{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]}'</span> -X PUT <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
@@ -723,6 +726,41 @@ You will receive a 200 status on success
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>Setting the opt-in type to &quot;single&quot;:
+```ruby
+require &#39;net/http&#39;
+require &#39;uri&#39;</p>
+</blockquote>
+
+<p>uri = URI.parse(&#39;https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings&#39;)
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth(&quot;emailaddress@mydomain.com&quot;, &quot;my_api_key&quot;)
+request.body({&quot;opt_in_type&quot;:&quot;single&quot;,&quot;first_optin_message&quot;:&quot;Welcome&quot;,&quot;second_optin_message&quot;:&quot;Welcome back&quot;})
+response = http.request(request)
+```</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span> -d <span class="s1">'{"opt_in_type":"single","first_optin_message":"Welcome","second_optin_message":"Welcome back"}'</span> -X PUT <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="s2">"first_optin_message"</span><span class="p">:</span><span class="s2">"Welcome"</span><span class="p">,</span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">"Welcome back"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"first_optin_message"</span><span class="p">:</span><span class="s2">"Welcome"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">"Welcome back"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This endpoint configures an opt-in type to double.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings</code></p>
@@ -746,8 +784,20 @@ You will receive a 200 status on success
 </tr>
 </thead><tbody>
 <tr>
+<td>opt_in_type</td>
+<td>Opt in type (may be either &quot;single&quot; or &quot;double&quot;)</td>
+</tr>
+<tr>
+<td>first_optin_message</td>
+<td>First opt in message (only used with single opt-ins)</td>
+</tr>
+<tr>
+<td>second_optin_message</td>
+<td>Second opt in message (only used with single opt-ins)</td>
+</tr>
+<tr>
 <td>opt_in_requests</td>
-<td>Array of opt in requests</td>
+<td>Array of opt in requests (only used with double opt-ins)</td>
 </tr>
 <tr>
 <td>opt_in_requests[request_message]</td>
@@ -779,71 +829,6 @@ You will receive a 200 status on success
 </tr>
 <tr>
 <td>opt_in_requests[second_opt_in_message]</td>
-<td>Second opt in message</td>
-</tr>
-</tbody></table>
-<h2 id='configuring-opt-in-type-to-single'>Configuring Opt-In Type to Single</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Put</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"opt_in_type"</span><span class="ss">:"single"</span><span class="p">,</span><span class="s2">"first_optin_message"</span><span class="ss">:"Welcome"</span><span class="p">,</span><span class="s2">"second_optin_message"</span><span class="ss">:"Welcome back"</span><span class="p">})</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span> -d <span class="s1">'{"opt_in_type":"single","first_optin_message":"Welcome","second_optin_message":"Welcome back"}'</span> -X PUT <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="s2">"first_optin_message"</span><span class="p">:</span><span class="s2">"Welcome"</span><span class="p">,</span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">"Welcome back"</span><span class="p">});</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"first_optin_message"</span><span class="p">:</span><span class="s2">"Welcome"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">"Welcome back"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint configures an opt-in type to single.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>PUT https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the list to change</td>
-</tr>
-</tbody></table>
-<h3 id='json-parameters-json-object-2'>JSON Parameters (JSON Object)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>opt_in_type</td>
-<td>Opt in type, single or double</td>
-</tr>
-<tr>
-<td>first_optin_message</td>
-<td>First opt in message</td>
-</tr>
-<tr>
-<td>second_optin_message</td>
 <td>Second opt in message</td>
 </tr>
 </tbody></table>
@@ -923,9 +908,9 @@ You will receive a 200 status on success
     </li>
   </ul>
 </aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/</code></p>
-<h3 id='json-parameters-json-object-3'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-2'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1005,9 +990,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint destroys a campaign.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1054,9 +1039,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sets or updates keywords for a campaign.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/&lt;ID&gt;/keywords</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1068,7 +1053,7 @@ You will receive a 200 status on success
 <td>The ID of the list to change</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-4'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-3'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1135,9 +1120,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a campaign.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1149,7 +1134,7 @@ You will receive a 200 status on success
 <td>The ID of the list to change</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-5'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-4'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1258,9 +1243,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new Momt Report.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/momt_reports</code></p>
-<h3 id='json-parameters-json-object-6'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-5'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1335,9 +1320,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets the status of a processed Momt Report.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1404,9 +1389,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets the status of an unprocessed Momt Report.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1446,7 +1431,7 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of available shortcodes.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/shortcodes</code></p>
 <h2 id='testing-keyword-availability-for-campaign'>Testing Keyword Availability for Campaign</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
@@ -1478,7 +1463,7 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets checks the availability of a keyword.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/momt_reports/ID</code></p>
 
 <aside class="error">
@@ -1491,7 +1476,7 @@ You will receive a 200 status on success
 }
 </p>
 </aside>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1503,7 +1488,7 @@ You will receive a 200 status on success
 <td>ID of the shortcode</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-7'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-6'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1544,9 +1529,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint applies multiple tags to multiple subscribers.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1558,7 +1543,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-7'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1669,9 +1654,9 @@ You will receive a 200 status on success
     </li>
   </ul>
 </aside>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1683,7 +1668,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1771,9 +1756,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns information about a current subscriber.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1830,9 +1815,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a subscriber to a list.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1880,9 +1865,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1894,7 +1879,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1938,9 +1923,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message to multiple recipients.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1952,7 +1937,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2000,9 +1985,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message to a single recipient.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2014,7 +1999,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2077,9 +2062,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint unsubscribes a subscriber.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2158,9 +2143,9 @@ You will receive a 200 status on success
       </li>
     </ul>
 </aside>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2176,7 +2161,7 @@ You will receive a 200 status on success
 <td>ID of the subscriber</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-13'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2254,9 +2239,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of phone numbers.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2302,9 +2287,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of unsubscribed phone numbers.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2378,9 +2363,9 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
 
   </ul>
 </aside>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-13'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2435,9 +2420,9 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message with disabled Transactional SMS.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-15'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2480,9 +2465,9 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint destroys a webhook.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2564,9 +2549,9 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint lists webhooks.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2622,9 +2607,9 @@ If the list does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint shows a webhook.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-23'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2686,9 +2671,9 @@ If the webhook does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a webhook</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-24'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2744,9 +2729,9 @@ If the webhook does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a creates a new webhook for  a list</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
-<h3 id='url-parameters-25'>URL Parameters</h3>
+<h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
