@@ -1,5 +1,5 @@
 ---
-title: Tagango API Reference
+title: Tatango API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
