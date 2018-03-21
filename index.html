@@ -1606,48 +1606,6 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a subscriber to a list.</p>
-
-<aside class="success">
-<h3>FAQ About This Endpoint</h3>
-  <ul>
-    <li>
-      <em>What happens when we use the add subscriber API to add a home phone number (i.e. non-cellular)?</em>
-      <p>You will receive the message "Bad phone number: landline or unreachable carrier" with the status code 422.</p>
-    </li>
-    <li>
-      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
-      <p>We will initiate the process of resubscribing the phone number to the campaign.</p>
-    </li>
-    <li>
-      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the campaign?</em>
-      <p>A 200 OK is returned and no changes are made the subscriber.</p>
-    </li>
-    <li>
-      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
-      <p>Yes - you will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
-    </li>
-    <li>
-      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
-      <p>No. The reply is currently configured to YES.</p>
-    </li>
-    <li>
-      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
-      <p>Yes. The optional parameters are listed for this API endpoint.</p>
-    </li>
-    <li>
-      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
-      <p>Yes. All optional parameters' limitations are noted - see the JSON parameters above.</p>
-    </li>
-    <li>
-      <em>In what format should phone numbers be sent?</em>
-      <p>The phone number should be a continuous string of ten digits - with no dashes and no country code (e.g. "2065551111").</p>
-    </li>
-    <li>
-      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
-      <p>Yes - each campaign is a separate entity.</p>
-    </li>
-  </ul>
-</aside>
 <h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
 <h3 id='url-parameters-10'>URL Parameters</h3>
@@ -1703,7 +1661,7 @@ You will receive a 200 status on success
 </tr>
 </tbody></table>
 
-<aside class="success">
+<aside>
 <h3>FAQ About This Endpoint</h3>
   <ul>
     <li>
@@ -1850,7 +1808,7 @@ You will receive a 200 status on success
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint adds a subscriber to a list.</p>
+<p>This endpoint retrieves a message.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
 <h3 id='url-parameters-12'>URL Parameters</h3>
@@ -2822,7 +2780,7 @@ If the webhook does not exist you will get a 404 response with this body:
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t JSON.</td>
 </tr>
 <tr>
 <td>410</td>
