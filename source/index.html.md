@@ -12,9 +12,7 @@ includes:
 search: true
 ---
 
-# Introduction
-
-title: Before You Start
+# Before You Start
 
 Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful API's. If you think you may need some help integrating with the Tatango API, we invite you to check out our integration with <a href="https://zapier.com/" target="_blank">Zapier</a>.   
 
@@ -2050,7 +2048,7 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
       <em>Can I schedule a SMS or MMS message to a segmented group?</em>
       <p>You can select what numbers to send the message to and use the API to send to those numbers.</p>
     </li>
-    
+
   </ul>
 </aside>
 
@@ -2265,7 +2263,7 @@ Parameter | Description
 ID | The ID of the list
 
 <aside class="error">
-If the list does not exist you will get a 404 response with this body: 
+If the list does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"List not found"}
 </aside>
@@ -2332,7 +2330,7 @@ ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
 
 <aside class="error">
-If the webhook does not exist you will get a 404 response with this body: 
+If the webhook does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"Webhook not found"}
 </aside>
@@ -2473,5 +2471,5 @@ ID | The ID of the list
     <em>What are the differences between SMS and MMS?</em>
     <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
   </li>
-  
+
 </ul>
