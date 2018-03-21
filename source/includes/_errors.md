@@ -10,7 +10,7 @@ Error Code | Meaning
 403 | Forbidden -- You are not authorized for this request.
 404 | Not Found -- The specified endpoint could not be found.
 405 | Method Not Allowed -- You tried to access an endpoint with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
+406 | Not Acceptable -- You requested a format that isn't JSON.
 410 | Gone -- The requested resource has been removed from our servers.
 422 | Unprocessable Entity - There was a problem of some sort with the JSON you supplied.  Usually, this error will be accompanied by a detailed description of the problem.
 429 | Too Many Requests -- You're requesting too many resources! Slow down!
