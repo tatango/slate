@@ -323,6 +323,7 @@ ID | The ID of the list to retrieve
 ## Configure Campaign Opt-In Type
 
 > Setting the opt-in type to "double":
+
 ```ruby
 require 'net/http'
 require 'uri'
