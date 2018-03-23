@@ -258,36 +258,6 @@
                   <li>
                     <a href="#updating-a-campaign" class="toc-h2 toc-link" data-title="updating-a-campaign">Updating a Campaign</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#momtreports" class="toc-h1 toc-link" data-title="momtreports">MomtReports</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#creating-a-new-momt-report" class="toc-h2 toc-link" data-title="creating-a-new-momt-report">Creating a New Momt Report</a>
-                  </li>
-                  <li>
-                    <a href="#getting-status-of-a-processed-momt-report" class="toc-h2 toc-link" data-title="getting-status-of-a-processed-momt-report">Getting Status of a Processed Momt Report</a>
-                  </li>
-                  <li>
-                    <a href="#getting-status-of-a-unprocessed-momt-report" class="toc-h2 toc-link" data-title="getting-status-of-a-unprocessed-momt-report">Getting Status of a Unprocessed Momt Report</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#shortcodes" class="toc-h1 toc-link" data-title="shortcodes">Shortcodes</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#listing-available-shortcodes" class="toc-h2 toc-link" data-title="listing-available-shortcodes">Listing Available Shortcodes</a>
-                  </li>
-                  <li>
-                    <a href="#testing-keyword-availability-for-campaign" class="toc-h2 toc-link" data-title="testing-keyword-availability-for-campaign">Testing Keyword Availability for Campaign</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#subscribers" class="toc-h1 toc-link" data-title="subscribers">Subscribers</a>
-              <ul class="toc-list-h2">
                   <li>
                     <a href="#adding-multiple-tags-to-multiple-subscribers" class="toc-h2 toc-link" data-title="adding-multiple-tags-to-multiple-subscribers">Adding Multiple Tags to Multiple Subscribers</a>
                   </li>
@@ -320,6 +290,31 @@
                   </li>
                   <li>
                     <a href="#get-a-list-of-unsubscribed-phone-numbers" class="toc-h2 toc-link" data-title="get-a-list-of-unsubscribed-phone-numbers">Get a List of Unsubscribed Phone Numbers</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#message-log-momt-reports" class="toc-h1 toc-link" data-title="message-log-momt-reports">Message Log (MOMT) Reports</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#creating-a-new-momt-report" class="toc-h2 toc-link" data-title="creating-a-new-momt-report">Creating a New MOMT Report</a>
+                  </li>
+                  <li>
+                    <a href="#getting-status-of-a-processed-momt-report" class="toc-h2 toc-link" data-title="getting-status-of-a-processed-momt-report">Getting Status of a Processed MOMT Report</a>
+                  </li>
+                  <li>
+                    <a href="#getting-status-of-a-unprocessed-momt-report" class="toc-h2 toc-link" data-title="getting-status-of-a-unprocessed-momt-report">Getting Status of a Unprocessed MOMT Report</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#shortcodes" class="toc-h1 toc-link" data-title="shortcodes">Shortcodes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#listing-available-shortcodes" class="toc-h2 toc-link" data-title="listing-available-shortcodes">Listing Available Shortcodes</a>
+                  </li>
+                  <li>
+                    <a href="#testing-keyword-availability-for-campaign" class="toc-h2 toc-link" data-title="testing-keyword-availability-for-campaign">Testing Keyword Availability for Campaign</a>
                   </li>
               </ul>
           </li>
@@ -1184,321 +1179,7 @@ You will receive a 200 status on success
 <td>Email to send unsubscribe notifications to. Leave blank if you dont want to receive</td>
 </tr>
 </tbody></table>
-<h1 id='momtreports'>MomtReports</h1><h2 id='creating-a-new-momt-report'>Creating a New Momt Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"date_from"</span><span class="ss">:"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"date_to"</span><span class="ss">:"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"webhook_callback_url"</span><span class="ss">:"http://requestb.in/1d60vok1"</span><span class="p">})</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span> -d <span class="s1">'{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}'</span> -X POST <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="s2">"http://requestb.in/1d60vok1"</span><span class="p">});</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint creates a new Momt Report.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/momt_reports</code></p>
-<h3 id='json-parameters-json-object-5'>JSON Parameters (JSON Object)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>date_from</td>
-<td>{:scope=&gt;:momt_reports}</td>
-</tr>
-<tr>
-<td>date_to</td>
-<td>{:scope=&gt;:momt_reports}</td>
-</tr>
-<tr>
-<td>webhook_callback_url</td>
-<td>{:scope=&gt;:momt_reports}</td>
-</tr>
-</tbody></table>
-<h2 id='getting-status-of-a-processed-momt-report'>Getting Status of a Processed Momt Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports/ID'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports/ID"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-28T22:10:41.597+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41.597+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint gets the status of a processed Momt Report.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>ID of Momt Report to get status of</td>
-</tr>
-</tbody></table>
-<h2 id='getting-status-of-a-unprocessed-momt-report'>Getting Status of a Unprocessed Momt Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports/ID'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports/ID"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-28T22:10:41.712+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41.712+01:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint gets the status of an unprocessed Momt Report.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>ID of Momt Report to get status of</td>
-</tr>
-</tbody></table>
-<h1 id='shortcodes'>Shortcodes</h1><h2 id='listing-available-shortcodes'>Listing Available Shortcodes</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/shortcodes'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/shortcodes"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"shortcodes"</span><span class="p">:[</span><span class="s2">"33733"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint gets a list of available shortcodes.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/shortcodes</code></p>
-<h2 id='testing-keyword-availability-for-campaign'>Testing Keyword Availability for Campaign</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/shortcodes/ID/test_keyword'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"keyword_name"</span><span class="ss">:"TEST"</span><span class="p">});</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span> -d <span class="s1">'{"keyword_name":"TEST"}'</span> -X POST <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">});</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"available"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint gets checks the availability of a keyword.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-
-<aside class="error">
-<strong>Name is in Use</strong>
-<p>
-{
-  "status":"OK",
-  "keyword_name":"unavailable",
-  "error":"Name is in use"
-}
-</p>
-</aside>
-<h3 id='url-parameters-8'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>ID of the shortcode</td>
-</tr>
-</tbody></table>
-<h3 id='json-parameters-json-object-6'>JSON Parameters (JSON Object)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>keyword_name</td>
-<td>Keyword name to test</td>
-</tr>
-</tbody></table>
-<h1 id='subscribers'>Subscribers</h1><h2 id='adding-multiple-tags-to-multiple-subscribers'>Adding Multiple Tags to Multiple Subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='adding-multiple-tags-to-multiple-subscribers'>Adding Multiple Tags to Multiple Subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags'</span><span class="p">)</span>
@@ -1527,9 +1208,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint applies multiple tags to multiple subscribers.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1541,7 +1222,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-7'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-5'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1606,9 +1287,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a subscriber to a list.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1620,7 +1301,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-6'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1750,9 +1431,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns information about a current subscriber.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1809,9 +1490,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a message.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1859,9 +1540,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1873,7 +1554,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-7'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1917,9 +1598,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message to multiple recipients.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1931,7 +1612,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1979,9 +1660,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message to a single recipient.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1993,7 +1674,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2056,9 +1737,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint unsubscribes a subscriber.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2137,9 +1818,9 @@ You will receive a 200 status on success
       </li>
     </ul>
 </aside>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2155,7 +1836,7 @@ You will receive a 200 status on success
 <td>ID of the subscriber</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2233,9 +1914,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of phone numbers.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2281,9 +1962,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of unsubscribed phone numbers.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2293,6 +1974,320 @@ You will receive a 200 status on success
 <tr>
 <td>ID</td>
 <td>ID of the list</td>
+</tr>
+</tbody></table>
+<h1 id='message-log-momt-reports'>Message Log (MOMT) Reports</h1><h2 id='creating-a-new-momt-report'>Creating a New MOMT Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"date_from"</span><span class="ss">:"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"date_to"</span><span class="ss">:"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"webhook_callback_url"</span><span class="ss">:"http://requestb.in/1d60vok1"</span><span class="p">})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span> -d <span class="s1">'{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}'</span> -X POST <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="s2">"http://requestb.in/1d60vok1"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-08T22:10:41+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new MOMT Report.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST https://app.tatango.com/api/v2/momt_reports</code></p>
+<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_from</td>
+<td>{:scope=&gt;:momt_reports}</td>
+</tr>
+<tr>
+<td>date_to</td>
+<td>{:scope=&gt;:momt_reports}</td>
+</tr>
+<tr>
+<td>webhook_callback_url</td>
+<td>{:scope=&gt;:momt_reports}</td>
+</tr>
+</tbody></table>
+<h2 id='getting-status-of-a-processed-momt-report'>Getting Status of a Processed MOMT Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports/ID'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports/ID"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
+      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-28T22:10:41.597+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41.597+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets the status of a processed MOMT Report.</p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
+<h3 id='url-parameters-17'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of MOMT Report to get status of</td>
+</tr>
+</tbody></table>
+<h2 id='getting-status-of-a-unprocessed-momt-report'>Getting Status of a Unprocessed MOMT Report</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/momt_reports/ID'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/momt_reports/ID"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
+      </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counts_calculated"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_from"</span><span class="p">:</span><span class="s2">"2016-08-28T22:10:41.712+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_range"</span><span class="p">:</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_to"</span><span class="p">:</span><span class="s2">"2016-09-07T22:10:41.712+01:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"direction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_completed_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"import_started_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"run_errors"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"s3_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shortcode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status_array"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_rows"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"webhook_callback_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets the status of an unprocessed MOMT Report.</p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
+<h3 id='url-parameters-18'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of MOMT Report to get status of</td>
+</tr>
+</tbody></table>
+<h1 id='shortcodes'>Shortcodes</h1><h2 id='listing-available-shortcodes'>Listing Available Shortcodes</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/shortcodes'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/shortcodes"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"shortcodes"</span><span class="p">:[</span><span class="s2">"33733"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets a list of available shortcodes.</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>GET https://app.tatango.com/api/v2/shortcodes</code></p>
+<h2 id='testing-keyword-availability-for-campaign'>Testing Keyword Availability for Campaign</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/shortcodes/ID/test_keyword'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"keyword_name"</span><span class="ss">:"TEST"</span><span class="p">});</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span> -d <span class="s1">'{"keyword_name":"TEST"}'</span> -X POST <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"available"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint gets checks the availability of a keyword.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>POST https://app.tatango.com/api/v2/momt_reports/ID</code></p>
+
+<aside class="error">
+<strong>Name is in Use</strong>
+<p>
+{
+  "status":"OK",
+  "keyword_name":"unavailable",
+  "error":"Name is in use"
+}
+</p>
+</aside>
+<h3 id='url-parameters-19'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of the shortcode</td>
+</tr>
+</tbody></table>
+<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>keyword_name</td>
+<td>Keyword name to test</td>
 </tr>
 </tbody></table>
 <h1 id='transactional-messages'>Transactional Messages</h1><h2 id='send-transactional-sms-message'>Send Transactional SMS Message</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
