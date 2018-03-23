@@ -815,359 +815,6 @@ list[email_digest] | Email to send email digest to. Leave blank if you dont want
 list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
 list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
 
-# MomtReports
-
-## Creating a New Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"})
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "momt_report":{
-      "account_id":22,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "direction":null,
-      "id":3,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":null,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint creates a new Momt Report.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/momt_reports`
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-date_from | {:scope=>:momt_reports}
-date_to | {:scope=>:momt_reports}
-webhook_callback_url | {:scope=>:momt_reports}
-
-## Getting Status of a Processed Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "momt_report":{  
-      "account_id":20,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":true,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.597+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.597+01:00",
-      "direction":null,
-      "id":1,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":0,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint gets the status of a processed Momt Report.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of Momt Report to get status of
-
-## Getting Status of a Unprocessed Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "momt_report":{  
-      "account_id":21,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.712+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.712+01:00",
-      "direction":null,
-      "id":2,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":null,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint gets the status of an unprocessed Momt Report.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of Momt Report to get status of
-
-# Shortcodes
-
-## Listing Available Shortcodes
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "shortcodes":["33733"]
-}
-```
-
-This endpoint gets a list of available shortcodes.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/shortcodes`
-
-## Testing Keyword Availability for Campaign
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"keyword_name":"TEST"});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"keyword_name":"TEST"});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "keyword_name":"available"
-}
-```
-
-This endpoint gets checks the availability of a keyword.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/momt_reports/ID`
-
-<aside class="error">
-<strong>Name is in Use</strong>
-<p>
-{
-  "status":"OK",
-  "keyword_name":"unavailable",
-  "error":"Name is in use"
-}
-</p>
-</aside>
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the shortcode
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-keyword_name | Keyword name to test
-
-# Subscribers
 
 ## Adding Multiple Tags to Multiple Subscribers
 
@@ -1954,6 +1601,359 @@ This endpoint gets a list of unsubscribed phone numbers.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
+
+
+# Message Log (MOMT) Reports
+
+## Creating a New MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "momt_report":{
+      "account_id":22,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "direction":null,
+      "id":3,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint creates a new MOMT Report.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/momt_reports`
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+date_from | {:scope=>:momt_reports}
+date_to | {:scope=>:momt_reports}
+webhook_callback_url | {:scope=>:momt_reports}
+
+## Getting Status of a Processed MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":20,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":true,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.597+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.597+01:00",
+      "direction":null,
+      "id":1,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":0,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of a processed MOMT Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of MOMT Report to get status of
+
+## Getting Status of a Unprocessed MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":21,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.712+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.712+01:00",
+      "direction":null,
+      "id":2,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of an unprocessed MOMT Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of MOMT Report to get status of
+
+# Shortcodes
+
+## Listing Available Shortcodes
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "shortcodes":["33733"]
+}
+```
+
+This endpoint gets a list of available shortcodes.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/shortcodes`
+
+## Testing Keyword Availability for Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"keyword_name":"TEST"});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"keyword_name":"TEST"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "keyword_name":"available"
+}
+```
+
+This endpoint gets checks the availability of a keyword.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/momt_reports/ID`
+
+<aside class="error">
+<strong>Name is in Use</strong>
+<p>
+{
+  "status":"OK",
+  "keyword_name":"unavailable",
+  "error":"Name is in use"
+}
+</p>
+</aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the shortcode
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+keyword_name | Keyword name to test
 
 # Transactional Messages
 
