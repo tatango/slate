@@ -1,5 +1,5 @@
 ---
-title: Tagango API Reference
+title: Tatango API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -11,14 +11,14 @@ includes:
 
 search: true
 ---
-
-# Introduction
+# Before You Start
 
 title: Before You Start
 
 Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/" target="_blank">Zapier</a>.   
  
- You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
 
 # Authentication
 
@@ -47,13 +47,11 @@ request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain
 request.send(null);
 ```
 
-> Make sure to replace `my_api_key` with your API key.
+> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into <a href="https://app.tatango.com/" target="_blank">https://app.tatango.com</a>.
 
 Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
 
-<aside class="notice">
-You must replace <code>my_api_key</code> with your personal API key.
-</aside>
+
 
 # Accounts
 
@@ -100,7 +98,7 @@ request.send(null);
 
 ```
 
-This endpoint retrieves the current account.
+This endpoint retrieves the current account, as specified by the API key used to authenticate.
 
 ### HTTP Request
 
@@ -122,7 +120,9 @@ You will receive a 200 status on success
 
 # Campaigns
 
-## Listing Campaigns
+Note:  The terms "campaign" and "list" are used interchangeably in this document.
+
+## List Campaigns
 
 ```ruby
 require 'net/http'
@@ -243,13 +243,13 @@ request.send(null);
 }
 ```
 
-This endpoint retrieves a list of campaigns.
+This endpoint retrieves a list of all campaigns owned by the current account.
 
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists`
 
-## Query Campaign by ID
+## Retrieve Campaign
 
 ```ruby
 require 'net/http'
@@ -325,7 +325,9 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list to retrieve
 
-## Configuring Opt-In Type to Double
+## Configure Campaign Opt-In Type
+
+> Setting the opt-in type to "double":
 
 ```ruby
 require 'net/http'
@@ -430,35 +432,7 @@ request.send(data);
    ]
 }
 ```
-
-This endpoint configures an opt-in type to double.
-
-### HTTP Request
-
-`PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the list to change
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-opt_in_requests	| Array of opt in requests
-opt_in_requests[request_message]	| message that will be sent to subscriber
-opt_in_requests[retry_message]	| message that will be sent to subscriber if he will respond with invalid data
-opt_in_requests[follow_up]	| send follow up message if customer doesn't respond?
-opt_in_requests[follow_up_hour]	| follow up customer in how many hours/
-opt_in_requests[no_response_message]	| content of follow up message
-opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be "optinsubscriber" in last opt in request
-opt_in_requests[opt_in_message]	| First opt in message
-opt_in_requests[second_opt_in_message]	| Second opt in message
-
-## Configuring Opt-In Type to Single
+> Setting the opt-in type to "single":
 
 ```ruby
 require 'net/http'
@@ -499,7 +473,7 @@ request.send(data);
 }
 ```
 
-This endpoint configures an opt-in type to single.
+This endpoint configures an opt-in type for a campaign.
 
 ### HTTP Request
 
@@ -511,13 +485,23 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list to change
 
+
 ### JSON Parameters (JSON Object)
 
 Parameter | Description
 --------- | -----------
-opt_in_type | Opt in type, single or double
-first_optin_message | First opt in message
-second_optin_message | Second opt in message
+opt_in_type | Opt in type (may be either "single" or "double")
+first_optin_message | First opt in message (only used with single opt-ins)
+second_optin_message | Second opt in message (only used with single opt-ins)
+opt_in_requests	| Array of opt in requests (only used with double opt-ins)
+opt_in_requests[request_message]	| message that will be sent to subscriber
+opt_in_requests[retry_message]	| message that will be sent to subscriber if he will respond with invalid data
+opt_in_requests[follow_up]	| send follow up message if customer doesn't respond?
+opt_in_requests[follow_up_hour]	| follow up customer in how many hours/
+opt_in_requests[no_response_message]	| content of follow up message
+opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be "optinsubscriber" in last opt in request
+opt_in_requests[opt_in_message]	| First opt in message
+opt_in_requests[second_opt_in_message]	| Second opt in message
 
 ## Creating a New Campaign
 
@@ -834,359 +818,6 @@ list[email_digest] | Email to send email digest to. Leave blank if you dont want
 list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
 list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
 
-# MomtReports
-
-## Creating a New Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"})
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "momt_report":{
-      "account_id":22,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "direction":null,
-      "id":3,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":null,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint creates a new Momt Report.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/momt_reports`
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-date_from | {:scope=>:momt_reports}
-date_to | {:scope=>:momt_reports}
-webhook_callback_url | {:scope=>:momt_reports}
-
-## Getting Status of a Processed Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "momt_report":{  
-      "account_id":20,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":true,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.597+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.597+01:00",
-      "direction":null,
-      "id":1,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":0,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint gets the status of a processed Momt Report.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of Momt Report to get status of
-
-## Getting Status of a Unprocessed Momt Report
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "momt_report":{  
-      "account_id":21,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.712+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.712+01:00",
-      "direction":null,
-      "id":2,
-      "import_completed_at":null,
-      "import_started_at":null,
-      "is_csv":false,
-      "mo_count":0,
-      "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
-      "shortcode":null,
-      "status_array":null,
-      "total_rows":null,
-      "type":null,
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
-   }
-}
-```
-
-This endpoint gets the status of an unprocessed Momt Report.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of Momt Report to get status of
-
-# Shortcodes
-
-## Listing Available Shortcodes
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "shortcodes":["33733"]
-}
-```
-
-This endpoint gets a list of available shortcodes.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/shortcodes`
-
-## Testing Keyword Availability for Campaign
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"keyword_name":"TEST"});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"keyword_name":"TEST"});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"OK",
-   "keyword_name":"available"
-}
-```
-
-This endpoint gets checks the availability of a keyword.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/momt_reports/ID`
-
-<aside class="error">
-<strong>Name is in Use</strong>
-<p>
-{
-  "status":"OK",
-  "keyword_name":"unavailable",
-  "error":"Name is in use"
-}
-</p>
-</aside>
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the shortcode
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-keyword_name | Keyword name to test
-
-# Subscribers
 
 ## Adding Multiple Tags to Multiple Subscribers
 
@@ -1307,52 +938,6 @@ request.send(data);
 
 This endpoint adds a subscriber to a list.
 
-<aside class="success">
-<h3>FAQ About This Endpoint</h3>
-  <ul>
-    <li>
-      <em>What happens when we use the add subscriber API to add a home phone number?</em>
-      <p>A user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
-    </li>
-    <li>
-      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
-      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
-    </li>
-    <li>
-      <em>What happens when we use add subscriber API to add phone number that isn’t in country of campaign?</em>
-      <p>The user is subscribed to a campaign list when you use this endpoint with a phone number.</p>
-    </li>
-    <li>
-      <em>What happens when we use add subscriber API to add a phone number that is currently subscribed to campaign?</em>
-      <p>A 200 OK is returned and no changes are made the subscriber.</p>
-    </li>
-    <li>
-      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message? Also, can we bypass all alerts, and just add them.</em>
-      <p>Not with this endpoint. You will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
-    </li>
-    <li>
-      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
-      <p>No. The reply is currently configured to YES.</p>
-    </li>
-    <li>
-      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
-      <p>Yes. The optional paramaters are listed for this API endpoint.</p>
-    </li>
-    <li>
-      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
-      <p>Yes. All optional parameters' limitations are noted.</p>
-    </li>
-    <li>
-      <em>In what format can we send you phone numbers? Do we have to put +1 infront of number?</em>
-      <p>The phone number should look as the examples indicate:  a continuous string of numbers with no dashes and no country code.</p>
-    </li>
-    <li>
-      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
-      <p>Each campaign is a separate entity, yes.</p>
-    </li>
-  </ul>
-</aside>
-
 ### HTTP Request
 
 `POST https://app.tatango.com/api/v2/lists/ID/subscribers`
@@ -1375,6 +960,48 @@ subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
+
+<aside>
+<h3>FAQ About This Endpoint</h3>
+  <ul>
+    <li>
+      <em>What happens when we use the add subscriber API to add a home phone number (i.e. non-cellular)?</em>
+      <p>You will receive the message "Bad phone number: landline or unreachable carrier" with the status code 422.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
+      <p>We will initiate the process of resubscribing the phone number to the campaign.</p>
+    </li>
+    <li>
+      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the campaign?</em>
+      <p>A 200 OK is returned and no changes are made the subscriber.</p>
+    </li>
+    <li>
+      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
+      <p>Yes - you will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+    </li>
+    <li>
+      <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
+      <p>No. The reply is currently configured to YES.</p>
+    </li>
+    <li>
+      <em>Can I add a subscriber via API with custom data for that subscriber?</em>
+      <p>Yes. The optional parameters are listed for this API endpoint.</p>
+    </li>
+    <li>
+      <em>For subscriber fields like name, birthday, etc., are there any limitations on what we can use, like character limit, only certain characters, etc?</em>
+      <p>Yes. All optional parameters' limitations are noted - see the JSON parameters above.</p>
+    </li>
+    <li>
+      <em>In what format should phone numbers be sent?</em>
+      <p>The phone number should be a continuous string of ten digits - with no dashes and no country code (e.g. "2065551111").</p>
+    </li>
+    <li>
+      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
+      <p>Yes - each campaign is a separate entity.</p>
+    </li>
+  </ul>
+</aside>
 
 ## Getting a Subscriber
 
@@ -1498,7 +1125,7 @@ request.send(null);
 }
 ```
 
-This endpoint adds a subscriber to a list.
+This endpoint retrieves a message.
 
 ### HTTP Request
 
@@ -1978,6 +1605,359 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 
+
+# Message Log (MOMT) Reports
+
+## Creating a New MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "momt_report":{
+      "account_id":22,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "direction":null,
+      "id":3,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint creates a new MOMT Report.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/momt_reports`
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+date_from | {:scope=>:momt_reports}
+date_to | {:scope=>:momt_reports}
+webhook_callback_url | {:scope=>:momt_reports}
+
+## Getting Status of a Processed MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":20,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":true,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.597+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.597+01:00",
+      "direction":null,
+      "id":1,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":0,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of a processed MOMT Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of MOMT Report to get status of
+
+## Getting Status of a Unprocessed MOMT Report
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "momt_report":{  
+      "account_id":21,
+      "campaign":null,
+      "carrier":null,
+      "counts_calculated":false,
+      "created_at":"2016-09-07T14:10:41-07:00",
+      "date_from":"2016-08-28T22:10:41.712+01:00",
+      "date_range":"json",
+      "date_to":"2016-09-07T22:10:41.712+01:00",
+      "direction":null,
+      "id":2,
+      "import_completed_at":null,
+      "import_started_at":null,
+      "is_csv":false,
+      "mo_count":0,
+      "mt_count":0,
+      "percent_complete":0,
+      "phone_number":null,
+      "processed_rows":0,
+      "run_errors":null,
+      "s3_url":null,
+      "shortcode":null,
+      "status_array":null,
+      "total_rows":null,
+      "type":null,
+      "updated_at":"2016-09-07T14:10:41-07:00",
+      "webhook_callback_url":null
+   }
+}
+```
+
+This endpoint gets the status of an unprocessed MOMT Report.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/momt_reports/ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of MOMT Report to get status of
+
+# Shortcodes
+
+## Listing Available Shortcodes
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "shortcodes":["33733"]
+}
+```
+
+This endpoint gets a list of available shortcodes.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/shortcodes`
+
+## Testing Keyword Availability for Campaign
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"keyword_name":"TEST"});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"keyword_name":"TEST"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"OK",
+   "keyword_name":"available"
+}
+```
+
+This endpoint gets checks the availability of a keyword.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/momt_reports/ID`
+
+<aside class="error">
+<strong>Name is in Use</strong>
+<p>
+{
+  "status":"OK",
+  "keyword_name":"unavailable",
+  "error":"Name is in use"
+}
+</p>
+</aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the shortcode
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+keyword_name | Keyword name to test
+
 # Transactional Messages
 
 ## Send Transactional SMS Message
@@ -2050,7 +2030,7 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
       <em>Can I schedule a SMS or MMS message to a segmented group?</em>
       <p>You can select what numbers to send the message to and use the API to send to those numbers.</p>
     </li>
-    
+
   </ul>
 </aside>
 
@@ -2265,7 +2245,7 @@ Parameter | Description
 ID | The ID of the list
 
 <aside class="error">
-If the list does not exist you will get a 404 response with this body: 
+If the list does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"List not found"}
 </aside>
@@ -2332,7 +2312,7 @@ ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
 
 <aside class="error">
-If the webhook does not exist you will get a 404 response with this body: 
+If the webhook does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"Webhook not found"}
 </aside>
@@ -2473,5 +2453,5 @@ ID | The ID of the list
     <em>What are the differences between SMS and MMS?</em>
     <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
   </li>
-  
+
 </ul>
