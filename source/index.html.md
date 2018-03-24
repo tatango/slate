@@ -15,12 +15,14 @@ search: true
 
 title: Before You Start
 
-Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/" target="_blank">Zapier</a>.   
+Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.   
  
 You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 
 # Authentication
+
+Note: You can access your API key <a href="http://help.tatango.com/api/api-keys">here</a>.
 
 > To authorize, use this code:
 
@@ -118,11 +120,9 @@ You will receive a 200 status on success
 <p>{"status":"error","error":"API key authorization failure"}</p>
 </aside>
 
-# Campaigns
+# Lists
 
-Note:  The terms "campaign" and "list" are used interchangeably in this document.
-
-## List Campaigns
+## List all Lists
 
 ```ruby
 require 'net/http'
@@ -243,13 +243,13 @@ request.send(null);
 }
 ```
 
-This endpoint retrieves a list of all campaigns owned by the current account.
+This endpoint retrieves a list of all lists owned by the current account.
 
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists`
 
-## Retrieve Campaign
+## Retrieve List
 
 ```ruby
 require 'net/http'
@@ -313,7 +313,7 @@ request.send(null);
 
 ```
 
-This endpoint retrieves a specific campaign.
+This endpoint retrieves a specific list.
 
 ### HTTP Request
 
@@ -325,7 +325,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list to retrieve
 
-## Configure Campaign Opt-In Type
+## Configure List Opt-In Type
 
 > Setting the opt-in type to "double":
 
@@ -473,7 +473,7 @@ request.send(data);
 }
 ```
 
-This endpoint configures an opt-in type for a campaign.
+This endpoint configures an opt-in type for a list.
 
 ### HTTP Request
 
@@ -503,7 +503,7 @@ opt_in_requests[success_action]	| "nextrequest" or "optinsubscriber". should be 
 opt_in_requests[opt_in_message]	| First opt in message
 opt_in_requests[second_opt_in_message]	| Second opt in message
 
-## Creating a New Campaign
+## Creating a New List
 
 ```ruby
 require 'net/http'
@@ -513,12 +513,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"list":{"name":"My awesome campaign"}})
+request.body({"list":{"name":"My awesome list"}})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome campaign"}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome list"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -530,7 +530,7 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome cam
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"list":{"name":"My awesome campaign"}});
+var data = JSON.stringify({"list":{"name":"My awesome list"}});
 request.send(data);
 ```
 
@@ -550,7 +550,7 @@ request.send(data);
       "message_reply":null,
       "message_stop":null,
       "message_yes":null,
-      "name":"My awesome campaign",
+      "name":"My awesome list",
       "second_optin_message":"",
       "keyword_names":[
 
@@ -568,7 +568,7 @@ request.send(data);
 }
 ```
 
-This endpoint creates a new campaign.
+This endpoint creates a new list.
 
 <aside class="success">
   <ul>
@@ -578,10 +578,10 @@ This endpoint creates a new campaign.
     </li>
     <li>
       <em>What happens if the keyword isn't available?</em>
-      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-campaign">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
+      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-list">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
     </li>
     <li>
-      <em>Can I add multiple keywords to a campaign?</em>
+      <em>Can I add multiple keywords to a list?</em>
       <p>Yes.  The keyword_names parameter would need to be an array, like this: {"keyword_names":["TEST","KEYWORD","NAMES"]}, of valid, not-already used, keywords.</p>
     </li>
     <li>
@@ -611,7 +611,7 @@ list[email_digest] | Email to send email digest to. Leave blank if you dont want
 list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
 list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
 
-## Destroying a Campaign
+## Destroying a List
 
 ```ruby
 require 'net/http'
@@ -637,7 +637,7 @@ curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"list":{"name":"My awesome campaign"}});
+var data = JSON.stringify({"list":{"name":"My awesome list"}});
 request.send(data);
 ```
 
@@ -645,11 +645,11 @@ request.send(data);
 
 ```json
 {
-  "status":"Campaign Destroyed"
+  "status":"List Destroyed"
 }
 ```
 
-This endpoint destroys a campaign.
+This endpoint destroys a list.
 
 ### HTTP Request
 
@@ -661,7 +661,7 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list to delete
 
-## Setting(Updating) Keywords for a Campaign
+## Setting(Updating) Keywords for a List
 
 ```ruby
 require 'net/http'
@@ -706,7 +706,7 @@ request.send(data);
 }
 ```
 
-This endpoint sets or updates keywords for a campaign.
+This endpoint sets or updates keywords for a list.
 
 ### HTTP Request
 
@@ -725,7 +725,7 @@ Parameter | Description
 --------- | -----------
 keyword_names	| Array of keyword names
 
-## Updating a Campaign
+## Updating a List
 
 ```ruby
 require 'net/http'
@@ -790,7 +790,7 @@ request.send(data);
 }
 ```
 
-This endpoint updates a campaign.
+This endpoint updates a list.
 
 ### HTTP Request
 
@@ -908,11 +908,11 @@ var data = JSON.stringify({"subscriber":{"phone_number":"2141234567"}});
 request.send(data);
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns possible JSON responses structured like this:
 
 ```json
 {
-   "status":"Subscriber being added to campaign pending confirmation",
+   "status":"Subscriber being added to list pending confirmation",
    "subscriber":{
       "phone_number":"2141234567",
       "first_name":"",
@@ -934,6 +934,107 @@ request.send(data);
       ]
    }
 }
+```
+```json
+{
+   "status":"Subscriber has been added - no opt-in message was sent due to list settings.",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+```json
+{
+   "status":"Subscriber has already been sent opt-in message for this campaign.",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+```json
+{
+   "status":"Subscriber is already subscribed to this campaign.",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+```json
+{
+   "status":"Subscriber being added to campaign pending confirmation.",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-06T16:00:00-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
 ```
 
 This endpoint adds a subscriber to a list.
@@ -959,7 +1060,7 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
+tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 <aside>
 <h3>FAQ About This Endpoint</h3>
@@ -969,16 +1070,16 @@ tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
       <p>You will receive the message "Bad phone number: landline or unreachable carrier" with the status code 422.</p>
     </li>
     <li>
-      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the campaign?</em>
-      <p>We will initiate the process of resubscribing the phone number to the campaign.</p>
+      <em>What happens when we use the add subscriber API to add a phone number that is currently unsubscribed from the list?</em>
+      <p>We will initiate the process of resubscribing the phone number to the list.</p>
     </li>
     <li>
-      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the campaign?</em>
+      <em>What happens when we use the add subscriber API to add a phone number that is already subscribed to the list?</em>
       <p>A 200 OK is returned and no changes are made the subscriber.</p>
     </li>
     <li>
       <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
-      <p>Yes - you will need to change the Opt-In Type for the campaign. You can not bypass alerts with this endpoint.</p>
+      <p>Yes - you will need to change the Opt-In Type for the list. You can not bypass alerts with this endpoint.</p>
     </li>
     <li>
       <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
@@ -997,8 +1098,8 @@ tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
       <p>The phone number should be a continuous string of ten digits - with no dashes and no country code (e.g. "2065551111").</p>
     </li>
     <li>
-      <em>If an account has multiple campaigns, and a phone number has opted-out, or been cleaned from one campaign, can we use the API to add them to a new campaign?</em>
-      <p>Yes - each campaign is a separate entity.</p>
+      <em>If an account has multiple lists, and a phone number has opted-out, or been cleaned from one list, can we use the API to add them to a new list?</em>
+      <p>Yes - each list is a separate entity.</p>
     </li>
   </ul>
 </aside>
@@ -1491,7 +1592,7 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-tags | (optional) List of tags, comma separated, for example: 'foo,bar,baz'
+tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ## Get a List of Phone Numbers
 
@@ -1889,7 +1990,7 @@ This endpoint gets a list of available shortcodes.
 
 `GET https://app.tatango.com/api/v2/shortcodes`
 
-## Testing Keyword Availability for Campaign
+## Testing Keyword Availability for List
 
 ```ruby
 require 'net/http'
@@ -2015,12 +2116,12 @@ For example of webhook payload for reply, see https://gist.github.com/CodingFu/3
       <p>Only SMS messages can be sent through this endpoint.</p>
     </li>
     <li>
-      <em>Can I send transactional messages to people already in one of my campaigns?</em>
-      <p>Yes. You can only send messages to people in your campaigns.</p>
+      <em>Can I send transactional messages to people already in one of my lists?</em>
+      <p>Yes. You can only send messages to people in your lists.</p>
     </li>
     <li>
-      <em>Can I send transactional messages to people already in one of my campaigns?</em>
-      <p>Yes. You can only send messages to people in your campaigns.</p>
+      <em>Can I send transactional messages to people already in one of my lists?</em>
+      <p>Yes. You can only send messages to people in your lists.</p>
     </li>
     <li>
      <em> Can I schedule an MMS (Image/Video) message from an API to my subscribers?</em>
@@ -2447,7 +2548,7 @@ ID | The ID of the list
 <ul>
   <li>
     <em>Where can I find the "ID of the list"?</em>
-    <p>You can find the ID of all of your lists by calling the <a href="#listing-campaigns">Listing Campaigns"</a> endpoint.</p>
+    <p>You can find the ID of all of your lists by calling the <a href="#listing-all-lists">Listing all Lists"</a> endpoint.</p>
   </li>
   <li>
     <em>What are the differences between SMS and MMS?</em>
