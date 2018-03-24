@@ -16,7 +16,7 @@ search: true
 
 title: Before You Start
 
-Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you think you may need some help integrating with the Tatango API, visit <a href="https://zapier.com/" target="_blank">Zapier</a>.   
+Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/" target="_blank">Zapier</a>.   
  
  You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
