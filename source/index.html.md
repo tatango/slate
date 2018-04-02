@@ -818,64 +818,7 @@ list[email_digest] | Email to send email digest to. Leave blank if you dont want
 list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
 list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
 
-
-## Adding Multiple Tags to Multiple Subscribers
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "status":"Tags were applied"
-}
-```
-
-This endpoint applies multiple tags to multiple subscribers. The tags are added to any tags already applied, not replaced.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-phone_numbers	| The wireless phone numbers of the subscribers.
-tags | Array of tags to add
+#Subscribers
 
 ## Adding a Subscriber
 
@@ -887,12 +830,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"subscriber":{"phone_number":"2141234567"}});
+request.body({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567"}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -904,7 +847,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"p
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"subscriber":{"phone_number":"2141234567"}});
+var data = JSON.stringify({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}});
 request.send(data);
 ```
 
@@ -1032,7 +975,6 @@ request.send(data);
 }
 ```
 
-
 This endpoint adds a subscriber to a list.
 
 ### HTTP Request
@@ -1053,7 +995,7 @@ subscriber[phone_number] | The wireless phone number of the subscriber.
 subscriber[first_name] | (optional) First name - char(50)
 subscriber[last_name] | (optional) Last name - char(50)
 subscriber[email] | (optional) Email - char(50)
-subscriber[birthdate] | (optional) Birthdate - int(6)
+subscriber[birthdate] | (optional) Birthdate - int(8)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
@@ -1149,24 +1091,24 @@ request.send(null);
    "status":"OK",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@mydomain.com",
+      "birthdate":"19780728",
+      "zip_code":"5124",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
-      "opted_out_at":"2016-09-06T16:00:00-07:00",
-      "optin_in_progress":true,
+      "opted_out_at":null,
+      "optin_in_progress":false,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ],
-      "total_messages_received":0
+      "total_messages_received":12540
    }
 }
 ```
@@ -1197,355 +1139,6 @@ keyword_name | If the subscriber opted-in by texting a keyword, that keyword the
 carrier | The ID of the wireless carrier for this specific subscriber.
 carrier_name | The name of the wireless carrier for this specific subscriber.
 total_messages_received | The total amount of mass messages this specific subscriber has received over their lifetime from this specific list.
-
-## Querying an Existing Message
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
-      "id":14523,
-      "sent_at":"2016-09-07T14:10:53-07:00",
-      "status":"sent",
-      "is_broadcast":true,
-      "phone_number":null,
-      "recipient_count":679571,
-      "success_count":675232,
-      "bounces_count":4339,
-      "pending_count":0,
-      "clean_count":2342,
-      "unsubscribe_count":1362
-   }
-}
-```
-
-This endpoint retrieves a message.
-
-### HTTP Request
-
-`GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-MESSAGE_ID | ID of the message
-
-### Responses Explained
-
-Key | Description
---------- | -----------
-content | The actual content of the message that was sent to subscribers.
-id | A unique ID that identifies this specific message.
-sent_at | The date/time this message completed it's send.
-status | The status of the message.
-is_broadcast |	
-phone_number | The wireless phone number of the subscriber.
-recipient_count | The number of recipients the message was sent to.
-success_count | The number of recipients that succesfully received the message on their mobile phones.
-bounces_count | The number of recipients that did not receive the message on their mobile phones.
-pending_count | 
-clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our 
-unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
-
-## Sending Out a Message
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, world!"}});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, world!"}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, world!"}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "id":4
-   }
-}
-```
-
-This endpoint sends a message.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-message[content] | Message content
-
-## Sending Out a Message to Multiple Recipients
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "id":3
-   }
-}
-```
-
-This endpoint sends a message to multiple recipients.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-message[content] | Message content
-message[phone_numbers] | Array of phone numbers of target recipients
-
-## Sending Out a Message to a Single Recipient
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_number":"9258642505"}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "id":3
-   }
-}
-```
-
-This endpoint sends a message to a single recipient.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-message[content] | Message content
-message[phone_number] | The wireless phone number of the subscriber.
-
-## Unsubscribing a Subscriber
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Delete.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X DELETE \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"successfully unsubscribed",
-   "subscriber":{
-      "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
-      "cleaned_at":null,
-      "subscribed_at":"2016-09-07T14:10:53-07:00",
-      "opted_out_at":"2016-09-07T14:10:54-07:00",
-      "optin_in_progress":true,
-      "opt_in_method":"api",
-      "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
-      "tags":[
-
-      ]
-   }
-}
-```
-
-This endpoint unsubscribes a subscriber.
-
-### HTTP Request
-
-`DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
-
-### Responses Explained
-
-Key | Description
---------- | -----------
-phone_number | The wireless phone number of the subscriber.
-cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
-subscribed_at | The data that this subscriber first subscribed to this specific list.
-opted_out_at | The data that this subscriber last unsubscribed from this specific list.
-opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
-keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
-carrier | The ID of the wireless carrier for this specific subscriber.
-carrier_name | The name of the wireless carrier for this specific subscriber.
 
 ## Updating a Subscriber
 
@@ -1660,6 +1253,147 @@ subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
+## Adding Multiple Tags to Multiple Subscribers
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "status":"Tags were applied"
+}
+```
+
+This endpoint applies multiple tags to multiple subscribers. The tags are added to any tags already applied, not replaced.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+phone_numbers	| The wireless phone numbers of the subscribers.
+tags | Array of tags to add
+
+## Unsubscribing a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"successfully unsubscribed",
+   "subscriber":{
+      "phone_number":"2141234567",
+      "first_name":"",
+      "last_name":"",
+      "email":"",
+      "birthdate":"",
+      "zip_code":"",
+      "gender":null,
+      "cleaned_at":null,
+      "subscribed_at":"2016-09-07T14:10:53-07:00",
+      "opted_out_at":"2016-09-07T14:10:54-07:00",
+      "optin_in_progress":true,
+      "opt_in_method":"api",
+      "keyword_name":null,
+      "carrier":0,
+      "carrier_name":null,
+      "tags":[
+
+      ]
+   }
+}
+```
+
+This endpoint unsubscribes a subscriber.
+
+### HTTP Request
+
+`DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+phone_number | The wireless phone number of the subscriber.
+cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
+subscribed_at | The data that this subscriber first subscribed to this specific list.
+opted_out_at | The data that this subscriber last unsubscribed from this specific list.
+opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
+keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
+carrier | The ID of the wireless carrier for this specific subscriber.
+carrier_name | The name of the wireless carrier for this specific subscriber.
+
 ## Get a List of Phone Numbers
 
 ```ruby
@@ -1772,6 +1506,273 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 
+# Messages 
+
+## Sending Out a Message
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, world!"}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, world!"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, world!"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":4
+   }
+}
+```
+
+This endpoint sends a message.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+
+## Sending Out a Message to a Single Recipient
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_number":"9258642505"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":3
+   }
+}
+```
+
+This endpoint sends a message to a single recipient.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+message[phone_number] | The wireless phone number of the subscriber.
+
+## Sending Out a Message to Multiple Recipients
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "id":3
+   }
+}
+```
+
+This endpoint sends a message to multiple recipients.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+message[content] | Message content
+message[phone_numbers] | Array of phone numbers of target recipients
+
+## Querying an Existing Message
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "message":{
+      "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "id":14523,
+      "sent_at":"2016-09-07T14:10:53-07:00",
+      "status":"sent",
+      "is_broadcast":true,
+      "phone_number":null,
+      "recipient_count":679571,
+      "success_count":675232,
+      "bounces_count":4339,
+      "pending_count":0,
+      "clean_count":2342,
+      "unsubscribe_count":1362
+   }
+}
+```
+
+This endpoint retrieves a message.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+MESSAGE_ID | ID of the message
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+content | The actual content of the message that was sent to subscribers.
+id | A unique ID that identifies this specific message.
+sent_at | The date/time this message completed it's send.
+status | The status of the message.
+is_broadcast |	
+phone_number | The wireless phone number of the subscriber.
+recipient_count | The number of recipients the message was sent to.
+success_count | The number of recipients that succesfully received the message on their mobile phones.
+bounces_count | The number of recipients that did not receive the message on their mobile phones.
+pending_count | 
+clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our 
+unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
 
 # Message Log (MOMT) Reports
 
@@ -2287,21 +2288,22 @@ transactional_message[content] | <span class="required">required</span> Message 
 
 # Webhooks
 
-## Destroying a Webhook
+## Creating a New Webhook for a List
 
 ```ruby
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
 http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Delete.new(uri.request_url)
+request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELETE \
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2311,7 +2313,145 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELE
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Webhook created",
+   "webhook":{
+      "callback_url":"http://localhost.dev/null?api_key=foo_bar_baz",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":4,
+      "list_id":29,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":true,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
+}
+```
+
+This endpoint creates a webhook for a list
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+
+# General FAQs
+
+<ul>
+  <li>
+    <em>Where can I find the "ID of the list"?</em>
+    <p>You can find the ID of all of your lists by calling the <a href="#listing-all-lists">Listing all Lists"</a> endpoint.</p>
+  </li>
+  <li>
+    <em>What are the differences between SMS and MMS?</em>
+    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
+  </li>
+
+</ul>
+
+## Updating a Webhook
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"Webhook updated",
+   "webhook":{
+      "callback_url":"http://mynewapi.com/?ref=tatango",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":9,
+      "list_id":33,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":false,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
+}
+```
+
+This endpoint updates a webhook
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+WEBHOOK_ID | The ID of the webhook
+
+## Showing a Webhook
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -2320,15 +2460,26 @@ request.send(null);
 
 ```json
 {
-   "status":"Webhook destroyed"
+   "status":"OK",
+   "webhook":{
+      "callback_url":"http://localhost/dev/null",
+      "created_at":"2016-09-07T14:11:13-07:00",
+      "enabled":true,
+      "id":5,
+      "list_id":30,
+      "message_sent":false,
+      "subscribe":true,
+      "unsubscribe":false,
+      "updated_at":"2016-09-07T14:11:13-07:00"
+   }
 }
 ```
 
-This endpoint destroys a webhook.
+This endpoint shows a webhook.
 
 ### HTTP Request
 
-`DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -2336,6 +2487,12 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
+
+<aside class="error">
+If the webhook does not exist you will get a 404 response with this body:
+
+{"status":"error","error":"Webhook not found"}
+</aside>
 
 ## Listing Webhooks
 
@@ -2431,7 +2588,7 @@ If the list does not exist you will get a 404 response with this body:
 {"status":"error","error":"List not found"}
 </aside>
 
-## Showing a Webhook
+## Destroying a Webhook
 
 ```ruby
 require 'net/http'
@@ -2439,13 +2596,13 @@ require 'uri'
 
 uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
 http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Get.new(uri.request_url)
+request = Net:HTTP::Delete.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET \
+curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELETE \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2455,7 +2612,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET 
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -2464,26 +2621,15 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "webhook":{
-      "callback_url":"http://localhost/dev/null",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":5,
-      "list_id":30,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":false,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
+   "status":"Webhook destroyed"
 }
 ```
 
-This endpoint shows a webhook.
+This endpoint destroys a webhook.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -2491,148 +2637,3 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
-
-<aside class="error">
-If the webhook does not exist you will get a 404 response with this body:
-
-{"status":"error","error":"Webhook not found"}
-</aside>
-
-## Updating a Webhook
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Put.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}})
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X PUT \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"Webhook updated",
-   "webhook":{
-      "callback_url":"http://mynewapi.com/?ref=tatango",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":9,
-      "list_id":33,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":false,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
-}
-```
-
-This endpoint updates a webhook
-
-### HTTP Request
-
-`PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-WEBHOOK_ID | The ID of the webhook
-
-## Creating a New Webhook for a List
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}})
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"Webhook created",
-   "webhook":{
-      "callback_url":"http://localhost.dev/null?api_key=foo_bar_baz",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":4,
-      "list_id":29,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":true,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
-}
-```
-
-This endpoint updates a creates a new webhook for  a list
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-
-# General FAQs
-
-<ul>
-  <li>
-    <em>Where can I find the "ID of the list"?</em>
-    <p>You can find the ID of all of your lists by calling the <a href="#listing-all-lists">Listing all Lists"</a> endpoint.</p>
-  </li>
-  <li>
-    <em>What are the differences between SMS and MMS?</em>
-    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
-  </li>
-
-</ul>
