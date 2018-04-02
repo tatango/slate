@@ -829,12 +829,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]});
+request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -846,7 +846,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["some","funky","tagnames"]});
+var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
 request.send(data);
 ```
 
@@ -858,7 +858,7 @@ request.send(data);
 }
 ```
 
-This endpoint applies multiple tags to multiple subscribers.
+This endpoint applies multiple tags to multiple subscribers. The tags are added to any tags already applied, not replaced.
 
 ### HTTP Request
 
@@ -874,7 +874,7 @@ ID | ID of the list
 
 Parameter | Description
 --------- | -----------
-phone_numbers	| Phone numbers of subscribers
+phone_numbers	| The wireless phone numbers of the subscribers.
 tags | Array of tags to add
 
 ## Adding a Subscriber
@@ -934,8 +934,7 @@ request.send(data);
       ]
    }
 }
-```
-```json
+
 {
    "status":"Subscriber has been added - no opt-in message was sent due to list settings.",
    "subscriber":{
@@ -959,8 +958,7 @@ request.send(data);
       ]
    }
 }
-```
-```json
+
 {
    "status":"Subscriber has already been sent opt-in message for this campaign.",
    "subscriber":{
@@ -984,8 +982,7 @@ request.send(data);
       ]
    }
 }
-```
-```json
+
 {
    "status":"Subscriber is already subscribed to this campaign.",
    "subscriber":{
@@ -1009,8 +1006,7 @@ request.send(data);
       ]
    }
 }
-```
-```json
+
 {
    "status":"Subscriber being added to campaign pending confirmation.",
    "subscriber":{
@@ -1035,7 +1031,7 @@ request.send(data);
    }
 }
 ```
-```
+
 
 This endpoint adds a subscriber to a list.
 
@@ -1053,7 +1049,7 @@ ID | ID of the list
 
 Parameter | Description
 --------- | -----------
-subscriber[phone_number] | Phone number
+subscriber[phone_number] | The wireless phone number of the subscriber.
 subscriber[first_name] | (optional) First name - char(50)
 subscriber[last_name] | (optional) Last name - char(50)
 subscriber[email] | (optional) Email - char(50)
@@ -1061,6 +1057,19 @@ subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+phone_number | The wireless phone number of the subscriber.
+cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
+subscribed_at | The data that this subscriber first subscribed to this specific list.
+opted_out_at | The data that this subscriber last unsubscribed from this specific list.
+opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
+keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
+carrier | The ID of the wireless carrier for this specific subscriber.
+carrier_name | The name of the wireless carrier for this specific subscriber.
 
 <aside>
 <h3>FAQ About This Endpoint</h3>
@@ -1175,6 +1184,20 @@ Parameter | Description
 ID | ID of the list
 SUBSCRIBER_ID | ID of the subscriber
 
+### Responses Explained
+
+Key | Description
+--------- | -----------
+phone_number | The wireless phone number of the subscriber.
+cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
+subscribed_at | The data that this subscriber first subscribed to this specific list.
+opted_out_at | The data that this subscriber last unsubscribed from this specific list.
+opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
+keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
+carrier | The ID of the wireless carrier for this specific subscriber.
+carrier_name | The name of the wireless carrier for this specific subscriber.
+total_messages_received | The total amount of mass messages this specific subscriber has received over their lifetime from this specific list.
+
 ## Querying an Existing Message
 
 ```ruby
@@ -1210,18 +1233,18 @@ request.send(null);
 {
    "status":"OK",
    "message":{
-      "content":"Hello!",
-      "id":2,
-      "sent_at":null,
-      "status":"sending",
+      "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "id":14523,
+      "sent_at":"2016-09-07T14:10:53-07:00",
+      "status":"sent",
       "is_broadcast":true,
       "phone_number":null,
-      "recipient_count":0,
-      "success_count":0,
-      "bounces_count":0,
+      "recipient_count":679571,
+      "success_count":675232,
+      "bounces_count":4339,
       "pending_count":0,
-      "clean_count":0,
-      "unsubscribe_count":0
+      "clean_count":2342,
+      "unsubscribe_count":1362
    }
 }
 ```
@@ -1238,6 +1261,23 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 MESSAGE_ID | ID of the message
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+content | The actual content of the message that was sent to subscribers.
+id | A unique ID that identifies this specific message.
+sent_at | The date/time this message completed it's send.
+status | The status of the message.
+is_broadcast |	
+phone_number | The wireless phone number of the subscriber.
+recipient_count | The number of recipients the message was sent to.
+success_count | The number of recipients that succesfully received the message on their mobile phones.
+bounces_count | The number of recipients that did not receive the message on their mobile phones.
+pending_count | 
+clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our 
+unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
 
 ## Sending Out a Message
 
@@ -1422,7 +1462,7 @@ ID | ID of the list
 Parameter | Description
 --------- | -----------
 message[content] | Message content
-message[phone_number] | Phone number of target recipient
+message[phone_number] | The wireless phone number of the subscriber.
 
 ## Unsubscribing a Subscriber
 
@@ -1494,6 +1534,19 @@ Parameter | Description
 ID | ID of the list
 SUBSCRIBER_ID | ID of the subscriber
 
+### Responses Explained
+
+Key | Description
+--------- | -----------
+phone_number | The wireless phone number of the subscriber.
+cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
+subscribed_at | The data that this subscriber first subscribed to this specific list.
+opted_out_at | The data that this subscriber last unsubscribed from this specific list.
+opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
+keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
+carrier | The ID of the wireless carrier for this specific subscriber.
+carrier_name | The name of the wireless carrier for this specific subscriber.
+
 ## Updating a Subscriber
 
 ```ruby
@@ -1555,6 +1608,19 @@ request.send(data);
 
 This endpoint updates a subscriber.
 
+### Responses Explained
+
+Key | Description
+--------- | -----------
+phone_number | The wireless phone number of the subscriber.
+cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
+subscribed_at | The data that this subscriber first subscribed to this specific list.
+opted_out_at | The data that this subscriber last unsubscribed from this specific list.
+opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
+keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
+carrier | The ID of the wireless carrier for this specific subscriber.
+carrier_name | The name of the wireless carrier for this specific subscriber.
+
 <aside class="success">
   <h3>FAQS About This Endpoint</h3>
     <ul>
@@ -1585,7 +1651,7 @@ SUBSCRIBER_ID | ID of the subscriber
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-subscriber[phone_number] | Phone number
+subscriber[phone_number] | The wireless phone number of the subscriber.
 subscriber[first_name] | (optional) First name - char(50)
 subscriber[last_name] | (optional) Last name - char(50)
 subscriber[email] | (optional) Email - char(50)
@@ -2106,10 +2172,24 @@ request.send(data);
 }
 ```
 
+> An example tatango transactional message reply
+
+```json
+{
+  "type":"transactional_message_reply",
+  "transactional_message_id":589733,
+  "received_at":"2016-08-20T15:12:37-07:00",
+  "phone_number":"3474437987",
+  "carrier":383,
+  "carrier_name":"AT&T",
+  "content":"I replied to transactional"
+}
+```
+
 This endpoint sends a Transactional SMS Message.
 
 <aside class="success">
-For example of webhook payload for reply, see https://gist.github.com/CodingFu/3e0c8b81514ebd92aadf77bbf156c89a
+Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
