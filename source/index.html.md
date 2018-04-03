@@ -337,12 +337,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]})
+request.body({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":null,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]}' -X PUT \
+curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":null,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -354,7 +354,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":24,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]});
+var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Your zip code?","retry_message":"Wrong zip code, try again","follow_up":true,"follow_up_hour":2,"no_response_message":"Please let us know, what is your zip code?","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Your email?","retry_message":"Wrong email, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your email?","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Your name?","retry_message":"Wrong name, try again","follow_up":true,"follow_up_hour":24,"no_response_message":"Please let us know, what is your name?","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Reply YES to join our awesome mailing list","retry_message":"Reply YES to join our awesome mailing list","follow_up":false,"follow_up_hour":null,"opt_in_message":"Welcome to our awesome mailing list.","second_opt_in_message":"Welcome back to our awesome mailing list.","success_action":"optinsubscriber"}]});
 request.send(data);
 ```
 
@@ -573,6 +573,14 @@ This endpoint creates a new list.
 <aside class="success">
   <ul>
     <li>
+      <em>What are the limitations for a keyword?</em>
+      <p>A keyword must contain at least two characters.</p>
+    </li>
+    <li>
+       <em>Are keywords case sensitive?</em>
+       <p>No. The system checks for duplicate keywords by transforming all keywords to uppercase before performing matching algorithms.</p>
+    </li>
+    <li>
       <em>What happens if the keyword isn't available?</em>
       <p>The response from the API will be a 422 error with the response body looking like this: {"status":"error","error":"invalid keyword names: EXISTINGKW"}</p>
     </li>
@@ -725,6 +733,27 @@ Parameter | Description
 --------- | -----------
 keyword_names	| Array of keyword names
 
+<aside class="success">
+  <ul>
+    <li>
+      <em>What are the limitations for a keyword?</em>
+      <p>A keyword must contain at least two characters.</p>
+    </li>
+    <li>
+       <em>Are keywords case sensitive?</em>
+       <p>No. The system checks for duplicate keywords by transforming all keywords to uppercase before performing matching algorithms.</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>The response from the API will be a 422 error with the response body looking like this: {"status":"error","error":"invalid keyword names: EXISTINGKW"}</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-list">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
+    </li>
+  </ul>
+</aside>
+
 ## Updating a List
 
 ```ruby
@@ -870,8 +899,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -894,8 +923,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -918,8 +947,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -942,8 +971,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -966,8 +995,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -1190,8 +1219,8 @@ request.send(data);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -1359,8 +1388,8 @@ request.send(null);
       "optin_in_progress":true,
       "opt_in_method":"api",
       "keyword_name":null,
-      "carrier":0,
-      "carrier_name":null,
+      "carrier":77,
+      "carrier_name":"Verizon",
       "tags":[
 
       ]
@@ -1438,7 +1467,7 @@ request.send(null);
 }
 ```
 
-This endpoint gets a list of phone numbers.
+This endpoint gets a list of subscribed phone numbers for the requested list.
 
 ### HTTP Request
 
@@ -1506,9 +1535,9 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 
-# Messages 
+# Messaging 
 
-## Sending Out a Message
+## Sending Message to Entire List
 
 ```ruby
 require 'net/http'
@@ -1569,7 +1598,7 @@ Parameter | Description
 --------- | -----------
 message[content] | Message content
 
-## Sending Out a Message to a Single Recipient
+## Sending Message to Subset of List (Single Numbers)
 
 ```ruby
 require 'net/http'
@@ -1631,7 +1660,7 @@ Parameter | Description
 message[content] | Message content
 message[phone_number] | The wireless phone number of the subscriber.
 
-## Sending Out a Message to Multiple Recipients
+## Sending Message to Subset of List (Multiple Numbers)
 
 ```ruby
 require 'net/http'
@@ -2013,7 +2042,7 @@ ID | ID of MOMT Report to get status of
 
 # Shortcodes
 
-## Listing Available Shortcodes
+## Listing Account Short Codes
 
 ```ruby
 require 'net/http'
@@ -2051,13 +2080,13 @@ request.send(null);
 }
 ```
 
-This endpoint gets a list of available shortcodes.
+This endpoint gets a list of short codes provisioned on your account.
 
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/shortcodes`
 
-## Testing Keyword Availability for List
+## Testing Keyword Availability on Short Code
 
 ```ruby
 require 'net/http'
@@ -2097,7 +2126,7 @@ request.send(data);
 }
 ```
 
-This endpoint gets checks the availability of a keyword.
+This endpoint gets checks the availability of a keyword on the account's short code.
 
 ### HTTP Request
 
@@ -2125,6 +2154,27 @@ ID | ID of the shortcode
 Parameter | Description
 --------- | -----------
 keyword_name | Keyword name to test
+
+<aside class="success">
+  <ul>
+    <li>
+      <em>What are the limitations for a keyword?</em>
+      <p>A keyword must contain at least two characters.</p>
+    </li>
+    <li>
+       <em>Are keywords case sensitive?</em>
+       <p>No. The system checks for duplicate keywords by transforming all keywords to uppercase before performing matching algorithms.</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>The response from the API will be a 422 error with the response body looking like this: {"status":"error","error":"invalid keyword names: EXISTINGKW"}</p>
+    </li>
+    <li>
+      <em>What happens if the keyword isn't available?</em>
+      <p>Yes.  By utilizing <a href="#testing-keyword-availability-for-list">this</a> endpoint. The response will either be 200 OK {"status":"OK","keyword_name":"available"} or 200 OK  {"status":"OK","keyword_name":"unavailable","error":"Name is in use"}.</p>
+    </li>
+  </ul>
+</aside>
 
 # Transactional Messages
 
@@ -2189,32 +2239,7 @@ request.send(data);
 
 This endpoint sends a Transactional SMS Message.
 
-<aside class="success">
-Example of webhook payload reply listed to the right.
-  <ul>
-    <li>
-      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Only SMS messages can be sent through this endpoint.</p>
-    </li>
-    <li>
-      <em>Can I send transactional messages to people already in one of my lists?</em>
-      <p>Yes. You can only send messages to people in your lists.</p>
-    </li>
-    <li>
-      <em>Can I send transactional messages to people already in one of my lists?</em>
-      <p>Yes. You can only send messages to people in your lists.</p>
-    </li>
-    <li>
-     <em> Can I schedule an MMS (Image/Video) message from an API to my subscribers?</em>
-      <p>You would need to schedule the SMS on your end and send to the API when you are ready to send it.</p>
-    </li>
-    <li>
-      <em>Can I schedule a SMS or MMS message to a segmented group?</em>
-      <p>You can select what numbers to send the message to and use the API to send to those numbers.</p>
-    </li>
 
-  </ul>
-</aside>
 
 ### HTTP Request
 
@@ -2227,6 +2252,16 @@ Parameter | Description
 transactional_message[number] | <span class="required">required</span> Phone number
 transactional_message[content] | <span class="required">required</span> Message content
 transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
+
+<aside class="success">
+Example of webhook payload reply listed to the right.
+  <ul>
+    <li>
+      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
+      <p>Only SMS messages can be sent through this endpoint.</p>
+    </li>
+  </ul>
+</aside>
 
 ## Send Message with Disabled Transactional SMS
 
@@ -2349,20 +2384,6 @@ This endpoint creates a webhook for a list
 Parameter | Description
 --------- | -----------
 ID | The ID of the list
-
-# General FAQs
-
-<ul>
-  <li>
-    <em>Where can I find the "ID of the list"?</em>
-    <p>You can find the ID of all of your lists by calling the <a href="#listing-all-lists">Listing all Lists"</a> endpoint.</p>
-  </li>
-  <li>
-    <em>What are the differences between SMS and MMS?</em>
-    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
-  </li>
-
-</ul>
 
 ## Updating a Webhook
 
@@ -2637,3 +2658,119 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the list
 WEBHOOK_ID | The ID of the webhook
+
+# General FAQs
+
+<ul>
+  <li>
+    <em>Where can I find the "ID of the list"?</em>
+    <p>You can find the ID of all of your lists by calling the <a href="#listing-all-lists">Listing all Lists"</a> endpoint.</p>
+  </li>
+  <li>
+    <em>What are the differences between SMS and MMS?</em>
+    <p>SMS (short message service) is a text-only message service. MMS (multimedia messaging service) is a service that allows the sender to send a multimedia message.</p>
+  </li>
+</ul>
+
+# Carrier IDs
+
+This section provides a list of carrier ID and names (US and Canada) for any response that includes `carrier` and `carrierName`
+
+## United States Carriers
+
+Carrier Name | Carrier ID
+--------- | -----------
+Alaska Communications Systems (ACS) | 592
+ASTAC | 10242
+AT&T | 383
+Atlantic Tele-Network International (ATNI) | 10542
+bandwidth.com (includes Republic Wireless) | 766
+Blue Wireless | 11264
+Bluegrass Cellular | 562
+Boost Mobile | 534
+Boost-CDMA | 586
+Brightlink | 10212
+C Spire Wireless (aka Cellular South) | 386
+Carolina West Wireless | 564
+CellCom | 587
+Cellular One of N.E. Arizona | 566
+Chariton Valley Cellular | 701
+Chat Mobility | 619
+Cleartalk (Flat Wireless) | 656
+Copper Valley Telecom | 802
+Cordova | 10282
+Cross Wireless | 618
+Duet Wireless | 696
+East Kentucky Network (Appalachian Wireless) | 570
+Enflick | 10262
+Fair Point Communications | 803
+GCI Communications | 603
+Google Voice | 798
+Illinois Valley Cellular | 574
+Inland Cellular | 575
+Inteliquent | 10232
+Interop All Carriers | 697
+IWireless | 477
+Jasper Wireless | 11284
+Leaco Rural Telephone Cooperative | 783
+Level 3 (internal only) | 801
+Ligado Networks | 11251
+Limitless Mobile | 588
+MetroPCS (GSM) | 788
+Mid-Rivers Communications | 834
+MobileNation/SI Wireless | 773
+Mosaic Telecom | 658
+MTA Wireless/Matanuska Kenai | 774
+MTPCS Cellular One (Cellone Nation) | 655
+Nemont CDMA | 796
+Nemont US UMTS | 873
+NewCore Wireless US | 11287
+Nex Tech Communications | 578
+Northwest Missouri Cellular | 620
+Panhandle Wireless | 626
+Peoples Wireless | 694
+Pine Belt | 10352
+Pine Cellular | 580
+Pioneer Cellular | 621
+Plateau Wireless | 651
+Rock Wireless | 11252
+Rural Independent Network Alliance (RINA) | 567
+Shelcomm | 11293
+SouthernLINC | 763
+Sprint | 34
+SRT Communications | 780
+T-Mobile | 79
+Thumb Cellular | 604
+TracFone (AT&T) | 556
+Triangle Communications US | 11290
+Triangle Wireless | 10272
+Union Telephone | 549
+Union Wireless | 11286
+United States Cellular Corp | 56
+United Wireless | 602
+Verizon | 77
+Viaero US | 11289
+Viaero Wireless | 650
+Virgin Mobile | 525
+West Central Wireless | 559
+
+## Canadian Carriers
+
+Carrier Name | Carrier ID
+--------- | -----------
+Aliant | 509
+Bell Mobility | 80
+Eastlink Wireless | 799
+Execulink | 10573
+Fido (Microcell) | 138
+Freedom Canada | 11292
+Mobilicity | 654
+MTS | 510
+NorthernTel | 512
+Rogers | 75
+Sasktel | 102
+Telebec | 511
+Telus | 70
+Videotron | 615
+Virgin Mobile | 537
+WIND | 653
