@@ -597,6 +597,7 @@ ID | The ID of the list to change
 
 Parameter | Description
 --------- | -----------
+bypass_opt_in_response | If this is set to true, then the usual "welcome" message that we send when someone completes joining a list is not sent. This is useful if you have a scheduled after-opt-in message set up elsewhere and do not want to double-send.
 opt_in_type | Opt in type (may be either "single" or "double")<br/><br />"single" - This opt-in type is used when you want the user to subscribe to a designated list by simply texting your opt-in keyword to your short code.<br/><br />"double" - This opt-in type is used when you want the user to provide you additional information such as email, name, zip codes, etc., after texting your opt-in keyword to your short code, but before subscribing them to a designated list.
 first_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com
 second_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
@@ -688,7 +689,7 @@ This endpoint creates a new list.
 
 Parameter | Description
 --------- | -----------
-list[name] | List names are to help you distinguish which list is which, and are only visible to you, and are never seen by users
+list[name] | List names are to help you distinguish which list is which, and are only visible to you, and are never seen by users. (Limit 25 characters)
 list[message_yes] | This message is sent to a user when their mobile number is added to a list through the API. Users must respond “YES” or “Y” to this message, to be subscribed. <br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"
 list[message_help] | This is the message that is sent back to users when they respond to any of your messages with the word "HELP".<br /><br />Example Message: ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com"
 list[message_stop] | This is the message that is sent back to users when they respond to any of your messages with the word "STOP".<br /><br />Example Message: "ACME Retail: You have been unsubscribed and will not receive any more messages."
@@ -1905,12 +1906,12 @@ content | The actual content of the message that was sent to subscribers.
 id | A unique ID that identifies this specific message.
 sent_at | The date/time this message completed it's send.
 status | The status of the message.
-is_broadcast |	
+is_broadcast | If true, the message was sent to the whole list. If false, was sent only to the phone_number specified.
 phone_number | The wireless phone number of the subscriber.
 recipient_count | The number of recipients the message was sent to.
 success_count | The number of recipients that succesfully received the message on their mobile phones.
 bounces_count | The number of recipients that did not receive the message on their mobile phones.
-pending_count | 
+pending_count | The number of messages that do not have a delivery status as of the time of the query.
 clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our 
 unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
 
