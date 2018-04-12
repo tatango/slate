@@ -597,7 +597,7 @@ ID | The ID of the list to change
 
 Parameter | Description
 --------- | -----------
-bypass_opt_in_response | If this is set to true, then the usual "welcome" message that we send when someone completes joining a list is not sent. This is useful if you have a scheduled after-opt-in message set up elsewhere and do not want to double-send.
+bypass_opt_in_response | If this is set to true, then the usual "first_optin_message" or "second_optin_message" that Tatango sends when someone completes the opt-in process for a list, is not sent. Customers may use this functionality if they prefer to use a scheduled after opt-in message to welcome subscribers, rather than the "first_optin_message" or "second_optin_message".
 opt_in_type | Opt in type (may be either "single" or "double")<br/><br />"single" - This opt-in type is used when you want the user to subscribe to a designated list by simply texting your opt-in keyword to your short code.<br/><br />"double" - This opt-in type is used when you want the user to provide you additional information such as email, name, zip codes, etc., after texting your opt-in keyword to your short code, but before subscribing them to a designated list.
 first_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com
 second_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
@@ -999,12 +999,12 @@ request.send(data);
    "status":"Subscriber being added to list pending confirmation",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@domain.com",
+      "birthdate":"19780728",
+      "zip_code":"52421",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
       "opted_out_at":"2016-09-06T16:00:00-07:00",
@@ -1014,7 +1014,9 @@ request.send(data);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "music",
+        "malls"
       ]
    }
 }
@@ -1023,12 +1025,12 @@ request.send(data);
    "status":"Subscriber has been added - no opt-in message was sent due to list settings.",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@domain.com",
+      "birthdate":"19780728",
+      "zip_code":"52421",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
       "opted_out_at":"2016-09-06T16:00:00-07:00",
@@ -1038,7 +1040,9 @@ request.send(data);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "music",
+        "malls"
       ]
    }
 }
@@ -1047,12 +1051,13 @@ request.send(data);
    "status":"Subscriber has already been sent opt-in message for this campaign.",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "phone_number":"2141234567",
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@domain.com",
+      "birthdate":"19780728",
+      "zip_code":"52421",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
       "opted_out_at":"2016-09-06T16:00:00-07:00",
@@ -1062,7 +1067,9 @@ request.send(data);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "music",
+        "malls"
       ]
    }
 }
@@ -1071,12 +1078,13 @@ request.send(data);
    "status":"Subscriber is already subscribed to this campaign.",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "phone_number":"2141234567",
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@domain.com",
+      "birthdate":"19780728",
+      "zip_code":"52421",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
       "opted_out_at":"2016-09-06T16:00:00-07:00",
@@ -1086,7 +1094,9 @@ request.send(data);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "music",
+        "malls"
       ]
    }
 }
@@ -1095,12 +1105,13 @@ request.send(data);
    "status":"Subscriber being added to campaign pending confirmation.",
    "subscriber":{
       "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
+      "phone_number":"2141234567",
+      "first_name":"John",
+      "last_name":"Doe",
+      "email":"johndoe@domain.com",
+      "birthdate":"19780728",
+      "zip_code":"52421",
+      "gender":"Male",
       "cleaned_at":null,
       "subscribed_at":"2016-09-07T14:10:53-07:00",
       "opted_out_at":"2016-09-06T16:00:00-07:00",
@@ -1110,7 +1121,9 @@ request.send(data);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "music",
+        "malls"
       ]
    }
 }
@@ -1247,9 +1260,11 @@ request.send(null);
       "carrier":77,
       "carrier_name":"Verizon",
       "tags":[
-
+        "shopping",
+        "malls",
+        "deals"
       ],
-      "total_messages_received":12540
+      "total_messages_received":121
    }
 }
 ```
@@ -1360,7 +1375,7 @@ carrier_name | The name of the wireless carrier for this specific subscriber.
     <ul>
       <li>
         <em>If I add tags to an existing subscriber, does that add the tags to existing, or replace existing?</em>
-        <p>If there are tags already, then they are updated, else, they are added.</p>
+        <p>The tags are added to any tags already applied, not replaced.</p>
       </li>
       <li>
         <em>Can I update custom subscriber data for a subscriber?</em>
@@ -1535,7 +1550,7 @@ keyword_name | If the subscriber opted-in by texting a keyword, that keyword the
 carrier | The ID of the wireless carrier for this specific subscriber.
 carrier_name | The name of the wireless carrier for this specific subscriber.
 
-## Get a List of Phone Numbers
+## Get a List of Subscribed Phone Numbers
 
 ```ruby
 require 'net/http'
