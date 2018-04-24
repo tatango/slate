@@ -120,6 +120,11 @@ You will receive a 200 status on success
 
 # Lists
 
+Note: the following settings cannot be modified via the API:
+
+ - API Confirmation Resend Block Timeout
+ - Resubscribers
+
 ## List all Lists
 
 ```ruby
@@ -679,6 +684,11 @@ request.send(data);
 
 This endpoint creates a new list.
 
+Note: the following settings cannot be modified via the API:
+
+ - API Confirmation Resend Block Timeout
+ - Resubscribers
+
 ### HTTP Request
 
 `POST https://app.tatango.com/api/v2/lists/`
@@ -698,13 +708,20 @@ list[second_optin_message] | This message is sent to a phone number after they'v
 list[email_digest] | Receive a daily email with a list of phone numbers that subscribed and unsubscribed from a designated list. Leave blank if you dont want to receive this daily email.
 list[email_subscribe] | Receive an email immediately when you get a new subscriber for a designated list. Email contains phone number of new subscriber. Leave blank if you dont want to receive this email.
 list[email_unsubscribe] | Receive an email immediately when a subscriber unsubscribes from a designated list. Email contains phone number of lost subscriber. Leave blank if you dont want to receive this email.
+list[keyword_names] | (optional) An array of keywords to associate to the list. See the FAQs below for keyword limitations.
 
 <aside class="success">
   FAQs
   <ul>
     <li>
       <em>What are the limitations for a keyword?</em>
-      <p>A keyword must contain at least two characters.</p>
+      <p> 
+         <ul>
+           <li>A keyword must contain at least two characters and no more than 15 characters.</li>
+           <li>Keywords are not case sensitive. FOO will match foo and FOO and Foo.</li>
+           <li>You can't use obscene words. We're not going to spell them out here.</li>
+         </ul>
+      </p>
     </li>
     <li>
        <em>Are keywords case sensitive?</em>
@@ -931,6 +948,11 @@ request.send(data);
 
 This endpoint updates a list.
 
+Note: the following settings cannot be modified via the API:
+
+ - API Confirmation Resend Block Timeout
+ - Resubscribers
+
 ### HTTP Request
 
 `PUT https://app.tatango.com/api/v2/lists/ID`
@@ -1150,6 +1172,8 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(8)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
+subscriber[bypass_opt_in_process] | When true - add the subscriber without them replying YES to "Reply YES to subscribe".
+subscriber[bypass_opt_in_response] | When true - bypass sending the confirmation message that is sent once the subscriber successfully subscribes.
 tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ### Responses Explained
@@ -2281,10 +2305,17 @@ Parameter | Description
 keyword_name | Keyword name to test
 
 <aside class="success">
+  FAQs
   <ul>
     <li>
       <em>What are the limitations for a keyword?</em>
-      <p>A keyword must contain at least two characters.</p>
+      <p> 
+         <ul>
+           <li>A keyword must contain at least two characters and no more than 15 characters.</li>
+           <li>Keywords are not case sensitive. FOO will match foo and FOO and Foo.</li>
+           <li>You can't use obscene words. We're not going to spell them out here.</li>
+         </ul>
+      </p>
     </li>
     <li>
        <em>Are keywords case sensitive?</em>
@@ -2383,12 +2414,12 @@ Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Only SMS messages can be sent through this endpoint.</p>
+      <p>Yes. You can send MMS Transactional messages. First, go to [here](https://app.tatango.com/attachments) and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
     </li>
   </ul>
 </aside>
 
-## Send Message with Disabled Transactional SMS
+## Send Transactional MMS Message
 
 ```ruby
 require 'net/http'
@@ -2398,12 +2429,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"transactional_message":{"number":"2835550430","content":"Test me!"}})
+request.body({"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","content":"Test me!"}}' -X POST \
+curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2415,7 +2446,7 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"transactional_message":{"number":"2835550430","content":"Test me!"}}');
+var data = JSON.stringify('{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}');
 request.send(data);
 ```
 
@@ -2427,13 +2458,29 @@ request.send(data);
    "transactional_message":{
       "id":1,
       "number":"2835550430",
-      "content":"Test me!",
+      "content":"Message content required. Max-size 500 if is_mms",
       "status":"pending"
    }
 }
 ```
 
-This endpoint sends a message with disabled Transactional SMS.
+> An example tatango transactional message reply
+
+```json
+{
+  "type":"transactional_message_reply",
+  "transactional_message_id":589733,
+  "received_at":"2016-08-20T15:12:37-07:00",
+  "phone_number":"3474437987",
+  "carrier":383,
+  "carrier_name":"AT&T",
+  "content":"I replied to transactional"
+}
+```
+
+This endpoint sends a Transactional SMS Message.
+
+
 
 ### HTTP Request
 
@@ -2445,6 +2492,17 @@ Parameter | Description
 --------- | -----------
 transactional_message[number] | <span class="required">required</span> Phone number
 transactional_message[content] | <span class="required">required</span> Message content
+transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
+
+<aside class="success">
+Example of webhook payload reply listed to the right.
+  <ul>
+    <li>
+      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
+      <p>Yes. You can send MMS Transactional messages. First, go to [here](https://app.tatango.com/attachments) and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the example code.</p>
+    </li>
+  </ul>
+</aside>
 
 # Webhooks
 
