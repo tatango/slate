@@ -1172,8 +1172,8 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(8)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-subscriber[bypass_opt_in_process] | When true - add the subscriber without them replying YES to "Reply YES to subscribe".
-subscriber[bypass_opt_in_response] | When true - bypass sending the confirmation message that is sent once the subscriber successfully subscribes.
+subscriber[bypass_opt_in_process] | When true, add the subscriber without them receiving a "Reply YES to subscribe" message.
+subscriber[bypass_opt_in_response] | When true, bypass sending the confirmation message that is sent once the subscriber successfully subscribes.
 tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ### Responses Explained
