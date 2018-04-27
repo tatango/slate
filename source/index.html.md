@@ -1205,10 +1205,6 @@ carrier_name | The name of the wireless carrier for this specific subscriber.
       <p>A 200 OK is returned and no changes are made the subscriber.</p>
     </li>
     <li>
-      <em>Can I turn off the double opt-in (reply yes), and make it a single opt-in, so when the number is added, they just get a confirmation message?</em>
-      <p>Yes - you will need to change the Opt-In Type for the list. You can not bypass alerts with this endpoint.</p>
-    </li>
-    <li>
       <em>Can I request something other than a reply of YES to opt-in when opting into an API?</em>
       <p>No. The reply is currently configured to YES.</p>
     </li>
