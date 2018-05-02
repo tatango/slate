@@ -446,12 +446,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]})
+request.body({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]}' -X PUT \
+curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -463,7 +463,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]});
+var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]});
 request.send(data);
 ```
 
@@ -487,55 +487,7 @@ request.send(data);
          "request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
          "retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
          "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {  
-         "bypass_opt_in_response":false,
-         "collected_data":"email_address",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":2,
-         "list_id":10,
-         "no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {  
-         "bypass_opt_in_response":false,
-         "collected_data":"first_name",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":3,
-         "list_id":10,
-         "no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {  
-         "bypass_opt_in_response":false,
-         "collected_data":"yes",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":4,
-         "list_id":10,
-         "no_response_message":null,
-         "opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-         "request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-         "success_action":"optinsubscriber",
+         "success_action":null,
          "updated_at":"2016-09-07T14:10:41-07:00"
       }
    ]
@@ -1682,6 +1634,11 @@ ID | ID of the list
 
 # Messaging 
 
+The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&%
+
+160 characters max for SMS
+500 characters max for MMS (not including subject - max 50)
+
 ## Sending Message to Entire List
 
 ```ruby
@@ -1868,6 +1825,8 @@ message[content] | Message content
 message[phone_numbers] | Array of phone numbers of target recipients
 
 ## Querying an Existing Message
+
+Please be aware that it takes some time after a message is sent to receive delivery status notifications from the various carriers. We recommend waiting until at least 10 minutes after a message is sent to query for delivery statistics.
 
 ```ruby
 require 'net/http'
