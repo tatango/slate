@@ -667,7 +667,7 @@ list[keyword_names] | (optional) An array of keywords to associate to the list. 
   <ul>
     <li>
       <em>What are the limitations for a keyword?</em>
-      <p> 
+      <p>
          <ul>
            <li>A keyword must contain at least two characters and no more than 15 characters.</li>
            <li>Keywords are not case sensitive. FOO will match foo and FOO and Foo.</li>
@@ -1126,7 +1126,7 @@ subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 subscriber[bypass_opt_in_process] | When true, add the subscriber without them receiving a "Reply YES to subscribe" message.
 subscriber[bypass_opt_in_response] | When true, bypass sending the confirmation message that is sent once the subscriber successfully subscribes.
-tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
+subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ### Responses Explained
 
@@ -1377,7 +1377,7 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-tags | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
+subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ## Adding Multiple Tags to Multiple Subscribers
 
@@ -1632,7 +1632,7 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 
-# Messaging 
+# Messaging
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&%
 
@@ -1904,7 +1904,7 @@ recipient_count | The number of recipients the message was sent to.
 success_count | The number of recipients that succesfully received the message on their mobile phones.
 bounces_count | The number of recipients that did not receive the message on their mobile phones.
 pending_count | The number of messages that do not have a delivery status as of the time of the query.
-clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our 
+clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our
 unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
 
 # Message Log (MOMT) Reports
@@ -2264,7 +2264,7 @@ keyword_name | Keyword name to test
   <ul>
     <li>
       <em>What are the limitations for a keyword?</em>
-      <p> 
+      <p>
          <ul>
            <li>A keyword must contain at least two characters and no more than 15 characters.</li>
            <li>Keywords are not case sensitive. FOO will match foo and FOO and Foo.</li>
