@@ -537,6 +537,7 @@ request.send(data);
 
 This endpoint configures an opt-in type for a list.
 
+
 ### HTTP Request
 
 `PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
@@ -1124,8 +1125,8 @@ subscriber[email] | (optional) Email - char(50)
 subscriber[birthdate] | (optional) Birthdate - int(8)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-subscriber[bypass_opt_in_process] | When true, add the subscriber without them receiving a "Reply YES to subscribe" message.
-subscriber[bypass_opt_in_response] | When true, bypass sending the confirmation message that is sent once the subscriber successfully subscribes.
+subscriber[bypass_opt_in_process] | When true, the phone number will be added to the list without using the double opt-in method. This means numbers will not receive a "Reply YES to subscribe" message. This option does not suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. To disable the double opt-in method, and the message confirming a phone numbers subscription to a list, both subscriber[bypass_opt_in_process] and subscriber[bypass_opt_in_response] will have to be true.
+subscriber[bypass_opt_in_response] | When true, suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. This option is independent of subscriber[bypass_opt_in_process].
 subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
 
 ### Responses Explained
