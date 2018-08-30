@@ -2361,7 +2361,7 @@ This endpoint sends a Transactional SMS Message.
 
 Parameter | Description
 --------- | -----------
-transactional_message[number] | <span class="required">required</span> Phone number
+transactional_message[number] | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)
 transactional_message[content] | <span class="required">required</span> Message content
 transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
 
@@ -2446,7 +2446,7 @@ This endpoint sends a Transactional SMS Message.
 
 Parameter | Description
 --------- | -----------
-transactional_message[number] | <span class="required">required</span> Phone number
+transactional_message[number] | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)
 transactional_message[content] | <span class="required">required</span> Message content
 transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
 
