@@ -224,6 +224,9 @@
             <a href="#before-you-start" class="toc-h1 toc-link" data-title="before-you-start">Before You Start</a>
           </li>
           <li>
+            <a href="#rate-limits" class="toc-h1 toc-link" data-title="rate-limits">Rate Limits</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
           </li>
           <li>
@@ -293,7 +296,7 @@
                     <a href="#sending-message-to-entire-list" class="toc-h2 toc-link" data-title="sending-message-to-entire-list">Sending Message to Entire List</a>
                   </li>
                   <li>
-                    <a href="#sending-message-to-subset-of-list-single-numbers" class="toc-h2 toc-link" data-title="sending-message-to-subset-of-list-single-numbers">Sending Message to Subset of List (Single Numbers)</a>
+                    <a href="#sending-message-to-subset-of-list-single-number" class="toc-h2 toc-link" data-title="sending-message-to-subset-of-list-single-number">Sending Message to Subset of List (Single Number)</a>
                   </li>
                   <li>
                     <a href="#sending-message-to-subset-of-list-multiple-numbers" class="toc-h2 toc-link" data-title="sending-message-to-subset-of-list-multiple-numbers">Sending Message to Subset of List (Multiple Numbers)</a>
@@ -357,6 +360,9 @@
                   <li>
                     <a href="#destroying-a-webhook" class="toc-h2 toc-link" data-title="destroying-a-webhook">Destroying a Webhook</a>
                   </li>
+                  <li>
+                    <a href="#webhook-examples" class="toc-h2 toc-link" data-title="webhook-examples">Webhook Examples</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -385,6 +391,8 @@
 <p>Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who&#39;s comfortable creating custom-coded solutions or integrating with RESTful APIS. If you&#39;re not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.   </p>
 
 <p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id='rate-limits'>Rate Limits</h1>
+<p>The Tatango API allows 1200 calls per hour or 1 call every 3 seconds. Please contact your account manager with your specific use case if you need a bump to this limit.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>Note: You can access your API key <a href="http://help.tatango.com/api/api-keys">here</a>.</p>
 
@@ -2216,7 +2224,9 @@ You will receive a 200 status on success
 <td>Message content</td>
 </tr>
 </tbody></table>
-<h2 id='sending-message-to-subset-of-list-single-numbers'>Sending Message to Subset of List (Single Numbers)</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='sending-message-to-subset-of-list-single-number'>Sending Message to Subset of List (Single Number)</h2>
+<p>Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI&#39;s &quot;sent messages&quot; list.  If your needs require the message to show in the UI, use the &quot;multiple numbers&quot; option instead.</p>
+<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/messages'</span><span class="p">)</span>
@@ -2875,7 +2885,7 @@ Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to [here](https://app.tatango.com/attachments) and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
+      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
     </li>
   </ul>
 </aside>
@@ -2955,11 +2965,13 @@ Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to [here](https://app.tatango.com/attachments) and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the example code.</p>
+      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the example code.</p>
     </li>
   </ul>
 </aside>
-<h1 id='webhooks'>Webhooks</h1><h2 id='creating-a-new-webhook-for-a-list'>Creating a New Webhook for a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h1 id='webhooks'>Webhooks</h1>
+<p>Callback URLs configured as a webhook in Tatango are retried 10 times when not reachable. After the 10th time, the system makes no further attempts to reach the callback URL.</p>
+<h2 id='creating-a-new-webhook-for-a-list'>Creating a New Webhook for a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/webhooks'</span><span class="p">)</span>
@@ -3262,6 +3274,60 @@ If the list does not exist you will get a 404 response with this body:
 <tr>
 <td>WEBHOOK_ID</td>
 <td>The ID of the webhook</td>
+</tr>
+</tbody></table>
+<h2 id='webhook-examples'>Webhook Examples</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/webhooks'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"webhook"</span><span class="p">:{</span><span class="s2">"callback_url"</span><span class="ss">:"http://localhost.dev/null?api_key=foo_bar_baz"</span><span class="p">,</span><span class="s2">"subscribe"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"unsubscribe"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"message_sent"</span><span class="ss">:false</span><span class="p">}})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span> -d <span class="s1">'{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}'</span> -X POST <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"webhook"</span><span class="p">:{</span><span class="s2">"callback_url"</span><span class="p">:</span><span class="s2">"http://localhost.dev/null?api_key=foo_bar_baz"</span><span class="p">,</span><span class="s2">"subscribe"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">"unsubscribe"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">"message_sent"</span><span class="p">:</span><span class="kc">false</span><span class="p">}};</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Webhook created"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"webhook"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="s2">"http://localhost.dev/null?api_key=foo_bar_baz"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:11:13-07:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"list_id"</span><span class="p">:</span><span class="mi">29</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message_sent"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subscribe"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unsubscribe"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:11:13-07:00"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a webhook for a list</p>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p><code>POST https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
+<h3 id='url-parameters-25'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the list</td>
 </tr>
 </tbody></table>
 <h1 id='general-faqs'>General FAQs</h1>
