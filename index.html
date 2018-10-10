@@ -2224,9 +2224,7 @@ You will receive a 200 status on success
 <td>Message content</td>
 </tr>
 </tbody></table>
-<h2 id='sending-message-to-subset-of-list-single-number'>Sending Message to Subset of List (Single Number)</h2>
-<p>Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI&#39;s &quot;sent messages&quot; list.  If your needs require the message to show in the UI, use the &quot;multiple numbers&quot; option instead.</p>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='sending-message-to-subset-of-list-single-number'>Sending Message to Subset of List (Single Number)</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/messages'</span><span class="p">)</span>
@@ -2258,6 +2256,10 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message to a single recipient.</p>
+
+<aside class="success">
+Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI's "sent messages" list.  If your needs require the message to show in the UI, use the "multiple numbers" option instead.
+</aside>
 <h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
 <h3 id='url-parameters-14'>URL Parameters</h3>
