@@ -1704,7 +1704,9 @@ Parameter | Description
 --------- | -----------
 message[content] | Message content
 
-## Sending Message to Subset of List (Single Numbers)
+## Sending Message to Subset of List (Single Number)
+
+Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI's "sent messages" list.  If your needs require the message to show in the UI, use the "multiple numbers" option instead.
 
 ```ruby
 require 'net/http'
