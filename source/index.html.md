@@ -1643,6 +1643,91 @@ The following characters can be used: a-z, A-Z, 0-9 and these special characters
 160 characters max for SMS
 500 characters max for MMS (not including subject - max 50)
 
+## Retrieve all Messages in a List
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+   "status":"OK",
+   "per_page":10,
+   "count":2,
+   "page":1,
+   "pages_count":1,
+   "messages":[
+      {
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+         "id":14523,
+         "sent_at":"2016-09-07T14:10:53-07:00",
+         "status":"sent",
+         "is_broadcast":true,
+         "phone_number":null,
+         "recipient_count":679571,
+         "success_count":675232,
+         "bounces_count":4339,
+         "pending_count":0,
+         "clean_count":2342,
+         "unsubscribe_count":1362
+      },
+      {
+         "content":"AMCE Retail: Save $42 off this weekend when you spend more than $300 in-store. Show this text message to redeem. Reply STOP to end.",
+         "id":14523,
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"sent",
+         "is_broadcast":true,
+         "phone_number":null,
+         "recipient_count":679571,
+         "success_count":675232,
+         "bounces_count":4339,
+         "pending_count":0,
+         "clean_count":2342,
+         "unsubscribe_count":1362
+      }
+   ]
+}
+
+```
+
+This endpoint retrieves all messages in a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/<ID>/messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+
 ## Sending Message to Entire List
 
 ```ruby
