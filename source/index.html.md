@@ -1698,7 +1698,7 @@ request.send(null);
          "unsubscribe_count":1362
       },
       {
-         "content":"AMCE Retail: Save $42 off this weekend when you spend more than $300 in-store. Show this text message to redeem. Reply STOP to end.",
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "id":14523,
          "sent_at":"2016-10-07T14:10:53-07:00",
          "status":"sent",
@@ -1709,7 +1709,15 @@ request.send(null);
          "bounces_count":4339,
          "pending_count":0,
          "clean_count":2342,
-         "unsubscribe_count":1362
+         "unsubscribe_count":1362,
+         "message_links": [
+            {
+               "id":42,
+               "link":"http://bit.ly/acme",
+               "count":2356,
+               "display_count":2356
+            }
+         ]
       }
    ]
 }
@@ -1954,7 +1962,7 @@ request.send(null);
 {
    "status":"OK",
    "message":{
-      "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "id":14523,
       "sent_at":"2016-09-07T14:10:53-07:00",
       "status":"sent",
@@ -1965,7 +1973,15 @@ request.send(null);
       "bounces_count":4339,
       "pending_count":0,
       "clean_count":2342,
-      "unsubscribe_count":1362
+      "unsubscribe_count":1362,
+      "message_links": [
+         {
+            "id":42,
+            "link":"http://bit.ly/acme",
+            "count":2356,
+            "display_count":2356
+         }
+      ]
    }
 }
 ```
