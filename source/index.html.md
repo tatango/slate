@@ -2493,12 +2493,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}})
+request.body({"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}})
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
+curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2510,7 +2510,7 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 500 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}');
+var data = JSON.stringify('{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}');
 request.send(data);
 ```
 
@@ -2522,7 +2522,7 @@ request.send(data);
    "transactional_message":{
       "id":1,
       "number":"2835550430",
-      "content":"Message content required. Max-size 500 if is_mms",
+      "content":"Message content required. Max-size 5000 if is_mms",
       "status":"pending"
    }
 }
