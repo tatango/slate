@@ -400,7 +400,7 @@
 <h1 id='rate-limits'>Rate Limits</h1>
 <p>The Tatango API allows 1200 calls per hour or 1 call every 3 seconds. Please contact your account manager with your specific use case if you need a bump to this limit.</p>
 <h1 id='returning-multiple-results-and-pagination'>Returning multiple results and pagination</h1>
-<p>By default, GET API calls that return multiple items in a list will return up to 10 items for a single call. The &quot;pages_count&quot; parameter in the returned JSON will indicate the number of &quot;pages&quot; included in the entire result set. (So for example, if a call to https://app.tatango.com/api/v2/lists finds 27 lists in the system, the JSON will include the following:</p>
+<p>By default, GET API calls that return multiple items in a list will return up to 10 items for a single call. The &quot;pages_count&quot; parameter in the returned JSON will indicate the number of &quot;pages&quot; included in the entire result set. (So for example, if a call to https://app.tatango.com/api/v2/lists finds 27 lists in the system, the JSON will include the following (see JSON snippet to the right):</p>
 <pre class="highlight plaintext"><code>   "per_page":10,
    "count":27,
    "page":1,
