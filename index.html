@@ -2130,19 +2130,19 @@ You will receive a 200 status on success
 <h2 id='get-a-list-of-unsubscribed-phone-numbers'>Get a List of Unsubscribed Phone Numbers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned'</span><span class="p">)</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed'</span><span class="p">)</span>
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed"</span> -d <span class="s1">''</span> -X GET <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </code></pre>
@@ -2162,7 +2162,7 @@ You will receive a 200 status on success
 </span></code></pre>
 <p>This endpoint gets a list of unsubscribed phone numbers.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
-<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned</code></p>
+<p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed</code></p>
 <h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
