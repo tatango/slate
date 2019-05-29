@@ -1599,7 +1599,7 @@ ID | ID of the list
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned')
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1607,7 +1607,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned" -d '' -X GET \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1617,7 +1617,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned" -d '' -X GET 
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned", false);
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 request.send(null);
 ```
@@ -1641,7 +1641,7 @@ This endpoint gets a list of unsubscribed phone numbers.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers/cleaned`
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed`
 
 ### URL Parameters
 
