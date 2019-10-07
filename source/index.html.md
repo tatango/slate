@@ -1698,6 +1698,7 @@ request.send(null);
       {
          "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
+         "name": "my message name",
          "sent_at":"2016-09-07T14:10:53-07:00",
          "status":"sent",
          "is_broadcast":true,
@@ -1712,6 +1713,7 @@ request.send(null);
       {
          "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "id":14523,
+         "name": "another message name",
          "sent_at":"2016-10-07T14:10:53-07:00",
          "status":"sent",
          "is_broadcast":true,
@@ -1885,7 +1887,7 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
+request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"],"name": "myMessage"}});
 response = http.request(request)
 ```
 
@@ -1936,6 +1938,7 @@ Parameter | Description
 --------- | -----------
 message[content] | Message content
 message[phone_numbers] | Array of phone numbers of target recipients
+message[name] | Optional name of the message
 
 ## Querying an Existing Message
 
@@ -2017,6 +2020,7 @@ Key | Description
 --------- | -----------
 content | The actual content of the message that was sent to subscribers.
 id | A unique ID that identifies this specific message.
+name | An optional name or description for a message.
 sent_at | The date/time this message completed it's send.
 status | The status of the message.
 is_broadcast | If true, the message was sent to the whole list. If false, was sent only to the phone_number specified.
@@ -2082,6 +2086,7 @@ request.send(data);
       "is_csv":false,
       "mo_count":0,
       "mt_count":0,
+      "name": "my Message",
       "percent_complete":0,
       "phone_number":null,
       "processed_rows":0,
