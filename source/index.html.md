@@ -1979,6 +1979,7 @@ request.send(null);
    "message":{
       "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "id":14523,
+      "name":"my message name",
       "sent_at":"2016-09-07T14:10:53-07:00",
       "status":"sent",
       "is_broadcast":true,
