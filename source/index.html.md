@@ -1653,8 +1653,7 @@ ID | ID of the list
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&%
 
-160 characters max for SMS
-500 characters max for MMS (not including subject - max 50)
+160 characters max
 
 ## Retrieve all Messages in a List
 
