@@ -2178,8 +2178,7 @@ You will receive a 200 status on success
 <h1 id='messaging'>Messaging</h1>
 <p>The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&amp;%</p>
 
-<p>160 characters max for SMS
-500 characters max for MMS (not including subject - max 50)</p>
+<p>160 characters max</p>
 <h2 id='retrieve-all-messages-in-a-list'>Retrieve all Messages in a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -2213,6 +2212,7 @@ You will receive a 200 status on success
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end."</span><span class="p">,</span><span class="w">
          </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my message name"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"sent"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2227,6 +2227,7 @@ You will receive a 200 status on success
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end."</span><span class="p">,</span><span class="w">
          </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another message name"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-10-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"sent"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2396,7 +2397,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="ss">:"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"9258642505"</span><span class="p">,</span><span class="s2">"9258642508"</span><span class="p">]}});</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="ss">:"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"9258642505"</span><span class="p">,</span><span class="s2">"9258642508"</span><span class="p">],</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"myMessage"</span><span class="p">}});</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span> -d <span class="s1">'{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}'</span> -X POST <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
@@ -2449,6 +2450,10 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <tr>
 <td>message[phone_numbers]</td>
 <td>Array of phone numbers of target recipients</td>
+</tr>
+<tr>
+<td>message[name]</td>
+<td>Optional name of the message</td>
 </tr>
 </tbody></table>
 <h2 id='querying-an-existing-message'>Querying an Existing Message</h2>
@@ -2536,6 +2541,10 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <td>A unique ID that identifies this specific message.</td>
 </tr>
 <tr>
+<td>name</td>
+<td>An optional name or description for a message.</td>
+</tr>
+<tr>
 <td>sent_at</td>
 <td>The date/time this message completed it&#39;s send.</td>
 </tr>
@@ -2618,6 +2627,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
       </span><span class="s2">"is_csv"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"mo_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="s2">"mt_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my Message"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"percent_complete"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"processed_rows"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
