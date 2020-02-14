@@ -985,7 +985,7 @@ request.send(data);
 
 ```json
 {
-   "status":"Subscriber being added to list pending confirmation",
+   "status":"Subscriber being added to campaign pending confirmation",
    "subscriber":{
       "phone_number":"2141234567",
       "first_name":"John",
@@ -1091,7 +1091,7 @@ request.send(data);
 }
 
 {
-   "status":"Subscriber being added to campaign pending confirmation.",
+   "status":"Subscriber being added to campaign pending confirmation",
    "subscriber":{
       "phone_number":"2141234567",
       "phone_number":"2141234567",
