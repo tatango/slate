@@ -13,7 +13,7 @@ search: true
 ---
 # Before You Start
 
-Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.   
+Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.
 
 You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -173,14 +173,14 @@ request.send(null);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
    "per_page":10,
    "count":3,
    "page":1,
    "pages_count":1,
-   "lists":[  
-      {  
+   "lists":[
+      {
          "email_digest":"myemail12@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
@@ -193,20 +193,20 @@ request.send(null);
          "message_yes":null,
          "name":"Mobile Campaign",
          "second_optin_message":"",
-         "keyword_names":[  
+         "keyword_names":[
 
          ],
-         "counts":{  
+         "counts":{
             "subscribers":0,
             "unsubscribed":0,
             "cleaned":0
          },
          "opt_in_type":"single",
-         "opt_in_requests":[  
+         "opt_in_requests":[
 
          ]
       },
-      {  
+      {
          "email_digest":"myemail14@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
@@ -219,20 +219,20 @@ request.send(null);
          "message_yes":null,
          "name":"Pizza Campaign",
          "second_optin_message":"",
-         "keyword_names":[  
+         "keyword_names":[
 
          ],
-         "counts":{  
+         "counts":{
             "subscribers":0,
             "unsubscribed":0,
             "cleaned":0
          },
          "opt_in_type":"single",
-         "opt_in_requests":[  
+         "opt_in_requests":[
 
          ]
       },
-      {  
+      {
          "email_digest":"myemail15@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
@@ -245,16 +245,16 @@ request.send(null);
          "message_yes":null,
          "name":"Pizza Campaign",
          "second_optin_message":"",
-         "keyword_names":[  
+         "keyword_names":[
             "NEWHOTELS"
          ],
-         "counts":{  
+         "counts":{
             "subscribers":0,
             "unsubscribed":0,
             "cleaned":0
          },
          "opt_in_type":"single",
-         "opt_in_requests":[  
+         "opt_in_requests":[
 
          ]
       }
@@ -300,9 +300,9 @@ request.send(null);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
-   "list":{  
+   "list":{
       "email_digest":"myemail2@gmail.com",
       "email_subscribe":null,
       "email_unsubscribe":null,
@@ -315,16 +315,16 @@ request.send(null);
       "message_yes":null,
       "name":"Book Campaign",
       "second_optin_message":"",
-      "keyword_names":[  
+      "keyword_names":[
 
       ],
-      "counts":{  
+      "counts":{
          "subscribers":0,
          "unsubscribed":0,
          "cleaned":0
       },
       "opt_in_type":"single",
-      "opt_in_requests":[  
+      "opt_in_requests":[
 
       ]
    }
@@ -380,11 +380,11 @@ request.send(data);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"Opt in settings updated",
    "opt_in_type":"double",
-   "opt_in_requests":[  
-      {  
+   "opt_in_requests":[
+      {
          "bypass_opt_in_response":false,
          "collected_data":"zip_code",
          "created_at":"2016-09-07T14:10:41-07:00",
@@ -400,7 +400,7 @@ request.send(data);
          "success_action":"nextrequest",
          "updated_at":"2016-09-07T14:10:41-07:00"
       },
-      {  
+      {
          "bypass_opt_in_response":false,
          "collected_data":"email_address",
          "created_at":"2016-09-07T14:10:41-07:00",
@@ -416,7 +416,7 @@ request.send(data);
          "success_action":"nextrequest",
          "updated_at":"2016-09-07T14:10:41-07:00"
       },
-      {  
+      {
          "bypass_opt_in_response":false,
          "collected_data":"first_name",
          "created_at":"2016-09-07T14:10:41-07:00",
@@ -432,7 +432,7 @@ request.send(data);
          "success_action":"nextrequest",
          "updated_at":"2016-09-07T14:10:41-07:00"
       },
-      {  
+      {
          "bypass_opt_in_response":false,
          "collected_data":"yes",
          "created_at":"2016-09-07T14:10:41-07:00",
@@ -486,11 +486,11 @@ request.send(data);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"Opt in settings updated",
    "opt_in_type":"double",
-   "opt_in_requests":[  
-      {  
+   "opt_in_requests":[
+      {
          "bypass_opt_in_response":false,
          "collected_data":"zip_code",
          "created_at":"2016-09-07T14:10:41-07:00",
@@ -544,7 +544,7 @@ request.send(data);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "opt_in_type":"single",
    "first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
    "second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
@@ -1430,7 +1430,7 @@ request.send(data);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"Tags were applied"
 }
 ```
@@ -1811,135 +1811,6 @@ Parameter | Description
 --------- | -----------
 message[content] | Message content
 
-## Sending Message to Subset of List (Single Number)
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_number":"9258642505"}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, John!","phone_number":"9258642505"}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "id":3
-   }
-}
-```
-
-This endpoint sends a message to a single recipient.
-
-<aside class="success">
-Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI's "sent messages" list.  If your needs require the message to show in the UI, use the "multiple numbers" option instead.
-</aside>
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-message[content] | Message content
-message[phone_number] | The wireless phone number of the subscriber.
-
-## Sending Message to Subset of List (Multiple Numbers)
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"],"name": "myMessage"}});
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}});
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "status":"OK",
-   "message":{
-      "id":3
-   }
-}
-```
-
-This endpoint sends a message to multiple recipients.
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
-
-### JSON Parameters (JSON Object)
-
-Parameter | Description
---------- | -----------
-message[content] | Message content
-message[phone_numbers] | Array of phone numbers of target recipients
-message[name] | Optional name of the message
-
 ## Querying an Existing Message
 
 Please be aware that it takes some time after a message is sent to receive delivery status notifications from the various carriers. We recommend waiting until at least 10 minutes after a message is sent to query for delivery statistics.
@@ -2149,9 +2020,9 @@ request.send(null);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
-   "momt_report":{  
+   "momt_report":{
       "account_id":20,
       "campaign":null,
       "carrier":null,
@@ -2226,9 +2097,9 @@ request.send(null);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
-   "momt_report":{  
+   "momt_report":{
       "account_id":21,
       "campaign":null,
       "carrier":null,
@@ -2305,7 +2176,7 @@ request.send(null);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
    "shortcodes":["33733"]
 }
@@ -2351,7 +2222,7 @@ request.send(data);
 > The above command returns JSON structured like this:
 
 ```json
-{  
+{
    "status":"OK",
    "keyword_name":"available"
 }
