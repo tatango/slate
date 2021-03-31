@@ -1829,8 +1829,8 @@ request.send(data);
             {
                "id":42,
                "link":"http://bit.ly/acme",
-               "count":2356,
-               "display_count":2356
+               "count":0,
+               "display_count":0
             }
          ]
       }
@@ -1928,8 +1928,8 @@ request.send(data);
             {
                "id":42,
                "link":"http://bit.ly/acme",
-               "count":2356,
-               "display_count":2356
+               "count":0,
+               "display_count":0
             }
          ]
       }
