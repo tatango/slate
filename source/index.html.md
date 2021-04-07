@@ -1949,8 +1949,8 @@ This endpoint retrieves all scheduled messages in a list.
 Parameter | Description
 --------- | -----------
 ID | The ID of the list
-start_date | (optional) A date in YYYYMMDD format. Scheduled messages created before this date will not be returned (UTC).
-end_date | (optional) A date in YYYYMMDD format. Scheduled messages created after this date will not be returned (UTC).
+start_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send before this date will not be returned (UTC).
+end_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send after this date will not be returned (UTC).
 
 ## Sending Message to Entire List
 
