@@ -1663,7 +1663,7 @@ The following characters can be used: a-z, A-Z, 0-9 and these special characters
 
 160 characters max
 
-## Retrieve all Messages in a List
+## Retrieve All Sent Messages in a List
 
 ```ruby
 require 'net/http'
@@ -1673,11 +1673,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"start_date":"20160901", "end_date":"20161030"});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -X GET \
+curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1689,7 +1690,8 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -X GET \
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-request.send(null);
+var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.send(data);
 ```
 
 > The above command returns JSON structured like this:
@@ -1746,7 +1748,7 @@ request.send(null);
 
 ```
 
-This endpoint retrieves all messages in a list.
+This endpoint retrieves all sent messages in a list.
 
 ### HTTP Request
 
@@ -1757,6 +1759,206 @@ This endpoint retrieves all messages in a list.
 Parameter | Description
 --------- | -----------
 ID | The ID of the list
+start_date | (optional) A date in YYYYMMDD format. Messages sent before this date will not be returned (UTC).
+end_date | (optional) A date in YYYYMMDD format. Messages sent after this date will not be returned (UTC).
+
+## Retrieve All Draft Messages in a List
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages/draft')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"start_date":"20160901", "end_date":"20161030"});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/messages/draft" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages/draft", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+   "status":"OK",
+   "per_page":10,
+   "count":2,
+   "page":1,
+   "pages_count":1,
+   "messages":[
+      {
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+         "id":14523,
+         "name": "my message name",
+         "sent_at":"2016-09-07T14:10:53-07:00",
+         "status":"draft",
+         "is_broadcast":false,
+         "phone_number":null,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0
+      },
+      {
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+         "id":14523,
+         "name": "another message name",
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"draft",
+         "is_broadcast":false,
+         "phone_number":null,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0,
+         "message_links": [
+            {
+               "id":42,
+               "link":"http://bit.ly/acme",
+               "count":0,
+               "display_count":0
+            }
+         ]
+      }
+   ]
+}
+
+```
+
+This endpoint retrieves all draft messages in a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/<ID>/messages/draft`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+start_date | (optional) A date in YYYYMMDD format. Drafts created before this date will not be returned (UTC).
+end_date | (optional) A date in YYYYMMDD format. Drafts created after this date will not be returned (UTC).
+
+## Retrieve All Scheduled Messages in a List
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"start_date":"20160901", "end_date":"20161030"});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+   "status":"OK",
+   "per_page":10,
+   "count":2,
+   "page":1,
+   "pages_count":1,
+   "messages":[
+      {
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+         "id":14523,
+         "name": "my message name",
+         "sent_at":"2016-09-07T14:10:53-07:00",
+         "status":"scheduled",
+         "is_broadcast":false,
+         "phone_number":null,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0
+      },
+      {
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+         "id":14523,
+         "name": "another message name",
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"scheduled",
+         "is_broadcast":false,
+         "phone_number":null,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0,
+         "message_links": [
+            {
+               "id":42,
+               "link":"http://bit.ly/acme",
+               "count":0,
+               "display_count":0
+            }
+         ]
+      }
+   ]
+}
+
+```
+
+This endpoint retrieves all scheduled messages in a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the list
+start_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send before this date will not be returned (UTC).
+end_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send after this date will not be returned (UTC).
 
 ## Sending Message to Entire List
 
