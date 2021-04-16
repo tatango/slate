@@ -15,4 +15,5 @@ Error Code | Meaning
 422 | Unprocessable Entity - There was a problem of some sort with the JSON you supplied.  Usually, this error will be accompanied by a detailed description of the problem.
 429 | Too Many Requests -- You're requesting too many resources! Slow down!
 500 | Internal Server Error -- We had a problem with our server. Try again later.
+502 | Bad Gateway -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
