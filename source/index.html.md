@@ -1750,6 +1750,8 @@ request.send(data);
 
 This endpoint retrieves all sent messages in a list.
 
+Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
+
 ### HTTP Request
 
 `GET https://app.tatango.com/api/v2/lists/<ID>/messages`
@@ -2084,6 +2086,8 @@ request.send(null);
 ```
 
 This endpoint retrieves a message.
+
+Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
 
 ### HTTP Request
 
