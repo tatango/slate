@@ -960,12 +960,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}});
+request.body({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -977,7 +977,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"p
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}});
+var data = JSON.stringify({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}});
 request.send(data);
 ```
 
@@ -1006,7 +1006,8 @@ request.send(data);
         "shopping",
         "music",
         "malls"
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 
@@ -1032,7 +1033,8 @@ request.send(data);
         "shopping",
         "music",
         "malls"
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 
@@ -1059,7 +1061,8 @@ request.send(data);
         "shopping",
         "music",
         "malls"
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 
@@ -1086,7 +1089,8 @@ request.send(data);
         "shopping",
         "music",
         "malls"
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 
@@ -1113,7 +1117,8 @@ request.send(data);
         "shopping",
         "music",
         "malls"
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 ```
@@ -1144,6 +1149,7 @@ subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 subscriber[bypass_opt_in_process] | When true, the phone number will be added to the list without using the double opt-in method. This means numbers will not receive a "Reply YES to subscribe" message. This option does not suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. To disable the double opt-in method, and the message confirming a phone numbers subscription to a list, both subscriber[bypass_opt_in_process] and subscriber[bypass_opt_in_response] will have to be true.
 subscriber[bypass_opt_in_response] | When true, suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. This option is independent of subscriber[bypass_opt_in_process].
 subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
+subscriber[custom_field_key] | (optional) Custom data value
 
 ### Responses Explained
 
@@ -1310,7 +1316,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"subscriber":{"first_name":"John","last_name":"Doe"}}');
+var data = JSON.stringify('{"subscriber":{"first_name":"John","last_name":"Doe", "custom_field_key": "custom_value"}}');
 request.send(data);
 ```
 
@@ -1337,7 +1343,8 @@ request.send(data);
       "carrier_name":"Verizon",
       "tags":[
 
-      ]
+      ],
+      "custom_field_key":"custom_value"
    }
 }
 ```
@@ -1395,6 +1402,7 @@ subscriber[birthdate] | (optional) Birthdate - int(6)
 subscriber[zip_code] | (optional) ZIP code - char(6)
 subscriber[gender] | (optional) Gender - char('Male' or 'Female')
 subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
+subscriber[custom_field_key] | (optional) Custom data value
 
 ## Adding Multiple Tags to Multiple Subscribers
 
