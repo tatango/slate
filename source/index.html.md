@@ -1824,7 +1824,7 @@ request.send(data);
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
-         "unsubscribe_count":0
+         "unsubscribe_count":0,
          "message_links": [
             {
                "id":42,
