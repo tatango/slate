@@ -296,16 +296,16 @@
             <a href="#messaging" class="toc-h1 toc-link" data-title="messaging">Messaging</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#retrieve-all-messages-in-a-list" class="toc-h2 toc-link" data-title="retrieve-all-messages-in-a-list">Retrieve all Messages in a List</a>
+                    <a href="#retrieve-all-sent-messages-in-a-list" class="toc-h2 toc-link" data-title="retrieve-all-sent-messages-in-a-list">Retrieve All Sent Messages in a List</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-all-draft-messages-in-a-list" class="toc-h2 toc-link" data-title="retrieve-all-draft-messages-in-a-list">Retrieve All Draft Messages in a List</a>
+                  </li>
+                  <li>
+                    <a href="#retrieve-all-scheduled-messages-in-a-list" class="toc-h2 toc-link" data-title="retrieve-all-scheduled-messages-in-a-list">Retrieve All Scheduled Messages in a List</a>
                   </li>
                   <li>
                     <a href="#sending-message-to-entire-list" class="toc-h2 toc-link" data-title="sending-message-to-entire-list">Sending Message to Entire List</a>
-                  </li>
-                  <li>
-                    <a href="#sending-message-to-subset-of-list-single-number" class="toc-h2 toc-link" data-title="sending-message-to-subset-of-list-single-number">Sending Message to Subset of List (Single Number)</a>
-                  </li>
-                  <li>
-                    <a href="#sending-message-to-subset-of-list-multiple-numbers" class="toc-h2 toc-link" data-title="sending-message-to-subset-of-list-multiple-numbers">Sending Message to Subset of List (Multiple Numbers)</a>
                   </li>
                   <li>
                     <a href="#querying-an-existing-message" class="toc-h2 toc-link" data-title="querying-an-existing-message">Querying an Existing Message</a>
@@ -394,7 +394,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='before-you-start'>Before You Start</h1>
-<p>Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who&#39;s comfortable creating custom-coded solutions or integrating with RESTful APIS. If you&#39;re not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.   </p>
+<p>Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who&#39;s comfortable creating custom-coded solutions or integrating with RESTful APIS. If you&#39;re not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.</p>
 
 <p>You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='rate-limits'>Rate Limits</h1>
@@ -513,14 +513,14 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"per_page"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
    </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
    </span><span class="s2">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
    </span><span class="s2">"pages_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"lists"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
+   </span><span class="s2">"lists"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"email_digest"</span><span class="p">:</span><span class="s2">"myemail12@gmail.com"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_subscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_unsubscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -533,20 +533,20 @@ You will receive a 200 status on success
          </span><span class="s2">"message_yes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Mobile Campaign"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">
 
          </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">  
+         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">
             </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"unsubscribed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"cleaned"</span><span class="p">:</span><span class="mi">0</span><span class="w">
          </span><span class="p">},</span><span class="w">
          </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
 
          </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"email_digest"</span><span class="p">:</span><span class="s2">"myemail14@gmail.com"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_subscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_unsubscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -559,20 +559,20 @@ You will receive a 200 status on success
          </span><span class="s2">"message_yes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Pizza Campaign"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">
 
          </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">  
+         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">
             </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"unsubscribed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"cleaned"</span><span class="p">:</span><span class="mi">0</span><span class="w">
          </span><span class="p">},</span><span class="w">
          </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
 
          </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"email_digest"</span><span class="p">:</span><span class="s2">"myemail15@gmail.com"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_subscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"email_unsubscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -585,16 +585,16 @@ You will receive a 200 status on success
          </span><span class="s2">"message_yes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
          </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Pizza Campaign"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">
             </span><span class="s2">"NEWHOTELS"</span><span class="w">
          </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">  
+         </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">
             </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"unsubscribed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"cleaned"</span><span class="p">:</span><span class="mi">0</span><span class="w">
          </span><span class="p">},</span><span class="w">
          </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
+         </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
 
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -626,9 +626,9 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"list"</span><span class="p">:{</span><span class="w">  
+   </span><span class="s2">"list"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"email_digest"</span><span class="p">:</span><span class="s2">"myemail2@gmail.com"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"email_subscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"email_unsubscribe"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -641,16 +641,16 @@ You will receive a 200 status on success
       </span><span class="s2">"message_yes"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Book Campaign"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"keyword_names"</span><span class="p">:[</span><span class="w">
 
       </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">  
+      </span><span class="s2">"counts"</span><span class="p">:{</span><span class="w">
          </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
          </span><span class="s2">"unsubscribed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
          </span><span class="s2">"cleaned"</span><span class="p">:</span><span class="mi">0</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
 
       </span><span class="p">]</span><span class="w">
    </span><span class="p">}</span><span class="w">
@@ -700,11 +700,11 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Opt in settings updated"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
+   </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"bypass_opt_in_response"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"collected_data"</span><span class="p">:</span><span class="s2">"zip_code"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
@@ -720,7 +720,7 @@ You will receive a 200 status on success
          </span><span class="s2">"success_action"</span><span class="p">:</span><span class="s2">"nextrequest"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"bypass_opt_in_response"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"collected_data"</span><span class="p">:</span><span class="s2">"email_address"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
@@ -736,7 +736,7 @@ You will receive a 200 status on success
          </span><span class="s2">"success_action"</span><span class="p">:</span><span class="s2">"nextrequest"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"bypass_opt_in_response"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"collected_data"</span><span class="p">:</span><span class="s2">"first_name"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
@@ -752,7 +752,7 @@ You will receive a 200 status on success
          </span><span class="s2">"success_action"</span><span class="p">:</span><span class="s2">"nextrequest"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"bypass_opt_in_response"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"collected_data"</span><span class="p">:</span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
@@ -798,11 +798,11 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Opt in settings updated"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
+   </span><span class="s2">"opt_in_requests"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
          </span><span class="s2">"bypass_opt_in_response"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"collected_data"</span><span class="p">:</span><span class="s2">"zip_code"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:41-07:00"</span><span class="p">,</span><span class="w">
@@ -848,7 +848,7 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"opt_in_type"</span><span class="p">:</span><span class="s2">"single"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"first_optin_message"</span><span class="p">:</span><span class="s2">"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&amp;data rates may apply. Terms apply 12345-info.com"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"second_optin_message"</span><span class="p">:</span><span class="s2">"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&amp;data rates may apply. Terms apply 12345-info.com"</span><span class="w">
@@ -1347,9 +1347,9 @@ You will receive a 200 status on success
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"subscriber"</span><span class="p">:{</span><span class="s2">"phone_number"</span><span class="ss">:"2141234567"</span><span class="p">,</span><span class="s2">"first_name"</span><span class="ss">:"John"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="ss">:"Doe"</span><span class="p">,</span><span class="s2">"email"</span><span class="ss">:"johndoe@domain.com"</span><span class="p">,</span><span class="s2">"birthdate"</span><span class="ss">:"19780728"</span><span class="p">,</span><span class="s2">"zip_code"</span><span class="ss">:"52421"</span><span class="p">,</span><span class="s2">"gender"</span><span class="ss">:"Male"</span><span class="p">},</span><span class="s2">"my_custom_field"</span><span class="p">:{</span><span class="s2">"custom_key"</span><span class="ss">:"custom_value"</span><span class="p">}});</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"subscriber"</span><span class="p">:{</span><span class="s2">"phone_number"</span><span class="ss">:"2141234567"</span><span class="p">,</span><span class="s2">"first_name"</span><span class="ss">:"John"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="ss">:"Doe"</span><span class="p">,</span><span class="s2">"email"</span><span class="ss">:"johndoe@domain.com"</span><span class="p">,</span><span class="s2">"birthdate"</span><span class="ss">:"19780728"</span><span class="p">,</span><span class="s2">"zip_code"</span><span class="ss">:"52421"</span><span class="p">,</span><span class="s2">"gender"</span><span class="ss">:"Male"</span><span class="p">,</span><span class="s2">"custom_field_key"</span><span class="ss">:"custom_value"</span><span class="p">}});</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span> -d <span class="s1">'{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male"},"my_custom_field":{"custom_key":"custom_value"}}'</span> -X POST <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span> -d <span class="s1">'{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}}'</span> -X POST <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
@@ -1358,7 +1358,7 @@ You will receive a 200 status on success
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"subscriber"</span><span class="p">:{</span><span class="s2">"phone_number"</span><span class="p">:</span><span class="s2">"2141234567"</span><span class="p">,</span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"johndoe@domain.com"</span><span class="p">,</span><span class="s2">"birthdate"</span><span class="p">:</span><span class="s2">"19780728"</span><span class="p">,</span><span class="s2">"zip_code"</span><span class="p">:</span><span class="s2">"52421"</span><span class="p">,</span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">},</span><span class="s2">"my_custom_field"</span><span class="p">:{</span><span class="s2">"custom_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="p">}});</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"subscriber"</span><span class="p">:{</span><span class="s2">"phone_number"</span><span class="p">:</span><span class="s2">"2141234567"</span><span class="p">,</span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"johndoe@domain.com"</span><span class="p">,</span><span class="s2">"birthdate"</span><span class="p">:</span><span class="s2">"19780728"</span><span class="p">,</span><span class="s2">"zip_code"</span><span class="p">:</span><span class="s2">"52421"</span><span class="p">,</span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="p">}});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
 <blockquote>
@@ -1386,7 +1386,8 @@ You will receive a 200 status on success
         </span><span class="s2">"shopping"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"music"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"malls"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -1412,7 +1413,8 @@ You will receive a 200 status on success
         </span><span class="s2">"shopping"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"music"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"malls"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -1439,7 +1441,8 @@ You will receive a 200 status on success
         </span><span class="s2">"shopping"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"music"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"malls"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -1466,7 +1469,8 @@ You will receive a 200 status on success
         </span><span class="s2">"shopping"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"music"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"malls"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -1493,7 +1497,8 @@ You will receive a 200 status on success
         </span><span class="s2">"shopping"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"music"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"malls"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1558,6 +1563,10 @@ You will receive a 200 status on success
 <tr>
 <td>subscriber[tags]</td>
 <td>(optional) List of tags, comma separated, for example: &#39;vip customer, card holder, daily alerts&#39;</td>
+</tr>
+<tr>
+<td>subscriber[custom_field_key]</td>
+<td>(optional) Custom data value</td>
 </tr>
 </tbody></table>
 <h3 id='responses-explained'>Responses Explained</h3>
@@ -1768,7 +1777,7 @@ You will receive a 200 status on success
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">'{"subscriber":{"first_name":"John","last_name":"Doe"}}'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">'{"subscriber":{"first_name":"John","last_name":"Doe", "custom_field_key": "custom_value"}}'</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
 <blockquote>
@@ -1794,7 +1803,8 @@ You will receive a 200 status on success
       </span><span class="s2">"carrier_name"</span><span class="p">:</span><span class="s2">"Verizon"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w">
 
-      </span><span class="p">]</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"custom_field_key"</span><span class="p">:</span><span class="s2">"custom_value"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1914,6 +1924,10 @@ You will receive a 200 status on success
 <td>subscriber[tags]</td>
 <td>(optional) List of tags, comma separated, for example: &#39;vip customer, card holder, daily alerts&#39;</td>
 </tr>
+<tr>
+<td>subscriber[custom_field_key]</td>
+<td>(optional) Custom data value</td>
+</tr>
 </tbody></table>
 <h2 id='adding-multiple-tags-to-multiple-subscribers'>Adding Multiple Tags to Multiple Subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
@@ -1939,7 +1953,7 @@ You will receive a 200 status on success
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Tags were applied"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2179,15 +2193,16 @@ You will receive a 200 status on success
 <p>The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&amp;%</p>
 
 <p>160 characters max</p>
-<h2 id='retrieve-all-messages-in-a-list'>Retrieve all Messages in a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='retrieve-all-sent-messages-in-a-list'>Retrieve All Sent Messages in a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages'</span><span class="p">)</span>
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"start_date"</span><span class="ss">:"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="ss">:"20161030"</span><span class="p">});</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages"</span> -X GET <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages"</span> -d <span class="s1">'{"start_date":"20160901", "end_date":"20161030"}'</span> -X GET <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
@@ -2196,7 +2211,8 @@ You will receive a 200 status on success
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="p">:</span><span class="s2">"20161030"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2251,7 +2267,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>This endpoint retrieves all messages in a list.</p>
+<p>This endpoint retrieves all sent messages in a list.</p>
+
+<p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.</p>
 <h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages</code></p>
 <h3 id='url-parameters-13'>URL Parameters</h3>
@@ -2264,6 +2282,208 @@ You will receive a 200 status on success
 <tr>
 <td>ID</td>
 <td>The ID of the list</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>(optional) A date in YYYYMMDD format. Messages sent before this date will not be returned (UTC).</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>(optional) A date in YYYYMMDD format. Messages sent after this date will not be returned (UTC).</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-all-draft-messages-in-a-list'>Retrieve All Draft Messages in a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"start_date"</span><span class="ss">:"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="ss">:"20161030"</span><span class="p">});</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft"</span> -d <span class="s1">'{"start_date":"20160901", "end_date":"20161030"}'</span> -X GET <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="p">:</span><span class="s2">"20161030"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"per_page"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"pages_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"messages"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end."</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my message name"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"draft"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"recipient_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"success_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"bounces_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pending_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"clean_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"unsubscribe_count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end."</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another message name"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-10-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"draft"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"recipient_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"success_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"bounces_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pending_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"clean_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"unsubscribe_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"message_links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"link"</span><span class="p">:</span><span class="s2">"http://bit.ly/acme"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"display_count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint retrieves all draft messages in a list.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft</code></p>
+<h3 id='url-parameters-14'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the list</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>(optional) A date in YYYYMMDD format. Drafts created before this date will not be returned (UTC).</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>(optional) A date in YYYYMMDD format. Drafts created after this date will not be returned (UTC).</td>
+</tr>
+</tbody></table>
+<h2 id='retrieve-all-scheduled-messages-in-a-list'>Retrieve All Scheduled Messages in a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"start_date"</span><span class="ss">:"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="ss">:"20161030"</span><span class="p">});</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled"</span> -d <span class="s1">'{"start_date":"20160901", "end_date":"20161030"}'</span> -X GET <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"start_date"</span><span class="p">:</span><span class="s2">"20160901"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="p">:</span><span class="s2">"20161030"</span><span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"per_page"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"pages_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"messages"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end."</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my message name"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-09-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"recipient_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"success_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"bounces_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pending_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"clean_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"unsubscribe_count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end."</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14523</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another message name"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="s2">"2016-10-07T14:10:53-07:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"is_broadcast"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"recipient_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"success_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"bounces_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pending_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"clean_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"unsubscribe_count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"message_links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"link"</span><span class="p">:</span><span class="s2">"http://bit.ly/acme"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"display_count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint retrieves all scheduled messages in a list.</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled</code></p>
+<h3 id='url-parameters-15'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the list</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>(optional) A date in YYYYMMDD format. Scheduled messages scheduled to send before this date will not be returned (UTC).</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>(optional) A date in YYYYMMDD format. Scheduled messages scheduled to send after this date will not be returned (UTC).</td>
 </tr>
 </tbody></table>
 <h2 id='sending-message-to-entire-list'>Sending Message to Entire List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
@@ -2298,9 +2518,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2322,138 +2542,6 @@ You will receive a 200 status on success
 <tr>
 <td>message[content]</td>
 <td>Message content</td>
-</tr>
-</tbody></table>
-<h2 id='sending-message-to-subset-of-list-single-number'>Sending Message to Subset of List (Single Number)</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/messages'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="ss">:"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_number"</span><span class="ss">:"9258642505"</span><span class="p">}});</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span> -d <span class="s1">'{"message":{"content":"Hello, John!","phone_number":"9258642505"}}'</span> -X POST <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_number"</span><span class="p">:</span><span class="s2">"9258642505"</span><span class="p">}});</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"message"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint sends a message to a single recipient.</p>
-
-<aside class="success">
-Please be aware that messages sent to a single number using this API endpoint will not show up in the Tatango UI's "sent messages" list.  If your needs require the message to show in the UI, use the "multiple numbers" option instead.
-</aside>
-<h3 id='http-request-18'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>ID of the list</td>
-</tr>
-</tbody></table>
-<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>message[content]</td>
-<td>Message content</td>
-</tr>
-<tr>
-<td>message[phone_number]</td>
-<td>The wireless phone number of the subscriber.</td>
-</tr>
-</tbody></table>
-<h2 id='sending-message-to-subset-of-list-multiple-numbers'>Sending Message to Subset of List (Multiple Numbers)</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
-<span class="nb">require</span> <span class="s1">'uri'</span>
-
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/messages'</span><span class="p">)</span>
-<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
-<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
-<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="ss">:"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"9258642505"</span><span class="p">,</span><span class="s2">"9258642508"</span><span class="p">],</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"myMessage"</span><span class="p">}});</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span> -d <span class="s1">'{"message":{"content":"Hello, John!","phone_numbers":["9258642505","9258642508"]}}'</span> -X POST <span class="se">\</span>
-    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
-    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
-    -H <span class="s2">"Cookie: "</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"message"</span><span class="p">:{</span><span class="s2">"content"</span><span class="p">:</span><span class="s2">"Hello, John!"</span><span class="p">,</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"9258642505"</span><span class="p">,</span><span class="s2">"9258642508"</span><span class="p">]}});</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"message"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint sends a message to multiple recipients.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>ID of the list</td>
-</tr>
-</tbody></table>
-<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>message[content]</td>
-<td>Message content</td>
-</tr>
-<tr>
-<td>message[phone_numbers]</td>
-<td>Array of phone numbers of target recipients</td>
-</tr>
-<tr>
-<td>message[name]</td>
-<td>Optional name of the message</td>
 </tr>
 </tbody></table>
 <h2 id='querying-an-existing-message'>Querying an Existing Message</h2>
@@ -2508,6 +2596,8 @@ Please be aware that messages sent to a single number using this API endpoint wi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a message.</p>
+
+<p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.</p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
 <h3 id='url-parameters-17'>URL Parameters</h3>
@@ -2646,7 +2736,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <p>This endpoint creates a new MOMT Report.</p>
 <h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/momt_reports</code></p>
-<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2688,9 +2778,9 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
+   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
       </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2757,9 +2847,9 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">  
+   </span><span class="s2">"momt_report"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"account_id"</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="w">
       </span><span class="s2">"campaign"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"carrier"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2826,7 +2916,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"shortcodes"</span><span class="p">:[</span><span class="s2">"33733"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2858,7 +2948,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="s2">"available"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2889,7 +2979,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <td>ID of the shortcode</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2979,7 +3069,7 @@ Please be aware that messages sent to a single number using this API endpoint wi
 <p>This endpoint sends a Transactional SMS Message.</p>
 <h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-13'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3059,7 +3149,7 @@ Example of webhook payload reply listed to the right.
 <p>This endpoint sends a Transactional SMS Message.</p>
 <h3 id='http-request-27'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3883,6 +3973,10 @@ If the list does not exist you will get a 404 response with this body:
 <tr>
 <td>500</td>
 <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway -- We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
