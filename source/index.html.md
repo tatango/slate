@@ -181,18 +181,18 @@ request.send(null);
    "pages_count":1,
    "lists":[
       {
+         "id":7,
+         "name":"Mobile Campaign",
          "email_digest":"myemail12@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":7,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Mobile Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
 
          ],
@@ -207,18 +207,18 @@ request.send(null);
          ]
       },
       {
+         "id":8,
+         "name":"Pizza Campaign",
          "email_digest":"myemail14@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":8,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Pizza Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
 
          ],
@@ -233,18 +233,18 @@ request.send(null);
          ]
       },
       {
+         "id":9,
+         "name":"Pizza Campaign",
          "email_digest":"myemail15@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":9,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Pizza Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
             "NEWHOTELS"
          ],
