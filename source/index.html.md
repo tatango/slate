@@ -2451,7 +2451,7 @@ This endpoint gets checks the availability of a keyword on the account's short c
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/momt_reports/ID`
+`POST https://app.tatango.com/api/v2/shortcodes/ID/test_keyword`
 
 <aside class="error">
 <strong>Name is in Use</strong>
