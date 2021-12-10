@@ -118,7 +118,7 @@ This endpoint retrieves the current account, as specified by the API key used to
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/accounts/me`
+`GET https://app.tatango.com/api/v2/accounts/me`
 
 <aside class="success">
 You will receive a 200 status on success
