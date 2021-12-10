@@ -1706,11 +1706,11 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
-         "name": "my message name",
-         "sent_at":"2016-09-07T14:10:53-07:00",
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "status":"sent",
+         "sent_at":"2016-09-07T14:10:53-07:00",
+         "name": "my message name",
          "is_broadcast":true,
          "phone_number":null,
          "recipient_count":679571,
@@ -1721,11 +1721,11 @@ request.send(data);
          "unsubscribe_count":1362
       },
       {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "id":14523,
-         "name": "another message name",
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "sent_at":"2016-10-07T14:10:53-07:00",
          "status":"sent",
+         "name": "another message name",
          "is_broadcast":true,
          "phone_number":null,
          "recipient_count":679571,
@@ -1807,11 +1807,11 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
-         "name": "my message name",
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "sent_at":"2016-09-07T14:10:53-07:00",
          "status":"draft",
+         "name": "my message name",
          "is_broadcast":false,
          "phone_number":null,
          "recipient_count":0,
@@ -1822,11 +1822,11 @@ request.send(data);
          "unsubscribe_count":0
       },
       {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "id":14523,
-         "name": "another message name",
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "sent_at":"2016-10-07T14:10:53-07:00",
          "status":"draft",
+         "name": "another message name",
          "is_broadcast":false,
          "phone_number":null,
          "recipient_count":0,
@@ -1906,11 +1906,11 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
-         "name": "my message name",
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "sent_at":"2016-09-07T14:10:53-07:00",
          "status":"scheduled",
+         "name": "my message name",
          "is_broadcast":false,
          "phone_number":null,
          "recipient_count":0,
@@ -1921,11 +1921,11 @@ request.send(data);
          "unsubscribe_count":0
       },
       {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "id":14523,
-         "name": "another message name",
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
          "sent_at":"2016-10-07T14:10:53-07:00",
          "status":"scheduled",
+         "name": "another message name",
          "is_broadcast":false,
          "phone_number":null,
          "recipient_count":0,
@@ -2060,11 +2060,11 @@ request.send(null);
 {
    "status":"OK",
    "message":{
-      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "id":14523,
-      "name":"my message name",
+      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "sent_at":"2016-09-07T14:10:53-07:00",
       "status":"sent",
+      "name":"my message name",
       "is_broadcast":true,
       "phone_number":null,
       "recipient_count":679571,
