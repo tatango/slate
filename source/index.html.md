@@ -1712,13 +1712,15 @@ request.send(data);
          "sent_at":"2016-09-07T14:10:53-07:00",
          "name": "my message name",
          "is_broadcast":true,
-         "phone_number":null,
          "recipient_count":679571,
          "success_count":675232,
          "bounces_count":4339,
          "pending_count":0,
          "clean_count":2342,
-         "unsubscribe_count":1362
+         "unsubscribe_count":1362,
+         "sms_count":168808,
+         "mms_count":506424,
+         "send_cost": 5096.78
       },
       {
          "id":14523,
@@ -1727,13 +1729,15 @@ request.send(data);
          "status":"sent",
          "name": "another message name",
          "is_broadcast":true,
-         "phone_number":null,
          "recipient_count":679571,
          "success_count":675232,
          "bounces_count":4339,
          "pending_count":0,
          "clean_count":2342,
          "unsubscribe_count":1362,
+         "sms_count":168808,
+         "mms_count":506424,
+         "send_cost": 5096.78,
          "message_links": [
             {
                "id":42,
@@ -1813,13 +1817,15 @@ request.send(data);
          "status":"draft",
          "name": "my message name",
          "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
-         "unsubscribe_count":0
+         "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0
       },
       {
          "id":14523,
@@ -1828,13 +1834,15 @@ request.send(data);
          "status":"draft",
          "name": "another message name",
          "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
          "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0,
          "message_links": [
             {
                "id":42,
@@ -1912,13 +1920,15 @@ request.send(data);
          "status":"scheduled",
          "name": "my message name",
          "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
-         "unsubscribe_count":0
+         "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0
       },
       {
          "id":14523,
@@ -1927,13 +1937,15 @@ request.send(data);
          "status":"scheduled",
          "name": "another message name",
          "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
          "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0
          "message_links": [
             {
                "id":42,
