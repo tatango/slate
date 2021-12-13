@@ -1945,7 +1945,7 @@ request.send(data);
          "unsubscribe_count":0,
          "sms_count":0,
          "mms_count":0,
-         "send_cost": 0.0
+         "send_cost": 0.0,
          "message_links": [
             {
                "id":42,
