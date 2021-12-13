@@ -3119,7 +3119,6 @@ AT&T | 383
 Atlantic Tele-Network International (ATNI) | 10542
 bandwidth.com (includes Republic Wireless) | 766
 Blue Wireless | 11264
-Bluegrass Cellular | 562
 Boost Mobile | 534
 Boost-CDMA | 586
 Brightlink | 10212
