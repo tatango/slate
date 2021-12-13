@@ -2078,13 +2078,15 @@ request.send(null);
       "status":"sent",
       "name":"my message name",
       "is_broadcast":true,
-      "phone_number":null,
       "recipient_count":679571,
       "success_count":675232,
       "bounces_count":4339,
       "pending_count":0,
       "clean_count":2342,
       "unsubscribe_count":1362,
+      "sms_count":168808,
+      "mms_count":506424,
+      "send_cost": 5096.78,
       "message_links": [
          {
             "id":42,
