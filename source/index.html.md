@@ -1657,6 +1657,270 @@ Parameter | Description
 --------- | -----------
 ID | ID of the list
 
+# Donations
+
+## Retrieve All Donations in a List
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/donations')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/donations" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/donations", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "donation":{
+       "id":1,
+       "amount": "5.0",
+       "donated_at": "2016-09-07T14:10:53.000-07:00",
+       "donation_platform": "AMCE Donations",
+       "utm_campaign": "campaign",
+       "utm_medium": "medium",
+       "utm_source": "source",
+       "utm_term": "term",
+       "utm_content": "content",
+       "phone_number":"2141234567",
+       "refcodes":[
+        "refcode1",
+        "refcode2"
+       ]
+   }
+}
+```
+
+This endpoint returns all the donations made by subscribers in a list.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/donations`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+id | The ID of the donation.
+amount | The amount of money (in USD) that the subscriber donated.
+donated_at | The date and time that the donation was made.
+donated_platform | The donation platform that the donation was made using.
+utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
+utm_medium | The utm_medium URL parameter of the link used to make the donation.
+utm_source | The utm_source URL parameter of the link used to make the donation.
+utm_term | The utm_term URL parameter of the link used to make the donation.
+utm_content | The utm_content URL parameter of the link used to make the donation.
+phone_number | The wireless phone number of the subscriber.
+refcodes | List of refcode URL parameters of the link used to make the donation.
+
+## Retrieve All Donations from a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+   "status":"OK",
+   "donation":{
+       "id":1,
+       "amount": "5.0",
+       "donated_at": "2016-09-07T14:10:53.000-07:00",
+       "donation_platform": "AMCE Donations",
+       "utm_campaign": "campaign",
+       "utm_medium": "medium",
+       "utm_source": "source",
+       "utm_term": "term",
+       "utm_content": "content",
+       "phone_number":"2141234567",
+       "refcodes":[
+        "refcode1",
+        "refcode2"
+       ]
+   }
+}
+```
+
+This endpoint returns all the donations that a subscriber has made.
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+id | The ID of the donation.
+amount | The amount of money (in USD) that the subscriber donated.
+donated_at | The date and time that the donation was made.
+donated_platform | The donation platform that the donation was made using.
+utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
+utm_medium | The utm_medium URL parameter of the link used to make the donation.
+utm_source | The utm_source URL parameter of the link used to make the donation.
+utm_term | The utm_term URL parameter of the link used to make the donation.
+utm_content | The utm_content URL parameter of the link used to make the donation.
+phone_number | The wireless phone number of the subscriber.
+refcodes | List of refcode URL parameters of the link used to make the donation.
+
+## Creating a New Donation
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '{"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations", false);
+request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+var data = JSON.stringify({"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}});
+request.send(data);
+```
+
+> The above command returns possible JSON responses structured like this:
+
+```json
+{
+   "status":"Donation created",
+   "donation":{
+      "id":1,
+      "amount": "5.0",
+      "donated_at": "2016-09-07T14:10:53.000-07:00",
+      "donation_platform": "AMCE Donations",
+      "utm_campaign": "campaign",
+      "utm_medium": "medium",
+      "utm_source": "source",
+      "utm_term": "term",
+      "utm_content": "content",
+      "phone_number":"2141234567",
+      "refcodes":[
+        "refcode1",
+        "refcode2"
+      ]
+   }
+}
+```
+
+This endpoint adds a donation to a subscriber.
+
+### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | ID of the list
+SUBSCRIBER_ID | ID of the subscriber
+
+
+### JSON Parameters (JSON Object)
+
+Parameter | Description
+--------- | -----------
+donation[amount] | The amount of money (in USD) that the subscriber donated - decimal(8,2)
+donation[donated_at] | (optional) The date and time that the donation was made - datetime
+donation[donation_platform] | (optional) The donation platform that the donation was made using - char(191)
+donation[utm_campaign] | (optional) The utm_campaign URL parameter of the link used to make the donation - char(191)
+donation[utm_medium] | (optional) The utm_medium URL parameter of the link used to make the donation - char(191)
+donation[utm_source] | (optional) The utm_source URL parameter of the link used to make the donation - char(191)
+donation[utm_term] | (optional) The utm_term URL parameter of the link used to make the donation - char(191)
+donation[utm_content] | (optional) The utm_content URL parameter of the link used to make the donation - char(191)
+donation[refcodes_attributes] | (optional) List of refcode URL parameters of the link used to make the donation. For example: [{"refcode": "refcode1"}, {"refcode": "refcode2"}]
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+id | The ID of the donation.
+amount | The amount of money (in USD) that the subscriber donated.
+donated_at | The date and time that the donation was made.
+donated_platform | The donation platform that the donation was made using.
+utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
+utm_medium | The utm_medium URL parameter of the link used to make the donation.
+utm_source | The utm_source URL parameter of the link used to make the donation.
+utm_term | The utm_term URL parameter of the link used to make the donation.
+utm_content | The utm_content URL parameter of the link used to make the donation.
+phone_number | The wireless phone number of the subscriber.
+refcodes | List of refcode URL parameters of the link used to make the donation.
+
 # Messaging
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&%
