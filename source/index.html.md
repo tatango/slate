@@ -1804,7 +1804,7 @@ This endpoint returns all the donations that a subscriber has made.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### Responses Explained
 
@@ -1888,7 +1888,7 @@ This endpoint adds a donation to a subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 
 ### JSON Parameters (JSON Object)
