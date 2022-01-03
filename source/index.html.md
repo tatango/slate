@@ -1273,7 +1273,7 @@ This endpoint returns information about a current subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### Responses Explained
 
@@ -1387,7 +1387,7 @@ carrier_name | The name of the wireless carrier for this specific subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### JSON Parameters (JSON Object)
 
@@ -1530,7 +1530,7 @@ This endpoint unsubscribes a subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### Responses Explained
 
