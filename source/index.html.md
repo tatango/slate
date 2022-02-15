@@ -1832,12 +1832,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}});
+request.body({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '{"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1849,7 +1849,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donation
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"donation":{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes_attributes":[{"refcode":"refcode1"},{"refcode":"refcode2"}]}});
+var data = JSON.stringify({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 request.send(data);
 ```
 
@@ -1903,7 +1903,7 @@ donation[utm_medium] | (optional) The utm_medium URL parameter of the link used 
 donation[utm_source] | (optional) The utm_source URL parameter of the link used to make the donation - char(191)
 donation[utm_term] | (optional) The utm_term URL parameter of the link used to make the donation - char(191)
 donation[utm_content] | (optional) The utm_content URL parameter of the link used to make the donation - char(191)
-donation[refcodes_attributes] | (optional) List of refcode URL parameters of the link used to make the donation. For example: [{"refcode": "refcode1"}, {"refcode": "refcode2"}]
+donation[refcodes] | (optional) Array of refcode URL parameters of the link used to make the donation. For example: ["refcode1", "refcode2"]
 
 ### Responses Explained
 
