@@ -32,6 +32,8 @@ By default, GET API calls that return multiple items in a list will return up to
    "pages_count":3
 ```
 
+Note that the "pages_count" parameter will default to 0 when there is no items in the list.
+
 To fetch the next page of results, pass the "page" parameter on the URL, like this: https://app.tatango.com/api/v2/lists?page=2. You can also change the number of records returned in each "page" by passing in a "per_page" parameter as part of the URL, like this:  https://app.tatango.com/api/v2/lists?per_page=50.  Note that the system will only allow up to 1000 records to be returned in a single call.
 
 # Authentication
