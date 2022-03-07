@@ -118,7 +118,7 @@ This endpoint retrieves the current account, as specified by the API key used to
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/accounts/me`
+`GET https://app.tatango.com/api/v2/accounts/me`
 
 <aside class="success">
 You will receive a 200 status on success
@@ -181,18 +181,18 @@ request.send(null);
    "pages_count":1,
    "lists":[
       {
+         "id":7,
+         "name":"Mobile Campaign",
          "email_digest":"myemail12@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":7,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Mobile Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
 
          ],
@@ -207,18 +207,18 @@ request.send(null);
          ]
       },
       {
+         "id":8,
+         "name":"Pizza Campaign",
          "email_digest":"myemail14@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":8,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Pizza Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
 
          ],
@@ -233,18 +233,18 @@ request.send(null);
          ]
       },
       {
+         "id":9,
+         "name":"Pizza Campaign",
          "email_digest":"myemail15@gmail.com",
          "email_subscribe":null,
          "email_unsubscribe":null,
          "first_optin_message":"",
-         "id":9,
-         "message_already_subscribed":null,
-         "message_help":null,
-         "message_reply":null,
-         "message_stop":null,
-         "message_yes":null,
-         "name":"Pizza Campaign",
          "second_optin_message":"",
+         "message_help":null,
+         "message_stop":null,
+         "message_reply":null,
+         "message_already_subscribed":null,
+         "message_yes":null,
          "keyword_names":[
             "NEWHOTELS"
          ],
@@ -303,18 +303,18 @@ request.send(null);
 {
    "status":"OK",
    "list":{
+      "id":2,
+      "name":"Book Campaign",
       "email_digest":"myemail2@gmail.com",
       "email_subscribe":null,
       "email_unsubscribe":null,
       "first_optin_message":"",
-      "id":2,
-      "message_already_subscribed":null,
-      "message_help":null,
-      "message_reply":null,
-      "message_stop":null,
-      "message_yes":null,
-      "name":"Book Campaign",
       "second_optin_message":"",
+      "message_help":null,
+      "message_stop":null,
+      "message_reply":null,
+      "message_already_subscribed":null,
+      "message_yes":null,
       "keyword_names":[
 
       ],
@@ -620,18 +620,18 @@ request.send(data);
 {
    "status":"List created",
    "list":{
+      "id":11,
+      "name":"My awesome list",
       "email_digest":"myemail18@gmail.com",
       "email_subscribe":true,
       "email_unsubscribe":true,
       "first_optin_message":"ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg & data rates may apply. Terms apply 12345-info.com",
-      "id":11,
-      "message_already_subscribed":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-      "message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
-      "message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com",
-      "message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.",
-      "message_yes":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
-      "name":"My awesome list",
       "second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      "message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
+      "message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.",
+      "message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com",
+      "message_already_subscribed":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "message_yes":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
       "keyword_names":[
         "JOIN",
         "SAVE",
@@ -887,18 +887,18 @@ request.send(data);
 {
    "status":"OK",
    "list":{
+      "id":1,
+      "name":"Name",
       "email_digest":"myemail0@gmail.com",
       "email_subscribe":null,
       "email_unsubscribe":null,
       "first_optin_message":"",
-      "id":1,
-      "message_already_subscribed":null,
-      "message_help":null,
-      "message_reply":null,
-      "message_stop":null,
-      "message_yes":null,
-      "name":"Name",
       "second_optin_message":"",
+      "message_help":null,
+      "message_stop":null,
+      "message_reply":null,
+      "message_already_subscribed":null,
+      "message_yes":null,
       "keyword_names":[
 
       ],
@@ -1273,7 +1273,7 @@ This endpoint returns information about a current subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### Responses Explained
 
@@ -1387,7 +1387,7 @@ carrier_name | The name of the wireless carrier for this specific subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### JSON Parameters (JSON Object)
 
@@ -1530,7 +1530,7 @@ This endpoint unsubscribes a subscriber.
 Parameter | Description
 --------- | -----------
 ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber
+SUBSCRIBER_ID | ID of the subscriber (phone number)
 
 ### Responses Explained
 
@@ -1706,34 +1706,38 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
+         "id":14523,
          "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
-         "id":14523,
-         "name": "my message name",
+         "status":"sent",
          "sent_at":"2016-09-07T14:10:53-07:00",
-         "status":"sent",
+         "name": "my message name",
          "is_broadcast":true,
-         "phone_number":null,
-         "recipient_count":679571,
-         "success_count":675232,
-         "bounces_count":4339,
-         "pending_count":0,
-         "clean_count":2342,
-         "unsubscribe_count":1362
-      },
-      {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "id":14523,
-         "name": "another message name",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"sent",
-         "is_broadcast":true,
-         "phone_number":null,
          "recipient_count":679571,
          "success_count":675232,
          "bounces_count":4339,
          "pending_count":0,
          "clean_count":2342,
          "unsubscribe_count":1362,
+         "sms_count":168808,
+         "mms_count":506424,
+         "send_cost": 5096.78
+      },
+      {
+         "id":14523,
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"sent",
+         "name": "another message name",
+         "is_broadcast":true,
+         "recipient_count":679571,
+         "success_count":675232,
+         "bounces_count":4339,
+         "pending_count":0,
+         "clean_count":2342,
+         "unsubscribe_count":1362,
+         "sms_count":168808,
+         "mms_count":506424,
+         "send_cost": 5096.78,
          "message_links": [
             {
                "id":42,
@@ -1807,34 +1811,38 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
-         "name": "my message name",
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "sent_at":"2016-09-07T14:10:53-07:00",
          "status":"draft",
+         "name": "my message name",
          "is_broadcast":false,
-         "phone_number":null,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0
-      },
-      {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "id":14523,
-         "name": "another message name",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"draft",
-         "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
          "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0
+      },
+      {
+         "id":14523,
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"draft",
+         "name": "another message name",
+         "is_broadcast":false,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0,
          "message_links": [
             {
                "id":42,
@@ -1906,34 +1914,38 @@ request.send(data);
    "pages_count":1,
    "messages":[
       {
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "id":14523,
-         "name": "my message name",
+         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
          "sent_at":"2016-09-07T14:10:53-07:00",
          "status":"scheduled",
+         "name": "my message name",
          "is_broadcast":false,
-         "phone_number":null,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0
-      },
-      {
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "id":14523,
-         "name": "another message name",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"scheduled",
-         "is_broadcast":false,
-         "phone_number":null,
          "recipient_count":0,
          "success_count":0,
          "bounces_count":0,
          "pending_count":0,
          "clean_count":0,
          "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0
+      },
+      {
+         "id":14523,
+         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+         "sent_at":"2016-10-07T14:10:53-07:00",
+         "status":"scheduled",
+         "name": "another message name",
+         "is_broadcast":false,
+         "recipient_count":0,
+         "success_count":0,
+         "bounces_count":0,
+         "pending_count":0,
+         "clean_count":0,
+         "unsubscribe_count":0,
+         "sms_count":0,
+         "mms_count":0,
+         "send_cost": 0.0,
          "message_links": [
             {
                "id":42,
@@ -2060,19 +2072,21 @@ request.send(null);
 {
    "status":"OK",
    "message":{
-      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "id":14523,
-      "name":"my message name",
+      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
       "sent_at":"2016-09-07T14:10:53-07:00",
       "status":"sent",
+      "name":"my message name",
       "is_broadcast":true,
-      "phone_number":null,
       "recipient_count":679571,
       "success_count":675232,
       "bounces_count":4339,
       "pending_count":0,
       "clean_count":2342,
       "unsubscribe_count":1362,
+      "sms_count":168808,
+      "mms_count":506424,
+      "send_cost": 5096.78,
       "message_links": [
          {
             "id":42,
@@ -2157,33 +2171,34 @@ request.send(data);
 {
    "status":"OK",
    "momt_report":{
-      "account_id":22,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "direction":null,
       "id":3,
-      "import_completed_at":null,
+      "account_id":22,
+      "s3_url":null,
       "import_started_at":null,
-      "is_csv":false,
+      "import_completed_at":null,
+      "total_rows":null,
+      "processed_rows":0,
+      "percent_complete":0,
       "mo_count":0,
       "mt_count":0,
-      "name": "my Message",
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
       "shortcode":null,
+      "date_range":"json",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "campaign":null,
+      "carrier":null,
+      "phone_number":null,
+      "direction":null,
       "status_array":null,
-      "total_rows":null,
-      "type":null,
+      "created_at":"2016-09-07T14:10:41-07:00",
       "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
+      "counts_calculated":false,
+      "type":null,
+      "is_csv":false,
+      "webhook_callback_url":null,
+      "run_errors":null,
+      "message_type":null,
+      "cancelled":null
    }
 }
 ```
@@ -2237,32 +2252,34 @@ request.send(null);
 {
    "status":"OK",
    "momt_report":{
-      "account_id":20,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":true,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.597+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.597+01:00",
-      "direction":null,
       "id":1,
-      "import_completed_at":null,
+      "account_id":20,
+      "s3_url":null,
       "import_started_at":null,
-      "is_csv":false,
+      "import_completed_at":null,
+      "total_rows":null,
+      "processed_rows":0,
+      "percent_complete":0,
       "mo_count":0,
       "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
       "shortcode":null,
+      "date_range":"json",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "campaign":null,
+      "carrier":null,
+      "phone_number":null,
+      "direction":null,
       "status_array":null,
-      "total_rows":0,
-      "type":null,
+      "created_at":"2016-09-07T14:10:41-07:00",
       "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
+      "counts_calculated":true,
+      "type":null,
+      "is_csv":false,
+      "webhook_callback_url":null,
+      "run_errors":null,
+      "message_type":null,
+      "cancelled":null
    }
 }
 ```
@@ -2314,32 +2331,34 @@ request.send(null);
 {
    "status":"OK",
    "momt_report":{
-      "account_id":21,
-      "campaign":null,
-      "carrier":null,
-      "counts_calculated":false,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "date_from":"2016-08-28T22:10:41.712+01:00",
-      "date_range":"json",
-      "date_to":"2016-09-07T22:10:41.712+01:00",
-      "direction":null,
       "id":2,
-      "import_completed_at":null,
+      "account_id":21,
+      "s3_url":null,
       "import_started_at":null,
-      "is_csv":false,
+      "import_completed_at":null,
+      "total_rows":null,
+      "processed_rows":0,
+      "percent_complete":0,
       "mo_count":0,
       "mt_count":0,
-      "percent_complete":0,
-      "phone_number":null,
-      "processed_rows":0,
-      "run_errors":null,
-      "s3_url":null,
       "shortcode":null,
+      "date_range":"json",
+      "date_from":"2016-08-08T22:10:41+01:00",
+      "date_to":"2016-09-07T22:10:41+01:00",
+      "campaign":null,
+      "carrier":null,
+      "phone_number":null,
+      "direction":null,
       "status_array":null,
-      "total_rows":null,
-      "type":null,
+      "created_at":"2016-09-07T14:10:41-07:00",
       "updated_at":"2016-09-07T14:10:41-07:00",
-      "webhook_callback_url":null
+      "counts_calculated":false,
+      "type":null,
+      "is_csv":false,
+      "webhook_callback_url":null,
+      "run_errors":null,
+      "message_type":null,
+      "cancelled":null
    }
 }
 ```
@@ -2446,7 +2465,7 @@ This endpoint gets checks the availability of a keyword on the account's short c
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/momt_reports/ID`
+`POST https://app.tatango.com/api/v2/shortcodes/ID/test_keyword`
 
 <aside class="error">
 <strong>Name is in Use</strong>
@@ -3100,7 +3119,6 @@ AT&T | 383
 Atlantic Tele-Network International (ATNI) | 10542
 bandwidth.com (includes Republic Wireless) | 766
 Blue Wireless | 11264
-Bluegrass Cellular | 562
 Boost Mobile | 534
 Boost-CDMA | 586
 Brightlink | 10212
