@@ -1703,11 +1703,12 @@ request.send(null);
        "utm_source": "source",
        "utm_term": "term",
        "utm_content": "content",
-       "phone_number":"2141234567",
+       "donation_platform_uid": "foo",
        "refcodes":[
         "refcode1",
         "refcode2"
-       ]
+       ],
+      "phone_number":"2141234567"
    }
 }
 ```
@@ -1731,7 +1732,8 @@ Key | Description
 id | The ID of the donation.
 amount | The amount of money (in USD) that the subscriber donated.
 donated_at | The date and time that the donation was made.
-donated_platform | The donation platform that the donation was made using.
+donation_platform | The donation platform that the donation was made using.
+donation_platform_uid | The unique id associated to the donation.
 utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
 utm_medium | The utm_medium URL parameter of the link used to make the donation.
 utm_source | The utm_source URL parameter of the link used to make the donation.
@@ -1784,11 +1786,12 @@ request.send(null);
        "utm_source": "source",
        "utm_term": "term",
        "utm_content": "content",
-       "phone_number":"2141234567",
+       "donation_platform_uid": "foo",
        "refcodes":[
         "refcode1",
         "refcode2"
-       ]
+       ],
+      "phone_number":"2141234567"
    }
 }
 ```
@@ -1813,7 +1816,8 @@ Key | Description
 id | The ID of the donation.
 amount | The amount of money (in USD) that the subscriber donated.
 donated_at | The date and time that the donation was made.
-donated_platform | The donation platform that the donation was made using.
+donation_platform | The donation platform that the donation was made using.
+donation_platform_uid | The unique id associated to the donation.
 utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
 utm_medium | The utm_medium URL parameter of the link used to make the donation.
 utm_source | The utm_source URL parameter of the link used to make the donation.
@@ -1832,12 +1836,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
+request.body({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations" -d '{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign","utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1849,7 +1853,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donation
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/donations", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
+var data = JSON.stringify({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign","utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 request.send(data);
 ```
 
@@ -1868,7 +1872,8 @@ request.send(data);
       "utm_source": "source",
       "utm_term": "term",
       "utm_content": "content",
-      "phone_number":"2141234567",
+      "donation_platform_uid": "foo",
+      "phone_number": "2141234567",
       "refcodes":[
         "refcode1",
         "refcode2"
@@ -1896,6 +1901,7 @@ SUBSCRIBER_ID | ID of the subscriber (phone number)
 Parameter | Description
 --------- | -----------
 amount | The amount of money (in USD) that the subscriber donated - decimal(8,2)
+donation_platform_uid | A unique id for the donation - char(191)
 donated_at | (optional) The date and time that the donation was made - datetime
 donation_platform | (optional) The donation platform that the donation was made using - char(191)
 utm_campaign | (optional) The utm_campaign URL parameter of the link used to make the donation - char(191)
@@ -1913,6 +1919,7 @@ id | The ID of the donation.
 amount | The amount of money (in USD) that the subscriber donated.
 donated_at | The date and time that the donation was made.
 donated_platform | The donation platform that the donation was made using.
+donation_platform_uid | The unique id associated to the donation.
 utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
 utm_medium | The utm_medium URL parameter of the link used to make the donation.
 utm_source | The utm_source URL parameter of the link used to make the donation.
@@ -1931,12 +1938,12 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID/don
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
+request.body({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID/donations" -d '{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID/donations" -d '{"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign","utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1948,7 +1955,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID/donations" -d 
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID/donations", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","utm_campaign":"campaign", "utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
+var data = JSON.stringify({"amount":"5","donated_at":"2016-09-07T14:10:53-07:00","donation_platform":"AMCE Donations","donation_platform_uid":"foo","utm_campaign":"campaign","utm_medium":"medium","utm_source":"source", "utm_term":"term","utm_content":"content", "refcodes":["refcode1", "refcode2"]});
 request.send(data);
 ```
 
@@ -1967,6 +1974,7 @@ request.send(data);
       "utm_source": "source",
       "utm_term": "term",
       "utm_content": "content",
+      "donation_platform_uid": "foo",
       "refcodes":[
         "refcode1",
         "refcode2"
@@ -1990,9 +1998,11 @@ MESSAGE_ID | ID of the message
 
 
 ### JSON Parameters (JSON Object)
+
 Parameter | Description
 --------- | -----------
-amount | The amount of money (in USD) that was donated - decimal(8,2)
+amount | The amount of money (in USD) that the subscriber donated - decimal(8,2)
+donation_platform_uid | A unique id for the donation - char(191)
 donated_at | (optional) The date and time that the donation was made - datetime
 donation_platform | (optional) The donation platform that the donation was made using - char(191)
 utm_campaign | (optional) The utm_campaign URL parameter of the link used to make the donation - char(191)
@@ -2007,14 +2017,16 @@ refcodes | (optional) Array of refcode URL parameters of the link used to make t
 Key | Description
 --------- | -----------
 id | The ID of the donation.
-amount | The amount of money (in USD) that was donated.
+amount | The amount of money (in USD) that the subscriber donated.
 donated_at | The date and time that the donation was made.
 donated_platform | The donation platform that the donation was made using.
+donation_platform_uid | The unique id associated to the donation.
 utm_campaign | The utm_campaign URL parameter of the link used to make the donation.
 utm_medium | The utm_medium URL parameter of the link used to make the donation.
 utm_source | The utm_source URL parameter of the link used to make the donation.
 utm_term | The utm_term URL parameter of the link used to make the donation.
 utm_content | The utm_content URL parameter of the link used to make the donation.
+phone_number | The wireless phone number of the subscriber.
 refcodes | List of refcode URL parameters of the link used to make the donation.
 
 # Messaging
