@@ -1901,9 +1901,9 @@ SUBSCRIBER_ID | ID of the subscriber (phone number)
 Parameter | Description
 --------- | -----------
 amount | The amount of money (in USD) that the subscriber donated - decimal(8,2)
+donation_platform | The donation platform that the donation was made using - char(191)
 donation_platform_uid | A unique id for the donation - char(191)
 donated_at | (optional) The date and time that the donation was made - datetime
-donation_platform | (optional) The donation platform that the donation was made using - char(191)
 utm_campaign | (optional) The utm_campaign URL parameter of the link used to make the donation - char(191)
 utm_medium | (optional) The utm_medium URL parameter of the link used to make the donation - char(191)
 utm_source | (optional) The utm_source URL parameter of the link used to make the donation - char(191)
@@ -2002,9 +2002,9 @@ MESSAGE_ID | ID of the message
 Parameter | Description
 --------- | -----------
 amount | The amount of money (in USD) that the subscriber donated - decimal(8,2)
+donation_platform | The donation platform that the donation was made using - char(191)
 donation_platform_uid | A unique id for the donation - char(191)
 donated_at | (optional) The date and time that the donation was made - datetime
-donation_platform | (optional) The donation platform that the donation was made using - char(191)
 utm_campaign | (optional) The utm_campaign URL parameter of the link used to make the donation - char(191)
 utm_medium | (optional) The utm_medium URL parameter of the link used to make the donation - char(191)
 utm_source | (optional) The utm_source URL parameter of the link used to make the donation - char(191)
