@@ -1412,7 +1412,7 @@ subscriber[custom_field_key] | (optional) Custom data value
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags')
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/bulk_taggings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1421,7 +1421,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1431,7 +1431,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags" -d '{"phone_
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags", false);
+request.open("POST", "https://app.tatango.com/api/v2/lists/ID/bulk_taggings", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
 request.send(data);
@@ -1441,15 +1441,36 @@ request.send(data);
 
 ```json
 {
-   "status":"Tags were applied"
+   "status": "Bulk tagging operation queued successfully.",
+   "number_count": 3,
+   "tag_count": 4,
+   "subscribers_to_update": 3,
+   "replace_tags": false,
+   "not_subscribed": [
+      'list of numbers passed numbers that are not subscribed, this will not display if all numbers are subscribed'
+   ],
+   "invalid_numbers": [
+      'list of passed numbers that are invalid, this will not display if all numbers are valid'
+   ]
 }
 ```
 
-This endpoint applies multiple tags to multiple subscribers. The tags are added to any tags already applied, not replaced.
+This endpoint applies multiple tags to multiple subscribers
+
+### Responses Explained
+
+Key | Description
+--------- | -----------
+number_count | The number of phone numbers in your passed phone_numbers list
+tag_count | The number of tags in your passed tags list
+subscribers_to_update | The number of subscribed members to your list that will be updated with the new tags
+replace_tags | If true all the tags for subscribers will be replaced with the new tags. If false it will add the new tags to the old tags
+not_subscribed | A list of phone numbers that were passed that are not subscribed to the defined list. If all numbers are subscribed this will not be displayed
+invalid_numbers | A list of phone numbers that were passed in that are not valid phone numbers. An invalid number will also consist of landline phones. If all numbers are valid this will not be displayed
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags`
+`POST https://app.tatango.com/api/v2/lists/ID/bulk_taggings`
 
 ### URL Parameters
 
@@ -1461,8 +1482,14 @@ ID | ID of the list
 
 Parameter | Description
 --------- | -----------
-phone_numbers	| The wireless phone numbers of the subscribers.
-tags | Array of tags to add
+ID | ID of the list
+phone_numbers | Array of phone numbers you want to modify
+tags | (optional) Array of tags to add
+replace_tags | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined
+
+### Other uses
+
+You can also use this endpoint to mass remove tags from subscribers. For example if replace_tags is true and your tags list is empty it will remove all tags from your numbers list
 
 ## Unsubscribing a Subscriber
 
