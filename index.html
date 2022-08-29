@@ -1934,20 +1934,20 @@ You will receive a 200 status on success
 <h2 id='adding-multiple-tags-to-multiple-subscribers'>Adding Multiple Tags to Multiple Subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags'</span><span class="p">)</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/bulk_taggings'</span><span class="p">)</span>
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"2145550762"</span><span class="p">,</span><span class="s2">"7185550549"</span><span class="p">,</span><span class="s2">"2125550838"</span><span class="p">],</span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="s2">"sports_news"</span><span class="p">,</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="s2">"weather_news"</span><span class="p">]});</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags"</span> -d <span class="s1">'{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}'</span> -X POST <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/bulk_taggings"</span> -d <span class="s1">'{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}'</span> -X POST <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
     -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/bulk_taggings"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"2145550762"</span><span class="p">,</span><span class="s2">"7185550549"</span><span class="p">,</span><span class="s2">"2125550838"</span><span class="p">],</span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="s2">"sports_news"</span><span class="p">,</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="s2">"weather_news"</span><span class="p">]});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -1956,12 +1956,54 @@ You will receive a 200 status on success
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Tags were applied"</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bulk tagging operation queued successfully."</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"number_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tag_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"subscribers_to_update"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"replace_tags"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"not_subscribed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">'list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">passed</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">subscribed</span><span class="p">,</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">display</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">subscribed'</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"invalid_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">'list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">passed</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">invalid</span><span class="p">,</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">display</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">numbers</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">valid'</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint applies multiple tags to multiple subscribers. The tags are added to any tags already applied, not replaced.</p>
+<p>This endpoint applies multiple tags to multiple subscribers</p>
+<h3 id='responses-explained-4'>Responses Explained</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number_count</td>
+<td>The number of phone numbers in your passed phone_numbers list</td>
+</tr>
+<tr>
+<td>tag_count</td>
+<td>The number of tags in your passed tags list</td>
+</tr>
+<tr>
+<td>subscribers_to_update</td>
+<td>The number of subscribed members to your list that will be updated with the new tags</td>
+</tr>
+<tr>
+<td>replace_tags</td>
+<td>If true all the tags for subscribers will be replaced with the new tags. If false it will add the new tags to the old tags</td>
+</tr>
+<tr>
+<td>not_subscribed</td>
+<td>A list of phone numbers that were passed that are not subscribed to the defined list. If all numbers are subscribed this will not be displayed</td>
+</tr>
+<tr>
+<td>invalid_numbers</td>
+<td>A list of phone numbers that were passed in that are not valid phone numbers. An invalid number will also consist of landline phones. If all numbers are valid this will not be displayed</td>
+</tr>
+</tbody></table>
 <h3 id='http-request-12'>HTTP Request</h3>
-<p><code>POST https://app.tatango.com/api/v2/lists/ID/subscribers/add_tags</code></p>
+<p><code>POST https://app.tatango.com/api/v2/lists/ID/bulk_taggings</code></p>
 <h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1982,14 +2024,24 @@ You will receive a 200 status on success
 </tr>
 </thead><tbody>
 <tr>
+<td>ID</td>
+<td>ID of the list</td>
+</tr>
+<tr>
 <td>phone_numbers</td>
-<td>The wireless phone numbers of the subscribers.</td>
+<td>Array of phone numbers you want to modify. The max length of this array is 1000 values</td>
 </tr>
 <tr>
 <td>tags</td>
-<td>Array of tags to add</td>
+<td>(optional) Array of tags to add. The max length of this array is 50 values</td>
+</tr>
+<tr>
+<td>replace_tags</td>
+<td>(optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined</td>
 </tr>
 </tbody></table>
+<h3 id='other-uses'>Other uses</h3>
+<p>You can also use this endpoint to mass remove tags from subscribers. For example if replace_tags is true and your tags list is empty it will remove all tags from your numbers list</p>
 <h2 id='unsubscribing-a-subscriber'>Unsubscribing a Subscriber</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -2055,7 +2107,7 @@ You will receive a 200 status on success
 <td>ID of the subscriber (phone number)</td>
 </tr>
 </tbody></table>
-<h3 id='responses-explained-4'>Responses Explained</h3>
+<h3 id='responses-explained-5'>Responses Explained</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -2632,7 +2684,7 @@ You will receive a 200 status on success
 <td>ID of the message</td>
 </tr>
 </tbody></table>
-<h3 id='responses-explained-5'>Responses Explained</h3>
+<h3 id='responses-explained-6'>Responses Explained</h3>
 <table><thead>
 <tr>
 <th>Key</th>
