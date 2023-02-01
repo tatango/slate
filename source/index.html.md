@@ -11,6 +11,7 @@ includes:
 
 search: true
 ---
+
 # Before You Start
 
 Welcome to the Tatango API! The Tatango API is designed for developers, engineers, or anyone else who's comfortable creating custom-coded solutions or integrating with RESTful APIS. If you're not familiar with API concepts like HTTP response codes, REST endpoints, and JSON, try <a href="https://zapier.com/apps/tatango/integrations" target="_blank">Zapier</a>.
@@ -34,7 +35,7 @@ By default, GET API calls that return multiple items in a list will return up to
 
 Note that the "pages_count" parameter will default to 0 when there is no items in the list.
 
-To fetch the next page of results, pass the "page" parameter on the URL, like this: https://app.tatango.com/api/v2/lists?page=2. You can also change the number of records returned in each "page" by passing in a "per_page" parameter as part of the URL, like this:  https://app.tatango.com/api/v2/lists?per_page=50.  Note that the system will only allow up to 1000 records to be returned in a single call.
+To fetch the next page of results, pass the "page" parameter on the URL, like this: https://app.tatango.com/api/v2/lists?page=2. You can also change the number of records returned in each "page" by passing in a "per_page" parameter as part of the URL, like this: https://app.tatango.com/api/v2/lists?per_page=50. Note that the system will only allow up to 1000 records to be returned in a single call.
 
 # Authentication
 
@@ -61,15 +62,16 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
 > Make sure to replace `my_api_key` with your API key, which can be obtained by logging into <a href="https://app.tatango.com/" target="_blank">https://app.tatango.com</a>.
 
-Tatango authenticates API requests by validating an API key that must be passed with each API call.  We use the built-in HTTP basic authentication scheme supported by most HTTP libraries.  Use your login email as the username and the API key as the password.
-
-
+Tatango authenticates API requests by validating an API key that must be passed with each API call. We use the built-in HTTP basic authentication scheme supported by most HTTP libraries. Use your login email as the username and the API key as the password.
 
 # Accounts
 
@@ -98,22 +100,24 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-  {
-    "status":"OK",
-    "account": {
-      "id":37,
-      "email":"myemail36@gmail.com",
-      "username":"boowebb36"
-    }
+{
+  "status": "OK",
+  "account": {
+    "id": 37,
+    "email": "myemail36@gmail.com",
+    "username": "boowebb36"
   }
-
+}
 ```
 
 This endpoint retrieves the current account, as specified by the API key used to authenticate.
@@ -140,8 +144,8 @@ You will receive a 200 status on success
 
 Note: the following settings cannot be modified via the API:
 
- - API Confirmation Resend Block Timeout
- - Resubscribers
+- API Confirmation Resend Block Timeout
+- Resubscribers
 
 ## List all Lists
 
@@ -168,7 +172,10 @@ curl "https://app.tatango.com/api/v2/lists" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -176,91 +183,79 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "per_page":10,
-   "count":3,
-   "page":1,
-   "pages_count":1,
-   "lists":[
-      {
-         "id":7,
-         "name":"Mobile Campaign",
-         "email_digest":"myemail12@gmail.com",
-         "email_subscribe":null,
-         "email_unsubscribe":null,
-         "first_optin_message":"",
-         "second_optin_message":"",
-         "message_help":null,
-         "message_stop":null,
-         "message_reply":null,
-         "message_already_subscribed":null,
-         "message_yes":null,
-         "keyword_names":[
-
-         ],
-         "counts":{
-            "subscribers":0,
-            "unsubscribed":0,
-            "cleaned":0
-         },
-         "opt_in_type":"single",
-         "opt_in_requests":[
-
-         ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 3,
+  "page": 1,
+  "pages_count": 1,
+  "lists": [
+    {
+      "id": 7,
+      "name": "Mobile Campaign",
+      "email_digest": "myemail12@gmail.com",
+      "email_subscribe": null,
+      "email_unsubscribe": null,
+      "first_optin_message": "",
+      "second_optin_message": "",
+      "message_help": null,
+      "message_stop": null,
+      "message_reply": null,
+      "message_already_subscribed": null,
+      "message_yes": null,
+      "keyword_names": [],
+      "counts": {
+        "subscribers": 0,
+        "unsubscribed": 0,
+        "cleaned": 0
       },
-      {
-         "id":8,
-         "name":"Pizza Campaign",
-         "email_digest":"myemail14@gmail.com",
-         "email_subscribe":null,
-         "email_unsubscribe":null,
-         "first_optin_message":"",
-         "second_optin_message":"",
-         "message_help":null,
-         "message_stop":null,
-         "message_reply":null,
-         "message_already_subscribed":null,
-         "message_yes":null,
-         "keyword_names":[
-
-         ],
-         "counts":{
-            "subscribers":0,
-            "unsubscribed":0,
-            "cleaned":0
-         },
-         "opt_in_type":"single",
-         "opt_in_requests":[
-
-         ]
+      "opt_in_type": "single",
+      "opt_in_requests": []
+    },
+    {
+      "id": 8,
+      "name": "Pizza Campaign",
+      "email_digest": "myemail14@gmail.com",
+      "email_subscribe": null,
+      "email_unsubscribe": null,
+      "first_optin_message": "",
+      "second_optin_message": "",
+      "message_help": null,
+      "message_stop": null,
+      "message_reply": null,
+      "message_already_subscribed": null,
+      "message_yes": null,
+      "keyword_names": [],
+      "counts": {
+        "subscribers": 0,
+        "unsubscribed": 0,
+        "cleaned": 0
       },
-      {
-         "id":9,
-         "name":"Pizza Campaign",
-         "email_digest":"myemail15@gmail.com",
-         "email_subscribe":null,
-         "email_unsubscribe":null,
-         "first_optin_message":"",
-         "second_optin_message":"",
-         "message_help":null,
-         "message_stop":null,
-         "message_reply":null,
-         "message_already_subscribed":null,
-         "message_yes":null,
-         "keyword_names":[
-            "NEWHOTELS"
-         ],
-         "counts":{
-            "subscribers":0,
-            "unsubscribed":0,
-            "cleaned":0
-         },
-         "opt_in_type":"single",
-         "opt_in_requests":[
-
-         ]
-      }
-   ]
+      "opt_in_type": "single",
+      "opt_in_requests": []
+    },
+    {
+      "id": 9,
+      "name": "Pizza Campaign",
+      "email_digest": "myemail15@gmail.com",
+      "email_subscribe": null,
+      "email_unsubscribe": null,
+      "first_optin_message": "",
+      "second_optin_message": "",
+      "message_help": null,
+      "message_stop": null,
+      "message_reply": null,
+      "message_already_subscribed": null,
+      "message_yes": null,
+      "keyword_names": ["NEWHOTELS"],
+      "counts": {
+        "subscribers": 0,
+        "unsubscribed": 0,
+        "cleaned": 0
+      },
+      "opt_in_type": "single",
+      "opt_in_requests": []
+    }
+  ]
 }
 ```
 
@@ -295,7 +290,10 @@ curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -303,35 +301,30 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "list":{
-      "id":2,
-      "name":"Book Campaign",
-      "email_digest":"myemail2@gmail.com",
-      "email_subscribe":null,
-      "email_unsubscribe":null,
-      "first_optin_message":"",
-      "second_optin_message":"",
-      "message_help":null,
-      "message_stop":null,
-      "message_reply":null,
-      "message_already_subscribed":null,
-      "message_yes":null,
-      "keyword_names":[
-
-      ],
-      "counts":{
-         "subscribers":0,
-         "unsubscribed":0,
-         "cleaned":0
-      },
-      "opt_in_type":"single",
-      "opt_in_requests":[
-
-      ]
-   }
+  "status": "OK",
+  "list": {
+    "id": 2,
+    "name": "Book Campaign",
+    "email_digest": "myemail2@gmail.com",
+    "email_subscribe": null,
+    "email_unsubscribe": null,
+    "first_optin_message": "",
+    "second_optin_message": "",
+    "message_help": null,
+    "message_stop": null,
+    "message_reply": null,
+    "message_already_subscribed": null,
+    "message_yes": null,
+    "keyword_names": [],
+    "counts": {
+      "subscribers": 0,
+      "unsubscribed": 0,
+      "cleaned": 0
+    },
+    "opt_in_type": "single",
+    "opt_in_requests": []
+  }
 }
-
 ```
 
 This endpoint retrieves a specific list.
@@ -342,9 +335,9 @@ This endpoint retrieves a specific list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list to retrieve
+| Parameter | Description                    |
+| --------- | ------------------------------ |
+| ID        | The ID of the list to retrieve |
 
 ## Configure List Opt-In Type
 
@@ -373,9 +366,80 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]});
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  opt_in_type: "double",
+  opt_in_requests: [
+    {
+      collected_data: "zip_code",
+      request_message:
+        "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      retry_message:
+        "Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      follow_up: true,
+      follow_up_hour: 2,
+      no_response_message:
+        "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      opt_in_message: null,
+      second_opt_in_message: null,
+      success_action: "nextrequest",
+    },
+    {
+      collected_data: "email_address",
+      request_message:
+        "Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      retry_message:
+        "Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      follow_up: true,
+      follow_up_hour: 24,
+      no_response_message:
+        "Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      opt_in_message: null,
+      second_opt_in_message: null,
+      success_action: "nextrequest",
+    },
+    {
+      collected_data: "first_name",
+      request_message:
+        "Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      retry_message:
+        "Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      follow_up: true,
+      follow_up_hour: 24,
+      no_response_message:
+        "Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      opt_in_message: null,
+      second_opt_in_message: null,
+      success_action: "nextrequest",
+    },
+    {
+      collected_data: "yes",
+      request_message:
+        "Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      retry_message:
+        "Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      follow_up: false,
+      follow_up_hour: null,
+      opt_in_message:
+        "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      second_opt_in_message:
+        "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      opt_in_message:
+        "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      second_opt_in_message:
+        "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      success_action: "optinsubscriber",
+    },
+  ],
+});
 request.send(data);
 ```
 
@@ -383,74 +447,74 @@ request.send(data);
 
 ```json
 {
-   "status":"Opt in settings updated",
-   "opt_in_type":"double",
-   "opt_in_requests":[
-      {
-         "bypass_opt_in_response":false,
-         "collected_data":"zip_code",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":1,
-         "list_id":10,
-         "no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {
-         "bypass_opt_in_response":false,
-         "collected_data":"email_address",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":2,
-         "list_id":10,
-         "no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {
-         "bypass_opt_in_response":false,
-         "collected_data":"first_name",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":3,
-         "list_id":10,
-         "no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":"nextrequest",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      },
-      {
-         "bypass_opt_in_response":false,
-         "collected_data":"yes",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":4,
-         "list_id":10,
-         "no_response_message":null,
-         "opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-         "request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-         "success_action":"optinsubscriber",
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      }
-   ]
+  "status": "Opt in settings updated",
+  "opt_in_type": "double",
+  "opt_in_requests": [
+    {
+      "bypass_opt_in_response": false,
+      "collected_data": "zip_code",
+      "created_at": "2016-09-07T14:10:41-07:00",
+      "follow_up": true,
+      "follow_up_hour": 2,
+      "id": 1,
+      "list_id": 10,
+      "no_response_message": "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "opt_in_message": null,
+      "request_message": "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "retry_message": "Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "second_opt_in_message": null,
+      "success_action": "nextrequest",
+      "updated_at": "2016-09-07T14:10:41-07:00"
+    },
+    {
+      "bypass_opt_in_response": false,
+      "collected_data": "email_address",
+      "created_at": "2016-09-07T14:10:41-07:00",
+      "follow_up": true,
+      "follow_up_hour": 2,
+      "id": 2,
+      "list_id": 10,
+      "no_response_message": "Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "opt_in_message": null,
+      "request_message": "Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "retry_message": "Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "second_opt_in_message": null,
+      "success_action": "nextrequest",
+      "updated_at": "2016-09-07T14:10:41-07:00"
+    },
+    {
+      "bypass_opt_in_response": false,
+      "collected_data": "first_name",
+      "created_at": "2016-09-07T14:10:41-07:00",
+      "follow_up": true,
+      "follow_up_hour": 2,
+      "id": 3,
+      "list_id": 10,
+      "no_response_message": "Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "opt_in_message": null,
+      "request_message": "Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "retry_message": "Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "second_opt_in_message": null,
+      "success_action": "nextrequest",
+      "updated_at": "2016-09-07T14:10:41-07:00"
+    },
+    {
+      "bypass_opt_in_response": false,
+      "collected_data": "yes",
+      "created_at": "2016-09-07T14:10:41-07:00",
+      "follow_up": true,
+      "follow_up_hour": 2,
+      "id": 4,
+      "list_id": 10,
+      "no_response_message": null,
+      "opt_in_message": "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      "request_message": "Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "retry_message": "Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "second_opt_in_message": "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+      "success_action": "optinsubscriber",
+      "updated_at": "2016-09-07T14:10:41-07:00"
+    }
+  ]
 }
 ```
 
@@ -479,9 +543,32 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]});
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  opt_in_type: "double",
+  opt_in_requests: [
+    {
+      collected_data: "zip_code",
+      request_message:
+        "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      retry_message:
+        "Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      follow_up: true,
+      follow_up_hour: 2,
+      no_response_message:
+        "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      success_action: null,
+    },
+  ],
+});
 request.send(data);
 ```
 
@@ -489,26 +576,26 @@ request.send(data);
 
 ```json
 {
-   "status":"Opt in settings updated",
-   "opt_in_type":"double",
-   "opt_in_requests":[
-      {
-         "bypass_opt_in_response":false,
-         "collected_data":"zip_code",
-         "created_at":"2016-09-07T14:10:41-07:00",
-         "follow_up":true,
-         "follow_up_hour":2,
-         "id":1,
-         "list_id":10,
-         "no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "opt_in_message":null,
-         "request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-         "second_opt_in_message":null,
-         "success_action":null,
-         "updated_at":"2016-09-07T14:10:41-07:00"
-      }
-   ]
+  "status": "Opt in settings updated",
+  "opt_in_type": "double",
+  "opt_in_requests": [
+    {
+      "bypass_opt_in_response": false,
+      "collected_data": "zip_code",
+      "created_at": "2016-09-07T14:10:41-07:00",
+      "follow_up": true,
+      "follow_up_hour": 2,
+      "id": 1,
+      "list_id": 10,
+      "no_response_message": "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "opt_in_message": null,
+      "request_message": "Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "retry_message": "Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+      "second_opt_in_message": null,
+      "success_action": null,
+      "updated_at": "2016-09-07T14:10:41-07:00"
+    }
+  ]
 }
 ```
 
@@ -537,9 +624,22 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"opt_in_type":"single","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"});
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  opt_in_type: "single",
+  first_optin_message:
+    "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+  second_optin_message:
+    "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+});
 request.send(data);
 ```
 
@@ -547,14 +647,13 @@ request.send(data);
 
 ```json
 {
-   "opt_in_type":"single",
-   "first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-   "second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
+  "opt_in_type": "single",
+  "first_optin_message": "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+  "second_optin_message": "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
 }
 ```
 
 This endpoint configures an opt-in type for a list.
-
 
 ### HTTP Request
 
@@ -562,28 +661,27 @@ This endpoint configures an opt-in type for a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list to change
-
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| ID        | The ID of the list to change |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-bypass_opt_in_response | If this is set to true, then the usual "first_optin_message" or "second_optin_message" that Tatango sends when someone completes the opt-in process for a list, is not sent. Customers may use this functionality if they prefer to use a scheduled after opt-in message to welcome subscribers, rather than the "first_optin_message" or "second_optin_message".
-opt_in_type | Opt in type (may be either "single" or "double")<br/><br />"single" - This opt-in type is used when you want the user to subscribe to a designated list by simply texting your opt-in keyword to your short code.<br/><br />"double" - This opt-in type is used when you want the user to provide you additional information such as email, name, zip codes, etc., after texting your opt-in keyword to your short code, but before subscribing them to a designated list.
-first_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com
-second_optin_message | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
-opt_in_requests[collected_data]	| Array of opt-in requests, which designate the type of information you'd like a phone number to respond to the message [request_message] with. (only used with double opt-ins)<br /><br/><ul><li>"zip_code"</li><li>"email_address"</li><li>"first_name"</li><li>"yes"</li></ul>
-opt_in_requests[request_message]	| This message is received by a phone number after they text your opt-in keyword, and the  opt_in_type is set as "double". It's critical in this message that you ask the user to respond back with whatever information you've set in [collected_data].<br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"
-opt_in_requests[retry_message]	| If a phone number's response to the message [request_message] isn't valid, based on the information you're trying to collect based on [collected_data], this is the message that will be sent back in response.<br /><br />Example Message: "Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"
-opt_in_requests[follow_up]	| If a phone number doesn't respond to [request_message], you have the option of sending a follow up message, which is [no_response_message], to re-request the information you're asking them for. (may be either "true" or "false")
-opt_in_requests[follow_up_hour]	| If [follow_up] is "true" it's required that you set an amount of hours to have Tatango follow up with a phone number, if they don't respond to the [request_message]. The message that is sent to follow up, is [no_response_message].
-opt_in_requests[no_response_message]	| This is the message sent to a phone number that doesn't respond to [request_message] after the amount of hours designated with [follow_up_hour], to re-request the information you're asking them for. (only used if [follow_up] is "true")<br/><br/>Example Message: "No response received. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com."
-opt_in_requests[success_action]	| Use either "nextrequest" or "optinsubscriber".<br /><br />"nextrequest" - This option allows you to collect additional information from a user, before subscribing them to a designated list.<br /><br />"optinsubscriber" - This option ends the opt-in process, and subscribes the user to a designated list. (Required on last opt-in request)
-opt_in_requests[opt_in_message]	| This message is sent to a phone number after they've succesfully completed the double opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with double opt-ins)<br /><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
-opt_in_requests[second_opt_in_message]	| This message is sent to a phone number after they've succesfully completed the double opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with double opt-ins)<br /><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
+| Parameter                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bypass_opt_in_response                 | If this is set to true, then the usual "first_optin_message" or "second_optin_message" that Tatango sends when someone completes the opt-in process for a list, is not sent. Customers may use this functionality if they prefer to use a scheduled after opt-in message to welcome subscribers, rather than the "first_optin_message" or "second_optin_message".                                                                                                                         |
+| opt_in_type                            | Opt in type (may be either "single" or "double")<br/><br />"single" - This opt-in type is used when you want the user to subscribe to a designated list by simply texting your opt-in keyword to your short code.<br/><br />"double" - This opt-in type is used when you want the user to provide you additional information such as email, name, zip codes, etc., after texting your opt-in keyword to your short code, but before subscribing them to a designated list.                |
+| first_optin_message                    | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com                                                                                           |
+| second_optin_message                   | This message is sent to a phone number after they've succesfully completed the single opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with single opt-ins)<br/><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"  |
+| opt_in_requests[collected_data]        | Array of opt-in requests, which designate the type of information you'd like a phone number to respond to the message [request_message] with. (only used with double opt-ins)<br /><br/><ul><li>"zip_code"</li><li>"email_address"</li><li>"first_name"</li><li>"yes"</li></ul>                                                                                                                                                                                                           |
+| opt_in_requests[request_message]       | This message is received by a phone number after they text your opt-in keyword, and the opt_in_type is set as "double". It's critical in this message that you ask the user to respond back with whatever information you've set in [collected_data].<br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"                                                         |
+| opt_in_requests[retry_message]         | If a phone number's response to the message [request_message] isn't valid, based on the information you're trying to collect based on [collected_data], this is the message that will be sent back in response.<br /><br />Example Message: "Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                   |
+| opt_in_requests[follow_up]             | If a phone number doesn't respond to [request_message], you have the option of sending a follow up message, which is [no_response_message], to re-request the information you're asking them for. (may be either "true" or "false")                                                                                                                                                                                                                                                       |
+| opt_in_requests[follow_up_hour]        | If [follow_up] is "true" it's required that you set an amount of hours to have Tatango follow up with a phone number, if they don't respond to the [request_message]. The message that is sent to follow up, is [no_response_message].                                                                                                                                                                                                                                                    |
+| opt_in_requests[no_response_message]   | This is the message sent to a phone number that doesn't respond to [request_message] after the amount of hours designated with [follow_up_hour], to re-request the information you're asking them for. (only used if [follow_up] is "true")<br/><br/>Example Message: "No response received. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com."                                                           |
+| opt_in_requests[success_action]        | Use either "nextrequest" or "optinsubscriber".<br /><br />"nextrequest" - This option allows you to collect additional information from a user, before subscribing them to a designated list.<br /><br />"optinsubscriber" - This option ends the opt-in process, and subscribes the user to a designated list. (Required on last opt-in request)                                                                                                                                         |
+| opt_in_requests[opt_in_message]        | This message is sent to a phone number after they've succesfully completed the double opt-in process for a specific list, and at no point in the past has been subscribed to the list. (only used with double opt-ins)<br /><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                         |
+| opt_in_requests[second_opt_in_message] | This message is sent to a phone number after they've succesfully completed the double opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again. (only used with double opt-ins)<br /><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com" |
 
 ## Creating a New List
 
@@ -611,8 +709,32 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome lis
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"list":{"name":"My awesome list","message_yes":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com","message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.","message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com","message_already_subscribed":"ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","email_digest":"myemail18@gmail.com","email_subscribe":true,"email_unsubscribe":true}});
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  list: {
+    name: "My awesome list",
+    message_yes:
+      "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+    message_help:
+      "ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
+    message_stop:
+      "ACME Retail: You have been unsubscribed and will not receive any more messages.",
+    message_reply:
+      "ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com",
+    message_already_subscribed:
+      "ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+    first_optin_message:
+      "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+    second_optin_message:
+      "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+    email_digest: "myemail18@gmail.com",
+    email_subscribe: true,
+    email_unsubscribe: true,
+  },
+});
 request.send(data);
 ```
 
@@ -620,36 +742,29 @@ request.send(data);
 
 ```json
 {
-   "status":"List created",
-   "list":{
-      "id":11,
-      "name":"My awesome list",
-      "email_digest":"myemail18@gmail.com",
-      "email_subscribe":true,
-      "email_unsubscribe":true,
-      "first_optin_message":"ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg & data rates may apply. Terms apply 12345-info.com",
-      "second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
-      "message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
-      "message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.",
-      "message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com",
-      "message_already_subscribed":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
-      "message_yes":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
-      "keyword_names":[
-        "JOIN",
-        "SAVE",
-        "COUPONS",
-        "SALE"
-      ],
-      "counts":{
-         "subscribers":0,
-         "unsubscribed":0,
-         "cleaned":0
-      },
-      "opt_in_type":"single",
-      "opt_in_requests":[
-
-      ]
-   }
+  "status": "List created",
+  "list": {
+    "id": 11,
+    "name": "My awesome list",
+    "email_digest": "myemail18@gmail.com",
+    "email_subscribe": true,
+    "email_unsubscribe": true,
+    "first_optin_message": "ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg & data rates may apply. Terms apply 12345-info.com",
+    "second_optin_message": "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com",
+    "message_help": "ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
+    "message_stop": "ACME Retail: You have been unsubscribed and will not receive any more messages.",
+    "message_reply": "ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com",
+    "message_already_subscribed": "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com",
+    "message_yes": "ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com",
+    "keyword_names": ["JOIN", "SAVE", "COUPONS", "SALE"],
+    "counts": {
+      "subscribers": 0,
+      "unsubscribed": 0,
+      "cleaned": 0
+    },
+    "opt_in_type": "single",
+    "opt_in_requests": []
+  }
 }
 ```
 
@@ -657,8 +772,8 @@ This endpoint creates a new list.
 
 Note: the following settings cannot be modified via the API:
 
- - API Confirmation Resend Block Timeout
- - Resubscribers
+- API Confirmation Resend Block Timeout
+- Resubscribers
 
 ### HTTP Request
 
@@ -666,20 +781,20 @@ Note: the following settings cannot be modified via the API:
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-list[name] | List names are to help you distinguish which list is which, and are only visible to you, and are never seen by users. (Limit 25 characters)
-list[message_yes] | This message is sent to a user when their mobile number is added to a list through the API. Users must respond “YES” or “Y” to this message, to be subscribed. <br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"
-list[message_help] | This is the message that is sent back to users when they respond to any of your messages with the word "HELP".<br /><br />Example Message: ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com"
-list[message_stop] | This is the message that is sent back to users when they respond to any of your messages with the word "STOP".<br /><br />Example Message: "ACME Retail: You have been unsubscribed and will not receive any more messages."
-list[message_reply] | This is the message that is sent back to subscribers when they respond to a mass message that you send them.<br /><br />Example Message: "ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com"
-list[message_already_subscribed] | This is the message that is sent back to users when they're attempting to opt-in, but they're already subscribed to the list.<br /><br />Example Message: "ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
-list[first_optin_message] | This message is sent to a phone number after they've succesfully completed the opt-in process for a specific list, and at no point in the past has been subscribed to the list.<br /><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
-list[second_optin_message] | This message is sent to a phone number after they've succesfully completed the opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again.<br /><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"
-list[email_digest] | Receive a daily email with a list of phone numbers that subscribed and unsubscribed from a designated list. Leave blank if you dont want to receive this daily email.
-list[email_subscribe] | Receive an email immediately when you get a new subscriber for a designated list. Email contains phone number of new subscriber. Leave blank if you dont want to receive this email.
-list[email_unsubscribe] | Receive an email immediately when a subscriber unsubscribes from a designated list. Email contains phone number of lost subscriber. Leave blank if you dont want to receive this email.
-list[keyword_names] | (optional) An array of keywords to associate to the list. See the FAQs below for keyword limitations.
+| Parameter                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| list[name]                       | List names are to help you distinguish which list is which, and are only visible to you, and are never seen by users. (Limit 25 characters)                                                                                                                                                                                                                                                                                                        |
+| list[message_yes]                | This message is sent to a user when their mobile number is added to a list through the API. Users must respond “YES” or “Y” to this message, to be subscribed. <br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                        |
+| list[message_help]               | This is the message that is sent back to users when they respond to any of your messages with the word "HELP".<br /><br />Example Message: ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com"                                                                                                                                                           |
+| list[message_stop]               | This is the message that is sent back to users when they respond to any of your messages with the word "STOP".<br /><br />Example Message: "ACME Retail: You have been unsubscribed and will not receive any more messages."                                                                                                                                                                                                                       |
+| list[message_reply]              | This is the message that is sent back to subscribers when they respond to a mass message that you send them.<br /><br />Example Message: "ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                                                                                        |
+| list[message_already_subscribed] | This is the message that is sent back to users when they're attempting to opt-in, but they're already subscribed to the list.<br /><br />Example Message: "ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                                                           |
+| list[first_optin_message]        | This message is sent to a phone number after they've succesfully completed the opt-in process for a specific list, and at no point in the past has been subscribed to the list.<br /><br />Example Message: "ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                         |
+| list[second_optin_message]       | This message is sent to a phone number after they've succesfully completed the opt-in process for a specific list, and at some point in the past has been subscribed to the list. This happens when a phone number opts-in, opts-out, then opts-in again.<br /><br />Example Message: "ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com" |
+| list[email_digest]               | Receive a daily email with a list of phone numbers that subscribed and unsubscribed from a designated list. Leave blank if you dont want to receive this daily email.                                                                                                                                                                                                                                                                              |
+| list[email_subscribe]            | Receive an email immediately when you get a new subscriber for a designated list. Email contains phone number of new subscriber. Leave blank if you dont want to receive this email.                                                                                                                                                                                                                                                               |
+| list[email_unsubscribe]          | Receive an email immediately when a subscriber unsubscribes from a designated list. Email contains phone number of lost subscriber. Leave blank if you dont want to receive this email.                                                                                                                                                                                                                                                            |
+| list[keyword_names]              | (optional) An array of keywords to associate to the list. See the FAQs below for keyword limitations.                                                                                                                                                                                                                                                                                                                                              |
 
 <aside class="success">
   FAQs
@@ -742,8 +857,11 @@ curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"list":{"name":"My awesome list"}});
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ list: { name: "My awesome list" } });
 request.send(data);
 ```
 
@@ -751,7 +869,7 @@ request.send(data);
 
 ```json
 {
-  "status":"List Destroyed"
+  "status": "List Destroyed"
 }
 ```
 
@@ -763,9 +881,9 @@ This endpoint destroys a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list to delete
+| Parameter | Description              |
+| --------- | ------------------------ |
+| ID        | ID of the list to delete |
 
 ## Setting(Updating) Keywords for a List
 
@@ -793,9 +911,16 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/keywords" -d '{"keyword_names":[
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"keyword_names":["TEST","KEYWORD","NAMES"]});
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ keyword_names: ["TEST", "KEYWORD", "NAMES"] });
 request.send(data);
 ```
 
@@ -803,12 +928,8 @@ request.send(data);
 
 ```json
 {
-   "status":"Keywords changed",
-   "keyword_names":[
-      "TEST",
-      "KEYWORD",
-      "NAMES"
-   ]
+  "status": "Keywords changed",
+  "keyword_names": ["TEST", "KEYWORD", "NAMES"]
 }
 ```
 
@@ -820,16 +941,15 @@ This endpoint sets or updates keywords for a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list to change
-
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| ID        | The ID of the list to change |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-keyword_names	| Array of keyword names
+| Parameter     | Description            |
+| ------------- | ---------------------- |
+| keyword_names | Array of keyword names |
 
 <aside class="success">
   <ul>
@@ -878,8 +998,11 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PU
 ```javascript
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"list":{"name":"Name"}});
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ list: { name: "Name" } });
 request.send(data);
 ```
 
@@ -887,33 +1010,29 @@ request.send(data);
 
 ```json
 {
-   "status":"OK",
-   "list":{
-      "id":1,
-      "name":"Name",
-      "email_digest":"myemail0@gmail.com",
-      "email_subscribe":null,
-      "email_unsubscribe":null,
-      "first_optin_message":"",
-      "second_optin_message":"",
-      "message_help":null,
-      "message_stop":null,
-      "message_reply":null,
-      "message_already_subscribed":null,
-      "message_yes":null,
-      "keyword_names":[
-
-      ],
-      "counts":{
-         "subscribers":0,
-         "unsubscribed":0,
-         "cleaned":0
-      },
-      "opt_in_type":"single",
-      "opt_in_requests":[
-
-      ]
-   }
+  "status": "OK",
+  "list": {
+    "id": 1,
+    "name": "Name",
+    "email_digest": "myemail0@gmail.com",
+    "email_subscribe": null,
+    "email_unsubscribe": null,
+    "first_optin_message": "",
+    "second_optin_message": "",
+    "message_help": null,
+    "message_stop": null,
+    "message_reply": null,
+    "message_already_subscribed": null,
+    "message_yes": null,
+    "keyword_names": [],
+    "counts": {
+      "subscribers": 0,
+      "unsubscribed": 0,
+      "cleaned": 0
+    },
+    "opt_in_type": "single",
+    "opt_in_requests": []
+  }
 }
 ```
 
@@ -921,8 +1040,8 @@ This endpoint updates a list.
 
 Note: the following settings cannot be modified via the API:
 
- - API Confirmation Resend Block Timeout
- - Resubscribers
+- API Confirmation Resend Block Timeout
+- Resubscribers
 
 ### HTTP Request
 
@@ -930,25 +1049,25 @@ Note: the following settings cannot be modified via the API:
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list to change
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| ID        | The ID of the list to change |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-list[name] | List name
-list[message_yes] | API Opt-In Confirmation Request
-list[message_help] | HELP Response
-list[message_stop] | STOP Response
-list[message_reply] | REPLY Response
-list[message_already_subscribed] | Already Subscribed Response
-list[first_optin_message] | First Opt In Message
-list[second_optin_message] | Second Opt In Message
-list[email_digest] | Email to send email digest to. Leave blank if you dont want to receive
-list[email_subscribe] | Email to send subscribe notifications to. Leave blank if you dont want to receive
-list[email_unsubscribe] | Email to send unsubscribe notifications to. Leave blank if you dont want to receive
+| Parameter                        | Description                                                                         |
+| -------------------------------- | ----------------------------------------------------------------------------------- |
+| list[name]                       | List name                                                                           |
+| list[message_yes]                | API Opt-In Confirmation Request                                                     |
+| list[message_help]               | HELP Response                                                                       |
+| list[message_stop]               | STOP Response                                                                       |
+| list[message_reply]              | REPLY Response                                                                      |
+| list[message_already_subscribed] | Already Subscribed Response                                                         |
+| list[first_optin_message]        | First Opt In Message                                                                |
+| list[second_optin_message]       | Second Opt In Message                                                               |
+| list[email_digest]               | Email to send email digest to. Leave blank if you dont want to receive              |
+| list[email_subscribe]            | Email to send subscribe notifications to. Leave blank if you dont want to receive   |
+| list[email_unsubscribe]          | Email to send unsubscribe notifications to. Leave blank if you dont want to receive |
 
 #Subscribers
 
@@ -977,9 +1096,27 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"p
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}});
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  subscriber: {
+    phone_number: "2141234567",
+    first_name: "John",
+    last_name: "Doe",
+    email: "johndoe@domain.com",
+    birthdate: "19780728",
+    zip_code: "52421",
+    gender: "Male",
+    custom_field_key: "custom_value",
+  },
+});
 request.send(data);
 ```
 
@@ -1133,38 +1270,38 @@ This endpoint adds a subscriber to a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-subscriber[phone_number] | The wireless phone number of the subscriber.
-subscriber[first_name] | (optional) First name - char(50)
-subscriber[last_name] | (optional) Last name - char(50)
-subscriber[email] | (optional) Email - char(50)
-subscriber[birthdate] | (optional) Birthdate - int(8)
-subscriber[zip_code] | (optional) ZIP code - char(6)
-subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-subscriber[bypass_opt_in_process] | When true, the phone number will be added to the list without using the double opt-in method. This means numbers will not receive a "Reply YES to subscribe" message. This option does not suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. To disable the double opt-in method, and the message confirming a phone numbers subscription to a list, both subscriber[bypass_opt_in_process] and subscriber[bypass_opt_in_response] will have to be true.
-subscriber[bypass_opt_in_response] | When true, suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. This option is independent of subscriber[bypass_opt_in_process].
-subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
-subscriber[custom_field_key] | (optional) Custom data value
+| Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| subscriber[phone_number]           | The wireless phone number of the subscriber.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| subscriber[first_name]             | (optional) First name - char(50)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| subscriber[last_name]              | (optional) Last name - char(50)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| subscriber[email]                  | (optional) Email - char(50)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| subscriber[birthdate]              | (optional) Birthdate - int(8)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| subscriber[zip_code]               | (optional) ZIP code - char(6)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| subscriber[gender]                 | (optional) Gender - char('Male' or 'Female')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| subscriber[bypass_opt_in_process]  | When true, the phone number will be added to the list without using the double opt-in method. This means numbers will not receive a "Reply YES to subscribe" message. This option does not suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. To disable the double opt-in method, and the message confirming a phone numbers subscription to a list, both subscriber[bypass_opt_in_process] and subscriber[bypass_opt_in_response] will have to be true. |
+| subscriber[bypass_opt_in_response] | When true, suppress the message sent immediately after a phone number has been added to a list, confirming their subscription to the list. This option is independent of subscriber[bypass_opt_in_process].                                                                                                                                                                                                                                                                                                                            |
+| subscriber[tags]                   | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| subscriber[custom_field_key]       | (optional) Custom data value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-phone_number | The wireless phone number of the subscriber.
-cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
-subscribed_at | The data that this subscriber first subscribed to this specific list.
-opted_out_at | The data that this subscriber last unsubscribed from this specific list.
-opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
-keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
-carrier | The ID of the wireless carrier for this specific subscriber.
-carrier_name | The name of the wireless carrier for this specific subscriber.
+| Key           | Description                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number  | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
 
 <aside>
 <h3>FAQ About This Endpoint</h3>
@@ -1228,8 +1365,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -1237,30 +1381,26 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "subscriber":{
-      "phone_number":"2141234567",
-      "first_name":"John",
-      "last_name":"Doe",
-      "email":"johndoe@mydomain.com",
-      "birthdate":"19780728",
-      "zip_code":"5124",
-      "gender":"Male",
-      "cleaned_at":null,
-      "subscribed_at":"2016-09-07T14:10:53-07:00",
-      "opted_out_at":null,
-      "optin_in_progress":false,
-      "opt_in_method":"api",
-      "keyword_name":null,
-      "carrier":77,
-      "carrier_name":"Verizon",
-      "tags":[
-        "shopping",
-        "malls",
-        "deals"
-      ],
-      "total_messages_received":121
-   }
+  "status": "OK",
+  "subscriber": {
+    "phone_number": "2141234567",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@mydomain.com",
+    "birthdate": "19780728",
+    "zip_code": "5124",
+    "gender": "Male",
+    "cleaned_at": null,
+    "subscribed_at": "2016-09-07T14:10:53-07:00",
+    "opted_out_at": null,
+    "optin_in_progress": false,
+    "opt_in_method": "api",
+    "keyword_name": null,
+    "carrier": 77,
+    "carrier_name": "Verizon",
+    "tags": ["shopping", "malls", "deals"],
+    "total_messages_received": 121
+  }
 }
 ```
 
@@ -1272,24 +1412,24 @@ This endpoint returns information about a current subscriber.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber (phone number)
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+| SUBSCRIBER_ID | ID of the subscriber (phone number) |
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-phone_number | The wireless phone number of the subscriber.
-cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
-subscribed_at | The data that this subscriber first subscribed to this specific list.
-opted_out_at | The data that this subscriber last unsubscribed from this specific list.
-opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
-keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
-carrier | The ID of the wireless carrier for this specific subscriber.
-carrier_name | The name of the wireless carrier for this specific subscriber.
-total_messages_received | The total amount of mass messages this specific subscriber has received over their lifetime from this specific list.
+| Key                     | Description                                                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number            | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at              | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at           | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at            | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method           | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name            | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier                 | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name            | The name of the wireless carrier for this specific subscriber.                                                               |
+| total_messages_received | The total amount of mass messages this specific subscriber has received over their lifetime from this specific list.         |
 
 ## Updating a Subscriber
 
@@ -1316,9 +1456,18 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"subscriber":{"first_name":"John","last_name":"Doe", "custom_field_key": "custom_value"}}');
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify(
+  '{"subscriber":{"first_name":"John","last_name":"Doe", "custom_field_key": "custom_value"}}'
+);
 request.send(data);
 ```
 
@@ -1326,28 +1475,26 @@ request.send(data);
 
 ```json
 {
-   "status":"Subscriber has been updated.",
-   "subscriber":{
-      "phone_number":"2141234567",
-      "first_name":"John",
-      "last_name":"Doe",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
-      "cleaned_at":null,
-      "subscribed_at":"2016-09-07T14:10:54-07:00",
-      "opted_out_at":"2016-09-06T16:00:00-07:00",
-      "optin_in_progress":true,
-      "opt_in_method":"api",
-      "keyword_name":null,
-      "carrier":77,
-      "carrier_name":"Verizon",
-      "tags":[
-
-      ],
-      "custom_field_key":"custom_value"
-   }
+  "status": "Subscriber has been updated.",
+  "subscriber": {
+    "phone_number": "2141234567",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "",
+    "birthdate": "",
+    "zip_code": "",
+    "gender": null,
+    "cleaned_at": null,
+    "subscribed_at": "2016-09-07T14:10:54-07:00",
+    "opted_out_at": "2016-09-06T16:00:00-07:00",
+    "optin_in_progress": true,
+    "opt_in_method": "api",
+    "keyword_name": null,
+    "carrier": 77,
+    "carrier_name": "Verizon",
+    "tags": [],
+    "custom_field_key": "custom_value"
+  }
 }
 ```
 
@@ -1355,16 +1502,16 @@ This endpoint updates a subscriber.
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-phone_number | The wireless phone number of the subscriber.
-cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
-subscribed_at | The data that this subscriber first subscribed to this specific list.
-opted_out_at | The data that this subscriber last unsubscribed from this specific list.
-opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
-keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
-carrier | The ID of the wireless carrier for this specific subscriber.
-carrier_name | The name of the wireless carrier for this specific subscriber.
+| Key           | Description                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number  | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
 
 <aside class="success">
   <h3>FAQS About This Endpoint</h3>
@@ -1386,25 +1533,25 @@ carrier_name | The name of the wireless carrier for this specific subscriber.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber (phone number)
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+| SUBSCRIBER_ID | ID of the subscriber (phone number) |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-subscriber[phone_number] | The wireless phone number of the subscriber.
-subscriber[first_name] | (optional) First name - char(50)
-subscriber[last_name] | (optional) Last name - char(50)
-subscriber[email] | (optional) Email - char(50)
-subscriber[birthdate] | (optional) Birthdate - int(6)
-subscriber[zip_code] | (optional) ZIP code - char(6)
-subscriber[gender] | (optional) Gender - char('Male' or 'Female')
-subscriber[tags] | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts'
-subscriber[custom_field_key] | (optional) Custom data value
+| Parameter                    | Description                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| ID                           | ID of the list                                                                                   |
+| subscriber[phone_number]     | The wireless phone number of the subscriber.                                                     |
+| subscriber[first_name]       | (optional) First name - char(50)                                                                 |
+| subscriber[last_name]        | (optional) Last name - char(50)                                                                  |
+| subscriber[email]            | (optional) Email - char(50)                                                                      |
+| subscriber[birthdate]        | (optional) Birthdate - int(6)                                                                    |
+| subscriber[zip_code]         | (optional) ZIP code - char(6)                                                                    |
+| subscriber[gender]           | (optional) Gender - char('Male' or 'Female')                                                     |
+| subscriber[tags]             | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts' |
+| subscriber[custom_field_key] | (optional) Custom data value                                                                     |
 
 ## Adding Multiple Tags to Multiple Subscribers
 
@@ -1431,9 +1578,19 @@ curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/bulk_taggings", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/lists/ID/bulk_taggings",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  phone_numbers: ["2145550762", "7185550549", "2125550838"],
+  tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
+});
 request.send(data);
 ```
 
@@ -1441,17 +1598,17 @@ request.send(data);
 
 ```json
 {
-   "status": "Bulk tagging operation queued successfully.",
-   "number_count": 3,
-   "tag_count": 4,
-   "subscribers_to_update": 3,
-   "replace_tags": false,
-   "not_subscribed": [
-      'list of numbers passed numbers that are not subscribed, this will not display if all numbers are subscribed'
-   ],
-   "invalid_numbers": [
-      'list of passed numbers that are invalid, this will not display if all numbers are valid'
-   ]
+  "status": "Bulk tagging operation queued successfully.",
+  "number_count": 3,
+  "tag_count": 4,
+  "subscribers_to_update": 3,
+  "replace_tags": false,
+  "not_subscribed": [
+    "list of numbers passed numbers that are not subscribed, this will not display if all numbers are subscribed"
+  ],
+  "invalid_numbers": [
+    "list of passed numbers that are invalid, this will not display if all numbers are valid"
+  ]
 }
 ```
 
@@ -1459,14 +1616,14 @@ This endpoint applies multiple tags to multiple subscribers
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-number_count | The number of phone numbers in your passed phone_numbers list
-tag_count | The number of tags in your passed tags list
-subscribers_to_update | The number of subscribed members to your list that will be updated with the new tags
-replace_tags | If true all the tags for subscribers will be replaced with the new tags. If false it will add the new tags to the old tags
-not_subscribed | A list of phone numbers that were passed that are not subscribed to the defined list. If all numbers are subscribed this will not be displayed
-invalid_numbers | A list of phone numbers that were passed in that are not valid phone numbers. An invalid number will also consist of landline phones. If all numbers are valid this will not be displayed
+| Key                   | Description                                                                                                                                                                               |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| number_count          | The number of phone numbers in your passed phone_numbers list                                                                                                                             |
+| tag_count             | The number of tags in your passed tags list                                                                                                                                               |
+| subscribers_to_update | The number of subscribed members to your list that will be updated with the new tags                                                                                                      |
+| replace_tags          | If true all the tags for subscribers will be replaced with the new tags. If false it will add the new tags to the old tags                                                                |
+| not_subscribed        | A list of phone numbers that were passed that are not subscribed to the defined list. If all numbers are subscribed this will not be displayed                                            |
+| invalid_numbers       | A list of phone numbers that were passed in that are not valid phone numbers. An invalid number will also consist of landline phones. If all numbers are valid this will not be displayed |
 
 ### HTTP Request
 
@@ -1474,18 +1631,18 @@ invalid_numbers | A list of phone numbers that were passed in that are not valid
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-phone_numbers | Array of phone numbers you want to modify. The max length of this array is 1000 values
-tags | (optional) Array of tags to add. The max length of this array is 50 values
-replace_tags | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined
+| Parameter     | Description                                                                                                                                         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ID            | ID of the list                                                                                                                                      |
+| phone_numbers | Array of phone numbers you want to modify. The max length of this array is 1000 values                                                              |
+| tags          | (optional) Array of tags to add. The max length of this array is 50 values                                                                          |
+| replace_tags  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
 
 ### Other uses
 
@@ -1515,8 +1672,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "DELETE",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -1524,27 +1688,25 @@ request.send(null);
 
 ```json
 {
-   "status":"successfully unsubscribed",
-   "subscriber":{
-      "phone_number":"2141234567",
-      "first_name":"",
-      "last_name":"",
-      "email":"",
-      "birthdate":"",
-      "zip_code":"",
-      "gender":null,
-      "cleaned_at":null,
-      "subscribed_at":"2016-09-07T14:10:53-07:00",
-      "opted_out_at":"2016-09-07T14:10:54-07:00",
-      "optin_in_progress":true,
-      "opt_in_method":"api",
-      "keyword_name":null,
-      "carrier":77,
-      "carrier_name":"Verizon",
-      "tags":[
-
-      ]
-   }
+  "status": "successfully unsubscribed",
+  "subscriber": {
+    "phone_number": "2141234567",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "birthdate": "",
+    "zip_code": "",
+    "gender": null,
+    "cleaned_at": null,
+    "subscribed_at": "2016-09-07T14:10:53-07:00",
+    "opted_out_at": "2016-09-07T14:10:54-07:00",
+    "optin_in_progress": true,
+    "opt_in_method": "api",
+    "keyword_name": null,
+    "carrier": 77,
+    "carrier_name": "Verizon",
+    "tags": []
+  }
 }
 ```
 
@@ -1556,23 +1718,23 @@ This endpoint unsubscribes a subscriber.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-SUBSCRIBER_ID | ID of the subscriber (phone number)
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+| SUBSCRIBER_ID | ID of the subscriber (phone number) |
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-phone_number | The wireless phone number of the subscriber.
-cleaned_at | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here.
-subscribed_at | The data that this subscriber first subscribed to this specific list.
-opted_out_at | The data that this subscriber last unsubscribed from this specific list.
-opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.
-keyword_name | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.
-carrier | The ID of the wireless carrier for this specific subscriber.
-carrier_name | The name of the wireless carrier for this specific subscriber.
+| Key           | Description                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number  | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
 
 ## Get a List of Subscribed Phone Numbers
 
@@ -1598,8 +1760,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '' -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -1607,14 +1776,12 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "per_page":10,
-   "count":1,
-   "page":1,
-   "pages_count":1,
-   "phone_numbers":[
-      "2145550816"
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 1,
+  "page": 1,
+  "pages_count": 1,
+  "phone_numbers": ["2145550816"]
 }
 ```
 
@@ -1626,9 +1793,9 @@ This endpoint gets a list of subscribed phone numbers for the requested list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ## Get a List of Unsubscribed Phone Numbers
 
@@ -1654,8 +1821,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed" -d '' -X
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -1663,14 +1837,12 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "per_page":10,
-   "count":1,
-   "page":1,
-   "pages_count":1,
-   "phone_numbers":[
-      "2145550816"
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 1,
+  "page": 1,
+  "pages_count": 1,
+  "phone_numbers": ["2145550816"]
 }
 ```
 
@@ -1682,13 +1854,13 @@ This endpoint gets a list of unsubscribed phone numbers.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 # Messaging
 
-The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-_\/@$#&%
+The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-\_\/@$#&%
 
 160 characters max
 
@@ -1717,68 +1889,73 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -d '{"start_date":"201
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/<ID>/messages",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ start_date: "20160901", end_date: "20161030" });
 request.send(data);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-
 {
-   "status":"OK",
-   "per_page":10,
-   "count":2,
-   "page":1,
-   "pages_count":1,
-   "messages":[
-      {
-         "id":14523,
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
-         "status":"sent",
-         "sent_at":"2016-09-07T14:10:53-07:00",
-         "name": "my message name",
-         "is_broadcast":true,
-         "recipient_count":679571,
-         "success_count":675232,
-         "bounces_count":4339,
-         "pending_count":0,
-         "clean_count":2342,
-         "unsubscribe_count":1362,
-         "sms_count":168808,
-         "mms_count":506424,
-         "send_cost": 5096.78
-      },
-      {
-         "id":14523,
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"sent",
-         "name": "another message name",
-         "is_broadcast":true,
-         "recipient_count":679571,
-         "success_count":675232,
-         "bounces_count":4339,
-         "pending_count":0,
-         "clean_count":2342,
-         "unsubscribe_count":1362,
-         "sms_count":168808,
-         "mms_count":506424,
-         "send_cost": 5096.78,
-         "message_links": [
-            {
-               "id":42,
-               "link":"http://bit.ly/acme",
-               "count":2356,
-               "display_count":2356
-            }
-         ]
-      }
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 2,
+  "page": 1,
+  "pages_count": 1,
+  "messages": [
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "status": "sent",
+      "sent_at": "2016-09-07T14:10:53-07:00",
+      "name": "my message name",
+      "is_broadcast": true,
+      "recipient_count": 679571,
+      "success_count": 675232,
+      "bounces_count": 4339,
+      "pending_count": 0,
+      "clean_count": 2342,
+      "unsubscribe_count": 1362,
+      "sms_count": 168808,
+      "mms_count": 506424,
+      "send_cost": 5096.78
+    },
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+      "sent_at": "2016-10-07T14:10:53-07:00",
+      "status": "sent",
+      "name": "another message name",
+      "is_broadcast": true,
+      "recipient_count": 679571,
+      "success_count": 675232,
+      "bounces_count": 4339,
+      "pending_count": 0,
+      "clean_count": 2342,
+      "unsubscribe_count": 1362,
+      "sms_count": 168808,
+      "mms_count": 506424,
+      "send_cost": 5096.78,
+      "message_links": [
+        {
+          "id": 42,
+          "link": "http://bit.ly/acme",
+          "count": 2356,
+          "display_count": 2356
+        }
+      ]
+    }
+  ]
 }
-
 ```
 
 This endpoint retrieves all sent messages in a list.
@@ -1791,11 +1968,11 @@ Please note the `message_links` attribute will only be present on messages that 
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-start_date | (optional) A date in YYYYMMDD format. Messages sent before this date will not be returned (UTC).
-end_date | (optional) A date in YYYYMMDD format. Messages sent after this date will not be returned (UTC).
+| Parameter  | Description                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------ |
+| ID         | The ID of the list                                                                               |
+| start_date | (optional) A date in YYYYMMDD format. Messages sent before this date will not be returned (UTC). |
+| end_date   | (optional) A date in YYYYMMDD format. Messages sent after this date will not be returned (UTC).  |
 
 ## Retrieve All Draft Messages in a List
 
@@ -1822,68 +1999,75 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages/draft" -d '{"start_date
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages/draft", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/<ID>/messages/draft",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ start_date: "20160901", end_date: "20161030" });
 request.send(data);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-
 {
-   "status":"OK",
-   "per_page":10,
-   "count":2,
-   "page":1,
-   "pages_count":1,
-   "messages":[
-      {
-         "id":14523,
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
-         "sent_at":"2016-09-07T14:10:53-07:00",
-         "status":"draft",
-         "name": "my message name",
-         "is_broadcast":false,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0,
-         "sms_count":0,
-         "mms_count":0,
-         "send_cost": 0.0
-      },
-      {
-         "id":14523,
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"draft",
-         "name": "another message name",
-         "is_broadcast":false,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0,
-         "sms_count":0,
-         "mms_count":0,
-         "send_cost": 0.0,
-         "message_links": [
-            {
-               "id":42,
-               "link":"http://bit.ly/acme",
-               "count":0,
-               "display_count":0
-            }
-         ]
-      }
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 2,
+  "page": 1,
+  "pages_count": 1,
+  "messages": [
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "sent_at": "2016-09-07T14:10:53-07:00",
+      "status": "draft",
+      "name": "my message name",
+      "is_broadcast": false,
+      "recipient_count": 0,
+      "success_count": 0,
+      "bounces_count": 0,
+      "pending_count": 0,
+      "clean_count": 0,
+      "unsubscribe_count": 0,
+      "sms_count": 0,
+      "mms_count": 0,
+      "send_cost": 0.0,
+      "attachment": "https://url-to-your-mms-attachment"
+    },
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+      "sent_at": "2016-10-07T14:10:53-07:00",
+      "status": "draft",
+      "name": "another message name",
+      "is_broadcast": false,
+      "recipient_count": 0,
+      "success_count": 0,
+      "bounces_count": 0,
+      "pending_count": 0,
+      "clean_count": 0,
+      "unsubscribe_count": 0,
+      "sms_count": 0,
+      "mms_count": 0,
+      "send_cost": 0.0,
+      "attachment": "https://url-to-your-mms-attachment",
+      "message_links": [
+        {
+          "id": 42,
+          "link": "http://bit.ly/acme",
+          "count": 0,
+          "display_count": 0
+        }
+      ]
+    }
+  ]
 }
-
 ```
 
 This endpoint retrieves all draft messages in a list.
@@ -1894,11 +2078,11 @@ This endpoint retrieves all draft messages in a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-start_date | (optional) A date in YYYYMMDD format. Drafts created before this date will not be returned (UTC).
-end_date | (optional) A date in YYYYMMDD format. Drafts created after this date will not be returned (UTC).
+| Parameter  | Description                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------- |
+| ID         | The ID of the list                                                                                |
+| start_date | (optional) A date in YYYYMMDD format. Drafts created before this date will not be returned (UTC). |
+| end_date   | (optional) A date in YYYYMMDD format. Drafts created after this date will not be returned (UTC).  |
 
 ## Retrieve All Scheduled Messages in a List
 
@@ -1925,68 +2109,75 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled" -d '{"start_
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"start_date":"20160901", "end_date":"20161030"});
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ start_date: "20160901", end_date: "20161030" });
 request.send(data);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-
 {
-   "status":"OK",
-   "per_page":10,
-   "count":2,
-   "page":1,
-   "pages_count":1,
-   "messages":[
-      {
-         "id":14523,
-         "content":"AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
-         "sent_at":"2016-09-07T14:10:53-07:00",
-         "status":"scheduled",
-         "name": "my message name",
-         "is_broadcast":false,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0,
-         "sms_count":0,
-         "mms_count":0,
-         "send_cost": 0.0
-      },
-      {
-         "id":14523,
-         "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-         "sent_at":"2016-10-07T14:10:53-07:00",
-         "status":"scheduled",
-         "name": "another message name",
-         "is_broadcast":false,
-         "recipient_count":0,
-         "success_count":0,
-         "bounces_count":0,
-         "pending_count":0,
-         "clean_count":0,
-         "unsubscribe_count":0,
-         "sms_count":0,
-         "mms_count":0,
-         "send_cost": 0.0,
-         "message_links": [
-            {
-               "id":42,
-               "link":"http://bit.ly/acme",
-               "count":0,
-               "display_count":0
-            }
-         ]
-      }
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 2,
+  "page": 1,
+  "pages_count": 1,
+  "messages": [
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Save $20 off this weekend when you spend more than $100 in-store. Show this text message to redeem. Reply STOP to end.",
+      "sent_at": "2016-09-07T14:10:53-07:00",
+      "status": "scheduled",
+      "name": "my message name",
+      "is_broadcast": false,
+      "recipient_count": 0,
+      "success_count": 0,
+      "bounces_count": 0,
+      "pending_count": 0,
+      "clean_count": 0,
+      "unsubscribe_count": 0,
+      "sms_count": 0,
+      "mms_count": 0,
+      "send_cost": 0.0,
+      "attachment": "https://url-to-your-mms-attachment"
+    },
+    {
+      "id": 14523,
+      "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+      "sent_at": "2016-10-07T14:10:53-07:00",
+      "status": "scheduled",
+      "name": "another message name",
+      "is_broadcast": false,
+      "recipient_count": 0,
+      "success_count": 0,
+      "bounces_count": 0,
+      "pending_count": 0,
+      "clean_count": 0,
+      "unsubscribe_count": 0,
+      "sms_count": 0,
+      "mms_count": 0,
+      "send_cost": 0.0,
+      "attachment": "https://url-to-your-mms-attachment",
+      "message_links": [
+        {
+          "id": 42,
+          "link": "http://bit.ly/acme",
+          "count": 0,
+          "display_count": 0
+        }
+      ]
+    }
+  ]
 }
-
 ```
 
 This endpoint retrieves all scheduled messages in a list.
@@ -1997,11 +2188,11 @@ This endpoint retrieves all scheduled messages in a list.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-start_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send before this date will not be returned (UTC).
-end_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send after this date will not be returned (UTC).
+| Parameter  | Description                                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| ID         | The ID of the list                                                                                                      |
+| start_date | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send before this date will not be returned (UTC). |
+| end_date   | (optional) A date in YYYYMMDD format. Scheduled messages scheduled to send after this date will not be returned (UTC).  |
 
 ## Sending Message to Entire List
 
@@ -2029,8 +2220,11 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"message":{"content":"Hello, world!"}});
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ message: { content: "Hello, world!" } });
 request.send(data);
 ```
 
@@ -2038,10 +2232,10 @@ request.send(data);
 
 ```json
 {
-   "status":"OK",
-   "message":{
-      "id":4
-   }
+  "status": "OK",
+  "message": {
+    "id": 4
+  }
 }
 ```
 
@@ -2053,16 +2247,15 @@ This endpoint sends a message.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-message[content] | Message content
+| Parameter        | Description     |
+| ---------------- | --------------- |
+| message[content] | Message content |
 
 ## Querying an Existing Message
 
@@ -2090,8 +2283,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET 
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2099,32 +2299,33 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "message":{
-      "id":14523,
-      "content":"AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
-      "sent_at":"2016-09-07T14:10:53-07:00",
-      "status":"sent",
-      "name":"my message name",
-      "is_broadcast":true,
-      "recipient_count":679571,
-      "success_count":675232,
-      "bounces_count":4339,
-      "pending_count":0,
-      "clean_count":2342,
-      "unsubscribe_count":1362,
-      "sms_count":168808,
-      "mms_count":506424,
-      "send_cost": 5096.78,
-      "message_links": [
-         {
-            "id":42,
-            "link":"http://bit.ly/acme",
-            "count":2356,
-            "display_count":2356
-         }
-      ]
-   }
+  "status": "OK",
+  "message": {
+    "id": 14523,
+    "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+    "sent_at": "2016-09-07T14:10:53-07:00",
+    "status": "sent",
+    "name": "my message name",
+    "is_broadcast": true,
+    "recipient_count": 679571,
+    "success_count": 675232,
+    "bounces_count": 4339,
+    "pending_count": 0,
+    "clean_count": 2342,
+    "unsubscribe_count": 1362,
+    "sms_count": 168808,
+    "mms_count": 506424,
+    "send_cost": 5096.78,
+    "attachment": "https://url-to-your-mms-attachment",
+    "message_links": [
+      {
+        "id": 42,
+        "link": "http://bit.ly/acme",
+        "count": 2356,
+        "display_count": 2356
+      }
+    ]
+  }
 }
 ```
 
@@ -2138,28 +2339,28 @@ Please note the `message_links` attribute will only be present on messages that 
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the list
-MESSAGE_ID | ID of the message
+| Parameter  | Description       |
+| ---------- | ----------------- |
+| ID         | ID of the list    |
+| MESSAGE_ID | ID of the message |
 
 ### Responses Explained
 
-Key | Description
---------- | -----------
-content | The actual content of the message that was sent to subscribers.
-id | A unique ID that identifies this specific message.
-name | An optional name or description for a message.
-sent_at | The date/time this message completed it's send.
-status | The status of the message.
-is_broadcast | If true, the message was sent to the whole list. If false, was sent only to the phone_number specified.
-phone_number | The wireless phone number of the subscriber.
-recipient_count | The number of recipients the message was sent to.
-success_count | The number of recipients that succesfully received the message on their mobile phones.
-bounces_count | The number of recipients that did not receive the message on their mobile phones.
-pending_count | The number of messages that do not have a delivery status as of the time of the query.
-clean_count | The number of recipients that Tatango automatically unsubscribed from your list due to our
-unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them.
+| Key               | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| content           | The actual content of the message that was sent to subscribers.                                             |
+| id                | A unique ID that identifies this specific message.                                                          |
+| name              | An optional name or description for a message.                                                              |
+| sent_at           | The date/time this message completed it's send.                                                             |
+| status            | The status of the message.                                                                                  |
+| is_broadcast      | If true, the message was sent to the whole list. If false, was sent only to the phone_number specified.     |
+| phone_number      | The wireless phone number of the subscriber.                                                                |
+| recipient_count   | The number of recipients the message was sent to.                                                           |
+| success_count     | The number of recipients that succesfully received the message on their mobile phones.                      |
+| bounces_count     | The number of recipients that did not receive the message on their mobile phones.                           |
+| pending_count     | The number of messages that do not have a delivery status as of the time of the query.                      |
+| clean_count       | The number of recipients that Tatango automatically unsubscribed from your list due to our                  |
+| unsubscribe_count | The number of recipients that unsubscribed from the list, in response to the message that was sent to them. |
 
 # Message Log (MOMT) Reports
 
@@ -2189,8 +2390,15 @@ curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"});
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  date_from: "2016-08-08T22:10:41+01:00",
+  date_to: "2016-09-07T22:10:41+01:00",
+  webhook_callback_url: "http://requestb.in/1d60vok1",
+});
 request.send(data);
 ```
 
@@ -2198,37 +2406,37 @@ request.send(data);
 
 ```json
 {
-   "status":"OK",
-   "momt_report":{
-      "id":3,
-      "account_id":22,
-      "s3_url":null,
-      "import_started_at":null,
-      "import_completed_at":null,
-      "total_rows":null,
-      "processed_rows":0,
-      "percent_complete":0,
-      "mo_count":0,
-      "mt_count":0,
-      "shortcode":null,
-      "date_range":"json",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "campaign":null,
-      "carrier":null,
-      "phone_number":null,
-      "direction":null,
-      "status_array":null,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "counts_calculated":false,
-      "type":null,
-      "is_csv":false,
-      "webhook_callback_url":null,
-      "run_errors":null,
-      "message_type":null,
-      "cancelled":null
-   }
+  "status": "OK",
+  "momt_report": {
+    "id": 3,
+    "account_id": 22,
+    "s3_url": null,
+    "import_started_at": null,
+    "import_completed_at": null,
+    "total_rows": null,
+    "processed_rows": 0,
+    "percent_complete": 0,
+    "mo_count": 0,
+    "mt_count": 0,
+    "shortcode": null,
+    "date_range": "json",
+    "date_from": "2016-08-08T22:10:41+01:00",
+    "date_to": "2016-09-07T22:10:41+01:00",
+    "campaign": null,
+    "carrier": null,
+    "phone_number": null,
+    "direction": null,
+    "status_array": null,
+    "created_at": "2016-09-07T14:10:41-07:00",
+    "updated_at": "2016-09-07T14:10:41-07:00",
+    "counts_calculated": false,
+    "type": null,
+    "is_csv": false,
+    "webhook_callback_url": null,
+    "run_errors": null,
+    "message_type": null,
+    "cancelled": null
+  }
 }
 ```
 
@@ -2240,11 +2448,11 @@ This endpoint creates a new MOMT Report.
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-date_from | {:scope=>:momt_reports}
-date_to | {:scope=>:momt_reports}
-webhook_callback_url | {:scope=>:momt_reports}
+| Parameter            | Description             |
+| -------------------- | ----------------------- |
+| date_from            | {:scope=>:momt_reports} |
+| date_to              | {:scope=>:momt_reports} |
+| webhook_callback_url | {:scope=>:momt_reports} |
 
 ## Getting Status of a Processed MOMT Report
 
@@ -2271,7 +2479,10 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2279,37 +2490,37 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "momt_report":{
-      "id":1,
-      "account_id":20,
-      "s3_url":null,
-      "import_started_at":null,
-      "import_completed_at":null,
-      "total_rows":null,
-      "processed_rows":0,
-      "percent_complete":0,
-      "mo_count":0,
-      "mt_count":0,
-      "shortcode":null,
-      "date_range":"json",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "campaign":null,
-      "carrier":null,
-      "phone_number":null,
-      "direction":null,
-      "status_array":null,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "counts_calculated":true,
-      "type":null,
-      "is_csv":false,
-      "webhook_callback_url":null,
-      "run_errors":null,
-      "message_type":null,
-      "cancelled":null
-   }
+  "status": "OK",
+  "momt_report": {
+    "id": 1,
+    "account_id": 20,
+    "s3_url": null,
+    "import_started_at": null,
+    "import_completed_at": null,
+    "total_rows": null,
+    "processed_rows": 0,
+    "percent_complete": 0,
+    "mo_count": 0,
+    "mt_count": 0,
+    "shortcode": null,
+    "date_range": "json",
+    "date_from": "2016-08-08T22:10:41+01:00",
+    "date_to": "2016-09-07T22:10:41+01:00",
+    "campaign": null,
+    "carrier": null,
+    "phone_number": null,
+    "direction": null,
+    "status_array": null,
+    "created_at": "2016-09-07T14:10:41-07:00",
+    "updated_at": "2016-09-07T14:10:41-07:00",
+    "counts_calculated": true,
+    "type": null,
+    "is_csv": false,
+    "webhook_callback_url": null,
+    "run_errors": null,
+    "message_type": null,
+    "cancelled": null
+  }
 }
 ```
 
@@ -2321,9 +2532,9 @@ This endpoint gets the status of a processed MOMT Report.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of MOMT Report to get status of
+| Parameter | Description                        |
+| --------- | ---------------------------------- |
+| ID        | ID of MOMT Report to get status of |
 
 ## Getting Status of a Unprocessed MOMT Report
 
@@ -2350,7 +2561,10 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2358,37 +2572,37 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "momt_report":{
-      "id":2,
-      "account_id":21,
-      "s3_url":null,
-      "import_started_at":null,
-      "import_completed_at":null,
-      "total_rows":null,
-      "processed_rows":0,
-      "percent_complete":0,
-      "mo_count":0,
-      "mt_count":0,
-      "shortcode":null,
-      "date_range":"json",
-      "date_from":"2016-08-08T22:10:41+01:00",
-      "date_to":"2016-09-07T22:10:41+01:00",
-      "campaign":null,
-      "carrier":null,
-      "phone_number":null,
-      "direction":null,
-      "status_array":null,
-      "created_at":"2016-09-07T14:10:41-07:00",
-      "updated_at":"2016-09-07T14:10:41-07:00",
-      "counts_calculated":false,
-      "type":null,
-      "is_csv":false,
-      "webhook_callback_url":null,
-      "run_errors":null,
-      "message_type":null,
-      "cancelled":null
-   }
+  "status": "OK",
+  "momt_report": {
+    "id": 2,
+    "account_id": 21,
+    "s3_url": null,
+    "import_started_at": null,
+    "import_completed_at": null,
+    "total_rows": null,
+    "processed_rows": 0,
+    "percent_complete": 0,
+    "mo_count": 0,
+    "mt_count": 0,
+    "shortcode": null,
+    "date_range": "json",
+    "date_from": "2016-08-08T22:10:41+01:00",
+    "date_to": "2016-09-07T22:10:41+01:00",
+    "campaign": null,
+    "carrier": null,
+    "phone_number": null,
+    "direction": null,
+    "status_array": null,
+    "created_at": "2016-09-07T14:10:41-07:00",
+    "updated_at": "2016-09-07T14:10:41-07:00",
+    "counts_calculated": false,
+    "type": null,
+    "is_csv": false,
+    "webhook_callback_url": null,
+    "run_errors": null,
+    "message_type": null,
+    "cancelled": null
+  }
 }
 ```
 
@@ -2400,9 +2614,9 @@ This endpoint gets the status of an unprocessed MOMT Report.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of MOMT Report to get status of
+| Parameter | Description                        |
+| --------- | ---------------------------------- |
+| ID        | ID of MOMT Report to get status of |
 
 # Shortcodes
 
@@ -2431,7 +2645,10 @@ curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2439,8 +2656,8 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "shortcodes":["33733"]
+  "status": "OK",
+  "shortcodes": ["33733"]
 }
 ```
 
@@ -2475,9 +2692,16 @@ curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_n
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"keyword_name":"TEST"});
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({ keyword_name: "TEST" });
 request.send(data);
 ```
 
@@ -2485,8 +2709,8 @@ request.send(data);
 
 ```json
 {
-   "status":"OK",
-   "keyword_name":"available"
+  "status": "OK",
+  "keyword_name": "available"
 }
 ```
 
@@ -2509,15 +2733,15 @@ This endpoint gets checks the availability of a keyword on the account's short c
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | ID of the shortcode
+| Parameter | Description         |
+| --------- | ------------------- |
+| ID        | ID of the shortcode |
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-keyword_name | Keyword name to test
+| Parameter    | Description          |
+| ------------ | -------------------- |
+| keyword_name | Keyword name to test |
 
 <aside class="success">
   FAQs
@@ -2574,9 +2798,18 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"transactional_message":{"number":"2835550430","content":"Test me!"}}');
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/transactional_messages",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify(
+  '{"transactional_message":{"number":"2835550430","content":"Test me!"}}'
+);
 request.send(data);
 ```
 
@@ -2584,13 +2817,13 @@ request.send(data);
 
 ```json
 {
-   "status":"Message successfully sent.",
-   "transactional_message":{
-      "id":1,
-      "number":"2835550430",
-      "content":"Test me!",
-      "status":"pending"
-   }
+  "status": "Message successfully sent.",
+  "transactional_message": {
+    "id": 1,
+    "number": "2835550430",
+    "content": "Test me!",
+    "status": "pending"
+  }
 }
 ```
 
@@ -2598,19 +2831,17 @@ request.send(data);
 
 ```json
 {
-  "type":"transactional_message_reply",
-  "transactional_message_id":589733,
-  "received_at":"2016-08-20T15:12:37-07:00",
-  "phone_number":"3474437987",
-  "carrier":383,
-  "carrier_name":"AT&T",
-  "content":"I replied to transactional"
+  "type": "transactional_message_reply",
+  "transactional_message_id": 589733,
+  "received_at": "2016-08-20T15:12:37-07:00",
+  "phone_number": "3474437987",
+  "carrier": 383,
+  "carrier_name": "AT&T",
+  "content": "I replied to transactional"
 }
 ```
 
 This endpoint sends a Transactional SMS Message.
-
-
 
 ### HTTP Request
 
@@ -2618,11 +2849,11 @@ This endpoint sends a Transactional SMS Message.
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-transactional_message[number] | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)
-transactional_message[content] | <span class="required">required</span> Message content
-transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
+| Parameter                                   | Description                                                                                                |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| transactional_message[number]               | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters) |
+| transactional_message[content]              | <span class="required">required</span> Message content                                                     |
+| transactional_message[webhook_callback_url] | Webhook url (will send result of send to)                                                                  |
 
 <aside class="success">
 Example of webhook payload reply listed to the right.
@@ -2659,9 +2890,18 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/transactional_messages", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify('{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}');
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/transactional_messages",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify(
+  '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}'
+);
 request.send(data);
 ```
 
@@ -2669,13 +2909,13 @@ request.send(data);
 
 ```json
 {
-   "status":"Message successfully sent.",
-   "transactional_message":{
-      "id":1,
-      "number":"2835550430",
-      "content":"Message content required. Max-size 5000 if is_mms",
-      "status":"pending"
-   }
+  "status": "Message successfully sent.",
+  "transactional_message": {
+    "id": 1,
+    "number": "2835550430",
+    "content": "Message content required. Max-size 5000 if is_mms",
+    "status": "pending"
+  }
 }
 ```
 
@@ -2683,19 +2923,17 @@ request.send(data);
 
 ```json
 {
-  "type":"transactional_message_reply",
-  "transactional_message_id":589733,
-  "received_at":"2016-08-20T15:12:37-07:00",
-  "phone_number":"3474437987",
-  "carrier":383,
-  "carrier_name":"AT&T",
-  "content":"I replied to transactional"
+  "type": "transactional_message_reply",
+  "transactional_message_id": 589733,
+  "received_at": "2016-08-20T15:12:37-07:00",
+  "phone_number": "3474437987",
+  "carrier": 383,
+  "carrier_name": "AT&T",
+  "content": "I replied to transactional"
 }
 ```
 
 This endpoint sends a Transactional SMS Message.
-
-
 
 ### HTTP Request
 
@@ -2703,11 +2941,11 @@ This endpoint sends a Transactional SMS Message.
 
 ### JSON Parameters (JSON Object)
 
-Parameter | Description
---------- | -----------
-transactional_message[number] | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)
-transactional_message[content] | <span class="required">required</span> Message content
-transactional_message[webhook_callback_url] | Webhook url (will send result of send to)
+| Parameter                                   | Description                                                                                                |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| transactional_message[number]               | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters) |
+| transactional_message[content]              | <span class="required">required</span> Message content                                                     |
+| transactional_message[webhook_callback_url] | Webhook url (will send result of send to)                                                                  |
 
 <aside class="success">
 Example of webhook payload reply listed to the right.
@@ -2758,18 +2996,18 @@ request.send(data);
 
 ```json
 {
-   "status":"Webhook created",
-   "webhook":{
-      "callback_url":"http://localhost.dev/null?api_key=foo_bar_baz",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":4,
-      "list_id":29,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":true,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
+  "status": "Webhook created",
+  "webhook": {
+    "callback_url": "http://localhost.dev/null?api_key=foo_bar_baz",
+    "created_at": "2016-09-07T14:11:13-07:00",
+    "enabled": true,
+    "id": 4,
+    "list_id": 29,
+    "message_sent": false,
+    "subscribe": true,
+    "unsubscribe": true,
+    "updated_at": "2016-09-07T14:11:13-07:00"
+  }
 }
 ```
 
@@ -2781,9 +3019,9 @@ This endpoint creates a webhook for a list
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
+| Parameter | Description        |
+| --------- | ------------------ |
+| ID        | The ID of the list |
 
 ## Updating a Webhook
 
@@ -2810,9 +3048,23 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}});
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  webhook: {
+    callback_url: "http://mynewapi.com/?ref=tatango",
+    subscribe: true,
+    unsubscribe: false,
+    message_sent: false,
+  },
+});
 request.send(data);
 ```
 
@@ -2820,18 +3072,18 @@ request.send(data);
 
 ```json
 {
-   "status":"Webhook updated",
-   "webhook":{
-      "callback_url":"http://mynewapi.com/?ref=tatango",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":9,
-      "list_id":33,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":false,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
+  "status": "Webhook updated",
+  "webhook": {
+    "callback_url": "http://mynewapi.com/?ref=tatango",
+    "created_at": "2016-09-07T14:11:13-07:00",
+    "enabled": true,
+    "id": 9,
+    "list_id": 33,
+    "message_sent": false,
+    "subscribe": true,
+    "unsubscribe": false,
+    "updated_at": "2016-09-07T14:11:13-07:00"
+  }
 }
 ```
 
@@ -2843,10 +3095,10 @@ This endpoint updates a webhook
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-WEBHOOK_ID | The ID of the webhook
+| Parameter  | Description           |
+| ---------- | --------------------- |
+| ID         | The ID of the list    |
+| WEBHOOK_ID | The ID of the webhook |
 
 ## Showing a Webhook
 
@@ -2872,8 +3124,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET 
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2881,18 +3140,18 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "webhook":{
-      "callback_url":"http://localhost/dev/null",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":5,
-      "list_id":30,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":false,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
+  "status": "OK",
+  "webhook": {
+    "callback_url": "http://localhost/dev/null",
+    "created_at": "2016-09-07T14:11:13-07:00",
+    "enabled": true,
+    "id": 5,
+    "list_id": 30,
+    "message_sent": false,
+    "subscribe": true,
+    "unsubscribe": false,
+    "updated_at": "2016-09-07T14:11:13-07:00"
+  }
 }
 ```
 
@@ -2904,15 +3163,16 @@ This endpoint shows a webhook.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-WEBHOOK_ID | The ID of the webhook
+| Parameter  | Description           |
+| ---------- | --------------------- |
+| ID         | The ID of the list    |
+| WEBHOOK_ID | The ID of the webhook |
 
 <aside class="error">
 If the webhook does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"Webhook not found"}
+
 </aside>
 
 ## Listing Webhooks
@@ -2940,7 +3200,10 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -2948,46 +3211,46 @@ request.send(null);
 
 ```json
 {
-   "status":"OK",
-   "per_page":10,
-   "count":3,
-   "page":1,
-   "pages_count":1,
-   "webhooks":[
-      {
-         "callback_url":"http://localhost/dev/null",
-         "created_at":"2016-09-07T14:11:13-07:00",
-         "enabled":true,
-         "id":6,
-         "list_id":31,
-         "message_sent":false,
-         "subscribe":true,
-         "unsubscribe":false,
-         "updated_at":"2016-09-07T14:11:13-07:00"
-      },
-      {
-         "callback_url":"http://localhost/dev/null",
-         "created_at":"2016-09-07T14:11:13-07:00",
-         "enabled":true,
-         "id":7,
-         "list_id":31,
-         "message_sent":false,
-         "subscribe":true,
-         "unsubscribe":false,
-         "updated_at":"2016-09-07T14:11:13-07:00"
-      },
-      {
-         "callback_url":"http://localhost/dev/null",
-         "created_at":"2016-09-07T14:11:13-07:00",
-         "enabled":true,
-         "id":8,
-         "list_id":31,
-         "message_sent":false,
-         "subscribe":true,
-         "unsubscribe":false,
-         "updated_at":"2016-09-07T14:11:13-07:00"
-      }
-   ]
+  "status": "OK",
+  "per_page": 10,
+  "count": 3,
+  "page": 1,
+  "pages_count": 1,
+  "webhooks": [
+    {
+      "callback_url": "http://localhost/dev/null",
+      "created_at": "2016-09-07T14:11:13-07:00",
+      "enabled": true,
+      "id": 6,
+      "list_id": 31,
+      "message_sent": false,
+      "subscribe": true,
+      "unsubscribe": false,
+      "updated_at": "2016-09-07T14:11:13-07:00"
+    },
+    {
+      "callback_url": "http://localhost/dev/null",
+      "created_at": "2016-09-07T14:11:13-07:00",
+      "enabled": true,
+      "id": 7,
+      "list_id": 31,
+      "message_sent": false,
+      "subscribe": true,
+      "unsubscribe": false,
+      "updated_at": "2016-09-07T14:11:13-07:00"
+    },
+    {
+      "callback_url": "http://localhost/dev/null",
+      "created_at": "2016-09-07T14:11:13-07:00",
+      "enabled": true,
+      "id": 8,
+      "list_id": 31,
+      "message_sent": false,
+      "subscribe": true,
+      "unsubscribe": false,
+      "updated_at": "2016-09-07T14:11:13-07:00"
+    }
+  ]
 }
 ```
 
@@ -2999,14 +3262,15 @@ This endpoint lists webhooks.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
+| Parameter | Description        |
+| --------- | ------------------ |
+| ID        | The ID of the list |
 
 <aside class="error">
 If the list does not exist you will get a 404 response with this body:
 
 {"status":"error","error":"List not found"}
+
 </aside>
 
 ## Destroying a Webhook
@@ -3033,8 +3297,15 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELE
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
+request.open(
+  "DELETE",
+  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
 request.send(null);
 ```
 
@@ -3042,7 +3313,7 @@ request.send(null);
 
 ```json
 {
-   "status":"Webhook destroyed"
+  "status": "Webhook destroyed"
 }
 ```
 
@@ -3054,10 +3325,10 @@ This endpoint destroys a webhook.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
-WEBHOOK_ID | The ID of the webhook
+| Parameter  | Description           |
+| ---------- | --------------------- |
+| ID         | The ID of the list    |
+| WEBHOOK_ID | The ID of the webhook |
 
 ## Webhook Examples
 
@@ -3094,18 +3365,18 @@ request.send(data);
 
 ```json
 {
-   "status":"Webhook created",
-   "webhook":{
-      "callback_url":"http://localhost.dev/null?api_key=foo_bar_baz",
-      "created_at":"2016-09-07T14:11:13-07:00",
-      "enabled":true,
-      "id":4,
-      "list_id":29,
-      "message_sent":false,
-      "subscribe":true,
-      "unsubscribe":true,
-      "updated_at":"2016-09-07T14:11:13-07:00"
-   }
+  "status": "Webhook created",
+  "webhook": {
+    "callback_url": "http://localhost.dev/null?api_key=foo_bar_baz",
+    "created_at": "2016-09-07T14:11:13-07:00",
+    "enabled": true,
+    "id": 4,
+    "list_id": 29,
+    "message_sent": false,
+    "subscribe": true,
+    "unsubscribe": true,
+    "updated_at": "2016-09-07T14:11:13-07:00"
+  }
 }
 ```
 
@@ -3117,9 +3388,9 @@ This endpoint creates a webhook for a list
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the list
+| Parameter | Description        |
+| --------- | ------------------ |
+| ID        | The ID of the list |
 
 # General FAQs
 
@@ -3140,98 +3411,98 @@ This section provides a list of carrier ID and names (US and Canada) for any res
 
 ## United States Carriers
 
-Carrier Name | Carrier ID
---------- | -----------
-Alaska Communications Systems (ACS) | 592
-ASTAC | 10242
-AT&T | 383
-Atlantic Tele-Network International (ATNI) | 10542
-bandwidth.com (includes Republic Wireless) | 766
-Blue Wireless | 11264
-Boost Mobile | 534
-Boost-CDMA | 586
-Brightlink | 10212
-C Spire Wireless (aka Cellular South) | 386
-Carolina West Wireless | 564
-CellCom | 587
-Cellular One of N.E. Arizona | 566
-Chariton Valley Cellular | 701
-Chat Mobility | 619
-Cleartalk (Flat Wireless) | 656
-Copper Valley Telecom | 802
-Cordova | 10282
-Cross Wireless | 618
-Duet Wireless | 696
-East Kentucky Network (Appalachian Wireless) | 570
-Enflick | 10262
-Fair Point Communications | 803
-GCI Communications | 603
-Google Voice | 798
-Illinois Valley Cellular | 574
-Inland Cellular | 575
-Inteliquent | 10232
-Interop All Carriers | 697
-IWireless | 477
-Jasper Wireless | 11284
-Leaco Rural Telephone Cooperative | 783
-Level 3 (internal only) | 801
-Ligado Networks | 11251
-Limitless Mobile | 588
-MetroPCS (GSM) | 788
-Mid-Rivers Communications | 834
-MobileNation/SI Wireless | 773
-Mosaic Telecom | 658
-MTA Wireless/Matanuska Kenai | 774
-MTPCS Cellular One (Cellone Nation) | 655
-Nemont CDMA | 796
-Nemont US UMTS | 873
-NewCore Wireless US | 11287
-Nex Tech Communications | 578
-Northwest Missouri Cellular | 620
-Panhandle Wireless | 626
-Peoples Wireless | 694
-Pine Belt | 10352
-Pine Cellular | 580
-Pioneer Cellular | 621
-Plateau Wireless | 651
-Rock Wireless | 11252
-Rural Independent Network Alliance (RINA) | 567
-Shelcomm | 11293
-SouthernLINC | 763
-Sprint | 34
-SRT Communications | 780
-T-Mobile | 79
-Thumb Cellular | 604
-TracFone (AT&T) | 556
-Triangle Communications US | 11290
-Triangle Wireless | 10272
-Union Telephone | 549
-Union Wireless | 11286
-United States Cellular Corp | 56
-United Wireless | 602
-Verizon | 77
-Viaero US | 11289
-Viaero Wireless | 650
-Virgin Mobile | 525
-West Central Wireless | 559
+| Carrier Name                                 | Carrier ID |
+| -------------------------------------------- | ---------- |
+| Alaska Communications Systems (ACS)          | 592        |
+| ASTAC                                        | 10242      |
+| AT&T                                         | 383        |
+| Atlantic Tele-Network International (ATNI)   | 10542      |
+| bandwidth.com (includes Republic Wireless)   | 766        |
+| Blue Wireless                                | 11264      |
+| Boost Mobile                                 | 534        |
+| Boost-CDMA                                   | 586        |
+| Brightlink                                   | 10212      |
+| C Spire Wireless (aka Cellular South)        | 386        |
+| Carolina West Wireless                       | 564        |
+| CellCom                                      | 587        |
+| Cellular One of N.E. Arizona                 | 566        |
+| Chariton Valley Cellular                     | 701        |
+| Chat Mobility                                | 619        |
+| Cleartalk (Flat Wireless)                    | 656        |
+| Copper Valley Telecom                        | 802        |
+| Cordova                                      | 10282      |
+| Cross Wireless                               | 618        |
+| Duet Wireless                                | 696        |
+| East Kentucky Network (Appalachian Wireless) | 570        |
+| Enflick                                      | 10262      |
+| Fair Point Communications                    | 803        |
+| GCI Communications                           | 603        |
+| Google Voice                                 | 798        |
+| Illinois Valley Cellular                     | 574        |
+| Inland Cellular                              | 575        |
+| Inteliquent                                  | 10232      |
+| Interop All Carriers                         | 697        |
+| IWireless                                    | 477        |
+| Jasper Wireless                              | 11284      |
+| Leaco Rural Telephone Cooperative            | 783        |
+| Level 3 (internal only)                      | 801        |
+| Ligado Networks                              | 11251      |
+| Limitless Mobile                             | 588        |
+| MetroPCS (GSM)                               | 788        |
+| Mid-Rivers Communications                    | 834        |
+| MobileNation/SI Wireless                     | 773        |
+| Mosaic Telecom                               | 658        |
+| MTA Wireless/Matanuska Kenai                 | 774        |
+| MTPCS Cellular One (Cellone Nation)          | 655        |
+| Nemont CDMA                                  | 796        |
+| Nemont US UMTS                               | 873        |
+| NewCore Wireless US                          | 11287      |
+| Nex Tech Communications                      | 578        |
+| Northwest Missouri Cellular                  | 620        |
+| Panhandle Wireless                           | 626        |
+| Peoples Wireless                             | 694        |
+| Pine Belt                                    | 10352      |
+| Pine Cellular                                | 580        |
+| Pioneer Cellular                             | 621        |
+| Plateau Wireless                             | 651        |
+| Rock Wireless                                | 11252      |
+| Rural Independent Network Alliance (RINA)    | 567        |
+| Shelcomm                                     | 11293      |
+| SouthernLINC                                 | 763        |
+| Sprint                                       | 34         |
+| SRT Communications                           | 780        |
+| T-Mobile                                     | 79         |
+| Thumb Cellular                               | 604        |
+| TracFone (AT&T)                              | 556        |
+| Triangle Communications US                   | 11290      |
+| Triangle Wireless                            | 10272      |
+| Union Telephone                              | 549        |
+| Union Wireless                               | 11286      |
+| United States Cellular Corp                  | 56         |
+| United Wireless                              | 602        |
+| Verizon                                      | 77         |
+| Viaero US                                    | 11289      |
+| Viaero Wireless                              | 650        |
+| Virgin Mobile                                | 525        |
+| West Central Wireless                        | 559        |
 
 ## Canadian Carriers
 
-Carrier Name | Carrier ID
---------- | -----------
-Aliant | 509
-Bell Mobility | 80
-Eastlink Wireless | 799
-Execulink | 10573
-Fido (Microcell) | 138
-Freedom Canada | 11292
-Mobilicity | 654
-MTS | 510
-NorthernTel | 512
-Rogers | 75
-Sasktel | 102
-Telebec | 511
-Telus | 70
-Videotron | 615
-Virgin Mobile | 537
-WIND | 653
+| Carrier Name      | Carrier ID |
+| ----------------- | ---------- |
+| Aliant            | 509        |
+| Bell Mobility     | 80         |
+| Eastlink Wireless | 799        |
+| Execulink         | 10573      |
+| Fido (Microcell)  | 138        |
+| Freedom Canada    | 11292      |
+| Mobilicity        | 654        |
+| MTS               | 510        |
+| NorthernTel       | 512        |
+| Rogers            | 75         |
+| Sasktel           | 102        |
+| Telebec           | 511        |
+| Telus             | 70         |
+| Videotron         | 615        |
+| Virgin Mobile     | 537        |
+| WIND              | 653        |
