@@ -1931,7 +1931,7 @@ request.send(data);
     },
     {
       "id": 14523,
-      "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Reply STOP to end.",
+      "content": "AMCE Retail: Go to http://bit.ly/acme to see deals on anvils. Or check https://trackinglink.com. Reply STOP to end.",
       "sent_at": "2016-10-07T14:10:53-07:00",
       "status": "sent",
       "name": "another message name",
@@ -1952,6 +1952,13 @@ request.send(data);
           "count": 2356,
           "display_count": 2356
         }
+      ],
+      "tracking_links": [
+        {
+          "link": "https://trackinglink.com",
+          "click_count": 15,
+          "unique_click_count": 10
+        }
       ]
     }
   ]
@@ -1961,6 +1968,7 @@ request.send(data);
 This endpoint retrieves all sent messages in a list.
 
 Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
+Please note the `tracking_links` attribute will only be present on messages that have tracking links in their `content`.
 
 ### HTTP Request
 
