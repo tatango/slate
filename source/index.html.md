@@ -1850,7 +1850,7 @@ This endpoint gets a list of unsubscribed phone numbers.
 
 ### HTTP Request
 
-`GET https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed`
+`GET https://api.tatango.com/api/v2/lists/ID/custom_fields`
 
 ### URL Parameters
 
