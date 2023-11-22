@@ -24,7 +24,7 @@ The Tatango API allows 1200 calls per hour or 1 call every 3 seconds. Please con
 
 # Returning multiple results and pagination
 
-By default, GET API calls that return multiple items in a list will return up to 10 items for a single call. The "pages_count" parameter in the returned JSON will indicate the number of "pages" included in the entire result set. (So for example, if a call to https://app.tatango.com/api/v2/lists finds 27 lists in the system, the JSON will include the following (see JSON snippet to the right):
+By default, GET API calls that return multiple items in a list will return up to 10 items for a single call. The "pages_count" parameter in the returned JSON will indicate the number of "pages" included in the entire result set. (So for example, if a call to https://api.tatango.com/api/v2/lists finds 27 lists in the system, the JSON will include the following (see JSON snippet to the right):
 
 ```
    "per_page":10,
@@ -35,7 +35,7 @@ By default, GET API calls that return multiple items in a list will return up to
 
 Note that the "pages_count" parameter will default to 0 when there is no items in the list.
 
-To fetch the next page of results, pass the "page" parameter on the URL, like this: https://app.tatango.com/api/v2/lists?page=2. You can also change the number of records returned in each "page" by passing in a "per_page" parameter as part of the URL, like this: https://app.tatango.com/api/v2/lists?per_page=50. Note that the system will only allow up to 1000 records to be returned in a single call.
+To fetch the next page of results, pass the "page" parameter on the URL, like this: https://api.tatango.com/api/v2/lists?page=2. You can also change the number of records returned in each "page" by passing in a "per_page" parameter as part of the URL, like this: https://api.tatango.com/api/v2/lists?per_page=50. Note that the system will only allow up to 1000 records to be returned in a single call.
 
 # Authentication
 
@@ -47,7 +47,7 @@ Note: You can access your API key <a href="http://help.tatango.com/api/api-keys"
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/example-endpoint')
+uri = URI.parse('https://api.tatango.com/api/v2/example-endpoint')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -56,12 +56,12 @@ response = http.request(request)
 
 ```shell
 # With shell, you can just pass the correct email and api key with each request
-curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/example-endpoint
+curl -u emailaddress@mydomain.com:my_api_key https://api.tatango.com/api/v2/example-endpoint
 ```
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
+request.open("POST", "https://api.tatango.com/api/v2/example-endpoint", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -69,7 +69,7 @@ request.setRequestHeader(
 request.send(null);
 ```
 
-> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into <a href="https://app.tatango.com/" target="_blank">https://app.tatango.com</a>.
+> Make sure to replace `my_api_key` with your API key, which can be obtained by logging into <a href="https://api.tatango.com/" target="_blank">https://api.tatango.com</a>.
 
 Tatango authenticates API requests by validating an API key that must be passed with each API call. We use the built-in HTTP basic authentication scheme supported by most HTTP libraries. Use your login email as the username and the API key as the password.
 
@@ -81,7 +81,7 @@ Tatango authenticates API requests by validating an API key that must be passed 
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/accounts')
+uri = URI.parse('https://api.tatango.com/api/v2/accounts')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -89,7 +89,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
+curl "https://api.tatango.com/api/v2/accounts/me" -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -99,7 +99,7 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
+request.open("GET", "https://api.tatango.com/api/v2/accounts/me", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -124,7 +124,7 @@ This endpoint retrieves the current account, as specified by the API key used to
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/accounts/me`
+`GET https://api.tatango.com/api/v2/accounts/me`
 
 <aside class="success">
 You will receive a 200 status on success
@@ -153,7 +153,7 @@ Note: the following settings cannot be modified via the API:
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists')
+uri = URI.parse('https://api.tatango.com/api/v2/lists')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -161,7 +161,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists" -X GET \
+curl "https://api.tatango.com/api/v2/lists" -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -171,7 +171,7 @@ curl "https://app.tatango.com/api/v2/lists" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists", false);
+request.open("GET", "https://api.tatango.com/api/v2/lists", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -263,7 +263,7 @@ This endpoint retrieves a list of all lists owned by the current account.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists`
+`GET https://api.tatango.com/api/v2/lists`
 
 ## Retrieve List
 
@@ -271,7 +271,7 @@ This endpoint retrieves a list of all lists owned by the current account.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -279,7 +279,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
+curl "https://api.tatango.com/api/v2/lists/<ID>" -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -289,7 +289,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>", false);
+request.open("GET", "https://api.tatango.com/api/v2/lists/<ID>", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -331,7 +331,7 @@ This endpoint retrieves a specific list.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/<ID>`
+`GET https://api.tatango.com/api/v2/lists/<ID>`
 
 ### URL Parameters
 
@@ -347,7 +347,7 @@ This endpoint retrieves a specific list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -356,7 +356,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"email_address","request_message":"Thank you! Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect email. Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with email address for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"first_name","request_message":"Thank you! Reply with first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect name. Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":24,"no_response_message":"Reply with your first name for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":null,"second_opt_in_message":null,"success_action":"nextrequest"},{"collected_data":"yes","request_message":"Thank you! Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Response not understood. Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":false,"follow_up_hour":null,"opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","opt_in_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_opt_in_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","success_action":"optinsubscriber"}]}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -368,7 +368,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
 request.setRequestHeader(
@@ -524,7 +524,7 @@ request.send(data);
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -533,7 +533,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"double","opt_in_requests":[{"collected_data":"zip_code","request_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","retry_message":"Incorrect zip code. Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","follow_up":true,"follow_up_hour":2,"no_response_message":"Reply with zip code for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","success_action":null}]}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -545,7 +545,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
 request.setRequestHeader(
@@ -605,7 +605,7 @@ request.send(data);
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -614,7 +614,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"single","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_type":"single","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com"}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -626,7 +626,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings" -d '{"opt_in_ty
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
 request.setRequestHeader(
@@ -657,7 +657,7 @@ This endpoint configures an opt-in type for a list.
 
 ### HTTP Request
 
-`PUT https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings`
+`PUT https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings`
 
 ### URL Parameters
 
@@ -689,7 +689,7 @@ This endpoint configures an opt-in type for a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -698,7 +698,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome list","message_yes":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com","message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.","message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com","message_already_subscribed":"ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","email_digest":"myemail18@gmail.com","email_subscribe":true,"email_unsubscribe":true}}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome list","message_yes":"ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com","message_help":"ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com","message_stop":"ACME Retail: You have been unsubscribed and will not receive any more messages.","message_reply":"ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com","message_already_subscribed":"ACME Retail: You already agreed to recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","first_optin_message":"ACME Retail: You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","second_optin_message":"ACME Retail: Welcome back! You agreed to receive recurring SMS/MMS msgs. Txt STOP 2 end, HELP 4 help. Msg&data rates may apply. Terms apply 12345-info.com","email_digest":"myemail18@gmail.com","email_subscribe":true,"email_unsubscribe":true}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -708,7 +708,7 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome lis
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
+request.open("POST", "https://api.tatango.com/api/v2/lists/", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -777,7 +777,7 @@ Note: the following settings cannot be modified via the API:
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/`
+`POST https://api.tatango.com/api/v2/lists/`
 
 ### JSON Parameters (JSON Object)
 
@@ -838,7 +838,7 @@ Note: the following settings cannot be modified via the API:
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Delete.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -846,7 +846,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
+curl "https://api.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -856,7 +856,7 @@ curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
+request.open("DELETE", "https://api.tatango.com/api/v2/lists/", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -877,7 +877,7 @@ This endpoint destroys a list.
 
 ### HTTP Request
 
-`DELETE https://app.tatango.com/api/v2/lists/ID`
+`DELETE https://api.tatango.com/api/v2/lists/ID`
 
 ### URL Parameters
 
@@ -891,7 +891,7 @@ This endpoint destroys a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/keywords')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/keywords')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -901,7 +901,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/keywords" -d '{"keyword_names":["TEST","KEYWORD","NAMES"]}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/<ID>/keywords" -d '{"keyword_names":["TEST","KEYWORD","NAMES"]}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -913,7 +913,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/keywords" -d '{"keyword_names":[
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
+  "https://api.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
 request.setRequestHeader(
@@ -937,7 +937,7 @@ This endpoint sets or updates keywords for a list.
 
 ### HTTP Request
 
-`PUT https://app.tatango.com/api/v2/lists/<ID>/keywords`
+`PUT https://api.tatango.com/api/v2/lists/<ID>/keywords`
 
 ### URL Parameters
 
@@ -978,7 +978,7 @@ This endpoint sets or updates keywords for a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -987,7 +987,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -997,7 +997,7 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PU
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("PUT", "https://app.tatango.com/api/v2/lists/", false);
+request.open("PUT", "https://api.tatango.com/api/v2/lists/", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1045,7 +1045,7 @@ Note: the following settings cannot be modified via the API:
 
 ### HTTP Request
 
-`PUT https://app.tatango.com/api/v2/lists/ID`
+`PUT https://api.tatango.com/api/v2/lists/ID`
 
 ### URL Parameters
 
@@ -1077,7 +1077,7 @@ Note: the following settings cannot be modified via the API:
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1086,7 +1086,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"phone_number":"2141234567","first_name":"John","last_name":"Doe","email":"johndoe@domain.com","birthdate":"19780728","zip_code":"52421","gender":"Male","custom_field_key":"custom_value"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1098,7 +1098,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"subscriber":{"p
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers",
   false
 );
 request.setRequestHeader(
@@ -1266,7 +1266,7 @@ This endpoint adds a subscriber to a list.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/subscribers`
+`POST https://api.tatango.com/api/v2/lists/ID/subscribers`
 
 ### URL Parameters
 
@@ -1347,7 +1347,7 @@ This endpoint adds a subscriber to a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1355,7 +1355,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1367,7 +1367,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
 request.setRequestHeader(
@@ -1408,7 +1408,7 @@ This endpoint returns information about a current subscriber.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+`GET https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
 
 ### URL Parameters
 
@@ -1437,7 +1437,7 @@ This endpoint returns information about a current subscriber.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1446,7 +1446,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"subscriber":{"first_name":"John","last_name":"Doe"}}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"subscriber":{"first_name":"John","last_name":"Doe"}}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1458,7 +1458,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
 request.setRequestHeader(
@@ -1529,7 +1529,7 @@ This endpoint updates a subscriber.
 
 ### HTTP Request
 
-`PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+`PUT https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
 
 ### URL Parameters
 
@@ -1559,7 +1559,7 @@ This endpoint updates a subscriber.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/bulk_taggings')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/bulk_taggings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1568,7 +1568,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1580,7 +1580,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/lists/ID/bulk_taggings",
+  "https://api.tatango.com/api/v2/lists/ID/bulk_taggings",
   false
 );
 request.setRequestHeader(
@@ -1627,7 +1627,7 @@ This endpoint applies multiple tags to multiple subscribers
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/bulk_taggings`
+`POST https://api.tatango.com/api/v2/lists/ID/bulk_taggings`
 
 ### URL Parameters
 
@@ -1654,7 +1654,7 @@ You can also use this endpoint to mass remove tags from subscribers. For example
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Delete.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1662,7 +1662,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X DELETE \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -X DELETE \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1674,7 +1674,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '' -
 var request = new XMLHttpRequest();
 request.open(
   "DELETE",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
 request.setRequestHeader(
@@ -1714,7 +1714,7 @@ This endpoint unsubscribes a subscriber.
 
 ### HTTP Request
 
-`DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
+`DELETE https://api.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID`
 
 ### URL Parameters
 
@@ -1742,7 +1742,7 @@ This endpoint unsubscribes a subscriber.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1750,7 +1750,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1762,7 +1762,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '' -X GET \
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers",
   false
 );
 request.setRequestHeader(
@@ -1789,7 +1789,7 @@ This endpoint gets a list of subscribed phone numbers for the requested list.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers`
+`GET https://api.tatango.com/api/v2/lists/ID/subscribers`
 
 ### URL Parameters
 
@@ -1803,7 +1803,7 @@ This endpoint gets a list of subscribed phone numbers for the requested list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1811,7 +1811,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1823,7 +1823,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed" -d '' -X
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed",
   false
 );
 request.setRequestHeader(
@@ -1850,7 +1850,7 @@ This endpoint gets a list of unsubscribed phone numbers.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed`
+`GET https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed`
 
 ### URL Parameters
 
@@ -1870,7 +1870,7 @@ The following characters can be used: a-z, A-Z, 0-9 and these special characters
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1879,7 +1879,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
+curl "https://api.tatango.com/api/v2/lists/<ID>/messages" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1891,7 +1891,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages" -d '{"start_date":"201
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/<ID>/messages",
+  "https://api.tatango.com/api/v2/lists/<ID>/messages",
   false
 );
 request.setRequestHeader(
@@ -1972,7 +1972,7 @@ Please note the `tracking_links` attribute will only be present on messages that
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/<ID>/messages`
+`GET https://api.tatango.com/api/v2/lists/<ID>/messages`
 
 ### URL Parameters
 
@@ -1988,7 +1988,7 @@ Please note the `tracking_links` attribute will only be present on messages that
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages/draft')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/messages/draft')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1997,7 +1997,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/messages/draft" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
+curl "https://api.tatango.com/api/v2/lists/<ID>/messages/draft" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2009,7 +2009,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages/draft" -d '{"start_date
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/<ID>/messages/draft",
+  "https://api.tatango.com/api/v2/lists/<ID>/messages/draft",
   false
 );
 request.setRequestHeader(
@@ -2082,7 +2082,7 @@ This endpoint retrieves all draft messages in a list.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/<ID>/messages/draft`
+`GET https://api.tatango.com/api/v2/lists/<ID>/messages/draft`
 
 ### URL Parameters
 
@@ -2098,7 +2098,7 @@ This endpoint retrieves all draft messages in a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/<ID>/messages/scheduled')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2107,7 +2107,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
+curl "https://api.tatango.com/api/v2/lists/<ID>/messages/scheduled" -d '{"start_date":"20160901", "end_date":"20161030"}' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2119,7 +2119,7 @@ curl "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled" -d '{"start_
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled",
+  "https://api.tatango.com/api/v2/lists/<ID>/messages/scheduled",
   false
 );
 request.setRequestHeader(
@@ -2192,7 +2192,7 @@ This endpoint retrieves all scheduled messages in a list.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled`
+`GET https://api.tatango.com/api/v2/lists/<ID>/messages/scheduled`
 
 ### URL Parameters
 
@@ -2208,7 +2208,7 @@ This endpoint retrieves all scheduled messages in a list.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2217,7 +2217,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, world!"}}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content":"Hello, world!"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2227,7 +2227,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
+request.open("POST", "https://api.tatango.com/api/v2/lists/ID/messages", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2251,7 +2251,7 @@ This endpoint sends a message.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/messages`
+`POST https://api.tatango.com/api/v2/lists/ID/messages`
 
 ### URL Parameters
 
@@ -2273,7 +2273,7 @@ Please be aware that it takes some time after a message is sent to receive deliv
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2281,7 +2281,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2293,7 +2293,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID" -d '' -X GET 
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID",
+  "https://api.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID",
   false
 );
 request.setRequestHeader(
@@ -2343,7 +2343,7 @@ Please note the `message_links` attribute will only be present on messages that 
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID`
+`GET https://api.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID`
 
 ### URL Parameters
 
@@ -2378,7 +2378,7 @@ Please note the `message_links` attribute will only be present on messages that 
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports')
+uri = URI.parse('https://api.tatango.com/api/v2/momt_reports')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2387,7 +2387,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
+curl "https://api.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T22:10:41+01:00","date_to":"2016-09-07T22:10:41+01:00","webhook_callback_url":"http://requestb.in/1d60vok1"}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2397,7 +2397,7 @@ curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
+request.open("POST", "https://api.tatango.com/api/v2/momt_reports", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2452,7 +2452,7 @@ This endpoint creates a new MOMT Report.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/momt_reports`
+`POST https://api.tatango.com/api/v2/momt_reports`
 
 ### JSON Parameters (JSON Object)
 
@@ -2468,7 +2468,7 @@ This endpoint creates a new MOMT Report.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+uri = URI.parse('https://api.tatango.com/api/v2/momt_reports/ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2476,7 +2476,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2486,7 +2486,7 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.open("GET", "https://api.tatango.com/api/v2/momt_reports", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2536,7 +2536,7 @@ This endpoint gets the status of a processed MOMT Report.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
+`GET https://api.tatango.com/api/v2/momt_reports/ID`
 
 ### URL Parameters
 
@@ -2550,7 +2550,7 @@ This endpoint gets the status of a processed MOMT Report.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/momt_reports/ID')
+uri = URI.parse('https://api.tatango.com/api/v2/momt_reports/ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2558,7 +2558,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2568,7 +2568,7 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.open("GET", "https://api.tatango.com/api/v2/momt_reports", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2618,7 +2618,7 @@ This endpoint gets the status of an unprocessed MOMT Report.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/momt_reports/ID`
+`GET https://api.tatango.com/api/v2/momt_reports/ID`
 
 ### URL Parameters
 
@@ -2634,7 +2634,7 @@ This endpoint gets the status of an unprocessed MOMT Report.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes')
+uri = URI.parse('https://api.tatango.com/api/v2/shortcodes')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2642,7 +2642,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/shortcodes" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2652,7 +2652,7 @@ curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
+request.open("GET", "https://api.tatango.com/api/v2/shortcodes", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2673,7 +2673,7 @@ This endpoint gets a list of short codes provisioned on your account.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/shortcodes`
+`GET https://api.tatango.com/api/v2/shortcodes`
 
 ## Testing Keyword Availability on Short Code
 
@@ -2681,7 +2681,7 @@ This endpoint gets a list of short codes provisioned on your account.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/shortcodes/ID/test_keyword')
+uri = URI.parse('https://api.tatango.com/api/v2/shortcodes/ID/test_keyword')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2690,7 +2690,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
+curl "https://api.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_name":"TEST"}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2702,7 +2702,7 @@ curl "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword" -d '{"keyword_n
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword",
+  "https://api.tatango.com/api/v2/shortcodes/ID/test_keyword",
   false
 );
 request.setRequestHeader(
@@ -2726,7 +2726,7 @@ This endpoint gets checks the availability of a keyword on the account's short c
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/shortcodes/ID/test_keyword`
+`POST https://api.tatango.com/api/v2/shortcodes/ID/test_keyword`
 
 <aside class="error">
 <strong>Name is in Use</strong>
@@ -2787,7 +2787,7 @@ This endpoint gets checks the availability of a keyword on the account's short c
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
+uri = URI.parse('https://api.tatango.com/api/v2/transactional_messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2796,7 +2796,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","content":"Test me!"}}' -X POST \
+curl "https://api.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","content":"Test me!"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2808,7 +2808,7 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/transactional_messages",
+  "https://api.tatango.com/api/v2/transactional_messages",
   false
 );
 request.setRequestHeader(
@@ -2853,7 +2853,7 @@ This endpoint sends a Transactional SMS Message.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/transactional_messages`
+`POST https://api.tatango.com/api/v2/transactional_messages`
 
 ### JSON Parameters (JSON Object)
 
@@ -2868,7 +2868,7 @@ Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
+      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://api.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
     </li>
   </ul>
 </aside>
@@ -2879,7 +2879,7 @@ Example of webhook payload reply listed to the right.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/transactional_messages')
+uri = URI.parse('https://api.tatango.com/api/v2/transactional_messages')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2888,7 +2888,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
+curl "https://api.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2900,7 +2900,7 @@ curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/transactional_messages",
+  "https://api.tatango.com/api/v2/transactional_messages",
   false
 );
 request.setRequestHeader(
@@ -2945,7 +2945,7 @@ This endpoint sends a Transactional SMS Message.
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/transactional_messages`
+`POST https://api.tatango.com/api/v2/transactional_messages`
 
 ### JSON Parameters (JSON Object)
 
@@ -2960,7 +2960,7 @@ Example of webhook payload reply listed to the right.
   <ul>
     <li>
       <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the example code.</p>
+      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://api.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the example code.</p>
     </li>
   </ul>
 </aside>
@@ -2975,7 +2975,7 @@ Callback URLs configured as a webhook in Tatango are retried 10 times when not r
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -2984,7 +2984,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -2994,7 +2994,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.open("POST", "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
 request.send(data);
@@ -3023,7 +3023,7 @@ This endpoint creates a webhook for a list
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
+`POST https://api.tatango.com/api/v2/lists/ID/webhooks`
 
 ### URL Parameters
 
@@ -3037,7 +3037,7 @@ This endpoint creates a webhook for a list
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Put.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -3046,7 +3046,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X PUT \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://mynewapi.com/?ref=tatango","subscribe":true,"unsubscribe":false,"message_sent":false}}' -X PUT \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3058,7 +3058,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook
 var request = new XMLHttpRequest();
 request.open(
   "PUT",
-  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
 request.setRequestHeader(
@@ -3099,7 +3099,7 @@ This endpoint updates a webhook
 
 ### HTTP Request
 
-`PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`PUT https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -3114,7 +3114,7 @@ This endpoint updates a webhook
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -3122,7 +3122,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3134,7 +3134,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X GET 
 var request = new XMLHttpRequest();
 request.open(
   "GET",
-  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
 request.setRequestHeader(
@@ -3167,7 +3167,7 @@ This endpoint shows a webhook.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`GET https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -3189,7 +3189,7 @@ If the webhook does not exist you will get a 404 response with this body:
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Get.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -3197,7 +3197,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3207,7 +3207,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks", false);
+request.open("GET", "https://api.tatango.com/api/v2/lists/ID/webhooks", false);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3266,7 +3266,7 @@ This endpoint lists webhooks.
 
 ### HTTP Request
 
-`GET https://app.tatango.com/api/v2/lists/ID/webhooks`
+`GET https://api.tatango.com/api/v2/lists/ID/webhooks`
 
 ### URL Parameters
 
@@ -3287,7 +3287,7 @@ If the list does not exist you will get a 404 response with this body:
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Delete.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -3295,7 +3295,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELETE \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELETE \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3307,7 +3307,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '' -X DELE
 var request = new XMLHttpRequest();
 request.open(
   "DELETE",
-  "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
+  "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
 request.setRequestHeader(
@@ -3329,7 +3329,7 @@ This endpoint destroys a webhook.
 
 ### HTTP Request
 
-`DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
+`DELETE https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID`
 
 ### URL Parameters
 
@@ -3344,7 +3344,7 @@ This endpoint destroys a webhook.
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/webhooks')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -3353,7 +3353,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
+curl "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3363,7 +3363,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook
 
 ```javascript
 var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
+request.open("POST", "https://api.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
 request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
 var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
 request.send(data);
@@ -3392,7 +3392,7 @@ This endpoint creates a webhook for a list
 
 ### HTTP Request
 
-`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
+`POST https://api.tatango.com/api/v2/lists/ID/webhooks`
 
 ### URL Parameters
 
