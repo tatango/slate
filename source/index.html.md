@@ -1915,11 +1915,106 @@ request.send(null);
 }
 ```
 
+## Create a Custom Field
+
+### HTTP Request
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/subscribers')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(custom_field: {label: "The Label", key: "the_key", content_type: "text", max_length: 9999, pattern: "[A-Za-z0-9]", should_validate_regex_via_api: false, default_value: "The Default Value"})
+response = http.request(request)
+```
+
+```shell
+curl "https://api.tatango.com/api/v2/lists/ID/subscribers" -d '{"custom_field": {"label": "The Label", "key": "the_key", "content_type": "text", "max_length": 9999, "pattern": "[A-Za-z0-9]", "should_validate_regex_via_api": false, "default_value": "The Default Value"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "POST",
+  "https://api.tatango.com/api/v2/lists/ID/subscribers",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  custom_field: {
+      label: "The Label",
+      key: "the_key",
+      content_type: "text",
+      max_length: 9999,
+      pattern: "[A-Za-z0-9]",
+      should_validate_regex_via_api: false,
+      default_value: "The Default Value"
+  }
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "OK",
+  "custom_field": {
+    "list_id": 30,
+    "key": "the_key",
+    "pattern": "[A-Za-z0-9]",
+    "max_length": 9999,
+    "default_value": "The Default Value",
+    "can_insert": true,
+    "can_segment": true,
+    "created_at": "2023-11-22T08:14:19.000-08:00",
+    "updated_at": "2023-11-22T08:14:19.000-08:00",
+    "mask": null,
+    "label": "The Label",
+    "content_type": "text",
+    "should_validate_regex_via_api": false
+  }
+}
+```
+
+> If there is an error, the endpoint will return the following JSON:
+
+```json
+{
+  "status": "error",
+  "error": "Content type string not allowed. Allowed types are: text, datetime, number"
+}
+```
+
+```json
+{
+  "status": "error",
+  "error": "Validation failed: Merge tag has already been taken, Label has already been taken"
+}
+```
+
 ### URL Parameters
 
 | Parameter     | Description                         |
 | ------------- | ----------------------------------- |
 | ID            | ID of the list                      |
+
+### JSON Parameters (JSON Object)
+
+| Parameter           | Type   | Description     |
+| ------------------- | ------ | --------------- |
+| custom_field[label] | string | A human-readable label |
 
 # Messaging
 
