@@ -1850,7 +1850,7 @@ This endpoint gets a list of unsubscribed phone numbers.
 
 ### HTTP Request
 
-`GET https://api.tatango.com/api/v2/lists/ID/custom_fields`
+`GET https://api.tatango.com/api/v2/lists/ID/subscribers/unsubscribed`
 
 ### URL Parameters
 
@@ -1859,8 +1859,6 @@ This endpoint gets a list of unsubscribed phone numbers.
 | ID        | ID of the list |
 
 ## Get a List of Custom Fields
-
-### HTTP Request
 
 ```ruby
 require 'net/http'
@@ -1914,6 +1912,16 @@ request.send(null);
   ]
 }
 ```
+
+### HTTP Request
+
+`GET https://api.tatango.com/api/v2/lists/ID/custom_fields`
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ## Create a Custom Field
 
