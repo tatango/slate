@@ -2012,9 +2012,15 @@ request.send(data);
 
 ### JSON Parameters (JSON Object)
 
-| Parameter           | Type   | Description            |
-| ------------------- | ------ | ---------------------- |
-| custom_field[label] | string | A human-readable label |
+| Parameter                                   | Type    | Description                                                                            |
+| ------------------------------------------- | ------- | -------------------------------------------------------------------------------------- |
+| custom_field[label]                         | string  | A human-readable label                                                                 |
+| custom_field[key]                           | string  | The custom field key. Must only contain lower case characters, numbers and underscores |
+| custom_field[content_type]                  | string  | Allowed content types are: text, datetime and number                                   |
+| custom_field[max_length]                    | integer | The max length allowed for data in this custom field. Maximum value is 9999.           |
+| custom_field[pattern]                       | regex   | A validation regex for the content of the data in the custom field                     |
+| custom_field[should_validate_regex_via_api] | boolean | Whether or not the pattern regex should be validated via the API                       |
+| custom_field[default_value]                 | string  | A default value for when none is provided. Must adhere to the `pattern` regex.         |
 
 # Messaging
 
