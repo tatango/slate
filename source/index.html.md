@@ -1903,14 +1903,14 @@ request.send(null);
   "status": "OK",
   "custom_fields": [
     {
-        "key": "some_custom_field_name",
-        "pattern": "[A-Za-z0-9]",
-        "max_length": 9999,
-        "default_value": "The Default Value",
-        "label": "The Label",
-        "content_type": "text",
-        "should_validate_regex_via_api": false
-    },
+      "key": "some_custom_field_name",
+      "pattern": "[A-Za-z0-9]",
+      "max_length": 9999,
+      "default_value": "The Default Value",
+      "label": "The Label",
+      "content_type": "text",
+      "should_validate_regex_via_api": false
+    }
   ]
 }
 ```
@@ -1953,14 +1953,14 @@ request.setRequestHeader(
 );
 var data = JSON.stringify({
   custom_field: {
-      label: "The Label",
-      key: "the_key",
-      content_type: "text",
-      max_length: 9999,
-      pattern: "[A-Za-z0-9]",
-      should_validate_regex_via_api: false,
-      default_value: "The Default Value"
-  }
+    label: "The Label",
+    key: "the_key",
+    content_type: "text",
+    max_length: 9999,
+    pattern: "[A-Za-z0-9]",
+    should_validate_regex_via_api: false,
+    default_value: "The Default Value",
+  },
 });
 request.send(data);
 ```
@@ -2006,14 +2006,14 @@ request.send(data);
 
 ### URL Parameters
 
-| Parameter     | Description                         |
-| ------------- | ----------------------------------- |
-| ID            | ID of the list                      |
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ### JSON Parameters (JSON Object)
 
-| Parameter           | Type   | Description     |
-| ------------------- | ------ | --------------- |
+| Parameter           | Type   | Description            |
+| ------------------- | ------ | ---------------------- |
 | custom_field[label] | string | A human-readable label |
 
 # Messaging
