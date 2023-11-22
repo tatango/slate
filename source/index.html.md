@@ -1858,6 +1858,69 @@ This endpoint gets a list of unsubscribed phone numbers.
 | --------- | -------------- |
 | ID        | ID of the list |
 
+## Get a List of Custom Fields
+
+### HTTP Request
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/custom_fields')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://api.tatango.com/api/v2/lists/ID/custom_fields" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "GET",
+  "https://api.tatango.com/api/v2/lists/ID/custom_fields",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "OK",
+  "custom_fields": [
+    {
+        "key": "some_custom_field_name",
+        "pattern": "[A-Za-z0-9]",
+        "max_length": 9999,
+        "default_value": "The Default Value",
+        "label": "The Label",
+        "content_type": "text",
+        "should_validate_regex_via_api": false
+    },
+  ]
+}
+```
+
+### URL Parameters
+
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+
 # Messaging
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-\_\/@$#&%
