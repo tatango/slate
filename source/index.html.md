@@ -2096,7 +2096,7 @@ This endpoint deletes a custom field.
 | --- | -------------------- |
 | key | The custom field key |
 
-## Deleting a tag
+## Deleting a tag from all subscribers
 
 ```ruby
 require 'net/http'
