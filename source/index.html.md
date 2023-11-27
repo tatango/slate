@@ -2140,7 +2140,7 @@ request.send(data);
 }
 ```
 
-This endpoint deletes tags. After the endpoint is called, please allow up to 10 minutes for the tags provided to be removed from all subscribers.
+This endpoint deletes tags from all subscribers with the tag. After the endpoint is called, please allow up to 10 minutes for the tags provided to be removed from all subscribers.
 
 ### HTTP Request
 
