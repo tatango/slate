@@ -2030,6 +2030,72 @@ request.send(data);
 | custom_field[should_validate_regex_via_api] | boolean | Whether or not the pattern regex should be validated via the API                       |
 | custom_field[default_value]                 | string  | A default value for when none is provided. Must adhere to the `pattern` regex.         |
 
+## Deleting a Custom Field
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/custom_fields')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(key: "some_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://api.tatango.com/api/v2/lists/ID/custom_fields" -d '{"key": "some_key"}' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "DELETE",
+  "https://api.tatango.com/api/v2/lists/ID/custom_fields",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  key: 'some_key',
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "Custom field successfully deleted"
+}
+```
+
+This endpoint deletes a custom field.
+
+### HTTP Request
+
+`DELETE https://api.tatango.com/api/v2/lists/ID/custom_fields`
+
+### URL Parameters
+
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+
+### JSON Parameters (JSON Object)
+
+| Key | Description          |
+| --- | -------------------- |
+| key | The custom field key |
+
 # Messaging
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-\_\/@$#&%
