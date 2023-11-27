@@ -2065,7 +2065,7 @@ request.setRequestHeader(
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
 var data = JSON.stringify({
-  key: 'some_key',
+  key: "some_key",
 });
 request.send(data);
 ```
@@ -2086,15 +2086,77 @@ This endpoint deletes a custom field.
 
 ### URL Parameters
 
-| Parameter     | Description                         |
-| ------------- | ----------------------------------- |
-| ID            | ID of the list                      |
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
 
 ### JSON Parameters (JSON Object)
 
 | Key | Description          |
 | --- | -------------------- |
 | key | The custom field key |
+
+## Deleting a tag
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://api.tatango.com/api/v2/lists/ID/tags')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(tags: ["some_tag", "some_other_tag"])
+response = http.request(request)
+```
+
+```shell
+curl "https://api.tatango.com/api/v2/lists/ID/tags" -d '{"tags": ["some_tag", "some_other_tag"]}' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://api.tatango.com/api/v2/lists/ID/tags", false);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  tags: ["some_tag", "some_other_tag"],
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "Tags enqueued for deletion"
+}
+```
+
+This endpoint deletes tags. After the endpoint is called, please allow up to 10 minutes for the tags provided to be removed from all subscribers.
+
+### HTTP Request
+
+`DELETE https://api.tatango.com/api/v2/lists/ID/tags`
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
+
+### JSON Parameters (JSON Object)
+
+| Key  | Description           |
+| ---- | --------------------- |
+| tags | An array of tag names |
 
 # Messaging
 
