@@ -290,6 +290,11 @@
                   <li>
                     <a href="#get-a-list-of-unsubscribed-phone-numbers" class="toc-h2 toc-link" data-title="get-a-list-of-unsubscribed-phone-numbers">Get a List of Unsubscribed Phone Numbers</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#custom-fields" class="toc-h1 toc-link" data-title="custom-fields">Custom Fields</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#get-a-list-of-custom-fields" class="toc-h2 toc-link" data-title="get-a-list-of-custom-fields">Get a List of Custom Fields</a>
                   </li>
@@ -299,6 +304,11 @@
                   <li>
                     <a href="#deleting-a-custom-field" class="toc-h2 toc-link" data-title="deleting-a-custom-field">Deleting a Custom Field</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#tags" class="toc-h1 toc-link" data-title="tags">Tags</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#deleting-a-tag-from-all-subscribers" class="toc-h2 toc-link" data-title="deleting-a-tag-from-all-subscribers">Deleting a tag from all subscribers</a>
                   </li>
@@ -2431,7 +2441,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-list-of-custom-fields'>Get a List of Custom Fields</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h1 id='custom-fields'>Custom Fields</h1><h2 id='get-a-list-of-custom-fields'>Get a List of Custom Fields</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/custom_fields'</span><span class="p">)</span>
@@ -2679,7 +2689,7 @@ You will receive a 200 status on success
 <td>The custom field key</td>
 </tr>
 </tbody></table>
-<h2 id='deleting-a-tag-from-all-subscribers'>Deleting a tag from all subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h1 id='tags'>Tags</h1><h2 id='deleting-a-tag-from-all-subscribers'>Deleting a tag from all subscribers</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/tags'</span><span class="p">)</span>
