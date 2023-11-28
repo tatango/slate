@@ -1858,6 +1858,306 @@ This endpoint gets a list of unsubscribed phone numbers.
 | --------- | -------------- |
 | ID        | ID of the list |
 
+## Get a List of Custom Fields
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/custom_fields')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Get.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/custom_fields" -d '' -X GET \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "GET",
+  "https://app.tatango.com/api/v2/lists/ID/custom_fields",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+request.send(null);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "OK",
+  "custom_fields": [
+    {
+      "key": "some_custom_field_name",
+      "pattern": "[A-Za-z0-9]",
+      "max_length": 9999,
+      "default_value": "The Default Value",
+      "label": "The Label",
+      "content_type": "text",
+      "should_validate_regex_via_api": false
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://app.tatango.com/api/v2/lists/ID/custom_fields`
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
+
+## Create a Custom Field
+
+### HTTP Request
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Post.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(custom_field: {label: "The Label", key: "the_key", content_type: "text", max_length: 9999, pattern: "[A-Za-z0-9]", should_validate_regex_via_api: false, default_value: "The Default Value"})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"custom_field": {"label": "The Label", "key": "the_key", "content_type": "text", "max_length": 9999, "pattern": "[A-Za-z0-9]", "should_validate_regex_via_api": false, "default_value": "The Default Value"}}' -X POST \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "POST",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  custom_field: {
+    label: "The Label",
+    key: "the_key",
+    content_type: "text",
+    max_length: 9999,
+    pattern: "[A-Za-z0-9]",
+    should_validate_regex_via_api: false,
+    default_value: "The Default Value",
+  },
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "OK",
+  "custom_field": {
+    "list_id": 30,
+    "key": "the_key",
+    "pattern": "[A-Za-z0-9]",
+    "max_length": 9999,
+    "default_value": "The Default Value",
+    "can_insert": true,
+    "can_segment": true,
+    "created_at": "2023-11-22T08:14:19.000-08:00",
+    "updated_at": "2023-11-22T08:14:19.000-08:00",
+    "mask": null,
+    "label": "The Label",
+    "content_type": "text",
+    "should_validate_regex_via_api": false
+  }
+}
+```
+
+> If there is an error, the endpoint will return the following JSON:
+
+```json
+{
+  "status": "error",
+  "error": "Content type string not allowed. Allowed types are: text, datetime, number"
+}
+```
+
+```json
+{
+  "status": "error",
+  "error": "Validation failed: Merge tag has already been taken, Label has already been taken"
+}
+```
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
+
+### JSON Parameters (JSON Object)
+
+| Parameter                                   | Type    | Description                                                                            |
+| ------------------------------------------- | ------- | -------------------------------------------------------------------------------------- |
+| custom_field[label]                         | string  | A human-readable label                                                                 |
+| custom_field[key]                           | string  | The custom field key. Must only contain lower case characters, numbers and underscores |
+| custom_field[content_type]                  | string  | Allowed content types are: text, datetime and number                                   |
+| custom_field[max_length]                    | integer | The max length allowed for data in this custom field. Maximum value is 9999.           |
+| custom_field[pattern]                       | regex   | A validation regex for the content of the data in the custom field                     |
+| custom_field[should_validate_regex_via_api] | boolean | Whether or not the pattern regex should be validated via the API                       |
+| custom_field[default_value]                 | string  | A default value for when none is provided. Must adhere to the `pattern` regex.         |
+
+## Deleting a Custom Field
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/custom_fields')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(key: "some_key")
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/custom_fields" -d '{"key": "some_key"}' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "DELETE",
+  "https://app.tatango.com/api/v2/lists/ID/custom_fields",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  key: "some_key",
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "Custom field successfully deleted"
+}
+```
+
+This endpoint deletes a custom field.
+
+### HTTP Request
+
+`DELETE https://app.tatango.com/api/v2/lists/ID/custom_fields`
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
+
+### JSON Parameters (JSON Object)
+
+| Key | Description          |
+| --- | -------------------- |
+| key | The custom field key |
+
+## Deleting a tag from all subscribers
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/tags')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body(tags: ["some_tag", "some_other_tag"])
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/tags" -d '{"tags": ["some_tag", "some_other_tag"]}' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/tags", false);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  tags: ["some_tag", "some_other_tag"],
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "Tags enqueued for deletion"
+}
+```
+
+This endpoint deletes tags from all subscribers with the tag. After the endpoint is called, please allow up to 10 minutes for the tags provided to be removed from all subscribers.
+
+### HTTP Request
+
+`DELETE https://app.tatango.com/api/v2/lists/ID/tags`
+
+### URL Parameters
+
+| Parameter | Description    |
+| --------- | -------------- |
+| ID        | ID of the list |
+
+### JSON Parameters (JSON Object)
+
+| Key  | Description           |
+| ---- | --------------------- |
+| tags | An array of tag names |
+
 # Messaging
 
 The following characters can be used: a-z, A-Z, 0-9 and these special characters: .,:;!?()~=+-\_\/@$#&%
