@@ -1069,7 +1069,7 @@ Note: the following settings cannot be modified via the API:
 | list[email_subscribe]            | Email to send subscribe notifications to. Leave blank if you dont want to receive   |
 | list[email_unsubscribe]          | Email to send unsubscribe notifications to. Leave blank if you dont want to receive |
 
-#Subscribers
+# Subscribers
 
 ## Adding a Subscriber
 
@@ -1858,6 +1858,8 @@ This endpoint gets a list of unsubscribed phone numbers.
 | --------- | -------------- |
 | ID        | ID of the list |
 
+# Custom Fields
+
 ## Get a List of Custom Fields
 
 ```ruby
@@ -2095,6 +2097,8 @@ This endpoint deletes a custom field.
 | Key | Description          |
 | --- | -------------------- |
 | key | The custom field key |
+
+# Tags
 
 ## Deleting a tag from all subscribers
 
