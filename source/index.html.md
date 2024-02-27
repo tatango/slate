@@ -1553,6 +1553,101 @@ This endpoint updates a subscriber.
 | subscriber[tags]             | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts' |
 | subscriber[custom_field_key] | (optional) Custom data value                                                                     |
 
+## Updating a Subscriber Asynchronously
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/async')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Put.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"subscriber":{"first_name":"John","last_name":"Doe"}})
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/async" -d '{"subscriber":{"first_name":"John","last_name":"Doe"}}' -X PUT \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "PUT",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/async",
+  false
+);
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify(
+  '{"subscriber":{"first_name":"John","last_name":"Doe", "custom_field_key": "custom_value"}}'
+);
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "Subscriber update is being processed.",
+}
+```
+
+This endpoint updates a subscriber.
+
+### Responses Explained
+
+| Key           | Description                                                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| status  | The request's status.                                                                                 |
+<aside class="success">
+  <h3>FAQS About This Endpoint</h3>
+    <ul>
+      <li>
+        <em>Does this endpoint update my subscriber data in real-time?</em>
+        <p>No, this endpoint will process the subscriber data asynchronously.</p>
+      </li>
+      <li>
+        <em>Can I update custom subscriber data for a subscriber?</em>
+        <p>Yes, the paramaters are listed below.</p>
+      </li>
+    </ul>
+</aside>
+
+### HTTP Request
+
+`PUT https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID/async`
+
+### URL Parameters
+
+| Parameter     | Description                         |
+| ------------- | ----------------------------------- |
+| ID            | ID of the list                      |
+| SUBSCRIBER_ID | ID of the subscriber (phone number) |
+
+### JSON Parameters (JSON Object)
+
+| Parameter                    | Description                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| ID                           | ID of the list                                                                                   |
+| subscriber[phone_number]     | The wireless phone number of the subscriber.                                                     |
+| subscriber[first_name]       | (optional) First name - char(50)                                                                 |
+| subscriber[last_name]        | (optional) Last name - char(50)                                                                  |
+| subscriber[email]            | (optional) Email - char(50)                                                                      |
+| subscriber[birthdate]        | (optional) Birthdate - int(6)                                                                    |
+| subscriber[zip_code]         | (optional) ZIP code - char(6)                                                                    |
+| subscriber[gender]           | (optional) Gender - char('Male' or 'Female')                                                     |
+| subscriber[tags]             | (optional) List of tags, comma separated, for example: 'vip customer, card holder, daily alerts' |
+| subscriber[custom_field_key] | (optional) Custom data value                                                                     |
+
 ## Adding Multiple Tags to Multiple Subscribers
 
 ```ruby
