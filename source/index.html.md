@@ -1927,13 +1927,17 @@ request.send(null);
 
 ## Create a Custom Field
 
+This endpoint creates a custom field.
+
 ### HTTP Request
+
+`POST https://app.tatango.com/api/v2/lists/ID/custom_fields`
 
 ```ruby
 require 'net/http'
 require 'uri'
 
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers')
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/custom_fields')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
@@ -1942,7 +1946,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"custom_field": {"label": "The Label", "key": "the_key", "content_type": "text", "max_length": 9999, "pattern": "[A-Za-z0-9]", "should_validate_regex_via_api": false, "default_value": "The Default Value"}}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/custom_fields" -d '{"custom_field": {"label": "The Label", "key": "the_key", "content_type": "text", "max_length": 9999, "pattern": "[A-Za-z0-9]", "should_validate_regex_via_api": false, "default_value": "The Default Value"}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1954,7 +1958,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers" -d '{"custom_field": 
 var request = new XMLHttpRequest();
 request.open(
   "POST",
-  "https://app.tatango.com/api/v2/lists/ID/subscribers",
+  "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
 );
 request.setRequestHeader(
