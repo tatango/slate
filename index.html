@@ -2140,7 +2140,7 @@ You will receive a 200 status on success
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"bulk_tagging"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"phone_numbers"</span><span class="p">:[</span><span class="s2">"2145550762"</span><span class="p">,</span><span class="s2">"7185550549"</span><span class="p">,</span><span class="s2">"2125550838"</span><span class="p">],</span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="s2">"sports_news"</span><span class="p">,</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="s2">"weather_news"</span><span class="p">]}});</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/bulk_taggings"</span> -d <span class="s1">'{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}'</span> -X POST <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/ID/bulk_taggings"</span> -d <span class="s1">'{"bulk_tagging":{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}}'</span> -X POST <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
@@ -2157,9 +2157,10 @@ You will receive a 200 status on success
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
 <span class="p">);</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-  <span class="na">phone_numbers</span><span class="p">:</span> <span class="p">[</span><span class="s2">"2145550762"</span><span class="p">,</span> <span class="s2">"7185550549"</span><span class="p">,</span> <span class="s2">"2125550838"</span><span class="p">],</span>
-  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span> <span class="s2">"sports_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">,</span> <span class="s2">"weather_news"</span><span class="p">],</span>
-<span class="p">});</span>
+  <span class="na">bulk_tagging</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">phone_numbers</span><span class="p">:</span> <span class="p">[</span><span class="s2">"2145550762"</span><span class="p">,</span> <span class="s2">"7185550549"</span><span class="p">,</span> <span class="s2">"2125550838"</span><span class="p">],</span>
+    <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span> <span class="s2">"sports_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">,</span> <span class="s2">"weather_news"</span><span class="p">],</span>
+<span class="p">}});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
 <blockquote>
