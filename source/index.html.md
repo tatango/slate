@@ -1580,7 +1580,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"bulk_tagging":{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1600,9 +1600,10 @@ request.setRequestHeader(
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
 var data = JSON.stringify({
-  phone_numbers: ["2145550762", "7185550549", "2125550838"],
-  tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
-});
+  bulk_tagging: {
+    phone_numbers: ["2145550762", "7185550549", "2125550838"],
+    tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
+}});
 request.send(data);
 ```
 
@@ -1652,9 +1653,9 @@ This endpoint applies multiple tags to multiple subscribers
 | Parameter     | Description                                                                                                                                         |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ID            | ID of the list                                                                                                                                      |
-| phone_numbers | Array of phone numbers you want to modify. The max length of this array is 1000 values                                                              |
-| tags          | (optional) Array of tags to add. The max length of this array is 50 values                                                                          |
-| replace_tags  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
+| bulk_tagging[phone_numbers] | Array of phone numbers you want to modify. The max length of this array is 1000 values                                                              |
+| bulk_tagging[tags]          | (optional) Array of tags to add. The max length of this array is 50 values                                                                          |
+| bulk_tagging[replace_tags]  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
 
 ### Other uses
 
