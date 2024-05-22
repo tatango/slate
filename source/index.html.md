@@ -1655,7 +1655,7 @@ This endpoint applies multiple tags to multiple subscribers
 | ID            | ID of the list                                                                                                                                      |
 | bulk_tagging[phone_numbers] | Array of phone numbers you want to modify. The max length of this array is 1000 values                                                              |
 | bulk_tagging[tags]          | (optional) Array of tags to add. The max length of this array is 50 values                                                                          |
-| replace_tags  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
+| bulk_tagging[replace_tags]  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
 
 ### Other uses
 
