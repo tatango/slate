@@ -1257,6 +1257,8 @@ request.send(data);
         "music",
         "malls"
       ],
+      "global_carrier_id": "100313",
+      "global_carrier_name": "Verizon Wireless",
       "custom_field_key":"custom_value"
    }
 }
@@ -1292,16 +1294,18 @@ This endpoint adds a subscriber to a list.
 
 ### Responses Explained
 
-| Key           | Description                                                                                                                  |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| phone_number  | The wireless phone number of the subscriber.                                                                                 |
-| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
-| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
-| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
-| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
-| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
-| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
-| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
+| Key                 | Description                                                                                                                  |
+| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number        | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at        | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method       | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name        | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier             | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name        | The name of the wireless carrier for this specific subscriber.                                                               |
+| global_carrier_id   | The ID of the global wireless carrier for this specific subscriber.                                                          |
+| global_carrier_name | The name of the global wireless carrier for this specific subscriber.                                                        |
 
 <aside>
 <h3>FAQ About This Endpoint</h3>
@@ -1399,6 +1403,8 @@ request.send(null);
     "carrier": 77,
     "carrier_name": "Verizon",
     "tags": ["shopping", "malls", "deals"],
+    "global_carrier_id": "100313",
+    "global_carrier_name": "Verizon Wireless",
     "total_messages_received": 121
   }
 }
@@ -1429,6 +1435,8 @@ This endpoint returns information about a current subscriber.
 | keyword_name            | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
 | carrier                 | The ID of the wireless carrier for this specific subscriber.                                                                 |
 | carrier_name            | The name of the wireless carrier for this specific subscriber.                                                               |
+| global_carrier_id       | The ID of the global wireless carrier for this specific subscriber.                                                          |
+| global_carrier_name     | The name of the global wireless carrier for this specific subscriber.                                                        |
 | total_messages_received | The total amount of mass messages this specific subscriber has received over their lifetime from this specific list.         |
 
 ## Updating a Subscriber
@@ -1492,7 +1500,9 @@ request.send(data);
     "keyword_name": null,
     "carrier": 77,
     "carrier_name": "Verizon",
-    "tags": [],
+    "tags": [],   
+    "global_carrier_id": "100313",
+    "global_carrier_name": "Verizon Wireless",
     "custom_field_key": "custom_value"
   }
 }
@@ -1502,16 +1512,18 @@ This endpoint updates a subscriber.
 
 ### Responses Explained
 
-| Key           | Description                                                                                                                  |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| phone_number  | The wireless phone number of the subscriber.                                                                                 |
-| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
-| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
-| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
-| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
-| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
-| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
-| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
+| Key                 | Description                                                                                                                  |
+| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number        | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at        | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method       | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name        | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier             | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name        | The name of the wireless carrier for this specific subscriber.                                                               |
+| global_carrier_id   | The ID of the global wireless carrier for this specific subscriber.                                                          |
+| global_carrier_name | The name of the global wireless carrier for this specific subscriber.                                                        |
 
 <aside class="success">
   <h3>FAQS About This Endpoint</h3>
@@ -1705,7 +1717,9 @@ request.send(null);
     "keyword_name": null,
     "carrier": 77,
     "carrier_name": "Verizon",
-    "tags": []
+    "tags": [],
+    "global_carrier_id": "100313",
+    "global_carrier_name": "Verizon Wireless"
   }
 }
 ```
@@ -1725,16 +1739,18 @@ This endpoint unsubscribes a subscriber.
 
 ### Responses Explained
 
-| Key           | Description                                                                                                                  |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| phone_number  | The wireless phone number of the subscriber.                                                                                 |
-| cleaned_at    | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
-| subscribed_at | The data that this subscriber first subscribed to this specific list.                                                        |
-| opted_out_at  | The data that this subscriber last unsubscribed from this specific list.                                                     |
-| opt_in_method | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
-| keyword_name  | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
-| carrier       | The ID of the wireless carrier for this specific subscriber.                                                                 |
-| carrier_name  | The name of the wireless carrier for this specific subscriber.                                                               |
+| Key                 | Description                                                                                                                  |
+| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| phone_number        | The wireless phone number of the subscriber.                                                                                 |
+| cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
+| subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
+| opted_out_at        | The data that this subscriber last unsubscribed from this specific list.                                                     |
+| opt_in_method       | The original opt-in method used by this subscriber to opt-in to this specific list.                                          |
+| keyword_name        | If the subscriber opted-in by texting a keyword, that keyword they used will be displayed here.                              |
+| carrier             | The ID of the wireless carrier for this specific subscriber.                                                                 |
+| carrier_name        | The name of the wireless carrier for this specific subscriber.                                                               |
+| global_carrier_id   | The ID of the global wireless carrier for this specific subscriber.                                                          |
+| global_carrier_name | The name of the global wireless carrier for this specific subscriber.                                                        |
 
 ## Get a List of Subscribed Phone Numbers
 
