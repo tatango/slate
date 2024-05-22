@@ -1575,7 +1575,7 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/bulk_taggings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+request.body({"bulk_tagging": {"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}});
 response = http.request(request)
 ```
 
@@ -3662,67 +3662,6 @@ This endpoint destroys a webhook.
 | ID         | The ID of the list    |
 | WEBHOOK_ID | The ID of the webhook |
 
-## Webhook Examples
-
-```ruby
-require 'net/http'
-require 'uri'
-
-uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/webhooks')
-http = Net::HTTP.new(uri.host, uri.port)
-request = Net:HTTP::Post.new(uri.request_url)
-request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}})
-response = http.request(request)
-```
-
-```shell
-curl "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID" -d '{"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}}' -X POST \
-	-H "Accept: application/json" \
-	-H "Content-Type: application/json" \
-	-u emailaddress@mydomain.com:my_api_key \
-	-H "Host: example.org" \
-	-H "Cookie: "
-```
-
-```javascript
-var request = new XMLHttpRequest();
-request.open("POST", "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID", false);
-request.setRequestHeader("Authorization", "Basic " + btoa("emailaddress@mydomain.com:my_api_key"));
-var data = JSON.stringify({"webhook":{"callback_url":"http://localhost.dev/null?api_key=foo_bar_baz","subscribe":true,"unsubscribe":true,"message_sent":false}};
-request.send(data);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "status": "Webhook created",
-  "webhook": {
-    "callback_url": "http://localhost.dev/null?api_key=foo_bar_baz",
-    "created_at": "2016-09-07T14:11:13-07:00",
-    "enabled": true,
-    "id": 4,
-    "list_id": 29,
-    "message_sent": false,
-    "subscribe": true,
-    "unsubscribe": true,
-    "updated_at": "2016-09-07T14:11:13-07:00"
-  }
-}
-```
-
-This endpoint creates a webhook for a list
-
-### HTTP Request
-
-`POST https://app.tatango.com/api/v2/lists/ID/webhooks`
-
-### URL Parameters
-
-| Parameter | Description        |
-| --------- | ------------------ |
-| ID        | The ID of the list |
 
 # General FAQs
 
