@@ -1563,7 +1563,7 @@ uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/bulk_taggings')
 http = Net::HTTP.new(uri.host, uri.port)
 request = Net:HTTP::Post.new(uri.request_url)
 request.basic_auth("emailaddress@mydomain.com", "my_api_key")
-request.body({"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+request.body({"bulk_tagging": {"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}});
 response = http.request(request)
 ```
 
