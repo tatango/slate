@@ -1580,7 +1580,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X POST \
+curl "https://app.tatango.com/api/v2/lists/ID/bulk_taggings" -d '{"bulk_tagging":{"phone_numbers":["2145550762","7185550549","2125550838"],"tags":["local_news","sports_news","celebrity_news","weather_news"]}}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -1600,9 +1600,10 @@ request.setRequestHeader(
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
 var data = JSON.stringify({
-  phone_numbers: ["2145550762", "7185550549", "2125550838"],
-  tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
-});
+  bulk_tagging: {
+    phone_numbers: ["2145550762", "7185550549", "2125550838"],
+    tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
+}});
 request.send(data);
 ```
 
