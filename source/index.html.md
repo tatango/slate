@@ -2252,7 +2252,8 @@ request.send(data);
       "unsubscribe_count": 1362,
       "sms_count": 168808,
       "mms_count": 506424,
-      "send_cost": 5096.78
+      "send_cost": 5096.78,
+      "cancelled_at": null,
     },
     {
       "id": 14523,
@@ -2284,7 +2285,8 @@ request.send(data);
           "click_count": 15,
           "unique_click_count": 10
         }
-      ]
+      ],
+      "cancelled_at": null,
     }
   ]
 }
@@ -2650,6 +2652,7 @@ request.send(null);
     "mms_count": 506424,
     "send_cost": 5096.78,
     "attachment": "https://url-to-your-mms-attachment",
+    "cancelled_at": null,
     "message_links": [
       {
         "id": 42,
