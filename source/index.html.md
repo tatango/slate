@@ -2254,6 +2254,11 @@ request.send(data);
       "mms_count": 506424,
       "send_cost": 5096.78,
       "cancelled_at": null,
+      "parts": {
+        "sum": 679599,
+        "minimum": 1,
+        "maximum": 2
+      }
     },
     {
       "id": 14523,
@@ -2287,6 +2292,11 @@ request.send(data);
         }
       ],
       "cancelled_at": null,
+      "parts": {
+        "sum": 679599,
+        "minimum": 1,
+        "maximum": 2
+      }
     }
   ]
 }
@@ -2296,6 +2306,7 @@ This endpoint retrieves all sent messages in a list.
 
 Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
 Please note the `tracking_links` attribute will only be present on messages that have tracking links in their `content`.
+Please note the `parts` attribute will be available 10 minutes after the message was sent.
 
 ### HTTP Request
 
@@ -2660,7 +2671,12 @@ request.send(null);
         "count": 2356,
         "display_count": 2356
       }
-    ]
+    ],
+    "parts": {
+        "sum": 679599,
+        "minimum": 1,
+        "maximum": 2
+      }
   }
 }
 ```
@@ -2668,6 +2684,7 @@ request.send(null);
 This endpoint retrieves a message.
 
 Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
+Please note the `parts` attribute will be available 10 minutes after the message was sent.
 
 ### HTTP Request
 
