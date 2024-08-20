@@ -2850,6 +2850,11 @@ You will receive a 200 status on success
       </span><span class="s2">"mms_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">506424</span><span class="p">,</span><span class="w">
       </span><span class="s2">"send_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">5096.78</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cancelled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">679599</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14523</span><span class="p">,</span><span class="w">
@@ -2883,6 +2888,11 @@ You will receive a 200 status on success
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="s2">"cancelled_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">679599</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2890,7 +2900,8 @@ You will receive a 200 status on success
 <p>This endpoint retrieves all sent messages in a list.</p>
 
 <p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.
-Please note the <code>tracking_links</code> attribute will only be present on messages that have tracking links in their <code>content</code>.</p>
+Please note the <code>tracking_links</code> attribute will only be present on messages that have tracking links in their <code>content</code>.
+Please note the <code>parts</code> attribute will be available 10 minutes after the message was sent.</p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages</code></p>
 <h3 id='url-parameters-17'>URL Parameters</h3>
@@ -3248,13 +3259,19 @@ Please note the <code>tracking_links</code> attribute will only be present on me
         </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2356</span><span class="p">,</span><span class="w">
         </span><span class="s2">"display_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2356</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">679599</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a message.</p>
 
-<p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.</p>
+<p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.
+Please note the <code>parts</code> attribute will be available 10 minutes after the message was sent.</p>
 <h3 id='http-request-24'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
 <h3 id='url-parameters-21'>URL Parameters</h3>
