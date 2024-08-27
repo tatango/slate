@@ -1295,7 +1295,7 @@ This endpoint adds a subscriber to a list.
 ### Responses Explained
 
 | Key                 | Description                                                                                                                  |
-| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | phone_number        | The wireless phone number of the subscriber.                                                                                 |
 | cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
 | subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
@@ -1500,7 +1500,7 @@ request.send(data);
     "keyword_name": null,
     "carrier": 77,
     "carrier_name": "Verizon",
-    "tags": [],   
+    "tags": [],
     "global_carrier_id": "100313",
     "global_carrier_name": "Verizon Wireless",
     "custom_field_key": "custom_value"
@@ -1513,7 +1513,7 @@ This endpoint updates a subscriber.
 ### Responses Explained
 
 | Key                 | Description                                                                                                                  |
-| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | phone_number        | The wireless phone number of the subscriber.                                                                                 |
 | cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
 | subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
@@ -1603,7 +1603,8 @@ var data = JSON.stringify({
   bulk_tagging: {
     phone_numbers: ["2145550762", "7185550549", "2125550838"],
     tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
-}});
+  },
+});
 request.send(data);
 ```
 
@@ -1650,9 +1651,9 @@ This endpoint applies multiple tags to multiple subscribers
 
 ### JSON Parameters (JSON Object)
 
-| Parameter     | Description                                                                                                                                         |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ID            | ID of the list                                                                                                                                      |
+| Parameter                   | Description                                                                                                                                         |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ID                          | ID of the list                                                                                                                                      |
 | bulk_tagging[phone_numbers] | Array of phone numbers you want to modify. The max length of this array is 1000 values                                                              |
 | bulk_tagging[tags]          | (optional) Array of tags to add. The max length of this array is 50 values                                                                          |
 | bulk_tagging[replace_tags]  | (optional) Boolean value to replace tags. If it is true it will replace the old tags with the new tags. This value defaults to false if not defined |
@@ -1741,7 +1742,7 @@ This endpoint unsubscribes a subscriber.
 ### Responses Explained
 
 | Key                 | Description                                                                                                                  |
-| -------------       | ---------------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | phone_number        | The wireless phone number of the subscriber.                                                                                 |
 | cleaned_at          | If this subscriber was automatically unsubscribed from a list, then the date and time of that action will be displayed here. |
 | subscribed_at       | The data that this subscriber first subscribed to this specific list.                                                        |
@@ -2305,8 +2306,10 @@ request.send(data);
 This endpoint retrieves all sent messages in a list.
 
 Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
+
 Please note the `tracking_links` attribute will only be present on messages that have tracking links in their `content`.
-Please note the `parts` attribute will be available 10 minutes after the message was sent.
+
+Please note the `parts` attribute will be available 30 minutes after the message was sent.
 
 ### HTTP Request
 
@@ -2673,10 +2676,10 @@ request.send(null);
       }
     ],
     "parts": {
-        "sum": 679599,
-        "minimum": 1,
-        "maximum": 2
-      }
+      "sum": 679599,
+      "minimum": 1,
+      "maximum": 2
+    }
   }
 }
 ```
@@ -2684,7 +2687,8 @@ request.send(null);
 This endpoint retrieves a message.
 
 Please note the `message_links` attribute will only be present on messages that have `bit.ly` links in their `content`.
-Please note the `parts` attribute will be available 10 minutes after the message was sent.
+
+Please note the `parts` attribute will be available 30 minutes after the message was sent.
 
 ### HTTP Request
 
@@ -3682,7 +3686,6 @@ This endpoint destroys a webhook.
 | ---------- | --------------------- |
 | ID         | The ID of the list    |
 | WEBHOOK_ID | The ID of the webhook |
-
 
 # General FAQs
 
