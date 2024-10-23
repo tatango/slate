@@ -405,6 +405,41 @@
               </ul>
           </li>
           <li>
+            <a href="#automated-reports" class="toc-h1 toc-link" data-title="automated-reports">Automated Reports</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#all-replies-report" class="toc-h2 toc-link" data-title="all-replies-report">All Replies Report</a>
+                  </li>
+                  <li>
+                    <a href="#broadcast-message-summary-report" class="toc-h2 toc-link" data-title="broadcast-message-summary-report">Broadcast Message Summary Report</a>
+                  </li>
+                  <li>
+                    <a href="#clicks-report" class="toc-h2 toc-link" data-title="clicks-report">Clicks Report</a>
+                  </li>
+                  <li>
+                    <a href="#donations-report" class="toc-h2 toc-link" data-title="donations-report">Donations Report</a>
+                  </li>
+                  <li>
+                    <a href="#opts-report" class="toc-h2 toc-link" data-title="opts-report">Opts Report</a>
+                  </li>
+                  <li>
+                    <a href="#recipients-report" class="toc-h2 toc-link" data-title="recipients-report">Recipients Report</a>
+                  </li>
+                  <li>
+                    <a href="#subscribers-snapshot-report" class="toc-h2 toc-link" data-title="subscribers-snapshot-report">Subscribers Snapshot Report</a>
+                  </li>
+                  <li>
+                    <a href="#updated-subscribers-report" class="toc-h2 toc-link" data-title="updated-subscribers-report">Updated Subscribers Report</a>
+                  </li>
+                  <li>
+                    <a href="#delivery-methods" class="toc-h2 toc-link" data-title="delivery-methods">Delivery Methods</a>
+                  </li>
+                  <li>
+                    <a href="#example-use-case" class="toc-h2 toc-link" data-title="example-use-case">Example Use Case</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -4624,6 +4659,118 @@ If the list does not exist you will get a 404 response with this body:
 <td>653</td>
 </tr>
 </tbody></table>
+<h1 id='automated-reports'>Automated Reports</h1><h2 id='all-replies-report'>All Replies Report</h2>
+<p><strong>Description</strong>: The All Replies Report provides a detailed list of all replies received in response to broadcast or recurring messages sent from your account on the previous [day/week/month]. This report is designed to help users identify actionable replies, allowing them to engage with subscribers effectively and respond to any feedback or inquiries. By analyzing these replies, users can gain valuable insights into subscriber sentiment and the effectiveness of their campaigns.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
+
+<hr>
+<h2 id='broadcast-message-summary-report'>Broadcast Message Summary Report</h2>
+<p><strong>Description</strong>: The Messages Summary Report provides a [daily/weekly/monthly] summary of all broadcast messages sent from your account on the previous day. This report offers insights into message performance, including key metrics related to deliverability and engagement. Users can quickly assess how well their messages reached subscribers and gauge engagement levels, helping to inform future messaging strategies and optimize campaign effectiveness.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: No customization is available for this report.</p>
+
+<hr>
+<h2 id='clicks-report'>Clicks Report</h2>
+<p><strong>Description</strong>: The Clicks Report provides a comprehensive list of all clicks recorded from the previous [day/week/month]. This includes clicks from any broadcast or recurring message sent from your account. The report helps users track engagement at the subscriber level, providing valuable insights into campaign performance.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
+
+<hr>
+<h2 id='donations-report'>Donations Report</h2>
+<p><strong>Description</strong>: The Donations Report provides a comprehensive list of all donations received and attributed to Tatango messages from the previous [day/week/month]. This report enables users to assess the direct impact of their messaging campaigns on fundraising efforts, offering insights into which messages prompted donations. By tracking donation performance, customers can better understand campaign effectiveness and refine their messaging strategies to drive further contributions.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
+
+<hr>
+<h2 id='opts-report'>Opts Report</h2>
+<p><strong>Description</strong>: The Opts Report provides a comprehensive log of all opt-in and opt-out activities that occurred the previous [day/week/month]. This report gives users valuable insights into list growth, churn, and overall list health. By tracking subscriber engagement and list changes, users can better understand their audience dynamics and make informed decisions to improve subscriber retention and acquisition.</p>
+
+<p><strong>Frequency</strong>: Daily</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
+
+<hr>
+<h2 id='recipients-report'>Recipients Report</h2>
+<p><strong>Description</strong>: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
+
+<hr>
+<h2 id='subscribers-snapshot-report'>Subscribers Snapshot Report</h2>
+<p><strong>Description</strong>: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: No customization is available for this report.</p>
+
+<hr>
+<h2 id='updated-subscribers-report'>Updated Subscribers Report</h2>
+<p><strong>Description</strong>: The Updated Subscribers Report provides a detailed record of all subscribers whose information was updated during the previous [day/week/month]. This report offers valuable insights into changes in subscriber data, helping users monitor list health and track updates in subscription status. Subscribers may be included in the report due to changes in their subscription status (e.g., opt-in or opt-out) or updates to custom field attributes, such as name, email, last gift date or any other attributes configured as a custom field on your Tatango list.</p>
+
+<p><strong>Frequency</strong>: Daily</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: No customization is available for this report.</p>
+
+<hr>
+<h2 id='delivery-methods'>Delivery Methods</h2>
+<p>Reports can be automatically delivered to one or more of the following destinations: 
+- Amazon S3 (AWS)
+- Google Cloud Storage (GCP)
+- SFTP (Secure File Transfer Protocol)
+- Email: Delivered as an attachment</p>
+
+<p>If you have a delivery method you&#39;d like to see added please reach out to your Customer Success Manager or <a href="mailto:support@tatango.com">support@tatango.com</a>.</p>
+
+<hr>
+<h2 id='example-use-case'>Example Use Case</h2>
+<p>A nonprofit organization wants to track communication data in Salesforce. They log messages sent as activity records in Salesforce using the data provided by our Recipients Report. Each record from the report is logged as an activity record on each contact record in Salesforce.</p>
+
+<p>In order to accurately do so they add Salesforce Contact ID (bbcrm_cons_id) as a custom field on their Tatango list and upload each subscriber&#39;s constituent ID in their initial upload.</p>
+
+<p>The nonprofit organization consumes our Recipients Report on a daily basis to an AWS S3 bucket hosted by them. From there, they have a job that runs daily to pick up the .csv file, loop through each record, and create the activity records in Salesforce on each contact. This allows them to have a comprehensive view of texts that their contacts have received in Salesforce.</p>
 <h1 id='errors'>Errors</h1>
 <p>The tatango API uses the following error codes:</p>
 
