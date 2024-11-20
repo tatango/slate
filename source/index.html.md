@@ -3808,7 +3808,7 @@ This section provides a list of carrier ID and names (US and Canada) for any res
 
 Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.
 
-#### **How to Request and Enable Automated Reports**:
+### **How to Request and Enable Automated Reports**:
 To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
 1. **Report Name**: Specify the report(s) you’d like to enable.
 2. **Frequency**: Indicate how often you’d like to receive the report (e.g., daily, weekly, monthly).
@@ -3830,6 +3830,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user's Tatango account to appear in the report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -3862,6 +3863,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: No customization is available for this report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -3902,6 +3904,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user's Tatango account to appear in the report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -3928,6 +3931,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user's Tatango account to appear in the report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -3954,6 +3958,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user's Tatango account to appear in the report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -3982,6 +3987,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user's Tatango account to appear in the report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -4022,6 +4028,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: No customization is available for this report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -4054,11 +4061,12 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: No customization is available for this report.
 
 **Fields**:
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
 - `list_id`: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- `list_name`: The name of the list in Tatango.
+- `list_name`: The name of the list in Tatago.
 - `subscriber_id`: The unique identifier for each subscriber.
 - `phone_number`: The phone number of the subscriber.
 - `carrier`: The carrier for the subscriber's phone number.
