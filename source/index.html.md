@@ -4066,7 +4066,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
 - `list_id`: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- `list_name`: The name of the list in Tatago.
+- `list_name`: The name of the list in Tatango.
 - `subscriber_id`: The unique identifier for each subscriber.
 - `phone_number`: The phone number of the subscriber.
 - `carrier`: The carrier for the subscriber's phone number.
