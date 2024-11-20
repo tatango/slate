@@ -411,6 +411,9 @@
                     <a href="#overview-of-automated-reports" class="toc-h2 toc-link" data-title="strong-overview-of-automated-reports-strong"><strong>Overview of Automated Reports</strong></a>
                   </li>
                   <li>
+                    <a href="#how-to-request-and-enable-automated-reports" class="toc-h2 toc-link" data-title="strong-how-to-request-and-enable-automated-reports-strong"><strong>How to Request and Enable Automated Reports</strong>:</a>
+                  </li>
+                  <li>
                     <a href="#all-replies-report" class="toc-h2 toc-link" data-title="all-replies-report">All Replies Report</a>
                   </li>
                   <li>
@@ -4664,7 +4667,7 @@ If the list does not exist you will get a 404 response with this body:
 </tbody></table>
 <h1 id='automated-reports'>Automated Reports</h1><h3 id='overview-of-automated-reports'><strong>Overview of Automated Reports</strong></h3>
 <p>Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.</p>
-<h4 id='how-to-request-and-enable-automated-reports'><strong>How to Request and Enable Automated Reports</strong>:</h4>
+<h3 id='how-to-request-and-enable-automated-reports'><strong>How to Request and Enable Automated Reports</strong>:</h3>
 <p>To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
 1. <strong>Report Name</strong>: Specify the report(s) you’d like to enable.
 2. <strong>Frequency</strong>: Indicate how often you’d like to receive the report (e.g., daily, weekly, monthly).
@@ -4683,24 +4686,27 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
-- <code>recurring_message_name</code>: The Name of the parent recurring message. Only applicable if the message was a child of a recurring message.
-- <code>message_id</code>: The ID of the message in which the subscriber responded to.
-- <code>message_name</code>: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under <code>recurring_message_name</code>. 
-- <code>phone_number</code>: The phone number of the subscriber who replied.
-- <code>record_type</code>: This represents whether the record is a <code>reply</code> or a <code>reply_response</code>
-- <code>reply_id</code>: The unique identifier for the reply received from the subscriber. 
-- <code>reply_response_id</code>: The unique identifier for the reply response sent by the Tatango account.
-- <code>replied_at</code>: The time of the reply. (Only if the <code>record_type</code> is <code>reply</code>)
-- <code>responded_at</code>: The time of the response. (Only if the <code>record_type</code> is <code>reply_response</code>)
-- <code>reply_content</code>: The content of the reply. 
-- <code>response_content</code>: The content of the reply response. (Only if the <code>record_type</code> is <code>reply_response</code>)</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
+<li><code>recurring_message_name</code>: The Name of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
+<li><code>message_id</code>: The ID of the message in which the subscriber responded to.</li>
+<li><code>message_name</code>: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under <code>recurring_message_name</code>. </li>
+<li><code>phone_number</code>: The phone number of the subscriber who replied.</li>
+<li><code>record_type</code>: This represents whether the record is a <code>reply</code> or a <code>reply_response</code></li>
+<li><code>reply_id</code>: The unique identifier for the reply received from the subscriber. </li>
+<li><code>reply_response_id</code>: The unique identifier for the reply response sent by the Tatango account.</li>
+<li><code>replied_at</code>: The time of the reply. (Only if the <code>record_type</code> is <code>reply</code>)</li>
+<li><code>responded_at</code>: The time of the response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
+<li><code>reply_content</code>: The content of the reply. </li>
+<li><code>response_content</code>: The content of the reply response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
+</ul>
 <h2 id='broadcast-message-summary-report'>Broadcast Message Summary Report</h2>
 <p><strong>Description</strong>: The Messages Summary Report provides a [daily/weekly/monthly] summary of all broadcast messages sent from your account on the previous day. This report offers insights into message performance, including key metrics related to deliverability and engagement. Users can quickly assess how well their messages reached subscribers and gauge engagement levels, helping to inform future messaging strategies and optimize campaign effectiveness.</p>
 
@@ -4712,32 +4718,35 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: No customization is available for this report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>sending_at</code>: The timestamp of when the message started sending.
-- <code>sent_at</code>: The timestamp of when a message finished sending.
-- <code>canceled_at</code>: The timestamp of when a message was cancelled.
-- <code>status</code>: The current status of the message.
-- <code>is_timewarp</code>: Boolean indicating if a message is a timwarp or not.
-- <code>message_id</code>: The ID of the message.
-- <code>message_name</code>: The name of the message sent.
-- <code>message_type</code>: The type of message sent (SMS/MMS).
-- <code>recipients</code>: The number of recipients the message was sent to.
-- <code>sms_count</code>: The number of SMS messages sent.
-- <code>mms_count</code>: The number of MMS messages sent.
-- <code>total_parts</code>: The number of individual parts that were sent.
-- <code>messages_delivered</code>: The number of messages successfully delivered to a subscriber&#39;s handset.
-- <code>bounces</code>: The number messages that bounced.
-- <code>message_body</code>: The content of the message body.
-- <code>fallback</code>: The content of the fallback message. Only applicable to MMS messages.
-- <code>links</code>: Links within the message body.
-- <code>click_counts</code>: The number of clicks by subscribers on a link within the message body.
-- <code>send_cost</code>: The cost of the message sent.
-- <code>segments</code>: The segments used to define the audience that received the message.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>sending_at</code>: The timestamp of when the message started sending.</li>
+<li><code>sent_at</code>: The timestamp of when a message finished sending.</li>
+<li><code>canceled_at</code>: The timestamp of when a message was cancelled.</li>
+<li><code>status</code>: The current status of the message.</li>
+<li><code>is_timewarp</code>: Boolean indicating if a message is a timwarp or not.</li>
+<li><code>message_id</code>: The ID of the message.</li>
+<li><code>message_name</code>: The name of the message sent.</li>
+<li><code>message_type</code>: The type of message sent (SMS/MMS).</li>
+<li><code>recipients</code>: The number of recipients the message was sent to.</li>
+<li><code>sms_count</code>: The number of SMS messages sent.</li>
+<li><code>mms_count</code>: The number of MMS messages sent.</li>
+<li><code>total_parts</code>: The number of individual parts that were sent.</li>
+<li><code>messages_delivered</code>: The number of messages successfully delivered to a subscriber&#39;s handset.</li>
+<li><code>bounces</code>: The number messages that bounced.</li>
+<li><code>message_body</code>: The content of the message body.</li>
+<li><code>fallback</code>: The content of the fallback message. Only applicable to MMS messages.</li>
+<li><code>links</code>: Links within the message body.</li>
+<li><code>click_counts</code>: The number of clicks by subscribers on a link within the message body.</li>
+<li><code>send_cost</code>: The cost of the message sent.</li>
+<li><code>segments</code>: The segments used to define the audience that received the message.</li>
+</ul>
 <h2 id='clicks-report'>Clicks Report</h2>
 <p><strong>Description</strong>: The Clicks Report provides a comprehensive list of all clicks recorded from the previous [day/week/month]. This includes clicks from any broadcast or recurring message sent from your account. The report helps users track engagement at the subscriber level, providing valuable insights into campaign performance.</p>
 
@@ -4749,18 +4758,21 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>click_id</code>: The unique identifier for each click recorded by Tatango.
-- <code>clicked_at</code>: The exact time when the click occurred.
-- <code>subscriber_id</code>: The ID of the subscriber in Tatango.
-- <code>phone_number</code>: The phone number of the subscriber who clicked the link.
-- <code>message_id</code>: The ID of the message from which the click originated.
-- <code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>click_id</code>: The unique identifier for each click recorded by Tatango.</li>
+<li><code>clicked_at</code>: The exact time when the click occurred.</li>
+<li><code>subscriber_id</code>: The ID of the subscriber in Tatango.</li>
+<li><code>phone_number</code>: The phone number of the subscriber who clicked the link.</li>
+<li><code>message_id</code>: The ID of the message from which the click originated.</li>
+<li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
+</ul>
 <h2 id='donations-report'>Donations Report</h2>
 <p><strong>Description</strong>: The Donations Report provides a comprehensive list of all donations received and attributed to Tatango messages from the previous [day/week/month]. This report enables users to assess the direct impact of their messaging campaigns on fundraising efforts, offering insights into which messages prompted donations. By tracking donation performance, customers can better understand campaign effectiveness and refine their messaging strategies to drive further contributions.</p>
 
@@ -4772,18 +4784,21 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>donation_platform_uid</code>: The unique identifier from the fundraising platform the donation originated from.
-- <code>donated_at</code>: The timestamp of when the donation occurred.
-- <code>message_id</code>: The ID of the message from which the donation originated.
-- <code>amount</code>: The amount of the donation.
-- <code>phone_number</code>: The phone number of the subscriber who donated as a result of receiving the message.
-- <code>created_at</code>: The timestamp of when the donation was created in Tatango.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>donation_platform_uid</code>: The unique identifier from the fundraising platform the donation originated from.</li>
+<li><code>donated_at</code>: The timestamp of when the donation occurred.</li>
+<li><code>message_id</code>: The ID of the message from which the donation originated.</li>
+<li><code>amount</code>: The amount of the donation.</li>
+<li><code>phone_number</code>: The phone number of the subscriber who donated as a result of receiving the message.</li>
+<li><code>created_at</code>: The timestamp of when the donation was created in Tatango.</li>
+</ul>
 <h2 id='opts-report'>Opts Report</h2>
 <p><strong>Description</strong>: The Opts Report provides a comprehensive log of all opt-in and opt-out activities that occurred the previous [day/week/month]. This report gives users valuable insights into list growth, churn, and overall list health. By tracking subscriber engagement and list changes, users can better understand their audience dynamics and make informed decisions to improve subscriber retention and acquisition.</p>
 
@@ -4795,20 +4810,23 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>phone_number</code>: The phone number of the subscriber who initiated the opt action.
-- <code>opt_id</code>: The unique identifier for each opt record.
-- <code>opt_type</code>: The type of opt action (in or out).
-- <code>opt_in_method</code>: The method in which the opt action was initiated. (Only for opt-ins)
-- <code>api_source</code>: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api. 
-- <code>keyword_name</code>: The keyword associated with an opt-in action.
-- <code>opt_out_method</code>: The method that initiated the opt-out action.
-- <code>opt_created_date</code>: The date the opt record was created.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>phone_number</code>: The phone number of the subscriber who initiated the opt action.</li>
+<li><code>opt_id</code>: The unique identifier for each opt record.</li>
+<li><code>opt_type</code>: The type of opt action (in or out).</li>
+<li><code>opt_in_method</code>: The method in which the opt action was initiated. (Only for opt-ins)</li>
+<li><code>api_source</code>: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api. </li>
+<li><code>keyword_name</code>: The keyword associated with an opt-in action.</li>
+<li><code>opt_out_method</code>: The method that initiated the opt-out action.</li>
+<li><code>opt_created_date</code>: The date the opt record was created.</li>
+</ul>
 <h2 id='recipients-report'>Recipients Report</h2>
 <p><strong>Description</strong>: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced.</p>
 
@@ -4820,32 +4838,44 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: Users can request to append subscriber-level custom fields to the report, such as CRM IDs (e.g., cons_id from Blackbaud Luminate Online). These custom fields must be pre-configured within the list in the user&#39;s Tatango account to appear in the report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>phone_number</code>: The phone number of the subscriber that received the message.
-- <code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
-- <code>message_id</code>: The unique id of the message the subscriber received.
-- <code>message_name</code>: The name of the broadcast or recurring message the subscriber received.
-- <code>message_type</code>: This identifies the type of message that was sent.
-  - <strong>broadcast</strong>: Broadcast messages are large audience blast messages sent from within the Tatango UI.
-  - <strong>recurring</strong>: Recurring messages are scheduled messages set to trigger based off of subscriber actions.
-  - <strong>system</strong>: System messages are default system messages that are triggered based off of subscriber actions (opt-ins, opt-outs) or by texting in keywords like HELP.
-  - <strong>test</strong>: Test messages are messages sent during the broadcast creation process by users to validate the content of the broadcast message they are creating.
-  - <strong>transactional</strong>: Transactional messages are messages sent using our Transactional Message API.
-- <code>content</code>: The content of the message sent to the subscriber.
-- <code>sent_at</code>: The time the message was sent.
-- <code>delivery_status</code>: The status of the message sent to the subscriber.
-  - <strong>Delivered</strong>: The carrier has confirmed the message was received by the subscriber&#39;s handset.
-  - <strong>Bounced</strong>: The carrier attempted delivery but was unsuccessful.
-  - <strong>Pending</strong>: Awaiting a response from the carrier.
-- <code>bounce_type</code>: The bounce type of the individual message sent to the subscriber. Only applicable if the delivery_status is Bounced.
-  - <strong>Soft</strong>: The handset is temporarily unable to receive the message (e.g., subscriber&#39;s phone is off or out of service).
-  - <strong>Hard</strong>: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).
-- <code>total_message_parts</code>: The number of individual SMS parts sent to the specific subscriber.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>phone_number</code>: The phone number of the subscriber that received the message.</li>
+<li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
+<li><code>message_id</code>: The unique id of the message the subscriber received.</li>
+<li><code>message_name</code>: The name of the broadcast or recurring message the subscriber received.</li>
+<li><code>message_type</code>: This identifies the type of message that was sent.
+
+<ul>
+<li><strong>broadcast</strong>: Broadcast messages are large audience blast messages sent from within the Tatango UI.</li>
+<li><strong>recurring</strong>: Recurring messages are scheduled messages set to trigger based off of subscriber actions.</li>
+<li><strong>system</strong>: System messages are default system messages that are triggered based off of subscriber actions (opt-ins, opt-outs) or by texting in keywords like HELP.</li>
+<li><strong>test</strong>: Test messages are messages sent during the broadcast creation process by users to validate the content of the broadcast message they are creating.</li>
+<li><strong>transactional</strong>: Transactional messages are messages sent using our Transactional Message API.</li>
+</ul></li>
+<li><code>content</code>: The content of the message sent to the subscriber.</li>
+<li><code>sent_at</code>: The time the message was sent.</li>
+<li><code>delivery_status</code>: The status of the message sent to the subscriber.
+
+<ul>
+<li><strong>Delivered</strong>: The carrier has confirmed the message was received by the subscriber&#39;s handset.</li>
+<li><strong>Bounced</strong>: The carrier attempted delivery but was unsuccessful.</li>
+<li><strong>Pending</strong>: Awaiting a response from the carrier.</li>
+</ul></li>
+<li><code>bounce_type</code>: The bounce type of the individual message sent to the subscriber. Only applicable if the delivery_status is Bounced.
+
+<ul>
+<li><strong>Soft</strong>: The handset is temporarily unable to receive the message (e.g., subscriber&#39;s phone is off or out of service).</li>
+<li><strong>Hard</strong>: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).</li>
+</ul></li>
+<li><code>total_message_parts</code>: The number of individual SMS parts sent to the specific subscriber.</li>
+</ul>
 <h2 id='subscribers-snapshot-report'>Subscribers Snapshot Report</h2>
 <p><strong>Description</strong>: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.</p>
 
@@ -4857,24 +4887,27 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: No customization is available for this report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>subscriber_id</code>: The unique identifier for each subscriber.
-- <code>phone_number</code>: The phone number of the subscriber.
-- <code>carrier</code>: The carrier for the subscriber&#39;s phone number.
-- <code>tags</code>: Any tags associated with the subscriber.
-- <code>status</code>: The current subscription status of the subscriber.
-- <code>subscribed_at</code>: The timestamp when the subscriber first joined the list.
-- <code>unsubscribed_at</code>: The timestamp when the subscriber unsubscribed from the list.
-- <code>cleaned_at</code>: The timestamp of when the subscriber was cleaned from the list.
-- <code>opt_in_method</code>: The method by which the subscriber joined the list.
-- <code>most_recent_opt_in</code>: The timestamp of the subscriber&#39;s most recent opt-in action.
-- <code>api_source</code>: The API source of the most recent opt-in.
-- <code>custom_fields</code>: Any custom fields configured in your Tatango list will be included as separate columns by default. The headers will reflect the merge tag defined when the custom fields were created.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>subscriber_id</code>: The unique identifier for each subscriber.</li>
+<li><code>phone_number</code>: The phone number of the subscriber.</li>
+<li><code>carrier</code>: The carrier for the subscriber&#39;s phone number.</li>
+<li><code>tags</code>: Any tags associated with the subscriber.</li>
+<li><code>status</code>: The current subscription status of the subscriber.</li>
+<li><code>subscribed_at</code>: The timestamp when the subscriber first joined the list.</li>
+<li><code>unsubscribed_at</code>: The timestamp when the subscriber unsubscribed from the list.</li>
+<li><code>cleaned_at</code>: The timestamp of when the subscriber was cleaned from the list.</li>
+<li><code>opt_in_method</code>: The method by which the subscriber joined the list.</li>
+<li><code>most_recent_opt_in</code>: The timestamp of the subscriber&#39;s most recent opt-in action.</li>
+<li><code>api_source</code>: The API source of the most recent opt-in.</li>
+<li><code>custom_fields</code>: Any custom fields configured in your Tatango list will be included as separate columns by default. The headers will reflect the merge tag defined when the custom fields were created.</li>
+</ul>
 <h2 id='updated-subscribers-report'>Updated Subscribers Report</h2>
 <p><strong>Description</strong>: The Updated Subscribers Report provides a detailed record of all subscribers whose information was updated during the previous [day/week/month]. This report offers valuable insights into changes in subscriber data, helping users monitor list health and track updates in subscription status. Subscribers may be included in the report due to changes in their subscription status (e.g., opt-in or opt-out) or updates to custom field attributes, such as name, email, last gift date or any other attributes configured as a custom field on your Tatango list.</p>
 
@@ -4886,24 +4919,27 @@ If the list does not exist you will get a 404 response with this body:
 
 <p><strong>Customization</strong>: No customization is available for this report.</p>
 
-<p><strong>Fields</strong>:
-- <code>report_run_date</code>: The date when the report was generated.
-- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
-- <code>company_name</code>: The name of the company associated with the Tatango account.
-- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
-- <code>list_name</code>: The name of the list in Tatango.
-- <code>subscriber_id</code>: The unique identifier for each subscriber.
-- <code>phone_number</code>: The phone number of the subscriber.
-- <code>carrier</code>: The carrier for the subscriber&#39;s phone number.
-- <code>tags</code>: Any tags associated with the subscriber.
-- <code>status</code>: The current subscription status of the subscriber.
-- <code>subscribed_at</code>: The timestamp when the subscriber first joined the list.
-- <code>unsubscribed_at</code>: The timestamp when the subscriber unsubscribed from the list.
-- <code>cleaned_at</code>: The timestamp of when the subscriber was cleaned from the list.
-- <code>opt_in_method</code>: The method by which the subscriber joined the list.
-- <code>most_recent_opt_in</code>: The timestamp of the subscriber&#39;s most recent opt-in action.
-- <code>api_source</code>: The API source of the most recent opt-in.
-- <code>custom_fields</code>: Any custom fields configured in your Tatango list will be included as separate columns. The headers will reflect the merge tag defined when the custom fields were created.</p>
+<p><strong>Fields</strong>:</p>
+
+<ul>
+<li><code>report_run_date</code>: The date when the report was generated.</li>
+<li><code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.</li>
+<li><code>company_name</code>: The name of the company associated with the Tatango account.</li>
+<li><code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.</li>
+<li><code>list_name</code>: The name of the list in Tatango.</li>
+<li><code>subscriber_id</code>: The unique identifier for each subscriber.</li>
+<li><code>phone_number</code>: The phone number of the subscriber.</li>
+<li><code>carrier</code>: The carrier for the subscriber&#39;s phone number.</li>
+<li><code>tags</code>: Any tags associated with the subscriber.</li>
+<li><code>status</code>: The current subscription status of the subscriber.</li>
+<li><code>subscribed_at</code>: The timestamp when the subscriber first joined the list.</li>
+<li><code>unsubscribed_at</code>: The timestamp when the subscriber unsubscribed from the list.</li>
+<li><code>cleaned_at</code>: The timestamp of when the subscriber was cleaned from the list.</li>
+<li><code>opt_in_method</code>: The method by which the subscriber joined the list.</li>
+<li><code>most_recent_opt_in</code>: The timestamp of the subscriber&#39;s most recent opt-in action.</li>
+<li><code>api_source</code>: The API source of the most recent opt-in.</li>
+<li><code>custom_fields</code>: Any custom fields configured in your Tatango list will be included as separate columns. The headers will reflect the merge tag defined when the custom fields were created.</li>
+</ul>
 <h2 id='delivery-methods'>Delivery Methods</h2>
 <p>Reports can be automatically delivered to one or more of the following destinations: 
 - Amazon S3 (AWS)
