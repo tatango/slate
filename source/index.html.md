@@ -3198,7 +3198,7 @@ request.send(data);
 }
 ```
 
-This endpoint sends a Transactional SMS Message.
+This endpoint sends a Transactional SMS Message. Transactional SMS Messages are limited to 160 characters. Messages sent with more than 160 characters will be rejected with a 422 response and an error message stating that the content is too long.
 
 ### HTTP Request
 
@@ -3211,16 +3211,6 @@ This endpoint sends a Transactional SMS Message.
 | transactional_message[number]               | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters) |
 | transactional_message[content]              | <span class="required">required</span> Message content                                                     |
 | transactional_message[webhook_callback_url] | Webhook url (will send result of send to)                                                                  |
-
-<aside class="success">
-Example of webhook payload reply listed to the right.
-  <ul>
-    <li>
-      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
-    </li>
-  </ul>
-</aside>
 
 ## Send Transactional MMS Message
 
@@ -3237,7 +3227,7 @@ response = http.request(request)
 ```
 
 ```shell
-curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42' -X POST \
+curl "https://app.tatango.com/api/v2/transactional_messages" -d '{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}' -X POST \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
 	-u emailaddress@mydomain.com:my_api_key \
@@ -3290,7 +3280,7 @@ request.send(data);
 }
 ```
 
-This endpoint sends a Transactional SMS Message.
+This endpoint sends a Transactional MMS Message. Transactional MMS Messages are limited to 500 characters.
 
 ### HTTP Request
 
@@ -3298,11 +3288,15 @@ This endpoint sends a Transactional SMS Message.
 
 ### JSON Parameters (JSON Object)
 
-| Parameter                                   | Description                                                                                                |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| transactional_message[number]               | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters) |
-| transactional_message[content]              | <span class="required">required</span> Message content                                                     |
-| transactional_message[webhook_callback_url] | Webhook url (will send result of send to)                                                                  |
+| Parameter                                             | Description                                                                                                                                                                                |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| transactional_message[number]                         | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)                                                                                 |
+| transactional_message[content]                        | <span class="required">required</span> Message content                                                                                                                                     |
+| transactional_message[is_mms]                         | Accepts `true` or `false`. If `true` message will be sent as MMS. If `false`, message will be sent as SMS                                                                                  |
+| transactional_message[subject]                        | The subject line of your message. The subject is bold and sent above the content included in your request                                                                                  |
+| transactional_message[fallback_content]               | Fallback content is text only, and is sent in the case that the handset is unable to receive MMS messages, limited to 160 characters                                                       |
+| transactional_message[attachment_id]                  | The `attachment_id` is the id that references the media attachment to include in an MMS message                                                                                            |
+| transactional_message[webhook_callback_url]           | Webhook url (will send result of send to)                                                                                                                                                  |
 
 <aside class="success">
 Example of webhook payload reply listed to the right.
@@ -3802,7 +3796,7 @@ This section provides a list of carrier ID and names (US and Canada) for any res
 | Virgin Mobile     | 537        |
 | WIND              | 653        |
 
-# Automated Reports
+# Tatango Data Hub
 
 ### **Overview of Automated Reports**
 
@@ -3976,7 +3970,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 
 ## Recipients Report
 
-**Description**: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced.
+**Description**: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced. Note: `list_id` and `list_name` can be null for system messages at the account level. In this case any custom fields tied to a given subscriber will not be returned.
 
 **Frequency**: Daily/Weekly/Monthly
 
@@ -3996,6 +3990,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `phone_number`: The phone number of the subscriber that received the message.
 - `recurring_message_id`: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
 - `message_id`: The unique id of the message the subscriber received.
+- `momt_id`: The unique id of the individual message sent to the phone number. 
 - `message_name`: The name of the broadcast or recurring message the subscriber received.
 - `message_type`: This identifies the type of message that was sent.
   - **broadcast**: Broadcast messages are large audience blast messages sent from within the Tatango UI.
@@ -4010,8 +4005,8 @@ Automated reports are available upon request. Let your Customer Success Manager 
   - **Bounced**: The carrier attempted delivery but was unsuccessful.
   - **Pending**: Awaiting a response from the carrier.
 - `bounce_type`: The bounce type of the individual message sent to the subscriber. Only applicable if the delivery_status is Bounced.
-  - **Soft**: The handset is temporarily unable to receive the message (e.g., subscriber's phone is off or out of service).
-  - **Hard**: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).
+  - **soft**: The handset is temporarily unable to receive the message (e.g., subscriber's phone is off or out of service).
+  - **hard**: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).
 - `total_message_parts`: The number of individual SMS parts sent to the specific subscriber.
 
 
