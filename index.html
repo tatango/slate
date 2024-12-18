@@ -405,7 +405,7 @@
               </ul>
           </li>
           <li>
-            <a href="#automated-reports" class="toc-h1 toc-link" data-title="automated-reports">Automated Reports</a>
+            <a href="#tatango-data-hub" class="toc-h1 toc-link" data-title="tatango-data-hub">Tatango Data Hub</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#overview-of-automated-reports" class="toc-h2 toc-link" data-title="strong-overview-of-automated-reports-strong"><strong>Overview of Automated Reports</strong></a>
@@ -3822,7 +3822,7 @@ You will receive a 200 status on success
   </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I replied to transactional"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint sends a Transactional SMS Message.</p>
+<p>This endpoint sends a Transactional SMS Message. Transactional SMS Messages are limited to 160 characters. Messages sent with more than 160 characters will be rejected with a 422 response and an error message stating that the content is too long.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
 <h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
@@ -3845,16 +3845,6 @@ You will receive a 200 status on success
 <td>Webhook url (will send result of send to)</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Example of webhook payload reply listed to the right.
-  <ul>
-    <li>
-      <em>Can I send an MMS (Image/Video) messages using transactional?</em>
-      <p>Yes. You can send MMS Transactional messages. First, go to <a href="https://app.tatango.com/attachments">here</a> and grab the attachment ID (we save all the attachments when you create messages via web the interface). This is the attachment_id parameter in the [example code](#send-transactional-mms-message).</p>
-    </li>
-  </ul>
-</aside>
 <h2 id='send-transactional-mms-message'>Send Transactional MMS Message</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -3864,7 +3854,7 @@ Example of webhook payload reply listed to the right.
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"transactional_message"</span><span class="p">:{</span><span class="s2">"number"</span><span class="ss">:"2835550430"</span><span class="p">,</span><span class="s2">"is_mms"</span><span class="ss">:true</span><span class="p">,</span><span class="s2">"subject"</span><span class="ss">:"MMS message subject. Optional max-size 40"</span><span class="p">,</span><span class="s2">"content"</span><span class="ss">:"Message content required. Max-size 5000 if is_mms"</span><span class="p">,</span><span class="s2">"fallback_content"</span><span class="ss">:"MMS message content (required if is_mms)"</span><span class="p">,</span><span class="s2">"attachment_id"</span><span class="p">:</span><span class="mi">42</span><span class="p">}})</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/transactional_messages"</span> -d <span class="s1">'{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42'</span> -X POST <span class="se">\</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/transactional_messages"</span> -d <span class="s1">'{"transactional_message":{"number":"2835550430","is_mms":true,"subject":"MMS message subject. Optional max-size 40","content":"Message content required. Max-size 5000 if is_mms","fallback_content":"MMS message content (required if is_mms)","attachment_id":42}'</span> -X POST <span class="se">\</span>
     -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
@@ -3911,7 +3901,7 @@ Example of webhook payload reply listed to the right.
   </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I replied to transactional"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint sends a Transactional SMS Message.</p>
+<p>This endpoint sends a Transactional MMS Message. Transactional MMS Messages are limited to 500 characters.</p>
 <h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
 <h3 id='json-parameters-json-object-15'>JSON Parameters (JSON Object)</h3>
@@ -3928,6 +3918,22 @@ Example of webhook payload reply listed to the right.
 <tr>
 <td>transactional_message[content]</td>
 <td><span class="required">required</span> Message content</td>
+</tr>
+<tr>
+<td>transactional_message[is_mms]</td>
+<td>Accepts <code>true</code> or <code>false</code>. If <code>true</code> message will be sent as MMS. If <code>false</code>, message will be sent as SMS</td>
+</tr>
+<tr>
+<td>transactional_message[subject]</td>
+<td>The subject line of your message. The subject is bold and sent above the content included in your request</td>
+</tr>
+<tr>
+<td>transactional_message[fallback_content]</td>
+<td>Fallback content is text only, and is sent in the case that the handset is unable to receive MMS messages, limited to 160 characters</td>
+</tr>
+<tr>
+<td>transactional_message[attachment_id]</td>
+<td>The <code>attachment_id</code> is the id that references the media attachment to include in an MMS message</td>
 </tr>
 <tr>
 <td>transactional_message[webhook_callback_url]</td>
@@ -4665,7 +4671,7 @@ If the list does not exist you will get a 404 response with this body:
 <td>653</td>
 </tr>
 </tbody></table>
-<h1 id='automated-reports'>Automated Reports</h1><h3 id='overview-of-automated-reports'><strong>Overview of Automated Reports</strong></h3>
+<h1 id='tatango-data-hub'>Tatango Data Hub</h1><h3 id='overview-of-automated-reports'><strong>Overview of Automated Reports</strong></h3>
 <p>Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.</p>
 <h3 id='how-to-request-and-enable-automated-reports'><strong>How to Request and Enable Automated Reports</strong>:</h3>
 <p>To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
@@ -4828,7 +4834,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>opt_created_date</code>: The date the opt record was created.</li>
 </ul>
 <h2 id='recipients-report'>Recipients Report</h2>
-<p><strong>Description</strong>: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced.</p>
+<p><strong>Description</strong>: The Recipients Report provides a detailed record of all messages sent to individual subscribers from the previous day. This includes broadcast, recurring, autoresponder, system, test, and transactional messages. This report enables users to track each message campaign at the individual subscriber level, offering valuable insights into message deliverability, including whether a message was successfully delivered or bounced. Note: <code>list_id</code> and <code>list_name</code> can be null for system messages at the account level. In this case any custom fields tied to a given subscriber will not be returned.</p>
 
 <p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
 
@@ -4849,6 +4855,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>phone_number</code>: The phone number of the subscriber that received the message.</li>
 <li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
 <li><code>message_id</code>: The unique id of the message the subscriber received.</li>
+<li><code>momt_id</code>: The unique id of the individual message sent to the phone number. </li>
 <li><code>message_name</code>: The name of the broadcast or recurring message the subscriber received.</li>
 <li><code>message_type</code>: This identifies the type of message that was sent.
 
@@ -4871,8 +4878,8 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>bounce_type</code>: The bounce type of the individual message sent to the subscriber. Only applicable if the delivery_status is Bounced.
 
 <ul>
-<li><strong>Soft</strong>: The handset is temporarily unable to receive the message (e.g., subscriber&#39;s phone is off or out of service).</li>
-<li><strong>Hard</strong>: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).</li>
+<li><strong>soft</strong>: The handset is temporarily unable to receive the message (e.g., subscriber&#39;s phone is off or out of service).</li>
+<li><strong>hard</strong>: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).</li>
 </ul></li>
 <li><code>total_message_parts</code>: The number of individual SMS parts sent to the specific subscriber.</li>
 </ul>
