@@ -3798,7 +3798,7 @@ This section provides a list of carrier ID and names (US and Canada) for any res
 
 # Tatango Data Hub
 
-### **Overview of Automated Reports**
+### **Overview**
 
 Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.
 
