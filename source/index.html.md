@@ -3842,6 +3842,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `responded_at`: The time of the response. (Only if the `record_type` is `reply_response`)
 - `reply_content`: The content of the reply. 
 - `response_content`: The content of the reply response. (Only if the `record_type` is `reply_response`)
+- `sentiment_score`: A sentiment analysis score assigned to each reply, represented as a decimal value between -1 and 1. Scores near -1 indicate negative sentiment, those near 0 reflect neutral sentiment, and scores approaching 1 indicate positive sentiment.
 
 
 ## Broadcast Message Summary Report
