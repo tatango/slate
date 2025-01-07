@@ -408,7 +408,7 @@
             <a href="#tatango-data-hub" class="toc-h1 toc-link" data-title="tatango-data-hub">Tatango Data Hub</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#overview-of-automated-reports" class="toc-h2 toc-link" data-title="strong-overview-of-automated-reports-strong"><strong>Overview of Automated Reports</strong></a>
+                    <a href="#overview" class="toc-h2 toc-link" data-title="strong-overview-strong"><strong>Overview</strong></a>
                   </li>
                   <li>
                     <a href="#how-to-request-and-enable-automated-reports" class="toc-h2 toc-link" data-title="strong-how-to-request-and-enable-automated-reports-strong"><strong>How to Request and Enable Automated Reports</strong>:</a>
@@ -4671,7 +4671,7 @@ If the list does not exist you will get a 404 response with this body:
 <td>653</td>
 </tr>
 </tbody></table>
-<h1 id='tatango-data-hub'>Tatango Data Hub</h1><h3 id='overview-of-automated-reports'><strong>Overview of Automated Reports</strong></h3>
+<h1 id='tatango-data-hub'>Tatango Data Hub</h1><h3 id='overview'><strong>Overview</strong></h3>
 <p>Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.</p>
 <h3 id='how-to-request-and-enable-automated-reports'><strong>How to Request and Enable Automated Reports</strong>:</h3>
 <p>To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
@@ -4712,6 +4712,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>responded_at</code>: The time of the response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
 <li><code>reply_content</code>: The content of the reply. </li>
 <li><code>response_content</code>: The content of the reply response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
+<li><code>sentiment_score</code>: A sentiment analysis score assigned to each reply, represented as a decimal value between -1 and 1. Scores near -1 indicate negative sentiment, those near 0 reflect neutral sentiment, and scores approaching 1 indicate positive sentiment.</li>
 </ul>
 <h2 id='broadcast-message-summary-report'>Broadcast Message Summary Report</h2>
 <p><strong>Description</strong>: The Messages Summary Report provides a [daily/weekly/monthly] summary of all broadcast messages sent from your account on the previous day. This report offers insights into message performance, including key metrics related to deliverability and engagement. Users can quickly assess how well their messages reached subscribers and gauge engagement levels, helping to inform future messaging strategies and optimize campaign effectiveness.</p>
