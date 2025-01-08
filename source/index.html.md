@@ -3280,7 +3280,7 @@ request.send(data);
 }
 ```
 
-This endpoint sends a Transactional MMS Message. Transactional MMS Messages are limited to 500 characters.
+This endpoint sends a Transactional MMS Message. Transactional MMS Messages are limited to 5000 characters.
 
 ### HTTP Request
 
@@ -3803,10 +3803,15 @@ This section provides a list of carrier ID and names (US and Canada) for any res
 Tatango offers Automated Reports that provide powerful insights into your campaigns and subscriber activity. These reports are designed to be ingested into your data warehouse, imported into your CRM, or used for ad-hoc analysis, ensuring your team has the data they need to monitor campaign performance, track subscriber engagement, and make data-driven decisions.
 
 ### **How to Request and Enable Automated Reports**:
+
 To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
+
 1. **Report Name**: Specify the report(s) you’d like to enable.
+
 2. **Frequency**: Indicate how often you’d like to receive the report (e.g., daily, weekly, monthly).
+
 3. **Delivery Method**: Choose a delivery destination (AWS S3, GCP, SFTP, or email). Additional delivery destinations may be available upon request.
+
 4. **Custom Fields**: Mention any additional fields from your list you'd like included in the report.
 
 Automated reports are available upon request. Let your Customer Success Manager know how we can help streamline your reporting needs!
