@@ -3887,6 +3887,8 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `fallback`: The content of the fallback message. Only applicable to MMS messages.
 - `links`: Links within the message body.
 - `click_counts`: The number of clicks by subscribers on a link within the message body.
+- `unique_click_counts`: The number of unique clicks by subscribers on a link within the message body.
+- `unsubscribed_count`: The number of subscribers who unsubscribed after receiving the message. 
 - `send_cost`: The cost of the message sent.
 - `segments`: The segments used to define the audience that received the message.
 
