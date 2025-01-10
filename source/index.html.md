@@ -63,6 +63,9 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -100,6 +103,9 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1468,6 +1474,9 @@ request.open(
   "PUT",
   "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
