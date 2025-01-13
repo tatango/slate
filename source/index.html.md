@@ -63,6 +63,12 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -100,6 +106,12 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -172,6 +184,12 @@ curl "https://app.tatango.com/api/v2/lists" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -291,6 +309,12 @@ curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -370,6 +394,12 @@ request.open(
   "PUT",
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -549,6 +579,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -630,6 +666,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -709,6 +751,12 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome lis
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -858,6 +906,12 @@ curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -915,6 +969,12 @@ request.open(
   "PUT",
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -998,6 +1058,12 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PU
 ```javascript
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1100,6 +1166,12 @@ request.open(
   "POST",
   "https://app.tatango.com/api/v2/lists/ID/subscribers",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -1375,6 +1447,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -1460,7 +1538,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 	-u emailaddress@mydomain.com:my_api_key \
 	-H "Host: example.org" \
 	-H "Cookie: "
-```
+``` 
 
 ```javascript
 var request = new XMLHttpRequest();
@@ -1468,6 +1546,12 @@ request.open(
   "PUT",
   "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -1596,6 +1680,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -1692,6 +1782,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -1784,6 +1880,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -1843,6 +1945,12 @@ request.open(
   "GET",
   "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -1906,6 +2014,12 @@ request.open(
   "GET",
   "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -1978,6 +2092,12 @@ request.open(
   "POST",
   "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -2085,6 +2205,12 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2148,6 +2274,12 @@ curl "https://app.tatango.com/api/v2/lists/ID/tags" -d '{"tags": ["some_tag", "s
 ```javascript
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/tags", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2219,6 +2351,9 @@ request.open(
   "GET",
   "https://app.tatango.com/api/v2/lists/<ID>/messages",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -2354,6 +2489,9 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2464,6 +2602,9 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2570,6 +2711,9 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2636,6 +2780,9 @@ request.open(
   "GET",
   "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -2748,6 +2895,9 @@ curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2837,6 +2987,9 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -2918,6 +3071,9 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3003,6 +3159,9 @@ curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -3053,6 +3212,9 @@ request.open(
   "POST",
   "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -3161,6 +3323,9 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -3241,6 +3406,9 @@ request.open(
   "POST",
   "https://app.tatango.com/api/v2/transactional_messages",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -3405,6 +3573,9 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -3481,6 +3652,9 @@ request.open(
   false
 );
 request.setRequestHeader(
+  "Content-Type", "application/json"
+);
+request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
@@ -3551,6 +3725,9 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks", false);
+request.setRequestHeader(
+  "Content-Type", "application/json"
+);
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3652,6 +3829,9 @@ request.open(
   "DELETE",
   "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
+);
+request.setRequestHeader(
+  "Content-Type", "application/json"
 );
 request.setRequestHeader(
   "Authorization",
@@ -3887,6 +4067,8 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `fallback`: The content of the fallback message. Only applicable to MMS messages.
 - `links`: Links within the message body.
 - `click_counts`: The number of clicks by subscribers on a link within the message body.
+- `unique_click_counts`: The number of unique clicks by subscribers on a link within the message body.
+- `unsubscribed_count`: The number of subscribers who unsubscribed after receiving the message. 
 - `send_cost`: The cost of the message sent.
 - `segments`: The segments used to define the audience that received the message.
 
