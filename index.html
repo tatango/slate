@@ -282,6 +282,9 @@
                     <a href="#adding-multiple-tags-to-multiple-subscribers" class="toc-h2 toc-link" data-title="adding-multiple-tags-to-multiple-subscribers">Adding Multiple Tags to Multiple Subscribers</a>
                   </li>
                   <li>
+                    <a href="#deleting-tags-from-a-subscriber" class="toc-h2 toc-link" data-title="deleting-tags-from-a-subscriber">Deleting tags from a Subscriber</a>
+                  </li>
+                  <li>
                     <a href="#unsubscribing-a-subscriber" class="toc-h2 toc-link" data-title="unsubscribing-a-subscriber">Unsubscribing a Subscriber</a>
                   </li>
                   <li>
@@ -487,12 +490,8 @@
 curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/example-endpoint
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/example-endpoint"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -520,12 +519,8 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/accounts/me"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -586,12 +581,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -696,12 +687,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -777,12 +764,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -952,12 +935,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1031,12 +1010,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1151,12 +1126,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1332,12 +1303,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"DELETE"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1389,12 +1356,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/opt_in_settings"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1475,12 +1438,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"PUT"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1612,12 +1571,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -1952,12 +1907,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2084,12 +2035,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2277,12 +2224,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/bulk_taggings"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2385,6 +2328,103 @@ You will receive a 200 status on success
 </tbody></table>
 <h3 id='other-uses'>Other uses</h3>
 <p>You can also use this endpoint to mass remove tags from subscribers. For example if replace_tags is true and your tags list is empty it will remove all tags from your numbers list</p>
+<h2 id='deleting-tags-from-a-subscriber'>Deleting tags from a Subscriber</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags'</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="ss">:HTTP</span><span class="o">::</span><span class="no">Delete</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com"</span><span class="p">,</span> <span class="s2">"my_api_key"</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">({</span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="s2">"sports_news"</span><span class="p">,</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="s2">"weather_news"</span><span class="p">]});</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.tatango.com/api/v2/lists/subscribers/PHONE_NUMBER/tags"</span> -d <span class="s1">'{"tags":["local_news","sports_news","celebrity_news","weather_news"]}'</span> -X DELETE <span class="se">\</span>
+    -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -u emailaddress@mydomain.com:my_api_key <span class="se">\</span>
+    -H <span class="s2">"Host: example.org"</span> <span class="se">\</span>
+    -H <span class="s2">"Cookie: "</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span>
+  <span class="s2">"DELETE"</span><span class="p">,</span>
+  <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags"</span><span class="p">,</span>
+  <span class="kc">false</span>
+<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
+  <span class="s2">"Authorization"</span><span class="p">,</span>
+  <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span> <span class="s2">"sports_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">],</span>
+<span class="p">});</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="w"> </span><span class="s2">"sports_news"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"not_found"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="w"> </span><span class="s2">"celebrity_news"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tag removal completed with partial success."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes multiple tags from a subscriber</p>
+<h3 id='responses-explained-5'>Responses Explained</h3>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deleted</td>
+<td>the tags that were found and deleted from the subscriber</td>
+</tr>
+<tr>
+<td>not_found</td>
+<td>the tags that were not found for the subscriber</td>
+</tr>
+<tr>
+<td>status</td>
+<td>&quot;OK&quot; if the request was processed successfully or &quot;ERROR&quot; if there was an error processing the request</td>
+</tr>
+<tr>
+<td>message</td>
+<td>A message explaining if the request was successful (all tags deleted) or partially successful (some tags were not found)</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>ID of the list</td>
+</tr>
+<tr>
+<td>PHONE_NUMBER</td>
+<td>Subscriber&#39;s phone number with no special characters</td>
+</tr>
+</tbody></table>
+<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tags</td>
+<td>All tags that will be deleted</td>
+</tr>
+</tbody></table>
 <h2 id='unsubscribing-a-subscriber'>Unsubscribing a Subscriber</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
@@ -2405,12 +2445,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2445,9 +2481,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint unsubscribes a subscriber.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2463,7 +2499,7 @@ You will receive a 200 status on success
 <td>ID of the subscriber (phone number)</td>
 </tr>
 </tbody></table>
-<h3 id='responses-explained-5'>Responses Explained</h3>
+<h3 id='responses-explained-6'>Responses Explained</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -2531,12 +2567,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2556,9 +2588,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of subscribed phone numbers for the requested list.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2590,12 +2622,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2615,9 +2643,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of unsubscribed phone numbers.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2649,12 +2677,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/custom_fields"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2678,9 +2702,9 @@ You will receive a 200 status on success
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/custom_fields</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2694,7 +2718,7 @@ You will receive a 200 status on success
 </tbody></table>
 <h2 id='create-a-custom-field'>Create a Custom Field</h2>
 <p>This endpoint creates a custom field.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/custom_fields</code></p>
 <pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
@@ -2717,12 +2741,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/custom_fields"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2773,7 +2793,7 @@ You will receive a 200 status on success
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Validation failed: Merge tag has already been taken, Label has already been taken"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='url-parameters-14'>URL Parameters</h3>
+</span></code></pre><h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2785,7 +2805,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-8'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2850,12 +2870,8 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/custom_fields"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2873,9 +2889,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a custom field.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/custom_fields</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2887,7 +2903,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-9'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -2916,12 +2932,8 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"DELETE"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/tags"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -2939,9 +2951,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes tags from all subscribers with the tag. After the endpoint is called, please allow up to 10 minutes for the tags provided to be removed from all subscribers.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/tags</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2953,7 +2965,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-10'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -2990,9 +3002,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3081,9 +3091,9 @@ You will receive a 200 status on success
 <p>Please note the <code>tracking_links</code> attribute will only be present on messages that have tracking links in their <code>content</code>.</p>
 
 <p>Please note the <code>parts</code> attribute will be available 30 minutes after the message was sent.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3124,9 +3134,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3192,9 +3200,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all draft messages in a list.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/draft</code></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3235,9 +3243,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3303,9 +3309,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all scheduled messages in a list.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/&lt;ID&gt;/messages/scheduled</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3342,9 +3348,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3363,9 +3367,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a message.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/messages</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3377,7 +3381,7 @@ You will receive a 200 status on success
 <td>ID of the list</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-11'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3411,9 +3415,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3464,9 +3466,9 @@ You will receive a 200 status on success
 <p>Please note the <code>message_links</code> attribute will only be present on messages that have <code>bit.ly</code> links in their <code>content</code>.</p>
 
 <p>Please note the <code>parts</code> attribute will be available 30 minutes after the message was sent.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID</code></p>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3482,7 +3484,7 @@ You will receive a 200 status on success
 <td>ID of the message</td>
 </tr>
 </tbody></table>
-<h3 id='responses-explained-6'>Responses Explained</h3>
+<h3 id='responses-explained-7'>Responses Explained</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -3559,9 +3561,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3611,9 +3611,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new MOMT Report.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/momt_reports</code></p>
-<h3 id='json-parameters-json-object-12'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-13'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3649,9 +3649,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3696,9 +3694,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets the status of a processed MOMT Report.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3726,9 +3724,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/momt_reports"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3773,9 +3769,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets the status of an unprocessed MOMT Report.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/momt_reports/ID</code></p>
-<h3 id='url-parameters-23'>URL Parameters</h3>
+<h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3803,9 +3799,7 @@ You will receive a 200 status on success
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/shortcodes"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3821,7 +3815,7 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets a list of short codes provisioned on your account.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/shortcodes</code></p>
 <h2 id='testing-keyword-availability-on-short-code'>Testing Keyword Availability on Short Code</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
@@ -3844,9 +3838,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/shortcodes/ID/test_keyword"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3863,7 +3855,7 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint gets checks the availability of a keyword on the account&#39;s short code.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/shortcodes/ID/test_keyword</code></p>
 
 <aside class="error">
@@ -3876,7 +3868,7 @@ You will receive a 200 status on success
 }
 </p>
 </aside>
-<h3 id='url-parameters-24'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3888,7 +3880,7 @@ You will receive a 200 status on success
 <td>ID of the shortcode</td>
 </tr>
 </tbody></table>
-<h3 id='json-parameters-json-object-13'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3949,9 +3941,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/transactional_messages"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -3988,9 +3978,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a Transactional SMS Message. Transactional SMS Messages are limited to 160 characters. Messages sent with more than 160 characters will be rejected with a 422 response and an error message stating that the content is too long.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-14'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-15'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4031,9 +4021,7 @@ You will receive a 200 status on success
   <span class="s2">"https://app.tatango.com/api/v2/transactional_messages"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -4070,9 +4058,9 @@ You will receive a 200 status on success
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends a Transactional MMS Message. Transactional MMS Messages are limited to 5000 characters.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/transactional_messages</code></p>
-<h3 id='json-parameters-json-object-15'>JSON Parameters (JSON Object)</h3>
+<h3 id='json-parameters-json-object-16'>JSON Parameters (JSON Object)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4160,9 +4148,9 @@ Example of webhook payload reply listed to the right.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a webhook for a list</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>POST https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
-<h3 id='url-parameters-25'>URL Parameters</h3>
+<h3 id='url-parameters-26'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4195,9 +4183,7 @@ Example of webhook payload reply listed to the right.
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -4231,9 +4217,9 @@ Example of webhook payload reply listed to the right.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint updates a webhook</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>PUT https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-26'>URL Parameters</h3>
+<h3 id='url-parameters-27'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4269,9 +4255,7 @@ Example of webhook payload reply listed to the right.
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -4297,9 +4281,9 @@ Example of webhook payload reply listed to the right.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint shows a webhook.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-27'>URL Parameters</h3>
+<h3 id='url-parameters-28'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4338,9 +4322,7 @@ If the webhook does not exist you will get a 404 response with this body:
     -H <span class="s2">"Cookie: "</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks"</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -4394,9 +4376,9 @@ If the webhook does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint lists webhooks.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET https://app.tatango.com/api/v2/lists/ID/webhooks</code></p>
-<h3 id='url-parameters-28'>URL Parameters</h3>
+<h3 id='url-parameters-29'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4435,9 +4417,7 @@ If the list does not exist you will get a 404 response with this body:
   <span class="s2">"https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID"</span><span class="p">,</span>
   <span class="kc">false</span>
 <span class="p">);</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
-  <span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span>
-<span class="p">);</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Content-Type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span>
   <span class="s2">"Authorization"</span><span class="p">,</span>
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
@@ -4452,9 +4432,9 @@ If the list does not exist you will get a 404 response with this body:
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint destroys a webhook.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>DELETE https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID</code></p>
-<h3 id='url-parameters-29'>URL Parameters</h3>
+<h3 id='url-parameters-30'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4886,14 +4866,14 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
 <li><code>recurring_message_name</code>: The Name of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
 <li><code>message_id</code>: The ID of the message in which the subscriber responded to.</li>
-<li><code>message_name</code>: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under <code>recurring_message_name</code>. </li>
+<li><code>message_name</code>: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under <code>recurring_message_name</code>.</li>
 <li><code>phone_number</code>: The phone number of the subscriber who replied.</li>
 <li><code>record_type</code>: This represents whether the record is a <code>reply</code> or a <code>reply_response</code></li>
-<li><code>reply_id</code>: The unique identifier for the reply received from the subscriber. </li>
+<li><code>reply_id</code>: The unique identifier for the reply received from the subscriber.</li>
 <li><code>reply_response_id</code>: The unique identifier for the reply response sent by the Tatango account.</li>
 <li><code>replied_at</code>: The time of the reply. (Only if the <code>record_type</code> is <code>reply</code>)</li>
 <li><code>responded_at</code>: The time of the response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
-<li><code>reply_content</code>: The content of the reply. </li>
+<li><code>reply_content</code>: The content of the reply.</li>
 <li><code>response_content</code>: The content of the reply response. (Only if the <code>record_type</code> is <code>reply_response</code>)</li>
 <li><code>sentiment_score</code>: A sentiment analysis score assigned to each reply, represented as a decimal value between -1 and 1. Scores near -1 indicate negative sentiment, those near 0 reflect neutral sentiment, and scores approaching 1 indicate positive sentiment.</li>
 </ul>
@@ -4935,7 +4915,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>links</code>: Links within the message body.</li>
 <li><code>click_counts</code>: The number of clicks by subscribers on a link within the message body.</li>
 <li><code>unique_click_counts</code>: The number of unique clicks by subscribers on a link within the message body.</li>
-<li><code>unsubscribed_count</code>: The number of subscribers who unsubscribed after receiving the message. </li>
+<li><code>unsubscribed_count</code>: The number of subscribers who unsubscribed after receiving the message.</li>
 <li><code>send_cost</code>: The cost of the message sent.</li>
 <li><code>segments</code>: The segments used to define the audience that received the message.</li>
 </ul>
@@ -5014,7 +4994,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>opt_id</code>: The unique identifier for each opt record.</li>
 <li><code>opt_type</code>: The type of opt action (in or out).</li>
 <li><code>opt_in_method</code>: The method in which the opt action was initiated. (Only for opt-ins)</li>
-<li><code>api_source</code>: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api. </li>
+<li><code>api_source</code>: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api.</li>
 <li><code>keyword_name</code>: The keyword associated with an opt-in action.</li>
 <li><code>opt_out_method</code>: The method that initiated the opt-out action.</li>
 <li><code>opt_created_date</code>: The date the opt record was created.</li>
@@ -5041,7 +5021,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>phone_number</code>: The phone number of the subscriber that received the message.</li>
 <li><code>recurring_message_id</code>: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.</li>
 <li><code>message_id</code>: The unique id of the message the subscriber received.</li>
-<li><code>momt_id</code>: The unique id of the individual message sent to the phone number. </li>
+<li><code>momt_id</code>: The unique id of the individual message sent to the phone number.</li>
 <li><code>message_name</code>: The name of the broadcast or recurring message the subscriber received.</li>
 <li><code>message_type</code>: This identifies the type of message that was sent.
 
@@ -5134,11 +5114,14 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>custom_fields</code>: Any custom fields configured in your Tatango list will be included as separate columns. The headers will reflect the merge tag defined when the custom fields were created.</li>
 </ul>
 <h2 id='delivery-methods'>Delivery Methods</h2>
-<p>Reports can be automatically delivered to one or more of the following destinations: 
-- Amazon S3 (AWS)
-- Google Cloud Storage (GCP)
-- SFTP (Secure File Transfer Protocol)
-- Email: Delivered as an attachment</p>
+<p>Reports can be automatically delivered to one or more of the following destinations:</p>
+
+<ul>
+<li>Amazon S3 (AWS)</li>
+<li>Google Cloud Storage (GCP)</li>
+<li>SFTP (Secure File Transfer Protocol)</li>
+<li>Email: Delivered as an attachment</li>
+</ul>
 
 <p>If you have a delivery method you&#39;d like to see added please reach out to your Customer Success Manager or <a href="mailto:support@tatango.com">support@tatango.com</a>.</p>
 <h2 id='example-use-case'>Example Use Case</h2>
