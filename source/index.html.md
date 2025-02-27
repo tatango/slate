@@ -62,12 +62,8 @@ curl -u emailaddress@mydomain.com:my_api_key https://app.tatango.com/api/v2/exam
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/example-endpoint", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -106,12 +102,8 @@ curl "https://app.tatango.com/api/v2/accounts/me" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/accounts/me", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -184,12 +176,8 @@ curl "https://app.tatango.com/api/v2/lists" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -308,12 +296,8 @@ curl "https://app.tatango.com/api/v2/lists/<ID>" -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/<ID>", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -395,12 +379,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -578,12 +558,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -665,12 +641,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -751,12 +723,8 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"My awesome lis
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -905,12 +873,8 @@ curl "https://app.tatango.com/api/v2/lists/ID" -d '' -X DELETE \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -970,12 +934,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/opt_in_settings",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1058,12 +1018,8 @@ curl "https://app.tatango.com/api/v2/lists/" -d '{"list":{"name":"Name"}}' -X PU
 ```javascript
 var request = new XMLHttpRequest();
 request.open("PUT", "https://app.tatango.com/api/v2/lists/", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1167,12 +1123,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1446,12 +1398,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1538,7 +1486,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID" -d '{"s
 	-u emailaddress@mydomain.com:my_api_key \
 	-H "Host: example.org" \
 	-H "Cookie: "
-``` 
+```
 
 ```javascript
 var request = new XMLHttpRequest();
@@ -1547,12 +1495,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1679,12 +1623,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/bulk_taggings",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1752,6 +1692,87 @@ This endpoint applies multiple tags to multiple subscribers
 
 You can also use this endpoint to mass remove tags from subscribers. For example if replace_tags is true and your tags list is empty it will remove all tags from your numbers list
 
+## Deleting tags from a Subscriber
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse('https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net:HTTP::Delete.new(uri.request_url)
+request.basic_auth("emailaddress@mydomain.com", "my_api_key")
+request.body({"tags":["local_news","sports_news","celebrity_news","weather_news"]});
+response = http.request(request)
+```
+
+```shell
+curl "https://app.tatango.com/api/v2/lists/subscribers/PHONE_NUMBER/tags" -d '{"tags":["local_news","sports_news","celebrity_news","weather_news"]}' -X DELETE \
+	-H "Accept: application/json" \
+	-H "Content-Type: application/json" \
+	-u emailaddress@mydomain.com:my_api_key \
+	-H "Host: example.org" \
+	-H "Cookie: "
+```
+
+```javascript
+var request = new XMLHttpRequest();
+request.open(
+  "DELETE",
+  "https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags",
+  false
+);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader(
+  "Authorization",
+  "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
+);
+var data = JSON.stringify({
+  tags: ["local_news", "sports_news", "celebrity_news", "celebrity_news"],
+});
+request.send(data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "OK",
+  "deleted": ["local_news", "sports_news"],
+  "not_found": ["celebrity_news", "celebrity_news"],
+  "message": "Tag removal completed with partial success."
+}
+```
+
+This endpoint deletes multiple tags from a subscriber
+
+### Responses Explained
+
+| Key       | Description                                                                                                              |
+| --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| deleted   | the tags that were found and deleted from the subscriber                                                                 |
+| not_found | the tags that were not found for the subscriber                                                                          |
+| status    | "OK" if the request was processed successfully or "ERROR" if there was an error processing the request                   |
+| message   | A message explaining if the request was successful (all tags deleted) or partially successful (some tags were not found) |
+
+### HTTP Request
+
+`DELETE https://app.tatango.com/api/v2/lists/ID/subscribers/PHONE_NUMBER/tags`
+
+### URL Parameters
+
+| Parameter    | Description                                          |
+| ------------ | ---------------------------------------------------- |
+| ID           | ID of the list                                       |
+| PHONE_NUMBER | Subscriber's phone number with no special characters |
+
+### JSON Parameters (JSON Object)
+
+| Parameter | Description                   |
+| --------- | ----------------------------- |
+| tags      | All tags that will be deleted |
+
 ## Unsubscribing a Subscriber
 
 ```ruby
@@ -1781,12 +1802,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers/SUBSCRIBER_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1879,12 +1896,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -1946,12 +1959,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/subscribers/unsubscribed",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2015,12 +2024,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2093,12 +2098,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2204,12 +2205,8 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/custom_fields",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2274,12 +2271,8 @@ curl "https://app.tatango.com/api/v2/lists/ID/tags" -d '{"tags": ["some_tag", "s
 ```javascript
 var request = new XMLHttpRequest();
 request.open("DELETE", "https://app.tatango.com/api/v2/lists/ID/tags", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2352,9 +2345,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/messages",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2488,9 +2479,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/messages/draft",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2601,9 +2590,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/<ID>/messages/scheduled",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2710,9 +2697,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/messages" -d '{"message":{"content
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/lists/ID/messages", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2781,9 +2766,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/messages/MESSAGE_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2894,9 +2877,7 @@ curl "https://app.tatango.com/api/v2/momt_reports" -d '{"date_from":"2016-08-08T
 ```javascript
 var request = new XMLHttpRequest();
 request.open("POST", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -2986,9 +2967,7 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3071,9 +3050,7 @@ curl "https://app.tatango.com/api/v2/momt_reports/ID" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/momt_reports", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3158,9 +3135,7 @@ curl "https://app.tatango.com/api/v2/shortcodes" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/shortcodes", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3213,9 +3188,7 @@ request.open(
   "https://app.tatango.com/api/v2/shortcodes/ID/test_keyword",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3322,9 +3295,7 @@ request.open(
   "https://app.tatango.com/api/v2/transactional_messages",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3407,9 +3378,7 @@ request.open(
   "https://app.tatango.com/api/v2/transactional_messages",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3456,15 +3425,15 @@ This endpoint sends a Transactional MMS Message. Transactional MMS Messages are 
 
 ### JSON Parameters (JSON Object)
 
-| Parameter                                             | Description                                                                                                                                                                                |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| transactional_message[number]                         | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)                                                                                 |
-| transactional_message[content]                        | <span class="required">required</span> Message content                                                                                                                                     |
-| transactional_message[is_mms]                         | Accepts `true` or `false`. If `true` message will be sent as MMS. If `false`, message will be sent as SMS                                                                                  |
-| transactional_message[subject]                        | The subject line of your message. The subject is bold and sent above the content included in your request                                                                                  |
-| transactional_message[fallback_content]               | Fallback content is text only, and is sent in the case that the handset is unable to receive MMS messages, limited to 160 characters                                                       |
-| transactional_message[attachment_id]                  | The `attachment_id` is the id that references the media attachment to include in an MMS message                                                                                            |
-| transactional_message[webhook_callback_url]           | Webhook url (will send result of send to)                                                                                                                                                  |
+| Parameter                                   | Description                                                                                                                          |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| transactional_message[number]               | <span class="required">required</span> Phone number (numbers only - no spaces, dashes or other characters)                           |
+| transactional_message[content]              | <span class="required">required</span> Message content                                                                               |
+| transactional_message[is_mms]               | Accepts `true` or `false`. If `true` message will be sent as MMS. If `false`, message will be sent as SMS                            |
+| transactional_message[subject]              | The subject line of your message. The subject is bold and sent above the content included in your request                            |
+| transactional_message[fallback_content]     | Fallback content is text only, and is sent in the case that the handset is unable to receive MMS messages, limited to 160 characters |
+| transactional_message[attachment_id]        | The `attachment_id` is the id that references the media attachment to include in an MMS message                                      |
+| transactional_message[webhook_callback_url] | Webhook url (will send result of send to)                                                                                            |
 
 <aside class="success">
 Example of webhook payload reply listed to the right.
@@ -3572,9 +3541,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3651,9 +3618,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3725,9 +3690,7 @@ curl "https://app.tatango.com/api/v2/lists/ID/webhooks" -d '' -X GET \
 ```javascript
 var request = new XMLHttpRequest();
 request.open("GET", "https://app.tatango.com/api/v2/lists/ID/webhooks", false);
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -3830,9 +3793,7 @@ request.open(
   "https://app.tatango.com/api/v2/lists/ID/webhooks/WEBHOOK_ID",
   false
 );
-request.setRequestHeader(
-  "Content-Type", "application/json"
-);
+request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader(
   "Authorization",
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
@@ -4018,17 +3979,16 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `recurring_message_id`: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
 - `recurring_message_name`: The Name of the parent recurring message. Only applicable if the message was a child of a recurring message.
 - `message_id`: The ID of the message in which the subscriber responded to.
-- `message_name`: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under `recurring_message_name`. 
+- `message_name`: The name of the message. Only applicable to broadcast messages, recurring message names will be populated under `recurring_message_name`.
 - `phone_number`: The phone number of the subscriber who replied.
 - `record_type`: This represents whether the record is a `reply` or a `reply_response`
-- `reply_id`: The unique identifier for the reply received from the subscriber. 
+- `reply_id`: The unique identifier for the reply received from the subscriber.
 - `reply_response_id`: The unique identifier for the reply response sent by the Tatango account.
 - `replied_at`: The time of the reply. (Only if the `record_type` is `reply`)
 - `responded_at`: The time of the response. (Only if the `record_type` is `reply_response`)
-- `reply_content`: The content of the reply. 
+- `reply_content`: The content of the reply.
 - `response_content`: The content of the reply response. (Only if the `record_type` is `reply_response`)
 - `sentiment_score`: A sentiment analysis score assigned to each reply, represented as a decimal value between -1 and 1. Scores near -1 indicate negative sentiment, those near 0 reflect neutral sentiment, and scores approaching 1 indicate positive sentiment.
-
 
 ## Broadcast Message Summary Report
 
@@ -4068,10 +4028,9 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `links`: Links within the message body.
 - `click_counts`: The number of clicks by subscribers on a link within the message body.
 - `unique_click_counts`: The number of unique clicks by subscribers on a link within the message body.
-- `unsubscribed_count`: The number of subscribers who unsubscribed after receiving the message. 
+- `unsubscribed_count`: The number of subscribers who unsubscribed after receiving the message.
 - `send_cost`: The cost of the message sent.
 - `segments`: The segments used to define the audience that received the message.
-
 
 ## Clicks Report
 
@@ -4099,7 +4058,6 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `message_id`: The ID of the message from which the click originated.
 - `recurring_message_id`: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
 
-
 ## Donations Report
 
 **Description**: The Donations Report provides a comprehensive list of all donations received and attributed to Tatango messages from the previous [day/week/month]. This report enables users to assess the direct impact of their messaging campaigns on fundraising efforts, offering insights into which messages prompted donations. By tracking donation performance, customers can better understand campaign effectiveness and refine their messaging strategies to drive further contributions.
@@ -4126,7 +4084,6 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `phone_number`: The phone number of the subscriber who donated as a result of receiving the message.
 - `created_at`: The timestamp of when the donation was created in Tatango.
 
-
 ## Opts Report
 
 **Description**: The Opts Report provides a comprehensive log of all opt-in and opt-out activities that occurred the previous [day/week/month]. This report gives users valuable insights into list growth, churn, and overall list health. By tracking subscriber engagement and list changes, users can better understand their audience dynamics and make informed decisions to improve subscriber retention and acquisition.
@@ -4150,11 +4107,10 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `opt_id`: The unique identifier for each opt record.
 - `opt_type`: The type of opt action (in or out).
 - `opt_in_method`: The method in which the opt action was initiated. (Only for opt-ins)
-- `api_source`: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api. 
+- `api_source`: The api source that triggered the opt action. This only applies to opt records with an opt_in_method of api.
 - `keyword_name`: The keyword associated with an opt-in action.
 - `opt_out_method`: The method that initiated the opt-out action.
 - `opt_created_date`: The date the opt record was created.
-
 
 ## Recipients Report
 
@@ -4178,7 +4134,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `phone_number`: The phone number of the subscriber that received the message.
 - `recurring_message_id`: The ID of the parent recurring message. Only applicable if the message was a child of a recurring message.
 - `message_id`: The unique id of the message the subscriber received.
-- `momt_id`: The unique id of the individual message sent to the phone number. 
+- `momt_id`: The unique id of the individual message sent to the phone number.
 - `message_name`: The name of the broadcast or recurring message the subscriber received.
 - `message_type`: This identifies the type of message that was sent.
   - **broadcast**: Broadcast messages are large audience blast messages sent from within the Tatango UI.
@@ -4196,7 +4152,6 @@ Automated reports are available upon request. Let your Customer Success Manager 
   - **soft**: The handset is temporarily unable to receive the message (e.g., subscriber's phone is off or out of service).
   - **hard**: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).
 - `total_message_parts`: The number of individual SMS parts sent to the specific subscriber.
-
 
 ## Subscribers Snapshot Report
 
@@ -4230,7 +4185,6 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `api_source`: The API source of the most recent opt-in.
 - `custom_fields`: Any custom fields configured in your Tatango list will be included as separate columns by default. The headers will reflect the merge tag defined when the custom fields were created.
 
-
 ## Updated Subscribers Report
 
 **Description**: The Updated Subscribers Report provides a detailed record of all subscribers whose information was updated during the previous [day/week/month]. This report offers valuable insights into changes in subscriber data, helping users monitor list health and track updates in subscription status. Subscribers may be included in the report due to changes in their subscription status (e.g., opt-in or opt-out) or updates to custom field attributes, such as name, email, last gift date or any other attributes configured as a custom field on your Tatango list.
@@ -4263,10 +4217,10 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `api_source`: The API source of the most recent opt-in.
 - `custom_fields`: Any custom fields configured in your Tatango list will be included as separate columns. The headers will reflect the merge tag defined when the custom fields were created.
 
-
 ## Delivery Methods
 
-Reports can be automatically delivered to one or more of the following destinations: 
+Reports can be automatically delivered to one or more of the following destinations:
+
 - Amazon S3 (AWS)
 - Google Cloud Storage (GCP)
 - SFTP (Secure File Transfer Protocol)
