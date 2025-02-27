@@ -2356,7 +2356,7 @@ You will receive a 200 status on success
   <span class="s2">"Basic "</span> <span class="o">+</span> <span class="nx">btoa</span><span class="p">(</span><span class="s2">"emailaddress@mydomain.com:my_api_key"</span><span class="p">)</span>
 <span class="p">);</span>
 <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span> <span class="s2">"sports_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">],</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span> <span class="s2">"sports_news"</span><span class="p">,</span> <span class="s2">"celebrity_news"</span><span class="p">,</span> <span class="s2">"weather_news"</span><span class="p">],</span>
 <span class="p">});</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
@@ -2366,7 +2366,7 @@ You will receive a 200 status on success
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"local_news"</span><span class="p">,</span><span class="w"> </span><span class="s2">"sports_news"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"not_found"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="w"> </span><span class="s2">"celebrity_news"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"not_found"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"celebrity_news"</span><span class="p">,</span><span class="w"> </span><span class="s2">"weather_news"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tag removal completed with partial success."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
