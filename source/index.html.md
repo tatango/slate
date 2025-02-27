@@ -1729,7 +1729,7 @@ request.setRequestHeader(
   "Basic " + btoa("emailaddress@mydomain.com:my_api_key")
 );
 var data = JSON.stringify({
-  tags: ["local_news", "sports_news", "celebrity_news", "celebrity_news"],
+  tags: ["local_news", "sports_news", "celebrity_news", "weather_news"],
 });
 request.send(data);
 ```
@@ -1740,7 +1740,7 @@ request.send(data);
 {
   "status": "OK",
   "deleted": ["local_news", "sports_news"],
-  "not_found": ["celebrity_news", "celebrity_news"],
+  "not_found": ["celebrity_news", "weather_news"],
   "message": "Tag removal completed with partial success."
 }
 ```
