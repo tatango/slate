@@ -4153,6 +4153,33 @@ Automated reports are available upon request. Let your Customer Success Manager 
   - **hard**: The device is permanently unable to receive messages (e.g., landline, incompatible device, subscriber changed carriers, blocked number, etc).
 - `total_message_parts`: The number of individual SMS parts sent to the specific subscriber.
 
+## Subscriber Activity Report
+**Description**: The Subscriber Activity Report provides a view of your list health for the given period [day/week/month]. It includes the number of subscribers who have recently joined, unsubscribed, and cleaned. Providing you with insights into how your list is growing over time.
+
+**Frequency**: Daily/Weekly/Monthly
+
+**Output**: .csv file
+
+**Scope**: Includes data from all lists on the account
+
+**Customization**: No customization is available for this report.
+
+**Fields**: 
+- `report_run_date`: The date when the report was generated.
+- `owner_account_id`: The Tatango account ID for the owner account of the organization.
+- `company_name`: The name of the company associated with the Tatango account.
+- `list_id`: The unique Tatango ID of the list from which the messages containing the clicks were sent.
+- `list_name`: The name of the list in Tatango.
+- `period_starting`: The date/time of the period starting for the report.
+- `period_ending`: The date/time of the period starting for the report.
+- `starting_list_size`: The number of active subscribers on the list at the start of the period.
+- `ending_list_size`: The number of active subscribers on the list at the start of the period.
+- `change`: The difference between `starting_list_size` and `ending_list_size`.
+- `subscribers_added`: The number of new subscribers added during the period.
+- `opt_outs`: The number of unsubscribes that occurred during the period.
+- `cleans`: The number of cleans that occurred during the period.
+
+
 ## Subscribers Snapshot Report
 
 **Description**: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.
