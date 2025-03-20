@@ -435,6 +435,9 @@
                     <a href="#recipients-report" class="toc-h2 toc-link" data-title="recipients-report">Recipients Report</a>
                   </li>
                   <li>
+                    <a href="#subscriber-activity-report" class="toc-h2 toc-link" data-title="subscriber-activity-report">Subscriber Activity Report</a>
+                  </li>
+                  <li>
                     <a href="#subscribers-snapshot-report" class="toc-h2 toc-link" data-title="subscribers-snapshot-report">Subscribers Snapshot Report</a>
                   </li>
                   <li>
@@ -5049,6 +5052,31 @@ If the list does not exist you will get a 404 response with this body:
 </ul></li>
 <li><code>total_message_parts</code>: The number of individual SMS parts sent to the specific subscriber.</li>
 </ul>
+<h2 id='subscriber-activity-report'>Subscriber Activity Report</h2>
+<p><strong>Description</strong>: The Subscriber Activity Report provides a view of your list health for the given period [day/week/month]. It includes the number of subscribers who have recently joined, unsubscribed, and cleaned. Providing you with insights into how your list is growing over time.</p>
+
+<p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
+
+<p><strong>Output</strong>: .csv file</p>
+
+<p><strong>Scope</strong>: Includes data from all lists on the account</p>
+
+<p><strong>Customization</strong>: No customization is available for this report.</p>
+
+<p><strong>Fields</strong>: 
+- <code>report_run_date</code>: The date when the report was generated.
+- <code>owner_account_id</code>: The Tatango account ID for the owner account of the organization.
+- <code>company_name</code>: The name of the company associated with the Tatango account.
+- <code>list_id</code>: The unique Tatango ID of the list from which the messages containing the clicks were sent.
+- <code>list_name</code>: The name of the list in Tatango.
+- <code>period_starting</code>: The date/time of the period starting for the report.
+- <code>period_ending</code>: The date/time of the period starting for the report.
+- <code>starting_list_size</code>: The number of active subscribers on the list at the start of the period.
+- <code>ending_list_size</code>: The number of active subscribers on the list at the start of the period.
+- <code>change</code>: The difference between <code>starting_list_size</code> and <code>ending_list_size</code>.
+- <code>subscribers_added</code>: The number of new subscribers added during the period.
+- <code>opt_outs</code>: The number of unsubscribes that occurred during the period.
+- <code>cleans</code>: The number of cleans that occurred during the period.</p>
 <h2 id='subscribers-snapshot-report'>Subscribers Snapshot Report</h2>
 <p><strong>Description</strong>: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.</p>
 
