@@ -4165,6 +4165,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: No customization is available for this report.
 
 **Fields**: 
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
