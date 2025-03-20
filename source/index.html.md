@@ -4165,6 +4165,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 **Customization**: No customization is available for this report.
 
 **Fields**: 
+
 - `report_run_date`: The date when the report was generated.
 - `owner_account_id`: The Tatango account ID for the owner account of the organization.
 - `company_name`: The name of the company associated with the Tatango account.
@@ -4178,7 +4179,6 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `subscribers_added`: The number of new subscribers added during the period.
 - `opt_outs`: The number of unsubscribes that occurred during the period.
 - `cleans`: The number of cleans that occurred during the period.
-
 
 ## Subscribers Snapshot Report
 
