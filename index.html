@@ -377,6 +377,9 @@
             <a href="#webhooks" class="toc-h1 toc-link" data-title="webhooks">Webhooks</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#webhook-events" class="toc-h2 toc-link" data-title="webhook-events">Webhook Events</a>
+                  </li>
+                  <li>
                     <a href="#creating-a-new-webhook-for-a-list" class="toc-h2 toc-link" data-title="creating-a-new-webhook-for-a-list">Creating a New Webhook for a List</a>
                   </li>
                   <li>
@@ -1211,7 +1214,7 @@ You will receive a 200 status on success
 </tr>
 <tr>
 <td>list[message_yes]</td>
-<td>This message is sent to a user when their mobile number is added to a list through the API. Users must respond “YES” or “Y” to this message, to be subscribed. <br /><br />Example Message: &quot;ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&amp;data rates may apply. Terms apply 12345-info.com&quot;</td>
+<td>This message is sent to a user when their mobile number is added to a list through the API. Users must respond &quot;YES&quot; or &quot;Y&quot; to this message, to be subscribed. <br /><br />Example Message: &quot;ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&amp;data rates may apply. Terms apply 12345-info.com&quot;</td>
 </tr>
 <tr>
 <td>list[message_help]</td>
@@ -4111,7 +4114,145 @@ Example of webhook payload reply listed to the right.
 </aside>
 <h1 id='webhooks'>Webhooks</h1>
 <p>Callback URLs configured as a webhook in Tatango are retried 10 times when not reachable. After the 10th time, the system makes no further attempts to reach the callback URL.</p>
-<h2 id='creating-a-new-webhook-for-a-list'>Creating a New Webhook for a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<h2 id='webhook-events'>Webhook Events</h2>
+<table><thead>
+<tr>
+<th>Webhook Event</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Subscribes</td>
+<td>Occurs when a new number has subscribed to your list</td>
+</tr>
+<tr>
+<td>Unsubscribes</td>
+<td>Occurs when a subscriber unsubscribes from your list</td>
+</tr>
+<tr>
+<td>Message Sent</td>
+<td>Occurs when a broadcast message is sent</td>
+</tr>
+<tr>
+<td>Reply Received</td>
+<td>Occurs when a reply to a message from your shortcode is received</td>
+</tr>
+<tr>
+<td>Subscriber Cleaned</td>
+<td>Occurs when a subscriber is cleaned from your list</td>
+</tr>
+</tbody></table>
+<h3 id='sample-payloads'>Sample Payloads</h3><h4 id='subscribes-event'>Subscribes Event</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T18:44:29.898Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"opt_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5555555555"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verizon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10011"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01/1986"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tag_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Donor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Board Member"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"first_opt_in_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T15:11:03.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientUpload"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_keyword"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_messages_received"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='unsubscribes-event'>Unsubscribes Event</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T18:44:29.898Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubscribe_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T14:44:29.000-04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"opt_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5555555555"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verizon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10011"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01/1986"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tag_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Donor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Board Member"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"first_opt_in_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T15:11:03.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientUpload"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_keyword"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_messages_received"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='message-sent-event'>Message Sent Event</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message_sent"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T18:31:03.314Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9876543</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donor Outreach 3/31/2025"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sent_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T18:16:02.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_mms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Support our campaign here: txting.io/12345ghcu"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">113</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bounce_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clean_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unsubscribe_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"send_cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.06</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='reply-received-event'>Reply Received Event</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"campaign_response"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T16:44:12.709Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9876543</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sent_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T15:30:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Support our campaign here: txting.io/12345ghcu"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"response_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T16:44:12.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reply_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes, I'll donate"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"opt_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5555555555"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"carrier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verizon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10011"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01/1986"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01/01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tag_list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Donor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Board Member"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"first_opt_in_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T15:11:03.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ClientUpload"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_opt_in_keyword"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_mms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"attachment_urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='subscriber-cleaned-event'>Subscriber Cleaned Event</h4><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleaned"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T18:58:02.849Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subscriber_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106450095</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5555555555"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cleaned_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-03-31T14:58:02.000-04:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clean_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soft bounce limit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_message_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9876543</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='creating-a-new-webhook-for-a-list'>Creating a New Webhook for a List</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
 <span class="nb">require</span> <span class="s1">'uri'</span>
 
 <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://app.tatango.com/api/v2/lists/ID/webhooks'</span><span class="p">)</span>
@@ -4840,8 +4981,8 @@ If the list does not exist you will get a 404 response with this body:
 <p>To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:</p>
 
 <ol>
-<li><p><strong>Report Name</strong>: Specify the report(s) you’d like to enable.</p></li>
-<li><p><strong>Frequency</strong>: Indicate how often you’d like to receive the report (e.g., daily, weekly, monthly).</p></li>
+<li><p><strong>Report Name</strong>: Specify the report(s) you&#39;d like to enable.</p></li>
+<li><p><strong>Frequency</strong>: Indicate how often you&#39;d like to receive the report (e.g., daily, weekly, monthly).</p></li>
 <li><p><strong>Delivery Method</strong>: Choose a delivery destination (AWS S3, GCP, SFTP, or email). Additional delivery destinations may be available upon request.</p></li>
 <li><p><strong>Custom Fields</strong>: Mention any additional fields from your list you&#39;d like included in the report.</p></li>
 </ol>
@@ -5081,7 +5222,7 @@ If the list does not exist you will get a 404 response with this body:
 <li><code>cleans</code>: The number of cleans that occurred during the period.</li>
 </ul>
 <h2 id='subscribers-snapshot-report'>Subscribers Snapshot Report</h2>
-<p><strong>Description</strong>: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.</p>
+<p><strong>Description</strong>: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It&#39;s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.</p>
 
 <p><strong>Frequency</strong>: Daily/Weekly/Monthly</p>
 
