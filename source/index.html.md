@@ -800,7 +800,7 @@ Note: the following settings cannot be modified via the API:
 | Parameter                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | list[name]                       | List names are to help you distinguish which list is which, and are only visible to you, and are never seen by users. (Limit 25 characters)                                                                                                                                                                                                                                                                                                        |
-| list[message_yes]                | This message is sent to a user when their mobile number is added to a list through the API. Users must respond “YES” or “Y” to this message, to be subscribed. <br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                        |
+| list[message_yes]                | This message is sent to a user when their mobile number is added to a list through the API. Users must respond "YES" or "Y" to this message, to be subscribed. <br /><br />Example Message: "ACME Retail: Reply YES for recurring autodialed SMS/MMS marketing msgs. No purchase rqd. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                        |
 | list[message_help]               | This is the message that is sent back to users when they respond to any of your messages with the word "HELP".<br /><br />Example Message: ACME Retail: Recurring SMS/MMS msgs. Text STOP 2 end. Msg&data rates may apply. Terms apply 12345-info.com. Msging help: help@12345-info.com"                                                                                                                                                           |
 | list[message_stop]               | This is the message that is sent back to users when they respond to any of your messages with the word "STOP".<br /><br />Example Message: "ACME Retail: You have been unsubscribed and will not receive any more messages."                                                                                                                                                                                                                       |
 | list[message_reply]              | This is the message that is sent back to subscribers when they respond to a mass message that you send them.<br /><br />Example Message: "ACME Retail: Thank you for your response. Reply STOP to end, HELP for help. Msg&data rates may apply. Terms apply 12345-info.com"                                                                                                                                                                        |
@@ -3449,6 +3449,148 @@ Example of webhook payload reply listed to the right.
 
 Callback URLs configured as a webhook in Tatango are retried 10 times when not reachable. After the 10th time, the system makes no further attempts to reach the callback URL.
 
+## Webhook Events
+
+| Webhook Event        | Description                                                       |
+|----------------------|-------------------------------------------------------------------|
+| Subscribes           | Occurs when a new number has subscribed to your list              |
+| Unsubscribes         | Occurs when a subscriber unsubscribes from your list              |
+| Message Sent         | Occurs when a broadcast message is sent                           |
+| Reply Received       | Occurs when a reply to a message from your shortcode is received  |
+| Subscriber Cleaned   | Occurs when a subscriber is cleaned from your list                |
+
+### Sample Payloads
+
+#### Subscribes Event
+```json
+{
+  "type": "subscribe",
+  "timestamp": "2025-03-31T18:44:29.898Z",
+  "account_id": 123456,
+  "campaign_id": 1001001,
+  "opt_id": 123456789,
+  "phone_number": "5555555555",
+  "carrier_id": 77,
+  "carrier_name": "Verizon",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email_address": "jdoe@email.com",
+  "gender": "Male",
+  "zip_code": "10011",
+  "birthdate": "01/01/1986",
+  "birthday": "01/01",
+  "tag_list": [
+    "Donor",
+    "Board Member"
+  ],
+  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
+  "last_opt_in_method": "ClientUpload",
+  "last_opt_in_keyword": null,
+  "total_messages_received": 1
+}
+```
+
+#### Unsubscribes Event
+```json
+{
+  "type": "unsubscribe",
+  "timestamp": "2025-03-31T18:44:29.898Z",
+  "unsubscribe_date": "2025-03-31T14:44:29.000-04:00",
+  "account_id": 123456,
+  "campaign_id": 1001001,
+  "opt_id": 123456789,
+  "phone_number": "5555555555",
+  "carrier_id": 77,
+  "carrier_name": "Verizon",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email_address": "jdoe@email.com",
+  "gender": "Male",
+  "zip_code": "10011",
+  "birthdate": "01/01/1986",
+  "birthday": "01/01",
+  "tag_list": [
+    "Donor",
+    "Board Member"
+  ],
+  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
+  "last_opt_in_method": "ClientUpload",
+  "last_opt_in_keyword": null,
+  "total_messages_received": 1
+}
+```
+
+#### Message Sent Event
+```json
+{
+  "type": "message_sent",
+  "timestamp": "2025-03-31T18:31:03.314Z",
+  "account_id": 123456,
+  "campaign_id": 1001001,
+  "message_id": 9876543,
+  "message_name": "Donor Outreach 3/31/2025",
+  "sent_timestamp": "2025-03-31T18:16:02.000Z",
+  "is_mms": false,
+  "content": "Support our campaign here: txting.io/12345ghcu",
+  "recipient_count": "115",
+  "success_count": 113,
+  "bounce_count": 1,
+  "clean_count": 1,
+  "unsubscribe_count": 2,
+  "send_cost": 1.06
+}
+```
+
+#### Reply Received Event
+```json
+{
+  "type": "campaign_response",
+  "timestamp": "2025-03-31T16:44:12.709Z",
+  "account_id": 123456,
+  "campaign_id": 1001001,
+  "message_id": 9876543,
+  "sent_timestamp": "2025-03-31T15:30:15.000Z",
+  "content": "Support our campaign here: txting.io/12345ghcu",
+  "response_timestamp": "2025-03-31T16:44:12.000Z",
+  "reply_content": "Yes, I'll donate",
+  "opt_id": 123456789,
+  "phone_number": "5555555555",
+  "carrier_id": 77,
+  "carrier_name": "Verizon",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email_address": "jdoe@email.com",
+  "gender": "Male",
+  "zip_code": "10011",
+  "birthdate": "01/01/1986",
+  "birthday": "01/01",
+  "tag_list": [
+    "Donor",
+    "Board Member"
+  ],
+  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
+  "last_opt_in_method": "ClientUpload",
+  "last_opt_in_keyword": null,
+  "is_mms": false,
+  "attachment_urls": []
+}
+```
+
+#### Subscriber Cleaned Event
+```json
+{
+  "type": "cleaned",
+  "timestamp": "2025-03-31T18:58:02.849Z",
+  "account_id": 123456,
+  "campaign_id": 1001001,
+  "subscriber_id": 106450095,
+  "phone_number": "5555555555",
+  "cleaned_at": "2025-03-31T14:58:02.000-04:00",
+  "clean_reason": "soft bounce limit",
+  "last_message_id": 9876543
+}
+```
+
 ## Creating a New Webhook for a List
 
 ```ruby
@@ -3947,9 +4089,9 @@ Tatango offers Automated Reports that provide powerful insights into your campai
 
 To enable any of the automated reports listed below, please reach out to your Tatango Customer Success Manager or support@tatango.com. Ensure you provide the following information:
 
-1. **Report Name**: Specify the report(s) you’d like to enable.
+1. **Report Name**: Specify the report(s) you'd like to enable.
 
-2. **Frequency**: Indicate how often you’d like to receive the report (e.g., daily, weekly, monthly).
+2. **Frequency**: Indicate how often you'd like to receive the report (e.g., daily, weekly, monthly).
 
 3. **Delivery Method**: Choose a delivery destination (AWS S3, GCP, SFTP, or email). Additional delivery destinations may be available upon request.
 
@@ -4183,7 +4325,7 @@ Automated reports are available upon request. Let your Customer Success Manager 
 
 ## Subscribers Snapshot Report
 
-**Description**: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It’s particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.
+**Description**: The Subscribers Snapshot Report provides a complete, point-in-time snapshot of all subscribers and their attributes. This report allows users to capture the current state of their subscriber list, including key details such as subscription status, custom fields, and engagement data points. It's particularly useful for monitoring list health, performing historical comparisons, and tracking changes in subscriber attributes over time.
 
 **Frequency**: Daily/Weekly/Monthly
 
