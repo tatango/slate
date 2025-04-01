@@ -4142,9 +4142,9 @@ Example of webhook payload reply listed to the right.
 <td>Occurs when a subscriber is cleaned from your list</td>
 </tr>
 </tbody></table>
-<h3 id='event-properties'>Event Properties</h3>
+
 <p>Each webhook event type includes specific properties in its payload. Below are the properties for each event type:</p>
-<h4 id='subscribe-event'>Subscribe Event</h4>
+<h3 id='subscribe-event'>Subscribe Event</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4253,7 +4253,7 @@ Example of webhook payload reply listed to the right.
 <td>Total messages received by subscriber</td>
 </tr>
 </tbody></table>
-<h4 id='unsubscribe-event'>Unsubscribe Event</h4>
+<h3 id='unsubscribe-event'>Unsubscribe Event</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4284,7 +4284,7 @@ Example of webhook payload reply listed to the right.
 <tr>
 <td>campaign_id</td>
 <td>integer</td>
-<td>Campaign identifier</td>
+<td>List identifier</td>
 </tr>
 <tr>
 <td>opt_id</td>
@@ -4367,7 +4367,7 @@ Example of webhook payload reply listed to the right.
 <td>Total messages received by subscriber</td>
 </tr>
 </tbody></table>
-<h4 id='message-sent-event'>Message Sent Event</h4>
+<h3 id='message-sent-event'>Message Sent Event</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4393,7 +4393,7 @@ Example of webhook payload reply listed to the right.
 <tr>
 <td>campaign_id</td>
 <td>integer</td>
-<td>Campaign identifier</td>
+<td>List identifier</td>
 </tr>
 <tr>
 <td>message_id</td>
@@ -4451,7 +4451,7 @@ Example of webhook payload reply listed to the right.
 <td>Cost of sending the message</td>
 </tr>
 </tbody></table>
-<h4 id='reply-received-event'>Reply Received Event</h4>
+<h3 id='reply-received-event'>Reply Received Event</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4477,7 +4477,7 @@ Example of webhook payload reply listed to the right.
 <tr>
 <td>campaign_id</td>
 <td>integer</td>
-<td>Campaign identifier</td>
+<td>List identifier</td>
 </tr>
 <tr>
 <td>message_id</td>
@@ -4590,7 +4590,7 @@ Example of webhook payload reply listed to the right.
 <td>Array of attachment URLs for MMS replies</td>
 </tr>
 </tbody></table>
-<h4 id='subscriber-cleaned-event'>Subscriber Cleaned Event</h4>
+<h3 id='subscriber-cleaned-event'>Subscriber Cleaned Event</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4616,7 +4616,7 @@ Example of webhook payload reply listed to the right.
 <tr>
 <td>campaign_id</td>
 <td>integer</td>
-<td>Campaign identifier</td>
+<td>List identifier</td>
 </tr>
 <tr>
 <td>subscriber_id</td>
