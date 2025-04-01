@@ -3459,137 +3459,120 @@ Callback URLs configured as a webhook in Tatango are retried 10 times when not r
 | Reply Received       | Occurs when a reply to a message from your shortcode is received  |
 | Subscriber Cleaned   | Occurs when a subscriber is cleaned from your list                |
 
-### Sample Payloads
+### Event Properties
 
-#### Subscribes Event
-```json
-{
-  "type": "subscribe",
-  "timestamp": "2025-03-31T18:44:29.898Z",
-  "account_id": 123456,
-  "campaign_id": 1001001,
-  "opt_id": 123456789,
-  "phone_number": "5555555555",
-  "carrier_id": 77,
-  "carrier_name": "Verizon",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email_address": "jdoe@email.com",
-  "gender": "Male",
-  "zip_code": "10011",
-  "birthdate": "01/01/1986",
-  "birthday": "01/01",
-  "tag_list": [
-    "Donor",
-    "Board Member"
-  ],
-  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
-  "last_opt_in_method": "ClientUpload",
-  "last_opt_in_keyword": null,
-  "total_messages_received": 1
-}
-```
+Each webhook event type includes specific properties in its payload. Below are the properties for each event type:
 
-#### Unsubscribes Event
-```json
-{
-  "type": "unsubscribe",
-  "timestamp": "2025-03-31T18:44:29.898Z",
-  "unsubscribe_date": "2025-03-31T14:44:29.000-04:00",
-  "account_id": 123456,
-  "campaign_id": 1001001,
-  "opt_id": 123456789,
-  "phone_number": "5555555555",
-  "carrier_id": 77,
-  "carrier_name": "Verizon",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email_address": "jdoe@email.com",
-  "gender": "Male",
-  "zip_code": "10011",
-  "birthdate": "01/01/1986",
-  "birthday": "01/01",
-  "tag_list": [
-    "Donor",
-    "Board Member"
-  ],
-  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
-  "last_opt_in_method": "ClientUpload",
-  "last_opt_in_keyword": null,
-  "total_messages_received": 1
-}
-```
+#### Subscribe Event
+| Property | Type | Description |
+|----------|------|-------------|
+| type | string | Always "subscribe" |
+| timestamp | string | ISO 8601 timestamp of the event |
+| account_id | integer | Tatango account identifier |
+| campaign_id | integer | List identifier |
+| opt_id | integer | Unique identifier for the opt-in event |
+| phone_number | string | Subscriber's phone number |
+| carrier_id | integer | Carrier identifier |
+| carrier_name | string | Name of the carrier |
+| first_name | string | Subscriber's first name |
+| last_name | string | Subscriber's last name |
+| email_address | string | Subscriber's email address |
+| gender | string | Subscriber's gender |
+| zip_code | string | Subscriber's ZIP code |
+| birthdate | string | Subscriber's birth date (MM/DD/YYYY) |
+| birthday | string | Subscriber's birthday (MM/DD) |
+| tag_list | array | Array of tags associated with the subscriber |
+| first_opt_in_timestamp | string | ISO 8601 timestamp of first opt-in |
+| last_opt_in_method | string | Method used for the opt-in |
+| last_opt_in_keyword | string | Keyword used for opt-in (if applicable) |
+| total_messages_received | integer | Total messages received by subscriber |
+
+#### Unsubscribe Event
+| Property | Type | Description |
+|----------|------|-------------|
+| type | string | Always "unsubscribe" |
+| timestamp | string | ISO 8601 timestamp of the event |
+| unsubscribe_date | string | ISO 8601 timestamp of unsubscribe action |
+| account_id | integer | Tatango account identifier |
+| campaign_id | integer | Campaign identifier |
+| opt_id | integer | Unique identifier for the opt event |
+| phone_number | string | Subscriber's phone number |
+| carrier_id | integer | Carrier identifier |
+| carrier_name | string | Name of the carrier |
+| first_name | string | Subscriber's first name |
+| last_name | string | Subscriber's last name |
+| email_address | string | Subscriber's email address |
+| gender | string | Subscriber's gender |
+| zip_code | string | Subscriber's ZIP code |
+| birthdate | string | Subscriber's birth date |
+| birthday | string | Subscriber's birthday |
+| tag_list | array | Array of tags associated with the subscriber |
+| first_opt_in_timestamp | string | ISO 8601 timestamp of first opt-in |
+| last_opt_in_method | string | Last method used for opt-in |
+| last_opt_in_keyword | string | Last keyword used for opt-in |
+| total_messages_received | integer | Total messages received by subscriber |
 
 #### Message Sent Event
-```json
-{
-  "type": "message_sent",
-  "timestamp": "2025-03-31T18:31:03.314Z",
-  "account_id": 123456,
-  "campaign_id": 1001001,
-  "message_id": 9876543,
-  "message_name": "Donor Outreach 3/31/2025",
-  "sent_timestamp": "2025-03-31T18:16:02.000Z",
-  "is_mms": false,
-  "content": "Support our campaign here: txting.io/12345ghcu",
-  "recipient_count": "115",
-  "success_count": 113,
-  "bounce_count": 1,
-  "clean_count": 1,
-  "unsubscribe_count": 2,
-  "send_cost": 1.06
-}
-```
+| Property | Type | Description |
+|----------|------|-------------|
+| type | string | Always "message_sent" |
+| timestamp | string | ISO 8601 timestamp of the event |
+| account_id | integer | Tatango account identifier |
+| campaign_id | integer | Campaign identifier |
+| message_id | integer | Unique identifier for the message |
+| message_name | string | Name of the message |
+| sent_timestamp | string | ISO 8601 timestamp when message was sent |
+| is_mms | boolean | Whether the message is MMS (true) or SMS (false) |
+| content | string | Message content |
+| recipient_count | string | Number of intended recipients |
+| success_count | integer | Number of successful deliveries |
+| bounce_count | integer | Number of bounced messages |
+| clean_count | integer | Number of cleaned subscribers |
+| unsubscribe_count | integer | Number of unsubscribes from this message |
+| send_cost | number | Cost of sending the message |
 
 #### Reply Received Event
-```json
-{
-  "type": "campaign_response",
-  "timestamp": "2025-03-31T16:44:12.709Z",
-  "account_id": 123456,
-  "campaign_id": 1001001,
-  "message_id": 9876543,
-  "sent_timestamp": "2025-03-31T15:30:15.000Z",
-  "content": "Support our campaign here: txting.io/12345ghcu",
-  "response_timestamp": "2025-03-31T16:44:12.000Z",
-  "reply_content": "Yes, I'll donate",
-  "opt_id": 123456789,
-  "phone_number": "5555555555",
-  "carrier_id": 77,
-  "carrier_name": "Verizon",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email_address": "jdoe@email.com",
-  "gender": "Male",
-  "zip_code": "10011",
-  "birthdate": "01/01/1986",
-  "birthday": "01/01",
-  "tag_list": [
-    "Donor",
-    "Board Member"
-  ],
-  "first_opt_in_timestamp": "2025-03-31T15:11:03.000Z",
-  "last_opt_in_method": "ClientUpload",
-  "last_opt_in_keyword": null,
-  "is_mms": false,
-  "attachment_urls": []
-}
-```
+| Property | Type | Description |
+|----------|------|-------------|
+| type | string | Always "campaign_response" |
+| timestamp | string | ISO 8601 timestamp of the event |
+| account_id | integer | Tatango account identifier |
+| campaign_id | integer | Campaign identifier |
+| message_id | integer | ID of the message being replied to |
+| sent_timestamp | string | ISO 8601 timestamp of original message |
+| content | string | Content of the original message |
+| response_timestamp | string | ISO 8601 timestamp of the reply |
+| reply_content | string | Content of the subscriber's reply |
+| opt_id | integer | Unique identifier for the opt record |
+| phone_number | string | Subscriber's phone number |
+| carrier_id | integer | Carrier identifier |
+| carrier_name | string | Name of the carrier |
+| first_name | string | Subscriber's first name |
+| last_name | string | Subscriber's last name |
+| email_address | string | Subscriber's email address |
+| gender | string | Subscriber's gender |
+| zip_code | string | Subscriber's ZIP code |
+| birthdate | string | Subscriber's birth date |
+| birthday | string | Subscriber's birthday |
+| tag_list | array | Array of tags associated with the subscriber |
+| first_opt_in_timestamp | string | ISO 8601 timestamp of first opt-in |
+| last_opt_in_method | string | Method used for opt-in |
+| last_opt_in_keyword | string | Keyword used for opt-in |
+| is_mms | boolean | Whether the reply is MMS or SMS |
+| attachment_urls | array | Array of attachment URLs for MMS replies |
 
 #### Subscriber Cleaned Event
-```json
-{
-  "type": "cleaned",
-  "timestamp": "2025-03-31T18:58:02.849Z",
-  "account_id": 123456,
-  "campaign_id": 1001001,
-  "subscriber_id": 106450095,
-  "phone_number": "5555555555",
-  "cleaned_at": "2025-03-31T14:58:02.000-04:00",
-  "clean_reason": "soft bounce limit",
-  "last_message_id": 9876543
-}
-```
+| Property | Type | Description |
+|----------|------|-------------|
+| type | string | Always "cleaned" |
+| timestamp | string | ISO 8601 timestamp of the event |
+| account_id | integer | Tatango account identifier |
+| campaign_id | integer | Campaign identifier |
+| subscriber_id | integer | Unique identifier for the subscriber |
+| phone_number | string | Subscriber's phone number |
+| cleaned_at | string | ISO 8601 timestamp when subscriber was cleaned |
+| clean_reason | string | Reason for the clean action |
+| last_message_id | integer | ID of the last message sent to subscriber |
 
 ## Creating a New Webhook for a List
 
