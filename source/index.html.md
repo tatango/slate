@@ -3459,11 +3459,9 @@ Callback URLs configured as a webhook in Tatango are retried 10 times when not r
 | Reply Received       | Occurs when a reply to a message from your shortcode is received  |
 | Subscriber Cleaned   | Occurs when a subscriber is cleaned from your list                |
 
-### Event Properties
-
 Each webhook event type includes specific properties in its payload. Below are the properties for each event type:
 
-#### Subscribe Event
+### Subscribe Event
 | Property | Type | Description |
 |----------|------|-------------|
 | type | string | Always "subscribe" |
@@ -3487,14 +3485,14 @@ Each webhook event type includes specific properties in its payload. Below are t
 | last_opt_in_keyword | string | Keyword used for opt-in (if applicable) |
 | total_messages_received | integer | Total messages received by subscriber |
 
-#### Unsubscribe Event
+### Unsubscribe Event
 | Property | Type | Description |
 |----------|------|-------------|
 | type | string | Always "unsubscribe" |
 | timestamp | string | ISO 8601 timestamp of the event |
 | unsubscribe_date | string | ISO 8601 timestamp of unsubscribe action |
 | account_id | integer | Tatango account identifier |
-| campaign_id | integer | Campaign identifier |
+| campaign_id | integer | List identifier |
 | opt_id | integer | Unique identifier for the opt event |
 | phone_number | string | Subscriber's phone number |
 | carrier_id | integer | Carrier identifier |
@@ -3512,13 +3510,13 @@ Each webhook event type includes specific properties in its payload. Below are t
 | last_opt_in_keyword | string | Last keyword used for opt-in |
 | total_messages_received | integer | Total messages received by subscriber |
 
-#### Message Sent Event
+### Message Sent Event
 | Property | Type | Description |
 |----------|------|-------------|
 | type | string | Always "message_sent" |
 | timestamp | string | ISO 8601 timestamp of the event |
 | account_id | integer | Tatango account identifier |
-| campaign_id | integer | Campaign identifier |
+| campaign_id | integer | List identifier |
 | message_id | integer | Unique identifier for the message |
 | message_name | string | Name of the message |
 | sent_timestamp | string | ISO 8601 timestamp when message was sent |
@@ -3531,13 +3529,13 @@ Each webhook event type includes specific properties in its payload. Below are t
 | unsubscribe_count | integer | Number of unsubscribes from this message |
 | send_cost | number | Cost of sending the message |
 
-#### Reply Received Event
+### Reply Received Event
 | Property | Type | Description |
 |----------|------|-------------|
 | type | string | Always "campaign_response" |
 | timestamp | string | ISO 8601 timestamp of the event |
 | account_id | integer | Tatango account identifier |
-| campaign_id | integer | Campaign identifier |
+| campaign_id | integer | List identifier |
 | message_id | integer | ID of the message being replied to |
 | sent_timestamp | string | ISO 8601 timestamp of original message |
 | content | string | Content of the original message |
@@ -3561,13 +3559,13 @@ Each webhook event type includes specific properties in its payload. Below are t
 | is_mms | boolean | Whether the reply is MMS or SMS |
 | attachment_urls | array | Array of attachment URLs for MMS replies |
 
-#### Subscriber Cleaned Event
+### Subscriber Cleaned Event
 | Property | Type | Description |
 |----------|------|-------------|
 | type | string | Always "cleaned" |
 | timestamp | string | ISO 8601 timestamp of the event |
 | account_id | integer | Tatango account identifier |
-| campaign_id | integer | Campaign identifier |
+| campaign_id | integer | List identifier |
 | subscriber_id | integer | Unique identifier for the subscriber |
 | phone_number | string | Subscriber's phone number |
 | cleaned_at | string | ISO 8601 timestamp when subscriber was cleaned |
