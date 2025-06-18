@@ -4336,6 +4336,8 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `opt_in_method`: The method by which the subscriber joined the list.
 - `most_recent_opt_in`: The timestamp of the subscriber's most recent opt-in action.
 - `api_source`: The API source of the most recent opt-in.
+- `brand_affinity_score` : A dynamic AI-generated score that reflects a subscribers engagement based on reply sentiment, clicks, donations, and opt-out behavior.
+- `power_segment_label` : A categorical label that places a subscriber into one of five AI-defined engagement segments: VIP Donor, Highly Engaged, Passive Supporter, At-Risk, or Critical Risk, based on their brand affinity score.
 - `custom_fields`: Any custom fields configured in your Tatango list will be included as separate columns by default. The headers will reflect the merge tag defined when the custom fields were created.
 
 ## Updated Subscribers Report
@@ -4368,6 +4370,8 @@ Automated reports are available upon request. Let your Customer Success Manager 
 - `opt_in_method`: The method by which the subscriber joined the list.
 - `most_recent_opt_in`: The timestamp of the subscriber's most recent opt-in action.
 - `api_source`: The API source of the most recent opt-in.
+- `brand_affinity_score` : A dynamic AI-generated score that reflects a subscribers engagement based on reply sentiment, clicks, donations, and opt-out behavior.
+- `power_segment_label` : A categorical label that places a subscriber into one of five AI-defined engagement segments: VIP Donor, Highly Engaged, Passive Supporter, At-Risk, or Critical Risk, based on their brand affinity score.
 - `custom_fields`: Any custom fields configured in your Tatango list will be included as separate columns. The headers will reflect the merge tag defined when the custom fields were created.
 
 ## Delivery Methods
